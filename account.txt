@@ -1,0 +1,10 @@
+Website: vietagar.com.vn
+- Ð?a ch? dang nh?p:         https://vas1.vdc3.vn:8443
+- username:                       vietagar.com.vn
+- password:                        Gs14htc (chú ý ch? HOA và ch? thu?ng)
+- Ð?a ch? IP FTP server:         203.162.31.116
+   - FTP user: vietagar
+   - FTP password: Gs14htc
+- Ð?a ch? IP MYSQL server:     203.162.31.106
+http://hotro.vdc3.vn/
+http://testapi.nhanhconkip.net/tetra_o/main.php?db_name=test_tetra
