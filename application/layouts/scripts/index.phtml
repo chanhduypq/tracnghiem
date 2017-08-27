@@ -1,5 +1,5 @@
-<?php
-echo $this->doctype();//test
+<?php 
+echo $this->doctype();
 $db = Core_Db_Table::getDefaultAdapter();
 $rows = $db->fetchAll('SELECT * FROM layout_content');
 $menu_items = array();
