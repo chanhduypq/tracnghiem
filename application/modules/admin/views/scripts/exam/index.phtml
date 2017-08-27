@@ -1,0 +1,40 @@
+<style>
+    fieldset{
+        border: 1px solid black;
+        margin-bottom: 50px;
+    }
+</style>
+<div class="row-fluid" style="margin-top: 10px;">
+    <div class="span3">&nbsp;</div>
+    <div class="span6" align="center" style="padding-bottom:20px;color: red;">
+        <div class="textHeader" style="-moz-border-radius: 10px 10px 10px 10px;background-color:#f2e8e8;">	  
+            <div onclick="save();" style="float: right;text-decoration: underline;color: blue;cursor: pointer;">Lưu</div>
+
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+    <div class="span3">&nbsp;</div>
+</div>
+<?php if (isset($this->message) && $this->message != '') { ?>
+    <div style="color: red;text-align: center;width: 100%;">
+        <h3><?php echo $this->message; ?></h3>
+    </div>
+    <?php
+}
+?>
+<form name="form" enctype="multipart/form-data" id="form" method="post"> 
+    <fieldset>
+        <?php echo $this->render('exam/partial/examtime.phtml');?>
+    </fieldset>
+
+    <fieldset>
+        <?php echo $this->render('exam/partial/config.phtml');?> 
+    </fieldset>
+    
+</form>
+<script type="text/javascript">
+    function save() {
+        document.form.submit();
+    }
+</script>

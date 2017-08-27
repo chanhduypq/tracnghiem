@@ -1,0 +1,39 @@
+<?php
+/**
+* @file: default.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 05-12-2012
+* @company : http://dnict.vn
+**/
+?>
+<!-- BREADCRUMB : begin -->
+<div class="span9">
+	<ul class="breadcrumb">
+	<li><a href="<?php echo $this->view->baseUrl().'/';?>">Trang chủ</a> <span class="divider">/</span></li>
+	<?php
+	for ($i = 0; $i < count($rows); $i++) :
+		if ($id_category == $rows[$i]['id']) {
+		?>
+		<li class="active"><a href="<?php echo $this->view->baseUrl().'/news/index/categories/id/'.$rows[$i]['id'];?>"><?php echo $rows[$i]['title'];?></a></li>	
+		<?php 	
+		}else{
+		?>
+		<li><a href="<?php echo $this->view->baseUrl().'/news/index/categories/id/'.$rows[$i]['id'];?>"><?php echo $rows[$i]['title'];?></a> <span class="divider">/</span></li>
+		<?php 
+		}
+	endfor;
+	?>
+	</ul>
+</div>
+<!-- BREADCRUMB : end -->
+<!-- SEARCH : begin -->
+<div class="span3">
+	<form class="search">
+		<div class="input">
+			<input type="text" class="input-medium search-query"
+				placeholder="Search for ...">
+			<button type="submit" class="btn">Search</button>
+		</div>
+	</form>
+</div>
+<!-- SEARCH : end -->

@@ -1,0 +1,87 @@
+<?php
+/**
+* @file: create.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 11-10-2012
+* @company : http://dnict.vn
+**/
+/*
+ * Begin build toolbar
+*/
+
+$toolbar = array();
+// nut luu
+$toolbar[] = array(
+		'lable'=>'Lưu',
+		'url'=>$this->url(),
+		'attribs'=>array(
+				'class'=>'save',
+				'noscript'=>true,
+				'id'=>'frmCategoriesCreate-save'
+
+		)
+);
+// Nut Quay ve
+$toolbar[] = array(
+		'lable'=>'Bỏ qua',
+		'url'=>$this->baseUrl().'/news/categories/index',
+		'attribs'=>array(
+				'class'=>'cancel',
+				'noscript'=>true
+		)
+);
+
+echo $this->toolbar($toolbar,array('title'=>$this->pageTitle,'subtitle'=>$this->pageSubTitle));
+foreach ($this->form->getElements() as $element) {
+	$element->getDecorator('label')->setOption('tag', null);
+}
+?>
+<form action="<?php echo $this->url();?>" method="POST"	name="frmCategoriesCreate" id="frmCategoriesCreate">
+<fieldset>
+<legend>Thông tin chủ đề</legend>
+<table cellspacing="1" class="admintable" width="100%">
+	<tbody>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->title->renderLabel();?></td>
+			<td><?php echo $this->form->title->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->title);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->alias->renderLabel();?></td>
+			<td><?php echo $this->form->alias->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->alias);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->id_parent->renderLabel();?></td>
+			<td><?php echo $this->form->id_parent->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->id_parent);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->published->renderLabel();?></td>
+			<td><?php echo $this->form->published->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->published);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->access->renderLabel();?></td>
+			<td><?php echo $this->form->access->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->access);?></td>
+		</tr>				
+	</tbody>
+</table>
+</fieldset>
+<?php echo $this->form->id->renderViewHelper();?>
+</form>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$('#frmCategoriesCreate label.required').append('&nbsp;<strong style="color:red;">*</strong>&nbsp;');
+	$("#frmCategoriesCreate").validate();
+	$('#frmCategoriesCreate-save').click(function(){
+		 //alert("Valid: " + $("#question-create").valid());
+		if($("#frmCategoriesCreate").valid() == true){
+			 document.frmCategoriesCreate.submit();	 
+		}
+		 
+		  return false;
+	});
+});
+</script>

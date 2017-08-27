@@ -1,0 +1,41 @@
+.btn
+{
+    font-family: Arial;
+    padding: 5px 10px;
+    background: #333;
+    color: white;
+    margin: 5px;
+    font-size: 12px;
+    line-height: 12px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover
+{
+    background: #666;
+}
+
+.span12.question{
+    font-size: 20px;
+    color: blue;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.span11.answer{
+    padding-left: 20px;
+}
+
+.goto{
+    color: red;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+a.goto:link {
+    text-decoration: none;
+}
+
+a.goto:visited {
+    text-decoration: none;
+}

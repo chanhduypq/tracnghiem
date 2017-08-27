@@ -1,0 +1,157 @@
+<style>
+    .row0{
+        background-color: white;
+        
+    }
+    .row1{
+        background-color: silver;
+        
+    }
+    
+</style>
+<?php
+$items=$this->items;
+
+
+
+$auth = Zend_Auth::getInstance();
+if($auth->hasIdentity())
+{
+	$identity = $auth->getIdentity();
+	
+		
+}
+Zend_Loader::loadFile('Numeric.php',"./../library/Core/Common/",true);     
+Zend_Loader::loadFile('String.php',"./../library/Core/Common/",true);     
+?>
+<script type="text/javascript">
+
+
+function addItem(){
+	window.location="<?php echo $this->baseUrl('/admin/nganhnghe/add/');?>";
+	
+}
+function editItem(img){
+	jQuery("form#edit-form").find('input[type="hidden"]').eq(0).val(jQuery(img).parent().parent().attr("id")).attr("name","id");
+        jQuery("form#edit-form").submit();
+	
+}
+
+jQuery(function($) {
+    buildForm("<?php echo $this->baseUrl('/admin/nganhnghe/edit/');?>");
+	
+});
+
+</script>
+<?php
+$message=$this->message;
+if($message!=""){
+?>
+<div class="row-fluid" style="margin-top: 20px;">
+    <div class="span3">&nbsp;</div>
+    <div class="span6" align='center' style='color: red;'>
+        <?php
+        echo $message;
+        ?>
+    </div>
+    <div class="span3">&nbsp;</div>
+</div>
+<?php
+}
+?>
+<div class="row-fluid" style="padding-top:20px;">
+    <div class="span12">
+        <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">
+             <tr>
+                 <td width="80%" align="center" style="float: left;text-align: center;font-size: 20px;color: yellow;"><?php if(isset($ten_loai_mat_hang)) echo $ten_loai_mat_hang;?></td>
+
+                 <td onclick="addItem();" onmouseover="this.style.cursor='pointer';" style="text-decoration: underline;color: blue;" width="20%" align="right">Thêm ngành nghề</td>
+
+             </tr>
+        </table>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12" style="padding-top: 20px;">
+        
+        
+        <?php if(count($items)>0){?>
+		<form id="form1" method="post" action="<?php echo $this->url();?>">
+		<?php
+                } 
+				?>
+                    <table style="width:100%;" border="1"> 
+			    <thead>   
+				    <tr>
+                                        <th style="width: 5%;"></th>
+                                        <th style="color: #993333;width: 10%;">&nbsp;</th>                
+				       <th style="color: #993333;width: 65%;">&nbsp;</th>
+				       
+
+				       <th style="width: 5%;"></th>
+                                       <th style="width: 5%;"></th>
+                                       	
+				    </tr>
+			    </thead>
+			    
+			     <tbody>
+			    <?php
+                            
+                            $row=0;
+			    foreach ($items as $item){			    	
+			    	    
+                                    if($row==0){
+                                        $row=1;
+                                    }
+                                    else{
+                                        $row=0;
+                                    }
+                        
+                        
+			            $item_des=$item['mo_ta'];
+			            
+    			        
+			            		            
+			            
+			            
+                                        $item_des=String1::crop($item_des, 30);
+			    ?>
+			        
+                                 <tr class="<?php echo "row$row";?>" id="<?php echo $item['id'];?>">
+                                     <td style="padding: 3px;text-align: center;" title="Thêm mới cấp bậc">
+                                                <?php 
+                                                if($item['parent_id']==""){
+                                                    ?>
+                                                
+				               <a href="<?php echo $this->baseUrl('/admin/nganhnghe/addchild/parent_id/').$item['id'];?>">
+                                                   <img style="width: 43px;height: 41px;" src="<?php echo $this->baseUrl("/images/icon/add.gif");?>"
+                                               </a>
+                                                <?php
+                                                }
+                                                ?>
+                                                
+				            </td>     
+                                     <td style="text-align: center;"><?php echo $item['title'];?></td>			            
+				            <td style="text-align: center;"><?php echo String1::crop($item_des,100);?></td>
+				            
+
+				            <td style="padding: 3px;text-align: center;">
+				               <a class="remove" title="Click vào đây để xóa" href="<?php echo $this->baseUrl('/admin/nganhnghe/delete/id/').$item['id'];?>">
+                                                   <img style="width: 32px;height: 32px;" src="<?php echo $this->baseUrl("/images/icon/delete-icon.png");?>"/>                                                   
+                                               </a>
+				            </td> 
+                                            <td style="padding: 3px;text-align: center;">
+				               
+                                                <img title="Click vào đây để sửa" style="width: 48px;height: 48px;cursor: pointer;" src="<?php echo $this->baseUrl("/images/icon/ico_edit.png");?>" onclick="editItem(this);"/>                                                   
+                                              
+				            </td> 
+                                                                                    
+				        </tr>
+				    
+			    <?php 
+			    } 
+			    ?>
+			      </tbody>
+			</table>
+    </div>
+</div>

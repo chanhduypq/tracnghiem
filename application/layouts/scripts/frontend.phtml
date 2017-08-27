@@ -1,0 +1,273 @@
+<?php
+$auth = Zend_Auth::getInstance();
+$option_layout = array();
+if ($auth->hasIdentity() == true) {
+	$option_layout[] = array('access'=>1);
+}else{
+	$option_layout[] = array('access'=>0);
+}
+$countModulesLeft =  (int)Core_Blocks::countModules('left',$option_layout);
+$countModulesRight = (int)Core_Blocks::countModules('right',$option_layout);
+$countModulesBreadcrumb = (int)Core_Blocks::countModules('breadcrumb',$option_layout);
+$countModulesUser1 = (int)Core_Blocks::countModules('user1',$option_layout);
+$countModulesUser2 = (int)Core_Blocks::countModules('user2',$option_layout);
+$outer = '6';
+$listModulesLeft = 1;
+$listModulesRight = 1;
+$listModulesBreadcrumb = 1;
+$listModulesUser1 = 1;
+$listModulesUser2 = 1;
+
+if($countModulesBreadcrumb == 0):
+$listModulesBreadcrumb = null;
+endif;
+if($countModulesUser1 == 0):
+$listModulesUser1 = null;
+endif;
+if($countModulesUser2 == 0):
+$listModulesUser2 = null;
+endif;
+
+if($countModulesLeft == 0):
+$outer = '9';
+$listModulesLeft = null;
+endif;
+if ($countModulesRight == 0) :
+$outer = '9';
+$listModulesRight = null;
+endif;
+if (($countModulesRight == 0) && ($countModulesLeft == 0)):
+$outer = '12';
+endif;
+
+/*
+ * BEGIN Lay tat ca module
+*/
+if(null != $listModulesLeft):
+$listModulesLeft = Core_Blocks::countModulesList('left',$option_layout);
+endif;
+
+if(null != $listModulesRight):
+$listModulesRight = Core_Blocks::countModulesList('right',$option_layout);
+endif;
+
+if(null != $listModulesBreadcrumb):
+$listModulesBreadcrumb = Core_Blocks::countModulesList('breadcrumb',$option_layout);
+endif;
+if(null != $listModulesUser1):
+$listModulesUser1 = Core_Blocks::countModulesList('user1',$option_layout);
+endif;
+if(null != $listModulesUser2):
+$listModulesUser2 = Core_Blocks::countModulesList('user2',$option_layout);
+endif;
+$this->headLink()->appendStylesheet(array('href'=>$this->baseUrl().'/assets/css/ie8.css','rel'=>'stylesheet', 'type'=>'text/css','conditionalStylesheet'=>'lte IE 8'))
+	->headLink()->appendStylesheet(array('href'=>$this->baseUrl().'/assets/css/ie9.css','rel'=>'stylesheet', 'type'=>'text/css','conditionalStylesheet'=>'IE 9'))
+	->headLink()->prependStylesheet($this->baseUrl().'/assets/css/style.css')
+	->headLink()->prependStylesheet($this->baseUrl().'/assets/bootstrap/css/bootstrap-responsive.min.css')
+	->headLink()->prependStylesheet($this->baseUrl().'/assets/bootstrap/css/bootstrap.min.css');
+
+$this->headScript()
+	->prependFile($this->baseUrl().'/js/core-system.js')
+	->prependFile($this->baseUrl().'/js/jquery.noConfict.js')
+	->prependFile($this->baseUrl().'/assets/js/scripts.js')
+	->prependFile($this->baseUrl().'/assets/bootstrap/js/bootstrap.min.js')	
+	->prependFile($this->baseUrl().'/js/jquery.min.js')
+	->prependFile($this->baseUrl().'/assets/js/html5.js'); 
+?>
+<!DOCTYPE html>
+<html>
+    <?php echo $this->headTitle() ?>
+   	<?php echo $this->headMeta() ?>
+   	<?php echo $this->headLink() ?>
+<script type="text/javascript">
+var Core = {"baseUrl":"<?php echo $this->baseUrl();?>"}; 
+</script>   	
+   	<?php echo $this->headScript() ?>
+    <body>
+        <!-- HEADER : begin -->
+        <!-- classes:
+            'home' for home page
+        -->
+        <header <?php echo (Core_Blocks::isHomePage())?'class="home"':''?>>
+            <div class="container">
+                <div class="row">
+                    <div class="offset1 span10">
+                        <!-- BRANDING : begin -->
+                        <a href="index.html" id="branding"><img src="<?php echo $this->baseUrl();?>/assets/dummies/logo2.png" alt="Sewed"></a>
+                        <!-- BRANDING : end -->
+                        <?php
+                        echo $this->mainMenu()->menu()->setPartial(array('_partials/homemenu.phtml','default'));                        
+                        ?>
+                    </div>
+                </div>
+        <?php
+        $slider = Core_Blocks::countModulesList('slider',$option_layout);
+        for ($i = 0,$n=count($slider); $i < $n; $i++) :
+        $row = &$slider[$i];
+        $this->block($row);
+        endfor;
+        ?>                
+            </div>
+        </header>
+        <!-- HEADER : end -->
+        <?php
+        $block = Core_Blocks::countModulesList('topbar',$option_layout);
+        if (count($block) > 0) :
+        	?>
+       	<!-- TOP BAR : begin -->
+        <section id="top-bar">
+            <div class="top-bar-bg">
+                <div class="top-bar-inner">
+                    <div class="container">
+                        <div class="row">
+       	<?php
+        for ($i = 0,$n=count($block); $i < $n; $i++) :
+        $this->block($block[$i]);
+        endfor;
+        ?>
+						</div>
+                    </div>
+                 </div>
+             </div>
+         </section>
+         <!-- TOP BAR : end -->
+        	<?php 
+        endif;        
+        $block = Core_Blocks::countModulesList('user1',$option_layout);
+        if (count($block) > 0 ) :
+        	?>
+		<!-- HOME MIDDLE CUSTOM : begin -->
+        <section class="home-middle-custom">
+            <div class="bg1"><div class="bg2">
+            <div class="inner">
+                <div class="container">
+        	<?php
+        for ($i = 0,$n=count($block); $i < $n; $i++) :
+        ?>
+        <div class="row">
+        <?php         
+        $this->block($block[$i]);
+        ?>
+        </div>
+        <?php 
+        endfor;
+        ?>
+             	</div>
+             </div>
+            </div></div>
+        </section>
+        <!-- HOME MIDDLE CUSTOM : end -->
+        <?php
+        endif;
+        ?>         
+        <!-- CORE : begin -->
+        <section id="core">
+            <div class="core-bg">
+                <div class="core-inner">
+                    <div class="container">
+						<?php
+						$block = Core_Blocks::countModulesList('user2',$option_layout);
+						if(count($block) > 0 ): 
+						?>
+						<!-- USER2: begin -->
+						<div class="row-fluid">
+						<div class="span12">									
+						<?php
+								for ($i = 0,$n=count($block); $i < $n; $i++) :												
+									$this->block($block[$i]);
+								endfor;
+							?>									
+						</div>
+						</div>
+						<!-- USER2: end -->
+						<?php endif;?>
+                        <div class="row">             							
+						<?php if($countModulesLeft > 0 ):?>
+						<!-- LEFT: begin -->
+						<div class="span3">
+						<?php
+							for ($i = 0,$n=count($listModulesLeft); $i < $n; $i++) :
+								$row = &$listModulesLeft[$i];					
+								$this->block($row);
+							endfor;
+						?>
+						</div>
+						<!-- LEFT: end -->
+							<?php endif;?>
+								<div class="span<?php echo $outer;?>">
+									<!-- CONTENT : begin -->
+									<div id="content">
+										<?php				
+										echo $this->layout()->content;
+										?>
+									
+										<?php
+										  $block = Core_Blocks::countModulesList('user3',$option_layout);
+											for ($i = 0,$n=count($block); $i < $n; $i++) :												
+												$this->block($block[$i]);
+											endfor;
+										?>
+									</div>
+									<!-- CONTENT : end -->	
+								</div>     
+						     <?php if($countModulesRight > 0 ):?>
+						     	<!-- RIGHT: begin -->
+								 <div class="span3">
+									<?php
+										for ($i = 0,$n=count($listModulesRight); $i < $n; $i++) :
+											$row = &$listModulesRight[$i];
+											$this->block($row);
+										endfor;
+									?>
+								</div>
+								<!-- RIGHT: end -->
+						    <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CORE : end -->
+        <!-- FOOTER : begin -->
+        <footer>
+<?php 
+$block = Core_Blocks::countModulesList('footermain',$option_layout);
+//var_dump($block);
+if(count($block) > 0 ):
+?> 
+<!-- FOOTER MAIN : begin -->
+<div class="footer-main">
+<div class="container">                
+	<?php
+	for ($i = 0,$n=count($block); $i < $n; $i++) :
+	?>
+	<div class="row">
+	<?php
+		$this->block($block[$i]);
+	?>
+	</div>
+	<?php
+	endfor;
+?>
+</div>
+</div>
+<!-- FOOTER MAIN : end -->
+    <?php endif;?>        
+            <!-- FOOTER BOTTOM : begin -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="span11">
+                            <div class="copyright"><strong>&copy; 2012 Danadevi.vn</strong></div>
+                        </div>
+                        <div class="span1">
+                            <a href="#" class="back-to-top">back to top</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FOOTER BOTTOM : end -->
+        </footer>
+        <!-- FOOTER : end -->
+    </body>
+</html>

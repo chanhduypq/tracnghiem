@@ -1,0 +1,104 @@
+<?php
+/**
+ *
+ * @author User
+ * @version 
+ */
+class Core_View_Helper_FormPhoihop extends Zend_View_Helper_Abstract
+{
+	public function formPhoihop()
+	{
+		$auth = Zend_Auth::getInstance();
+		$user = $auth->getIdentity();
+		$db = Zend_Db_Table::getDefaultAdapter();
+		$mapperPhongBan = new CoreBase_Model_PhongbanMapper();
+		$arr_phongban = $mapperPhongBan->itemInSelectbox();
+		$select = $db->select();
+		$select->from(array('a'=>_TABLE_PREFIX.'users'),array('id','fullname','id_dep'))				
+				->where('a.id NOT IN (?)',$user->id)
+				->where('a.status = 1')
+				->where('a.is_banned <> 1')
+		;
+		$rows = $db->fetchAll($select);
+		$arr_user = array();
+		foreach ($arr_phongban as $key=>$val) {			
+			$arr_temp = array();
+			for ($k = 0; $k < count($rows); $k++) {				
+				if($rows[$k]['id_dep']==$key){
+					$arr_temp[$rows[$k]['id']] = $rows[$k]['fullname'];
+				}
+			}
+			$arr_user[$val] = $arr_temp;
+			//var_dump($key); 
+		}
+		
+		echo $this->view->headScript()->appendFile(APPLICATION_URL .'/public/js/jquery.tokeninput.js','text/javascript');			
+		echo $this->view->headLink()->appendStylesheet(APPLICATION_URL.'/public/css/token-input-facebook.css');
+		echo $this->view->headScript()->captureStart();
+?>
+jQuery(document).ready(function(){
+ 		 jQuery("#demo-input-plugin-methods").tokenInput([
+                {id: 7, name: "Ruby"},
+                {id: 11, name: "Python"},
+                {id: 13, name: "JavaScript"},
+                {id: 17, name: "ActionScript"},
+                {id: 19, name: "Scheme"},
+                {id: 23, name: "Lisp"},
+                {id: 29, name: "C#"},
+                {id: 31, name: "Fortran"},
+                {id: 37, name: "Visual Basic"},
+                {id: 41, name: "C"},
+                {id: 43, name: "C++"},
+                {id: 47, name: "Java"}
+            ], {theme: "facebook"});
+            //jQuery("#demo-input-plugin-methods").tokenInput("http://shell.loopj.com/tokeninput/tvshows.php");
+
+            // Add a token programatically
+            jQuery("#plugin-methods-add").click(function () {
+                $("#demo-input-plugin-methods").tokenInput("add", {id: 999, name: "James was here"});
+                return false;
+            });
+
+            // Remove a token programatically
+            jQuery("#plugin-methods-remove").click(function () {
+                $("#demo-input-plugin-methods").tokenInput("remove", {name: "James was here"});
+                return false;
+            });
+
+            // Clear all tokens
+            jQuery("#plugin-methods-clear").click(function () {
+                $("#demo-input-plugin-methods").tokenInput("clear");
+                return false;
+            });
+});
+
+<?php 
+		echo $this->view->headScript()->captureEnd();
+		//echo $this->view->formSelect('phongban-phoihop', -1, array('style'=>"width:370px"),$arr_phongban);
+		//echo '<br />';
+		//echo $this->view->formSelect('multiselect-demo', -1, array('multiple'=>'true', 'size'=>5,'style'=>"width:370px"),$arr_user);
+		?>
+		<div>
+        <input type="text" id="demo-input-local" name="blah" />
+        <script type="text/javascript">
+        jQuery(document).ready(function() {
+        	jQuery("#demo-input-local").tokenInput([
+                {id: 7, name: "Ruby"},
+                {id: 11, name: "Python"},
+                {id: 13, name: "JavaScript"},
+                {id: 17, name: "ActionScript"},
+                {id: 19, name: "Scheme"},
+                {id: 23, name: "Lisp"},
+                {id: 29, name: "C#"},
+                {id: 31, name: "Fortran"},
+                {id: 37, name: "Visual Basic"},
+                {id: 41, name: "C"},
+                {id: 43, name: "C++"},
+                {id: 47, name: "Java"}
+            ],{ theme: "facebook"});
+        });
+        </script>
+    </div>
+		<?php 		
+	}
+}

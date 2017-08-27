@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <production>
+		<name>Themes Một Cửa</name>
+		<creationDate>04 2011</creationDate>
+		<author>Dnict.vn</author>
+		<copyright>Dnict.vn</copyright>
+		<authorEmail>huuthanh3108@gmail.com</authorEmail>
+		<authorUrl>dnict.vn</authorUrl>
+		<version>1.0</version>
+		<description><![CDATA[<h1>Layouts Một Cửa </h1>]]></description>
+	</production>
+<params>
+            <elements>
+                <ElementName1>
+                    <type>text</type>
+                    <name>ElementName1</name>
+                    <options>
+                        <label>Label 1</label>
+                    </options>
+                </ElementName1>
+                <ElementName2>
+                    <type>text</type>
+                    <name>ElementName2</name>
+                    <options>
+                        <label>Label 2</label>
+                    </options>
+                </ElementName2>
+                <ElementName3>
+                    <type>text</type>
+                    <name>ElementName3</name>
+                    <options>
+                        <label>Label 3</label>
+                    </options>
+                </ElementName3>
+                <ElementName4>
+                    <type>text</type>
+                    <name>ElementName4</name>
+                    <options>
+                        <label>Label 4</label>
+                    </options>
+                </ElementName4>
+            </elements>
+            <legend>Tham số</legend>              
+</params>
+</configdata>

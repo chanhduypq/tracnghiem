@@ -1,0 +1,83 @@
+<?php 
+$date = $this->date;
+$row_exam_time = $this->row_exam_time;
+?>
+<div class="row-fluid" style="margin-top: 10px;">
+
+    <?php if (isset($this->error_exam_time) && $this->error_exam_time != '') { ?>
+        <div style="color: red;text-align: center;width: 100%;padding-top: 20px;">
+            <h3><?php echo $this->error_exam_time; ?></h3>
+        </div>
+        <?php
+    }
+    ?>
+    <div class="span12">
+
+        <table width="100%"> 
+            <tbody>     
+                <tr>                 
+                    <td style="width:30%;text-align: right;"><label for="date" class="optional">Ngày:<span style="color:red;" class="required">&nbsp;*</span></label>
+                    </td>
+                    <td>
+
+                        <input type="text" name="date" id="date" style="width: 80px;" value="<?php echo $date; ?>"></td>
+
+                </tr>
+                <tr>                 
+                    <td style="width:30%;text-align: right;"><label for="sh" class="required">Giờ bắt đầu:<span style="color:red;" class="required">&nbsp;*</span></label>
+                    </td>
+                    <td>
+
+                        <select name="sh" id="sh" style="width: 60px;">
+
+                            <?php
+                            for ($i = 1; $i < 24; $i++) {
+                                if ($i == $row_exam_time['sh']) {
+                                    $select = ' selected="selected"';
+                                } else {
+                                    $select = '';
+                                }
+                                ?>
+                                <option value="<?php echo $i; ?>"<?php echo $select; ?>><?php echo ($i<10?'0':'').$i; ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>&nbsp;&nbsp;:&nbsp;&nbsp;
+                        <select name="sm" id="sm" style="width: 60px;">
+
+                            <?php
+                            for ($i = 0; $i < 60; $i++) {
+                                if ($i == $row_exam_time['sm']) {
+                                    $select = ' selected="selected"';
+                                } else {
+                                    $select = '';
+                                }
+                                ?>
+                                <option value="<?php echo $i; ?>"<?php echo $select; ?>><?php echo ($i<10?'0':'').$i; ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </td>
+
+                </tr>
+
+
+                <tr>                 
+                    <td style="width:30%;text-align: right;">
+                        <label for="eh" class="required">
+                            Giờ kết thúc:                                
+                        </label>
+                    </td>
+                    <td style="vertical-align: text-top;padding-left: 5px;">
+                        <?php echo $row_exam_time['eh'] . ':' .($row_exam_time['em']<10?'0':''). $row_exam_time['em']; ?>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,103 @@
+<?php echo  $this->doctype() . "\n"; ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="vi" lang="vi" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php
+         /*
+          * BEGIN add css and javascript in view
+          * thu tu tung the rat quan trong
+          */
+       $this->headLink()->appendStylesheet(array('href'=>$this->baseUrl().'/css/ie6.css','rel'=>'stylesheet', 'type'=>'text/css','conditionalStylesheet'=>'lte IE 6'))
+	         	->headLink()->appendStylesheet(array('href'=>$this->baseUrl().'/css/ie7.css','rel'=>'stylesheet', 'type'=>'text/css','conditionalStylesheet'=>'IE 7'))
+		        ->headLink()->prependStylesheet($this->baseUrl().'/css/rounded.css')		        
+		        ->headLink()->prependStylesheet($this->baseUrl().'/css/template.css')
+		        ->headLink()->prependStylesheet($this->baseUrl().'/css/themes/smoothness/jquery.ui.theme.css')
+		        ->headLink()->prependStylesheet($this->baseUrl().'/css/themes/smoothness/jquery-ui.css');
+		        
+  		$this->headScript()
+  				->appendFile($this->baseUrl().'/js/plugins/validation/jquery.validate.min.js')
+  				->appendFile($this->baseUrl().'/js/plugins/validation/messages_vi.js')
+  				//->prependFile($this->baseUrl().'/js/jquery.easing.1.3.js')
+		  		->prependFile($this->baseUrl().'/js/index.js')
+		  		->prependFile($this->baseUrl().'/js/menu.js')
+		  		->prependFile($this->baseUrl().'/js/mootools.js')		  		
+	  			->prependFile($this->baseUrl().'/js/core-system.js')
+			    ->prependFile($this->baseUrl().'/js/jquery.noConfict.js')			   
+			    ->prependFile($this->baseUrl().'/js/jquery.cookie.js')			    
+			    ->prependFile($this->baseUrl().'/js/plugins/ui/jquery-ui.custom.min.js')
+			    ->prependFile($this->baseUrl().'/js/plugins/ui/i18n/jquery.ui.datepicker-vi.min.js')
+			    ->prependFile($this->baseUrl().'/js/jquery.min.js');
+		/*
+          * End add css and javascript in view
+          */   
+?>
+<?php echo $this->headTitle() ?>
+<?php echo $this->headMeta() ?>       	
+<?php echo $this->headLink() ?>
+<script type="text/javascript">
+var Core = {"baseUrl":"<?php echo $this->baseUrl();?>"}; 
+</script>		
+<?php echo $this->headScript() ?>
+    </head>
+    <body id="minwidth-body">   
+        <div id="border-top" class="h_green">
+            <div>
+                <div>
+                    <span class="version"></span>
+                    <span class="title" style="padding-left:250px">
+       
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="header-box">
+            <div id="module-status">
+                <span class="preview">
+                    <a target="_blank" href="<?php echo $this->baseUrl()?>/">Preview</a>
+                </span>
+                <a href="#">
+                    <span class="no-unread-messages">0</span>
+                </a>
+                <span class="loggedin-users">1</span>
+                <span class="logout">
+                    <a href="<?php echo $this->baseUrl('/default/auth/logout');?>">Logout</a>
+                </span>
+            </div>
+            <div id="module-menu">
+            <?php 
+            	//echo $this->render('html/menu.php');
+            	echo $this->adminTopMenu();
+            ?>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div id="content-box">
+            <div class="border">
+                <div class="padding">   
+                <!-- Affichage des FlashMessenger -->
+			   <div id="system-message-content">
+			   <?php
+				   // Affichage des FlashMessenger			   		
+			   		echo $this->message();
+			   ?>
+			   </div><!-- end system-message  -->
+			   <div class="clr"></div>
+                    <?php echo $this->layout()->content;?>
+                    <div class="clr"></div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+ <div id="border-bottom"><div><div></div></div></div>
+        <div id="footer">
+        <table align="center">
+        <tr>
+        	<td align="right"><a href="http://dnict.vn" target="_blank"><img src="<?php echo $this->baseUrl('/public/images/dnict_small.png');?>" /></a></td>
+        	<td align="left">Copyright ©:<a href="http://dnict.vn" target="_blank">Trung tâm Công nghệ thông tin - Truyền thông Đà Nẵng.</a></td>
+        </tr>
+        </table>        
+        </div>
+        <!-- DiaLog -->
+        <div id="dialog" style="display: none;"></div>        
+    </body>   
+</html>   

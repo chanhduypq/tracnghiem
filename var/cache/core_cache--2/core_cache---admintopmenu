@@ -1,0 +1,60 @@
+s:1003:"<ul class="menu" id="menu"><li class='node'>
+<a  href='/admin/index/index'>Hệ thống</a>
+<ul>
+<li class='node'>
+<a  href='#'>Cấu hình chung</a>
+<ul>
+<li>
+<a  href='/admin/configfield/index'>Tham số hệ thống</a>
+</li>
+<li>
+<a  href='/admin/module/index'>Module</a>
+</li>
+<li>
+<a  href='/admin/action/index'>Action</a>
+</li>
+</ul>
+</li>
+<li>
+<a  href='/admin/block/index'>Block</a>
+</li>
+</ul>
+</li>
+<li>
+<a  href='/admin/menu/index'>Menu</a>
+</li>
+<li class='node'>
+<a  href='#'>Tiện ích</a>
+<ul>
+<li>
+<a  href='/admin/tool/clearcache'>Xóa Cache</a>
+</li>
+<li>
+<a  href='/admin/tool/info'>Thông tin hệ thống</a>
+</li>
+</ul>
+</li>
+<li class='node'>
+<a  href='#'>Người dùng</a>
+<ul>
+<li>
+<a  href='/admin/user/index'>User</a>
+</li>
+<li>
+<a  href='/admin/group/index'>Group</a>
+</li>
+</ul>
+</li>
+<li class='node'>
+<a  href='#'>Tin tức</a>
+<ul>
+<li>
+<a  href='/news/categories/index'>Chủ đề</a>
+</li>
+<li>
+<a  href='/news/content/index'>Nội dung</a>
+</li>
+</ul>
+</li>
+</ul>
+";

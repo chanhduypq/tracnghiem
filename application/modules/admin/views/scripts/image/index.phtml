@@ -1,0 +1,79 @@
+<style>
+    fieldset{
+        border: 1px solid black;
+        margin-bottom: 50px;
+    }
+</style>
+<script type="text/javascript">
+    function allowUpload(file) {
+        j = 0;
+        for (i = file.value.length - 1; i > - 1; i--)
+            if (file.value.charAt(i) == '.')
+            {
+                j = i;
+                break;
+            }
+        ext = "";
+        for (i = j + 1; i < file.value.length; i++)
+            ext += file.value.charAt(i);
+        ext = ext.toLowerCase();
+        a = new Array();
+        a.push("gif");
+        a.push("jpg");
+        a.push("jpeg");
+        a.push("png");
+        n = a.length;
+        for (i = 0; i < n; i++)
+            if (ext == a.pop()) {
+                return;
+            }
+        jAlert('','Vui lòng chọn file ảnh.');
+        jQuery(file).replaceWith("<input type='file' name='"+jQuery(file).attr('name')+"' onchange='allowUpload(this);' accept='image/*'/>");
+        file = document.form1.item_image;
+        jQuery(file).css("border-color", "red");
+        jQuery(file).focus();
+    }
+    
+        
+    function save() {
+        document.form1.submit();
+    }
+</script>
+<?php
+$message = $this->message;
+if ($message != "") {
+    ?>
+    <div class="row-fluid" style="margin-top: 20px;">
+        <div class="span3">&nbsp;</div>
+        <div class="span6" align='center' style='color: red;'>
+            <?php
+            echo $message;
+            ?>
+        </div>
+        <div class="span3">&nbsp;</div>
+    </div>
+    <?php
+}
+?>
+<div class="row-fluid" style="margin-top: 10px;">
+    <div class="span3">&nbsp;</div>
+    <div class="span6" align='center' style='padding-bottom:20px;color: red;margin-bottom: 20px;'>
+        <div class="textHeader" style="-moz-border-radius: 10px 10px 10px 10px;background-color:#f2e8e8;">
+            <div style="float: left;"></div>
+            <div onclick="save();" style="float: right;margin-left: 600px;text-decoration: underline;color: blue;cursor: pointer;">Lưu</div>	  
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+    <div class="span3">&nbsp;</div>
+</div>
+<form name="form1" enctype="multipart/form-data" id="form1" action="<?php echo $this->baseUrl('/admin/image/save'); ?>" method="post">
+    <fieldset style="padding: 20px;">
+        <?php echo $this->render('image/partial/logo.phtml');?>
+    </fieldset>
+
+    <fieldset style="padding: 20px;">
+        <?php echo $this->render('image/partial/hinhnen.phtml');?> 
+    </fieldset>
+    
+</form>

@@ -1,0 +1,163 @@
+<?php
+/**
+* @file: index.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 12-10-2012
+* @company : http://dnict.vn
+**/
+/*
+ * Begin build toolbar
+*/
+$toolbar = array();
+// nut them moi
+$toolbar[] = array(
+		'lable'=>'Thêm mới',
+		'url'=>$this->baseUrl().'/news/content/create',
+		'attribs'=>array(
+				'class'=>'new',
+				'noscript'=>true
+		)
+);
+$toolbar[] = array(
+		'lable'=>'Xóa',
+		'url'=>$this->baseUrl().'/news/content/delete',
+		'attribs'=>array(
+				'class'=>'delete',
+				'id'=>'admin-content-delete',
+				'noscript'=>true
+		)
+);
+// Nut Quay ve
+$toolbar[] = array(
+		'lable'=>'Quay lại',
+		'url'=>'#',
+		'attribs'=>array(
+				'class'=>'back',
+				'noscript'=>false,
+				'onclick'=>'history.go(-1);'
+		)
+);
+
+echo $this->toolbar($toolbar,array('title'=>$this->pageTitle,'subtitle'=>$this->pageSubTitle));
+/*
+ * End build toolbar
+*/
+?>
+		<div id="element-box">
+			<div class="t">
+		 		<div class="t">
+
+					<div class="t"></div>
+		 		</div>
+			</div>
+<div class="m">	
+<form id="frmContentIndex" name="frmContentIndex" method="post" action="<?php echo $this->url();?>">
+	<table width="100%" class="admintable">
+        <tbody>
+        <tr>
+        	<td class="key">Lọc</td>
+            <td align="left">            
+                <input name="search" id="search" value="<?php echo $this->params['search'];?>" class="text_area" type="text" size="30"/>
+				<button onclick="document.frmContentIndex.page.value='';document.frmContentIndex.submit();">Tìm</button>				
+                <button onclick="document.frmContentIndex.page.value='';document.frmContentIndex.search.value='';document.frmContentIndex.submit();">Làm lại</button>
+            </td>
+            <td align="right">
+                             
+                <?php
+                echo $this->formSelect('id_cat',$this->params['id_cat'],array('onchange'=>'this.form.submit();'),$this->categories); 
+                ?>                        
+                <?php
+                echo $this->formSelect('state',$this->params['state'],array('onchange'=>'this.form.submit();'),array(''=>'Trạng thái','0'=>'Tắt','1'=>'Bật')); 
+                ?>
+            </td>
+        </tr>
+		</tbody>
+    </table>
+<table class= "adminlist">
+	<thead>
+		<tr>
+			<th nowrap="nowrap">#</th>
+			<th nowrap="nowrap"><input type=checkbox name=DELALL onclick="SelectAll(this,'cid')"></th>			
+			<th nowrap="nowrap" width="100%">Tiêu đề</th>
+			<th nowrap="nowrap">Trang chủ</th>
+			<th nowrap="nowrap">Sắp xếp</th>
+			<th nowrap="nowrap">Trạng thái</th>
+			<th nowrap="nowrap">ID</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+		<td colspan="7"><?php echo $this->paginationControl($this->paginator, 'Sliding',array('_partials/paginator.phtml','default')); ?></td>
+		</tr>
+	</tfoot>
+	<tbody>
+<?php
+$k=0;
+$stt = $this->start;
+for ($i = 0,$n=count($this->rows); $i < $n; $i++) {
+	$row = &$this->rows[$i];
+	$stt++;
+?>
+			<tr class="row<?php echo $k; ?>">
+			<td nowrap align="right"><?php echo $stt ?></td>
+			<td nowrap align="center">
+			<input type=checkbox name="cid[]" value='<?php echo $row['id']; ?>'>		
+			</td>
+			<td>
+				<a href="<?php echo $this->baseUrl();?>/news/content/update/id/<?php echo $row['id'];?>">
+				<?php echo $row['title']; ?>
+				</a>
+			</td>
+			<td align="center">
+			<a href="<?php echo $this->baseUrl();?>/news/content/frontpage/id/<?php echo $row['id']?>/isfrontpage/<?php echo ($row['frontpage']==0)?1:0;?>">
+				<?php echo $this->statusImage($row['frontpage']); ?>
+			</a> 
+			</td>
+			<td>			
+				<?php echo $row['orders']; ?>	
+			</td>			
+			<td align="center">				
+			<a href="<?php echo $this->baseUrl();?>/news/content/state/id/<?php echo $row['id']?>/state/<?php echo ($row['state']==0)?1:0;?>">
+				<?php echo $this->statusImage($row['state']); ?>
+			</a> 				
+			</td>
+			<td nowrap="nowrap" align="center">				
+				<?php echo $row['id']; ?>					
+			</td>		
+								
+		</tr>
+<?php
+	$k = (-1+$k)*-1;
+}
+?>
+	</tbody>
+</table>
+<input type="hidden" name="filter_order" value="<?php echo $this->filter_order;?>"/>
+<input type="hidden" name="filter_order_Dir" value="<?php echo $this->filter_order_Dir;?>"/>
+</form>
+<div class="clr"></div>
+			</div>
+			<div class="b">
+				<div class="b">
+					<div class="b"></div>
+				</div>
+			</div>
+   		</div>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$('#admin-content-delete').click(function(){		
+			var mess = TestSelectOneCheck("cid[]");
+			var url = this.href;
+			if(mess){
+				if(confirm("Bạn muốn xóa mục này!")){
+					document.frmContentIndex.action = url;					
+					document.frmContentIndex.submit();
+				}
+			}else{
+				alert("Chọn ít nhất một mục để xóa.");
+			}		 	 
+		
+		return false;		
+	});
+});
+</script>

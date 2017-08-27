@@ -1,0 +1,76 @@
+<?php
+$limit = array(
+		5=>'5',
+		10=>'10',
+		15=>'15',
+		20=>'20',
+		25=>'25',
+		30=>'30',
+		50=>'50',
+		100=>'100',
+		200=>'Tất cả'
+);
+$idPage = "page".rand();
+$selectItem = $this->itemCountPerPage;
+$flag = false;
+foreach ($limit as $k =>$v){
+	if($selectItem==$k){
+		$flag = true;
+		break;
+	}
+}
+$width='width:60px;';
+if(!$flag){
+	$selectItem = 20;
+}
+if($selectItem > 100){
+	$selectItem = 200;// chon tat ca
+        $width='width:80px;';
+}
+?>
+<div class="pagination" id="pagination">
+	
+        <?php if($selectItem!=200){?>
+        <!-- First page link -->
+        <?php if (isset($this->previous)): ?>
+        	<a href='#' title='First' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->first; ?>");jQuery(this).parents("form").submit();return false;'>First</a>
+        <?php else: ?>
+			<span class="disabled">First</span>
+        <?php endif; ?>
+
+        <!-- Previous page link -->
+
+        <?php if (isset($this->previous)): ?>
+        	<a href='#' title='Previous ' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->previous; ?>");jQuery(this).parents("form").submit();return false;'>Previous</a>
+        <?php else: ?>
+			<span class="disabled">Previous</span>
+        <?php endif; ?>
+        <!-- Numbered page links -->
+        
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+            	<a href='#' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $page; ?>");jQuery(this).parents("form").submit();return false;'><?php echo $page;?></a>
+            <?php else: ?>
+            	<span<?php if($page==$this->current) echo ' class="selected"';?>><?php echo $page;?></span>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+			<a href='#' title='Next' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->next; ?>");jQuery(this).parents("form").submit();return false;'>Next</a>
+        <?php else: ?>
+			<span class="disabled">Next</span>
+        <?php endif; ?>
+        <!-- Last page link -->
+        <?php if (isset($this->next)): ?>
+              <a href='#' title='Last' onclick=' jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->last; ?>");jQuery(this).parents("form").submit();return false;'>Last</a>
+        <?php else: ?>
+              <span class="disabled">Last</span>
+        <?php endif; ?>
+        <div class="limit_last">
+        &nbsp;<?php echo $this->current;?>&nbsp;/&nbsp;<?php echo $this->last; ?>
+        </div>
+        <?php }?>      
+    <input type="hidden" id="<?php echo $idPage; ?>" name="page" value="<?php echo $this->current; ?>">    
+    <input type="hidden" name="old_item_count_per_page" value="<?php echo $this->itemCountPerPage;?>" />
+ </div>

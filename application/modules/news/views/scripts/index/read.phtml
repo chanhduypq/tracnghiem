@@ -1,0 +1,18 @@
+<?php
+/**
+* @file: read.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 15-10-2012
+* @company : http://dnict.vn
+**/
+?>
+<!-- ARTICLE : begin -->
+<article>
+	<h1><?php echo $this->content['title']?></h1>
+	<div class="article-info">
+		<span class="info">
+		<time datetime="<?php echo $this->content['created'];?>"><?php echo date('d/m/Y H:i',strtotime($this->content['created']))?></time></span>
+	</div>
+	<?php echo $this->cmsReplaceString($this->content['fulltext']); ?>
+</article>
+<!-- ARTICLE : end -->

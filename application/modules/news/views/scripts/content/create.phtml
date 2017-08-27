@@ -1,0 +1,126 @@
+<?php
+/**
+* @file: create.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 12-10-2012
+* @company : http://dnict.vn
+**/
+/*
+ * Begin build toolbar
+*/
+
+$toolbar = array();
+// nut luu
+$toolbar[] = array(
+		'lable'=>'Lưu',
+		'url'=>'#',
+		'attribs'=>array(
+				'class'=>'save',
+				'onclick'=>'document.frmContentCreate.submit();',				
+				'id'=>'frmContentCreate-save'
+
+		)
+);
+// Nut Quay ve
+$toolbar[] = array(
+		'lable'=>'Bỏ qua',
+		'url'=>$this->baseUrl().'/news/content/index',
+		'attribs'=>array(
+				'class'=>'cancel',
+				'noscript'=>true
+		)
+);
+
+echo $this->toolbar($toolbar,array('title'=>$this->pageTitle,'subtitle'=>$this->pageSubTitle));
+foreach ($this->form->getElements() as $element) {
+	$element->getDecorator('label')->setOption('tag', null);
+}
+?>
+<form action="<?php echo $this->url();?>" method="POST"	name="frmContentCreate" id="frmContentCreate">
+<fieldset>
+<legend>Thông tin chủ đề</legend>
+<table cellspacing="1" class="admintable" width="100%">
+	<tbody>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->id_cat->renderLabel();?></td>
+			<td><?php echo $this->form->id_cat->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->id_cat);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->title->renderLabel();?></td>
+			<td><?php echo $this->form->title->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->title);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->alias->renderLabel();?></td>
+			<td><?php echo $this->form->alias->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->alias);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->introtext->renderLabel();?></td>
+			<td><?php echo $this->form->introtext->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->introtext);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->fulltext->renderLabel();?></td>
+			<td><?php echo $this->form->fulltext->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->fulltext);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->created_by_alias->renderLabel();?></td>
+			<td><?php echo $this->form->created_by_alias->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->created_by_alias);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->publish_up->renderLabel();?></td>
+			<td><?php echo $this->form->publish_up->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->publish_up);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->publish_down->renderLabel();?></td>
+			<td><?php echo $this->form->publish_down->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->publish_down);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->orders->renderLabel();?></td>
+			<td><?php echo $this->form->orders->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->orders);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->access->renderLabel();?></td>
+			<td><?php echo $this->form->access->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->access);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->hits->renderLabel();?></td>
+			<td><?php echo $this->form->hits->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->hits);?></td>
+		</tr>
+		<tr>
+			<td valign="top" class="key" nowrap="nowrap"><?php echo $this->form->state->renderLabel();?></td>
+			<td><?php echo $this->form->state->renderViewHelper();?>
+			<?php echo $this->getTopErrorMessage($this->form->state);?></td>
+		</tr>
+	</tbody>
+</table>
+</fieldset>
+<?php echo $this->form->id->renderViewHelper();?>
+<?php echo $this->form->created_by->renderViewHelper();?>
+</form>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$('#frmContentCreate label.required').append('&nbsp;<strong style="color:red;">*</strong>&nbsp;');
+	$("#frmContentCreate").validate();	
+	$('#frmContentCreate-save').click(function(e){
+		 //alert("Valid: " + $("#question-create").valid());
+		if($("#frmContentCreate").valid() == true){
+			 e.preventDefault();
+		     CKEDITOR.instances.introtext.updateElement();
+		     CKEDITOR.instances.fulltext.updateElement();		   
+			 document.frmContentCreate.submit();
+			 //console.log($('#introtext').val());	 
+		}		 
+		//return false;
+	});
+});
+</script>

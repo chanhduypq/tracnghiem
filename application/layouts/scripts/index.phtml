@@ -1,0 +1,272 @@
+<?php
+echo $this->doctype();
+$db = Core_Db_Table::getDefaultAdapter();
+$rows = $db->fetchAll('SELECT * FROM layout_content');
+$menu_items = array();
+$logo = array('file_name' => '/images/dien_luc.jpg', 'dynamic' => '1');
+$header_text = $header_text_dynamic = $footer_text = $hinh_nen = '';
+foreach ($rows as $row) {
+    $header_text = $row['header_text'];
+    $header_text_dynamic = $row['dynamic_header_text'];
+    $logo = array('file_name' => $row['file_name'], 'dynamic' => $row['dynamic_logo']);
+    $menu_items[] = $row['menu_text'];
+    $footer_text = $row['footer_text'];
+    $hinh_nen = $row['hinh_nen_file_name'];
+}
+$GLOBALS['menu_items'] = $menu_items;
+?>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8;" />
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+        <?php echo $this->headScript() ?>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery-2.0.3.js"></script>
+        <!--bootstrap-->
+        <link href="<?php echo $this->baseUrl(); ?>/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo $this->baseUrl(); ?>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/> 
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/bootstrap/js/bootstrap.js"></script>        
+        <!--end bootstrap-->
+        <!--menu-->
+        <link href="<?php echo $this->baseUrl('/css/menu/menu.css'); ?>" media="screen" rel="stylesheet" type="text/css" />				 
+        <!--end menu-->  
+        <!-- top bottom-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/top_bottom.css" rel="stylesheet" type="text/css"/>
+        <!-- end top bottom-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/phan_trang.css" rel="stylesheet" type="text/css"/> 
+        <!--layout-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/style.css" rel="stylesheet" type="text/css"/>
+        <!--end layout--> 
+
+        <link rel="stylesheet" href="<?php echo $this->baseUrl('/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css'); ?>" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/css/jquery.cluetip.css" media="all" />
+        <!--search-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/form_search/search.css" rel="stylesheet" type="text/css"/>
+        <!--end search--> 
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.textarea-expander.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.cluetip.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/jquery-ui-1.10.3/ui/jquery-ui.js"></script>          
+        <!--progress load page-->
+        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/page_loader/jquery.queryloader2.js'); ?>"></script>
+        <!--end progress load page-->
+
+
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.alerts.js"></script>
+        <link href="<?php echo $this->baseUrl(); ?>/css/jquery.alerts.css" rel="stylesheet" type="text/css"/>
+
+        <!-- append form for click in index page-->
+        <!--<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/build_form_click.js"></script>-->
+        <!-- end append form for click in index page-->
+
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.dropotron.min.js"></script>
+
+
+        <!--hiệu ứng chuyển động ảnh-->
+        <?php
+        if ($logo['dynamic'] == "1") {
+            ?>
+            <script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.cycle.all.js'); ?>"></script>
+            <?php
+        }
+        ?>
+        <!--end hiệu ứng chuyển động ảnh-->
+        <!--chạy chữ-->
+        <?php
+        if ($header_text_dynamic == "1") {
+            ?>
+            <script type="text/javascript" src="<?php echo $this->baseUrl('/js/animation_text/textTyper.js'); ?>"></script>
+            <?php
+        }
+        ?>
+        <!--end chạy chữ-->     
+        <script type="text/javascript">
+
+            /**
+             * index.phtml             
+             */
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $("#gotop").removeAttr("href");
+                    $("#gotop").stop().animate({
+                        bottom: "0",
+                        right: "0"
+                    }, {
+                        duration: 800,
+                        queue: false
+                    });
+                } else {
+                    $("#gotop").stop().animate({
+                        bottom: "-50",
+                        right: "-50"
+                    }, {
+                        duration: 1000,
+                        queue: false
+                    });
+                }
+                if ($(this).scrollTop() > 100) {
+                    $("#gobottom").removeAttr("href");
+                    $("#gobottom").stop().animate({
+                        top: "-50",
+                        right: "-50"
+                    }, {
+                        duration: 800,
+                        queue: false
+                    });
+                } else {
+                    $("#gobottom").stop().animate({
+                        top: "0",
+                        right: "0"
+                    }, {
+                        duration: 1000,
+                        queue: false
+                    });
+                }
+
+            });
+            /**
+             * end index.phtml
+             **/
+            jQuery(function ($) {
+<?php
+if ($logo['dynamic'] == "1") {
+    ?>
+                    $('#logo_header').cycle({
+                        fx: 'zoom', sync: false, delay: -2000
+                    });
+    <?php
+}
+?>
+<?php
+if ($header_text_dynamic == "1") {
+    ?>
+                    $('div#simpleDiv').textTyper({repeatAnimation: true, repeatTimes: 100, speed: 50});
+    <?php
+}
+?>
+
+
+                /**
+                 * index.phtml
+                 **/
+                $("body").queryLoader2({
+                    barColor: "#6e6d73",
+                    backgroundColor: "#fff1b0",
+                    percentage: true,
+                    barHeight: 5,
+                    completeAnimation: "grow",
+                    minimumTime: 100
+                });
+                $("#gotop").click(function () {
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, "slow");
+                    return false;
+                });
+                $("#gobottom").click(function () {
+                    $("html, body").animate({
+                        scrollTop: $('#footer').offset().top
+                    }, 970);
+                    return false;
+                });
+                /**
+                 * end index.phtml
+                 **/
+
+
+
+
+
+
+            });
+
+        </script>
+
+    </head>
+    <body style="background:#f0f0f0;">
+
+        <?php echo $this->render('index/dialog.phtml'); ?>
+        <div class="container" style="padding-left: 10px;padding-right: 10px;">            
+            <!--header-->
+            <div class="container" style="padding-top: 30px;height: 100px;background-image: url('<?php echo $this->baseUrl($hinh_nen); ?>');background-repeat: no-repeat;background-size: 100% 100%;">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <div class="row-fluid" style="padding-top: 10px;padding-left: 10px;">
+                            <?php
+                            if ($logo['dynamic'] == "1") {
+                                ?>
+
+                                <div class="span12" id="logo_header">
+                                    <?php
+                                    Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
+                                    Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img'));
+                                    Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img1'));
+                                    ?>
+                                </div>
+                                <?php
+                            } else {
+                                ?>
+                                <div class="span12" id="logo_header">
+                                    <?php
+                                    Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
+                                    Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img'));
+                                    ?>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>  
+
+
+                    </div>
+                    <div class="span5">
+                        <div class="row-fluid" <?php if ($header_text_dynamic == "1") {
+                                echo ' id="simpleDiv"';
+                            } ?> style="font-size: 30px;line-height: 1.3;text-align: center;color: #c1976c;font-family: serif;padding-top: 0;">
+                            <div class="span12"><?php echo $header_text; ?></div>
+                        </div>  
+                    </div>
+                    <div class="span4">
+<?php echo $this->render('index/auth.phtml'); ?>
+                    </div>
+                </div>
+            </div>            
+            <!--end header-->
+            <!--middle-->
+            <!--above-->                           
+            <div class="row-fluid" style="margin-top: 10px;">
+<?php echo $this->render('index/menu.phtml'); ?>
+            </div>
+            <!--end above-->
+            <!--below-->    
+            <div class="row-fluid" style="margin-top: 10px;background: white;">
+
+                <!--<div class="span1">&nbsp;</div>-->
+                <div class="span12" style="min-height: 600px;padding-left: 20px;">
+
+<?php echo $this->layout()->content; ?>           
+
+                </div>
+                <!--<div class="span1">&nbsp;</div>-->
+            </div>
+
+            <!--end below--> 
+            <!--end middle-->
+            <!--footer-->            
+            <!--<div class="row-fluid" style="color:white;background-color: #c1976c;width: 200%;left: 0;margin-left: -50%;margin-top: 30px;margin-bottom: 30px;">-->	
+            <div class="row-fluid" style="color:white;background-color: #c1976c;margin-top: 30px;margin-bottom: 30px;">	
+                <!--<div class="span12" style="margin: 0 auto;text-align: center;">-->  
+                <div class="span12">
+                    <?php
+                    // echo $this->footer(array('&COPY;Duong Viet Cuong', 'Địa chỉ: xxx Số điện thoại: yyy ............')); 
+                    echo $footer_text;
+                    ?>
+                </div>
+            </div>
+            <!--end footer-->
+
+        </div>
+        <a id="gotop" style="bottom: -50px; right: -50px;"></a>
+        <a id="gobottom" style="top: 0px; right: 0px;"></a>
+        <div id='footer'/>
+    </body>

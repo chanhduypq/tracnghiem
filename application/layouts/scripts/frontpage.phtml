@@ -1,0 +1,326 @@
+<?php
+$auth = Zend_Auth::getInstance();
+$option_layout = array();
+if ($auth->hasIdentity() == true) {
+	$option_layout[] = array('access'=>1);  
+}else{
+	$option_layout[] = array('access'=>0);
+}
+$countModulesLeft =  (int)Core_Blocks::countModules('left',$option_layout);
+$countModulesRight = (int)Core_Blocks::countModules('right',$option_layout);
+$countModulesBreadcrumb = (int)Core_Blocks::countModules('breadcrumb',$option_layout);
+$countModulesUser1 = (int)Core_Blocks::countModules('user1',$option_layout);
+$countModulesUser2 = (int)Core_Blocks::countModules('user2',$option_layout);
+$outer = '6';
+$listModulesLeft = 1;
+$listModulesRight = 1;
+$listModulesBreadcrumb = 1;
+$listModulesUser1 = 1;
+$listModulesUser2 = 1;
+
+if($countModulesBreadcrumb == 0):
+$listModulesBreadcrumb = null;
+endif;
+if($countModulesUser1 == 0):
+$listModulesUser1 = null;
+endif;
+if($countModulesUser2 == 0):
+$listModulesUser2 = null;
+endif;
+
+if($countModulesLeft == 0):
+	$outer = '9';
+	$listModulesLeft = null;
+endif; 
+if ($countModulesRight == 0) :
+	$outer = '9';
+	$listModulesRight = null;
+endif;
+if (($countModulesRight == 0) && ($countModulesLeft == 0)):
+	$outer = '12';	
+endif;
+
+/*
+ * BEGIN Lay tat ca module
+ */
+if(null != $listModulesLeft):
+	$listModulesLeft = Core_Blocks::countModulesList('left',$option_layout);
+endif;
+
+if(null != $listModulesRight):
+	$listModulesRight = Core_Blocks::countModulesList('right',$option_layout);
+endif;
+
+if(null != $listModulesBreadcrumb):
+	$listModulesBreadcrumb = Core_Blocks::countModulesList('breadcrumb',$option_layout);
+endif;
+if(null != $listModulesUser1):
+$listModulesUser1 = Core_Blocks::countModulesList('user1',$option_layout);
+endif;
+if(null != $listModulesUser2):
+$listModulesUser2 = Core_Blocks::countModulesList('user2',$option_layout);
+endif;
+//var_dump($listModulesLeft);
+/*
+ * END Lay tat ca module
+ */
+/*
+ * check auth 
+ *  
+ */
+// $username    = empty($_GET['usn'])?$_SERVER['REMOTE_ADDR']:$_GET['usn']; 
+// $sysinfo = Zend_Registry::get('sysinfo');
+?>
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8">
+<?php
+		/*
+		 * BEGIN add css and javascript in view
+		* thu tu tung the rat quan trong
+		*/
+       		$this->headLink()->prependStylesheet($this->baseUrl().'/css/style_cchc.css')
+				//->headLink()->prependStylesheet($this->baseUrl().'/css/styleonline.css')
+       			->headLink()->prependStylesheet($this->baseUrl().'/css/themes/smoothness/jquery.ui.theme.css')
+				->headLink()->prependStylesheet($this->baseUrl().'/css/themes/smoothness/jquery-ui.css')
+				//->headLink()->prependStylesheet($this->baseUrl().'/css/ddsmoothmenu-v.css')
+				->headLink()->prependStylesheet($this->baseUrl().'/css/ddsmoothmenu.css')				
+				->headLink()->prependStylesheet($this->baseUrl().'/css/960/960.min.css');
+  		$this->headScript()
+  				->prependFile($this->baseUrl().'/js/ddsmoothmenu.js')
+  				->prependFile($this->baseUrl().'/js/core-system.js')
+  				->prependFile($this->baseUrl().'/js/jquery.easing.1.3.js')
+  				->prependFile($this->baseUrl().'/js/plugins/ui/i18n/jquery.ui.datepicker-vi.min.js')  				
+  				->prependFile($this->baseUrl().'/js/plugins/validation/messages_vi.js')
+  				->prependFile($this->baseUrl().'/js/plugins/validation/jquery.validate.min.js')
+  				->prependFile($this->baseUrl().'/js/plugins/ui/jquery-ui.custom.min.js')
+  				->prependFile($this->baseUrl().'/js/jquery.noConfict.js')
+  				->prependFile($this->baseUrl().'/js/jquery.min.js')
+  				;
+		/*
+          * End add css and javascript in view
+          */   
+?>
+    <?php echo $this->headTitle() ?>
+   	<?php echo $this->headMeta() ?>
+   	<?php echo $this->headLink() ?>
+<script type="text/javascript">
+var Core = {"baseUrl":"<?php echo $this->baseUrl();?>"}; 
+</script>   	
+   	<?php echo $this->headScript() ?>
+<noscript>
+<link rel="stylesheet" href="<?php echo $this->baseUrl();?>/css/960/mobile.min.css"/>
+</noscript>
+<script type="text/javascript">
+ddsmoothmenu.init({
+	 mainmenuid: "smoothmenu1", //menu DIV id
+	 orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+	 classname: 'ddsmoothmenu', //class added to menu's outer DIV
+	 customtheme: ["#256A9A", "#15527E"],
+	 contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+	// arrowimages: {down:['downarrowclass', Core.baseUrl + '/images/down.gif', 23], right:['rightarrowclass', Core.baseUrl + '/images/right.gif']}
+	});
+	/*
+//Edit to suit your needs.
+var ADAPT_CONFIG = {
+//Where is your CSS?
+path: Core.baseUrl+'/css/960/',
+
+//false = Only run once, when page first loads.
+//true = Change on window resize and page tilt.
+dynamic: true,
+
+//First range entry is the minimum.
+//Last range entry is the maximum.
+//Separate ranges by "to" keyword.
+range: [
+'0px    to 760px  = mobile.min.css',
+'760px  to 980px  = 720.min.css',
+'980px  to 1280px = 960.min.css',
+'1280px to 1600px = 1200.min.css',
+'1600px to 1940px = 1560.min.css',
+'1940px to 2540px = 1920.min.css',
+'2540px           = 2520.min.css'
+]
+};
+*/
+</script>
+<!--  <script src="<?php echo $this->baseUrl();?>/js/plugins/960/adapt.min.js"></script> -->
+</head>
+<body>
+<div id="wapper">
+<div class="topheader">
+	<div class="container_12 clearfix">
+    	<div class="grid_12">	
+			<div class="divtop">
+				<div class="top">
+		    	<p><?php echo Core_Date::getStringDateVN();?></p>
+		    	<?php
+		    	if (Core::getUserId() == NULL) :
+		    		?>
+		    		<ul><li class="last-child"><a href="<?php echo $this->baseUrl();?>/default/auth/login/" class="last-child">Đăng nhập</a></li></ul>
+		    		<?php 
+		    	else:
+		    	?>		    	
+		    		<ul>
+					<li>
+					<img src="<?php echo $this->baseUrl('/timthumb.php?src='.APPLICATION_URL.'/stores/avatar/'.Core::getUser()->avatar.'&w=20&h=20');?>" style="float: left"/> 
+					<a class="active" href="<?php echo $this->baseUrl();?>/admin/users/sitting/" ><?php echo Core::getUser()->fullname;?></a>
+					</li>					
+		    		<li class="last-child"><a href="<?php echo $this->baseUrl();?>/default/auth/logout/" class="last-child">Thoát</a></li>
+		    		</ul>	    	  	
+				<?php
+				endif; 
+				?>
+				</div>
+			</div>
+        </div> 
+	</div>
+</div>
+<div class="centerheader">
+	<div class="container_12 clearfix">
+    	<div class="grid_12" id="banner"> 
+				<div class="banner-left">
+					<img alt="" src="<?php echo $this->baseUrl();?>/images/logo-danang.png" class="logo" />
+					<div class="logo-title">UBND Thành phố Đà Nẵng</div>
+					<div class="logo-text">Không ngừng nỗ lực Cải Cách Hành Chính</div>
+				</div>
+				<div class="banner-right"></div>
+        </div>  <!-- end header --> 
+	</div>
+</div>
+<div id="topnav">
+	<div class="container_12 clearfix">
+    	<div class="grid_12 topnav">
+				<div id="smoothmenu1" class="ddsmoothmenu">
+					<?php 
+						echo  $this->mainMenu()->menu()->setUlClass('dropdown dropdown-horizontal');
+					?>
+				</div><!-- end #smoothmenu1 -->		   
+        </div> 
+	</div>
+</div>
+<div id="main-content">
+<div id="system-message-content" class="container_12 clearfix">
+<?php
+	echo $this->message();
+?>
+</div><!-- end system-message  -->
+<div class="container_12 clearfix" id="main-content-center">
+  	<?php if($countModulesLeft > 0 ):?>
+		 <div class="grid_3 alpha">
+			<?php
+				for ($i = 0,$n=count($listModulesLeft); $i < $n; $i++) :
+					$row = &$listModulesLeft[$i];					
+					$this->block($row);
+				endfor;
+			?>
+		</div> <!-- end colleft -->
+	<?php endif;?>
+		<div class="grid_<?php echo $outer;?> content">  	
+     	  	<?php     	  		 
+     	  		if($countModulesBreadcrumb > 0 ):
+     	  	?>
+			 	<!-- begin Breadcrumb -->
+				<?php
+					for ($i = 0,$n=count($listModulesBreadcrumb); $i < $n; $i++) :
+						$row = &$listModulesBreadcrumb[$i];						
+						$this->block($row);
+					endfor;
+				?>
+			<!-- end Breadcrumb -->
+		<?php endif;?>		
+		<?php		
+				if($countModulesUser1 > 0 ): 
+		?>
+				<!-- begin User1 -->
+			<?php
+					for ($i = 0,$n=count($listModulesUser1); $i < $n; $i++) :
+						$row = &$listModulesUser1[$i];
+						$this->block($row);
+					endfor;
+				?>
+			<!-- end User1 -->
+		<?php endif;?>	  	
+				<?php
+				$slider = Core_Blocks::countModulesList('slider',$option_layout);
+				for ($i = 0,$n=count($slider); $i < $n; $i++) :
+				$row = &$slider[$i];
+				$this->block($row);
+				endfor;				
+				echo $this->layout()->content;
+				?>	  	
+	  	<?php if($countModulesUser2 > 0 ):?>
+			 <!-- begin User2 -->
+				<?php
+					for ($i = 0,$n=count($listModulesUser2); $i < $n; $i++) :
+						$row = &$listModulesUser2[$i];
+						$this->block($row);
+					endfor;
+				?>
+			<!-- end User2 -->
+		<?php endif;?>
+		</div>     
+     <?php if($countModulesRight > 0 ):?>
+		 <div class="grid_3">
+			<?php
+				for ($i = 0,$n=count($listModulesRight); $i < $n; $i++) :
+					$row = &$listModulesRight[$i];
+					$this->block($row);
+				endfor;
+			?>
+		</div> <!-- end colright -->
+    <?php endif;?>
+</div>
+<!-- end .container_12 -->
+</div><!-- end #main-content -->
+<div class="container_12 clearfix">
+<?php
+// user3
+if ((int)Core_Blocks::countModules('user3',$option_layout) > 0 ) {
+	?>
+	<!-- BEGIN BLOCK USER 3 -->
+	<div class="grid_12">
+			<?php
+				$rows = Core_Blocks::countModulesList('user3',$option_layout);
+				for ($i = 0,$n=count($rows); $i < $n; $i++) :
+					$row = $rows[$i];
+					$this->block($row);
+				endfor;
+			?>
+	</div>
+	<!-- END BLOCK USER 3 -->	
+	<?php 
+} 
+?>
+	<div class="grid_12">
+		<?php 
+			echo $this->mainMenu()->breadcrumbs()->setLinkLast(true)->setPartial(array('_partials/breadcrumb.phtml','default'));
+		?>
+	</div> <!-- end Breadcrumb -->	
+</div>
+<div id="footer">
+	<div class="container_12 clearfix">	
+		<div class="grid_4">
+			<ul class="list">
+				<li><a href="http://noivu.danang.gov.vn" target="_blank">Bản quyền thuộc Sở Nội vụ thành phố Đà nẵng</a></li>
+				<li>Trụ sở: 132 Yên Bái - Thành phố Đà Nẵng</li>
+				<li>Điện thoại: 84.0511.3821253   Fax: 84.0511.3829900</li>
+				<li>Email: snv@danang.gov.vn</li>
+			</ul>		 
+		</div>
+		<div class="grid_4" style="text-align: center;">
+		<h5>© 2012 Cải cách hành chính - Đà Nẵng</h5>
+		</div>
+		<div class="grid_4" style="text-align: right;">
+		<a href="https://plus.google.com/114005055371062576142?rel=author"></a>
+			<a href="http://www.dnict.vn" target="_blank" title="Thiết kế http://dnict.vn"><img
+				src="<?php echo $this->baseUrl();?>/timthumb.php?h=50&src=/images/dnict_small.png" /></a>
+		</div>
+	</div>
+</div> <!-- end #footer -->	
+</div> <!-- end #wapper -->
+<div id="dialog"></div>
+</body>
+</html>

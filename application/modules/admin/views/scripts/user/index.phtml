@@ -1,0 +1,148 @@
+<style>
+    .row0{
+        background-color: white;
+
+    }
+    .row1{
+        background-color: silver;
+
+    }
+
+    img.answer.delete{
+        width: 16px;
+        height: 16px;
+    }
+    img.question.delete{
+        width: 32px;
+        height: 32px;
+    }
+
+    img.answer.edit{
+        width: 24px;
+        height: 24px;
+    }
+    img.question.edit{
+        width: 48px;
+        height: 48px;
+    }
+    div.icon-down{
+        background-image: url('<?php echo $this->baseUrl(); ?>/images/down.png');
+    }
+
+</style>
+<?php
+$items = $this->items;
+
+
+
+$auth = Zend_Auth::getInstance();
+if ($auth->hasIdentity()) {
+    $identity = $auth->getIdentity();
+}
+Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
+Zend_Loader::loadFile('String.php', "./../library/Core/Common/", true);
+?>
+<script type="text/javascript">
+
+
+    function addItem() {
+        window.location = "<?php echo $this->baseUrl('/admin/user/add/'); ?>";
+
+    }
+    function editItem(img) {
+        jQuery("form#edit-form").find('input[type="hidden"]').eq(0).val(jQuery(img).parent().parent().attr("id")).attr("name", "id");
+        jQuery("form#edit-form").submit();
+
+    }
+
+
+</script>
+<?php
+$message = $this->message;
+if ($message != "") {
+    ?>
+    <div class="row-fluid" style="margin-top: 20px;">
+        <div class="span3">&nbsp;</div>
+        <div class="span6" align='center' style='color: red;'>
+            <?php
+            echo $message;
+            ?>
+        </div>
+        <div class="span3">&nbsp;</div>
+    </div>
+    <?php
+}
+?>
+<div class="row-fluid" style="padding-top:20px;">
+
+    <div class="span12">
+        <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">
+            <tr>
+                <td width="80%" align="center" style="float: left;text-align: center;font-size: 20px;color: yellow;"></td>
+
+                <td onclick="addItem();" onmouseover="this.style.cursor = 'pointer';" style="text-decoration: underline;color: blue;" width="20%" align="right">Thêm user</td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row-fluid">
+
+    <?php
+    $row = 0;
+    foreach ($items as $item) {
+
+
+        if ($row == 0) {
+            $row = 1;
+        } else {
+            $row = 0;
+        }
+        ?>
+
+        <div class="row-fluid row<?php echo $row; ?>" id="<?php echo $item['id']; ?>">
+            <div class="span5">
+        <?php echo $item['danh_xung'] . ' ' . $item['full_name'] ?>
+            </div>
+            <div class="span5">
+                <?php echo $item['email']; ?>
+            </div>
+            <div class="span2">
+                <a class="remove" title="Click vào đây để xóa" href="<?php echo $this->baseUrl('/admin/user/delete/id/') . $item['id']; ?>">
+                    <img class="delete question" src="<?php echo $this->baseUrl("/images/icon/delete-icon.png"); ?>"/>                                                   
+                </a>
+
+                <a href="<?php echo $this->baseUrl('/admin/user/edit/id/') . $item['id']; ?>">
+                    <img class="edit question" title="Click vào đây để sửa" style="cursor: pointer;" src="<?php echo $this->baseUrl("/images/icon/ico_edit.png"); ?>" onclick="editItem(this);"/>                                                   
+                </a>
+            </div>
+
+        </div>
+
+
+
+
+    <?php
+}
+?>
+
+</div>
+<form method="post" action="<?php echo $this->url(); ?>">
+    <div class="row-fluid">
+        <div class="span12">
+<?php if ($this->total > $this->limit) { ?>
+                <table style="width: 100%;">
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" style="width: 100%;"><?php echo $this->paginationControl($this->paginator, 'Sliding', array('_partials/paginator.phtml', 'default')); ?></td>
+                        </tr>
+                    </tfoot>
+                </table>
+    <?php
+}
+?>
+        </div>
+    </div>
+</form>
+

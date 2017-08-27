@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+	<production>
+		<name>Block Thông báo</name>
+		<action>alertmarquee</action>
+		<creationDate>04 2011</creationDate>
+		<author>Dnict.vn</author>
+		<copyright>Dnict.vn</copyright>
+		<authorEmail>huuthanh3108@gmail.com</authorEmail>
+		<authorUrl>dnict.vn</authorUrl>
+		<version>1.0</version>
+		<description><![CDATA[<h1> Block Thông báo </h1>]]></description>
+	</production>
+	<assets>
+	</assets>
+	<params>
+		<elements>
+			<ElementName1>
+				<type>Checkbox</type>
+				<name>notemplate</name>
+				<options>
+					<label>Không sử dụng Template</label>
+					<value>0</value>
+				</options>
+			</ElementName1>
+			<ElementName2>
+				<type>text</type>
+				<name>id_cat</name>
+				<options>
+					<label>Categorys</label>
+				</options>
+			</ElementName2>
+			<ElementName3>
+				<type>text</type>
+				<name>width</name>
+				<options>
+					<label>Image with</label>
+					<value>170</value>
+				</options>
+			</ElementName3>
+			<ElementName4>
+				<type>text</type>
+				<name>height</name>
+				<options>
+					<label>Image height</label>
+					<value>140</value>
+				</options>
+			</ElementName4>
+		</elements>
+		<legend>Tham số</legend>
+	</params>
+</configdata>
