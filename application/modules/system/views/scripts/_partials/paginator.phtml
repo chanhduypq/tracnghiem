@@ -1,0 +1,73 @@
+<?php
+$limit = array(
+		5=>'5',
+		10=>'10',
+		15=>'15',
+		20=>'20',
+		25=>'25',
+		30=>'30',
+		50=>'50',
+		100=>'100',
+		0=>'Tất cả'
+);
+$idPage = "page".rand();
+$selectItem = $this->itemCountPerPage;
+$flag = false;
+foreach ($limit as $k =>$v){
+	if($selectItem==$k){
+		$flag = true;
+		break;
+	}
+}
+if(!$flag){
+	$selectItem = 20;
+}
+if($selectItem > 100){
+	$selectItem = 0;// chon tat ca
+}
+?>
+<div class="pagination">
+	<div class="limit">Hiển thị # 
+    	<?php echo $this->formSelect('limit',$selectItem,array('style'=>'width:60px;','class'=>'width:60px;','onchange'=>'this.form.submit();'),$limit); ?>
+	</div>
+        <!-- First page link -->
+        <?php if (isset($this->previous)): ?>
+        	<div class='button2-right'><div class='start'><a href='#' title='Bắt đầu' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->first; ?>");jQuery(this).parents("form").submit();return false;'>Bắt đầu</a></div></div>					
+        <?php else: ?>
+			<div class='button2-right off'><div class='start'><span>Bắt đầu</span></div></div>
+        <?php endif; ?>
+
+        <!-- Previous page link -->
+
+        <?php if (isset($this->previous)): ?>
+        	<div class='button2-right'><div class='prev'><a href='#' title='Trước' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->previous; ?>");jQuery(this).parents("form").submit();return false;'>Trước</a></div></div>
+        <?php else: ?>
+			<div class='button2-right off'><div class='prev'><span>Trước</span></div></div>
+        <?php endif; ?>
+        <!-- Numbered page links -->
+        <div class='button2-left'><div class='page'>
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+            	<a href='#' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $page; ?>");jQuery(this).parents("form").submit();return false;'><?php echo $page;?></a>
+            <?php else: ?>
+            	<span><?php echo $page;?></span>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </div></div>
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+			<div class='button2-left'><div class='next'><a href='#' title='Tiếp' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->next; ?>");jQuery(this).parents("form").submit();return false;'>Tiếp</a></div></div>
+        <?php else: ?>
+			<div class='button2-left off'><div class='next'><span>Tiếp</span></div></div>
+        <?php endif; ?>
+        <!-- Last page link -->
+        <?php if (isset($this->next)): ?>
+              <div class='button2-left'><div class='end'><a href='#' title='Cuối' onclick='javascript: jQuery("#<?php echo $idPage; ?>").val("<?php echo $this->last; ?>");jQuery(this).parents("form").submit();return false;'>Cuối</a></div></div>
+        <?php else: ?>
+              <div class='button2-left off'><div class='end'><span>Cuối</span></div></div>
+        <?php endif; ?>
+        <div class="limit">
+        &nbsp; Trang <?= $this->current; ?> trong <?php echo $this->last; ?>
+        </div>
+    <input type="hidden" id="<?php echo $idPage; ?>" name="page" value="<?php echo $this->current; ?>">
+ </div>

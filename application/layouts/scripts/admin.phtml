@@ -1,0 +1,338 @@
+<?php
+echo $this->doctype();
+?>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8;" />
+<?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+        <?php echo $this->headScript() ?>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery-2.0.3.js"></script>
+        <!--bootstrap-->
+        <link href="<?php echo $this->baseUrl(); ?>/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo $this->baseUrl(); ?>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/> 
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/bootstrap/js/bootstrap.js"></script>        
+        <!--end bootstrap-->
+        <!--menu-->
+        <link href="<?php echo $this->baseUrl('/css/menu/menu.css'); ?>" media="screen" rel="stylesheet" type="text/css" />				 
+        <!--end menu-->   
+        <!-- top bottom-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/top_bottom.css" rel="stylesheet" type="text/css"/>
+        <!-- end top bottom-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/phan_trang.css" rel="stylesheet" type="text/css"/> 
+        <!--layout-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/style.css" rel="stylesheet" type="text/css"/>
+        <!--end layout--> 
+
+        <link rel="stylesheet" href="<?php echo $this->baseUrl('/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css'); ?>" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/css/jquery.cluetip.css" media="all" />
+        <!--search-->
+        <link href="<?php echo $this->baseUrl(); ?>/css/form_search/search.css" rel="stylesheet" type="text/css"/>
+        <!--end search--> 
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.textarea-expander.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.cluetip.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/jquery-ui-1.10.3/ui/jquery-ui.js"></script>          
+        <!--progress load page-->
+        <script type="text/javascript" src="<?php echo $this->baseUrl('/js/page_loader/jquery.queryloader2.js'); ?>"></script>
+        <!--end progress load page-->
+        
+       
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.alerts.js"></script>
+        <link href="<?php echo $this->baseUrl(); ?>/css/jquery.alerts.css" rel="stylesheet" type="text/css"/>
+          
+        <!-- append form for click in index page-->
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/build_form_click.js"></script>
+        <!-- end append form for click in index page-->
+        
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.dropotron.min.js"></script>
+
+
+        <script type="text/javascript">
+            /**
+             * index.phtml             
+             */
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $("#gotop").removeAttr("href");
+                    $("#gotop").stop().animate({
+                        bottom: "0",
+                        right: "0"
+                    }, {
+                        duration: 800,
+                        queue: false
+                    });
+                } else {
+                    $("#gotop").stop().animate({
+                        bottom: "-50",
+                        right: "-50"
+                    }, {
+                        duration: 1000,
+                        queue: false
+                    });
+                }
+                if ($(this).scrollTop() > 100) {
+                    $("#gobottom").removeAttr("href");
+                    $("#gobottom").stop().animate({
+                        top: "-50",
+                        right: "-50"
+                    }, {
+                        duration: 800,
+                        queue: false
+                    });
+                } else {
+                    $("#gobottom").stop().animate({
+                        top: "0",
+                        right: "0"
+                    }, {
+                        duration: 1000,
+                        queue: false
+                    });
+                }
+
+            });
+            /**
+             * end index.phtml
+             **/
+            jQuery(function($) {
+                function sub(){
+                    if(!validate())
+                        return;
+                    <?php echo 'url="'.$this->baseUrl('/admin/index/ajaxchangepassword').'";';?>    	
+                    jQuery.post(url,{'oldPassword':jQuery('input#password').val(),'newPassword':jQuery('input#newPassword').val()},function(resp){
+                      
+                            if(resp==''){
+                            jAlert('','Thành công');
+                                setTimeout(function (){
+                                    window.location.reload();
+                                },2000);
+                                    
+                            }
+                            else if(resp=='error'){
+                                
+                            jQuery('div#thongBao').html('Nhập không đúng password cũ.');
+                            }
+
+                    });     
+                }
+                function validate(){	
+                        oldPassword=document.getElementById('password');
+                        newPassword=document.getElementById('newPassword');
+                        confirmNewPassword=document.getElementById('confirmNewPassword');	
+                        if(oldPassword.value==null||oldPassword.value==""){
+                                oldPassword.setAttribute('style',"border-color: red;");
+                                oldPassword.focus();
+                                return false;
+                        }
+                        if(newPassword.value==null||newPassword.value==""){
+                                newPassword.setAttribute('style',"border-color: red;");
+                                newPassword.focus();
+                                return false;
+                        }
+                        if(newPassword.value.indexOf(" ",0)!=-1){
+                                newPassword.setAttribute('style',"border-color: red;");
+                                newPassword.focus(); 
+                                return false;
+                        }
+                        if(confirmNewPassword.value==null||confirmNewPassword.value==""){
+                                confirmNewPassword.setAttribute('style',"border-color: red;");
+                                confirmNewPassword.focus();
+                                return false;
+                        }
+                        if(newPassword.value!=confirmNewPassword.value){
+                                alert("Việc nhập password mới 2 lần không trùng nhau.");
+                                newPassword.setAttribute('style',"border-color: red;");
+                                confirmNewPassword.setAttribute('style',"border-color: red;");
+                                newPassword.focus();
+                                return false;
+                        }
+                        return true;
+                } 
+                dialog = $( "#dialog-form" ).dialog({
+                  autoOpen: false,
+                  height: 400,
+                  width: 350,
+                  modal: true,
+                  buttons: {
+                    "Đổi": sub,
+                    "Hủy": function() {
+                      dialog.dialog( "close" );
+                    }
+                  },
+                  close: function() {
+                    form[ 0 ].reset();
+                  }
+                });
+
+                form = dialog.find( "form#changePassForm" ).on( "submit", function( event ) {
+                  event.preventDefault();
+                  sub();
+                });
+                jQuery("a#changePassword").click(function() {
+                    dialog.dialog( "open" );          	          	         		
+                });
+                /**
+                 * index.phtml
+                 **/
+                $("body").queryLoader2({
+                    barColor: "#6e6d73",
+                    backgroundColor: "#fff1b0",
+                    percentage: true,
+                    barHeight: 5,
+                    completeAnimation: "grow",
+                    minimumTime: 100
+                });
+                $("#gotop").click(function() {
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, "slow");
+                    return false;
+                });
+                $("#gobottom").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $('#footer').offset().top
+                    }, 970);
+                    return false;
+                });
+                /**
+                 * end index.phtml
+                 **/            
+                
+                
+
+            });
+
+        </script>
+        <style>
+
+            /**
+             * danh sách mặt hàng
+             */            
+            table.mat_hang_list td div:only-child{
+                border-style: dotted;
+                border-width: 1px;
+                margin: 5px;
+                border-radius: 7px 7px 7px 7px;
+            }            
+            /**
+             * end danh sách mặt hàng
+             */    
+            
+            a.is_login:link {
+                                text-decoration: none;
+                                color: black;
+                                
+                            }
+
+                            a.is_login:visited {
+                                text-decoration: none;
+                                color: black;
+                               
+                            }
+        </style>
+        
+       
+
+    </head>
+    <body style="background:black;">
+        <div id="dialog-form" title="Đổi mật khẩu" style="display: none;">
+          
+
+          <form id="changePassForm">
+              <div id="thongBao" style="padding-left: 100px;color: red;">  
+                </div>
+                <div style="float: left;text-align: right;">Nhập password cũ:</div>
+                <div style="float: left;"><input id="password" type="password" name="oldPassword"/></div>
+                <div style="clear: both;"></div>
+                <div style="float: left;text-align: right;margin-top: 10px;">Nhập password mới:</div>
+                <div style="float: left;margin-top: 10px;"><input type="password" name="newPassword" id="newPassword"/></div>
+                <div style="clear: both;"></div>
+                <div style="float: left;text-align: right;margin-top: 10px;">Nhập lại password mới:</div>
+                <div style="float: left;margin-top: 10px;"><input type="password" name="confirmNewPassword" id="confirmNewPassword"/></div>
+                <div style="clear: both;"></div>
+                
+            
+          </form>
+        </div>
+        <div class="container">
+            <!--header-->
+
+            <div class="container" style="padding-top: 30px;background: #525252;height: 100px;">
+                <div class="row-fluid">
+                    <div class="span3">
+<?php
+Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
+Image::echoImage($this->baseUrl('/images/dien_luc.jpg'), 70, 70, 'height', array('id' => 'logo-img'));
+?>
+                        
+
+                    </div>
+                    <div class="span5">
+                        <div class="row-fluid" style="font-size: 30px;line-height: 1.3;text-align: center;color: #c1976c;font-family: serif;padding-top: 35px;">
+                            <div class="span12">Điện lực</div>
+                        </div>  
+                    </div>
+                    <div class="span4">
+                        
+                        <?php
+					          $auth = Zend_Auth::getInstance();
+						      if($auth->hasIdentity())
+						      {
+						          $identity=$auth->getIdentity();
+                                                          if(isset($identity['user'])&&$identity['user']=='admin'){?>
+                                                              <div style="float: right;margin-right: 10px;">
+                                                                  <a class="is_login" style="color: white;" href="#" id="changePassword">
+                                                                      <div style="background-color: #006666;padding: 5px;border-radius: 5px;margin-bottom: 10px;">Đổi mật khẩu</div>                                                                      
+                                                                  </a>                                                                  
+                                                                  <a class="is_login" style="color: white;" href="<?php echo $this->baseUrl('/admin/index/logout');?>">
+                                                                      <div style="background-color: #333333;padding: 5px;border-radius: 5px;">Sign out</div>                                                                      
+                                                                  </a>
+                                                              </div>
+                                                          <?php     
+                                                          }
+						          
+						          
+						      }				           
+					          ?>
+                    </div>
+
+
+                    
+                </div>
+                
+
+            </div>            
+            <!--end header-->
+            <!--middle-->
+            <!--above-->                           
+            <div class="row-fluid" style="margin-top: 10px;">
+                <?php echo $this->render('admin/menu.phtml'); ?>
+            </div>
+            <!--end above-->
+            <!--below-->    
+            <div class="row-fluid" style="margin-top: 10px;background: white;">
+
+                <div class="span1">&nbsp;</div>
+                <div class="span10" style="min-height: 600px;">
+                    
+<?php echo $this->layout()->content; ?>           
+                    
+                </div>
+                <div class="span1">&nbsp;</div>
+            </div>
+
+            <!--end below--> 
+            <!--end middle-->
+            <!--footer-->            
+            <div class="row-fluid" align="center" style="background:black;color:white;">	
+                <div class="span12">
+<?php //echo $this->footer(array('Shop áo quần 236', 'Địa chỉ: 146 Lê Duẩn - Đà Nẵng (vào 20m) Số điện thoại: 0919.319.827 - 0917.987.627 - 05113818071 (Gặp chị Tâm)')); ?>
+                </div>
+            </div>
+            <!--end footer-->
+
+        </div>
+        <a id="gotop" style="bottom: -50px; right: -50px;"></a>
+        <a id="gobottom" style="top: 0px; right: 0px;"></a>
+        <div id='footer'/>
+    </body>

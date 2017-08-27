@@ -1,0 +1,41 @@
+<?php
+/**
+* @file: FormNote.php
+* @author: huuthanh3108@gmaill.com
+* @date: 17-10-2012
+* @company : http://dnict.vn
+**/
+/**
+ * Abstract class for extension
+ */
+require_once 'Zend/View/Helper/FormElement.php';
+class Zend_View_Helper_FormNote extends Zend_View_Helper_FormElement {
+
+    public function formNote($name, $value = null, array $attribs = null)
+    {
+        $info = $this->_getInfo($name, $value, $attribs);
+        extract($info); // name, value, attribs, options, listsep, disable, escape
+
+        // build the element
+        if ($disable) {
+            // disabled; display nothing
+            return  '';
+        }
+
+        $value = ($escape) ? $this->view->escape($value) : $value;
+        $for   = (empty($attribs['disableFor']) || !$attribs['disableFor'])
+               ? ' for="' . $this->view->escape($id) . '"'
+               : '';
+        if (array_key_exists('disableFor', $attribs)) {
+            unset($attribs['disableFor']);
+        }
+
+        // enabled; display label
+        $xhtml = '<label'
+                . $for
+                . $this->_htmlAttribs($attribs)
+                . '>' . $value . '</label>';
+
+        return $xhtml;
+    }
+}

@@ -1,0 +1,30 @@
+#bgt-searchbox{
+    background:url(../../images/form_search/search.png) no-repeat scroll center center transparent;
+    width:307px;
+    height:58px;
+    display:block;
+}
+form#bgt-searchform{
+    display: block;
+    padding: 12px;
+    margin:0;
+}
+form#bgt-searchform #s{
+    padding: 6px 6px 6px 26px;
+    margin:0;
+    width: 215px;
+    font-size:14px;
+    vertical-align: top;
+    border:none;
+    background:transparent;
+}
+form#bgt-searchform #sbutton{
+    margin:0;
+    padding:0;
+    height:30px;
+    width:30px;
+    vertical-align: top;
+    border:none;
+    background:transparent;
+}
+

@@ -1,0 +1,49 @@
+<?php
+/**
+* @file: xhtml.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 31-10-2012
+* @company : http://dnict.vn
+**/
+$total = count($rows);
+if ($total > 0 ) :
+?>
+<!-- ARTICLE LIST : begin -->
+<div class="article-list">
+<?php
+
+$k=0; 
+for ($i = 0; $i < $total; $i++) :
+if ($k == 0) :
+?>
+ <div class="row">
+<?php 	
+endif;
+?>
+<!-- ARTICLE <?php echo $i;?> : begin -->
+		<div class="span2">
+			<a href="<?php echo $this->view->baseUrl().'/news/index/read/id/'.$rows[$i]['id']?>"><?php echo $rows[$i]['image']?></a>
+		</div>
+		<div class="span4">
+			<div class="article-text">
+				<h2>
+					<a href="<?php echo $this->view->baseUrl().'/news/index/read/id/'.$rows[$i]['id']?>"><?php echo $rows[$i]['title']?></a>
+				</h2>				
+				<span class="article-info"><?php echo date('d/m/Y H:i',strtotime($rows [$i]['created']))?></span>
+				<?php echo $rows[$i]['introtext'];?>				
+			</div>
+		</div>
+<!-- ARTICLE <?php echo $i;?> : end -->
+<?php
+if ($k == 1 || $i == ($total-1)) :
+?>
+ </div>
+<?php 	
+endif;
+$k = (-1+$k)*-1;
+endfor;
+?>
+</div>
+<!-- ARTICLE LIST : end -->
+<?php 	
+endif;

@@ -1,0 +1,80 @@
+div.p_c_item{    
+    width: 280px;
+    height: 460px;
+    text-align: center;
+    color: #c1976c;
+/*    padding: 0 20px;*/
+    position: relative; 
+    padding-top: 10px;
+    
+
+}
+div.background{
+    background-image: url(../../images/background/bg_content_top_home_2.png);
+    background-size: 370px 460px;
+}
+div.background_ie8{
+    background-image: url(../../images/background/bg_content_top_home_2_ie8.png);    
+}
+
+
+a.p_c_i_img{
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+    border: 15px solid #fff;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+}
+p.p_c_i_subtitle{
+    font-style: italic;
+    min-height: 20px;
+}
+a.p_c_i_title{
+    color: #c1976c;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-top: 10px;
+    cursor: pointer;    
+}
+a.view_more:hover{
+    background: #c1976c;
+}
+a.view_more{    
+    width: 50px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 10px 20px;
+    background: -moz-linear-gradient(
+        top,
+        #6b6b6b 0%,
+        #000000);
+    background: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#6b6b6b),
+        to(#000000));
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    border: 1px solid #000000;
+    -moz-box-shadow:
+        0px 1px 3px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,255,255,0.7);
+    -webkit-box-shadow:
+        0px 1px 3px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,255,255,0.7);
+    box-shadow:
+        0px 1px 3px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,255,255,0.7);
+    text-shadow:
+        0px -1px 0px rgba(000,000,000,0.4),
+        0px 1px 0px rgba(255,255,255,0.3);
+}
+p.p_c_i_des{
+    min-height: 100px;
+}

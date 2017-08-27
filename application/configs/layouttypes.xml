@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <production>
+	<name>Themes Một Cửa</name>
+	<creationDate>04 2011</creationDate>
+	<author>Dnict.vn</author>
+	<copyright>Dnict.vn</copyright>
+	<authorEmail>huuthanh3108@gmail.com</authorEmail>
+	<authorUrl>dnict.vn</authorUrl>
+	<version>1.0</version>
+	<description><![CDATA[<h1>Layouts Một Cửa </h1>]]></description>
+	<layouts>
+	    <layout>admin</layout>	
+		<layout>frontpage</layout>
+		<layout>home</layout>
+		<layout>backend</layout>		
+		<layout>index</layout>		
+	</layouts>
+</production>
+</configdata>

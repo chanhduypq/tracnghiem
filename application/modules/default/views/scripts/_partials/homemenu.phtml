@@ -1,0 +1,60 @@
+<?php
+/**
+* @file: home.phtml
+* @author: huuthanh3108@gmaill.com
+* @date: 05-12-2012
+* @company : http://dnict.vn
+**/
+
+function genMenu($container)
+{
+	
+	foreach ($container as $page)
+	{
+		$kclassActive = ($page->isActive(true))?' active':'';
+		echo '<li class="dropdown'.$kclassActive.'">';
+		$href = $page->uri;
+		
+		//var_dump($page);exit;
+		$target = '_self';
+		if ('#' == trim($href)) {
+			echo '<a data-toggle="dropdown" class="dropdown-toggle" href="' . $href . '" target="' . $target . '">' . $page->label . '';
+		}else{
+			echo '<a href="' . $href . '" target="' . $target . '">' . $page->label . '';
+		}
+		
+
+		if (!empty($page->pages))
+		{
+			echo ' <b class="caret"></b>';
+			echo '<ul class="dropdown-menu">';
+
+			genMenu($page->pages);
+
+			echo '</ul>';
+		}else{
+			echo '</a>';
+		}
+
+		echo '</li>';
+	}
+}
+?>
+<!-- MAIN NAV : begin -->
+<div class="main-nav-container">
+	<nav class="main navbar">
+		<div class="navbar-inner">
+			<ul class="nav">
+		<?php
+		echo genMenu($this->container);
+		?>
+			</ul>
+			<span class="decor leftside">&nbsp;</span> <span
+				class="decor rightside">&nbsp;</span>
+			<button class="btn btn-primary show-menu" title="MENU">
+				<span>MENU</span>
+			</button>
+		</div>
+	</nav>
+</div>
+<!-- MAIN NAV : end -->
