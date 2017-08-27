@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo $this->doctype();
 $db = Core_Db_Table::getDefaultAdapter();
 $rows = $db->fetchAll('SELECT * FROM layout_content');
@@ -62,7 +62,7 @@ $GLOBALS['menu_items'] = $menu_items;
         <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.dropotron.min.js"></script>
 
 
-        <!--hi?u ?ng chuy?n ??ng ?nh-->
+        <!--hiệu ứng chuyển động ảnh-->
         <?php
         if ($logo['dynamic'] == "1") {
             ?>
@@ -70,8 +70,8 @@ $GLOBALS['menu_items'] = $menu_items;
             <?php
         }
         ?>
-        <!--end hi?u ?ng chuy?n ??ng ?nh-->
-        <!--ch?y ch?-->
+        <!--end hiệu ứng chuyển động ảnh-->
+        <!--chạy chữ-->
         <?php
         if ($header_text_dynamic == "1") {
             ?>
@@ -79,7 +79,7 @@ $GLOBALS['menu_items'] = $menu_items;
             <?php
         }
         ?>
-        <!--end ch?y ch?-->     
+        <!--end chạy chữ-->     
         <script type="text/javascript">
 
             /**
@@ -258,7 +258,7 @@ if ($header_text_dynamic == "1") {
                 <!--<div class="span12" style="margin: 0 auto;text-align: center;">-->  
                 <div class="span12">
                     <?php
-                    // echo $this->footer(array('&COPY;Duong Viet Cuong', '??a ch?: xxx S? ?i?n tho?i: yyy ............')); 
+                    // echo $this->footer(array('&COPY;Duong Viet Cuong', 'Địa chỉ: xxx Số điện thoại: yyy ............')); 
                     echo $footer_text;
                     ?>
                 </div>
