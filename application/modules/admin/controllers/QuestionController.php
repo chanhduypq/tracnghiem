@@ -76,11 +76,11 @@ class Admin_QuestionController extends Core_Controller_Action {
     }
 
     private function importExcel($file_name) {
-        require_once 'excel_reader.php';
-        $excel = new PhpExcelReader();
+
+        $excel = new Zend_Excel();
         $excel->setOutputEncoding('UTF-8');
         $excel->read($file_name);
-
+        
 
         $this->sheetData($excel->sheets[0]);
 
@@ -97,9 +97,12 @@ class Admin_QuestionController extends Core_Controller_Action {
         exit;
     }
 
+    public function excelAction() {
+        $this->importExcel('516CauhoitracnghiemAT_2017.xls');
+    }
     public function indexAction() {
-//        set_time_limit(2000);
-//        $this->importExcel('516CauhoitracnghiemAT_2017.xls');
+
+        
         $limit = $this->_getParam('limit', 5);
         $page = $this->_getParam('page', 1);
 
