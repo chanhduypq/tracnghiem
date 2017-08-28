@@ -10,14 +10,6 @@ class IndexController extends Core_Controller_Action {
         $mapper = new Admin_Model_HomecontentMapper();
         $item = $mapper->getContent();
         $this->view->lienHe = $item["content"];
-//        $ws = new Zend_Soap_Client('http://vietagar.local/ws.php?wsdl', array(
-//            "soap_version" => SOAP_1_2,
-//        ));
-////        //một cách khác để gọi function
-////        var_dump($ws->getSoapClient()->__soapCall('no_argument', array()));
-//        var_dump($ws->__call('no_argument', array()));
-//        var_dump($ws->__call('has_argument', array(5, 10)));
-//        var_dump($ws->getFunctions());
     }
     
     public function guideAction() {
