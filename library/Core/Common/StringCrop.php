@@ -1,6 +1,6 @@
 <?php
 
-class String1 {
+class StringCrop {
     /**
      * cắt chuỗi nếu chuỗi dài hơn một độ dài cho phép
      * @param string $text 
