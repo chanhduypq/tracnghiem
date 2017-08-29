@@ -1,21 +1,15 @@
 <?php
 
-class Admin_QuestionController extends Core_Controller_Action {
+class Admin_QuestionController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
-        $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            $this->_helper->redirector('index', 'index', 'admin');
-        } else {
-            $identity = $auth->getIdentity();
-            if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                $this->_helper->redirector('index', 'index', 'admin');
-            }
-        }
     }
 
-    private function sheetData($sheet) {
+    private function sheetData($sheet) 
+    {
         $x = 7;
         while ($x <= $sheet['numRows']) {
 
@@ -75,7 +69,8 @@ class Admin_QuestionController extends Core_Controller_Action {
 
     }
 
-    private function importExcel($file_name) {
+    private function importExcel($file_name) 
+    {
 
         $excel = new Zend_Excel();
         $excel->setOutputEncoding('UTF-8');
@@ -97,10 +92,12 @@ class Admin_QuestionController extends Core_Controller_Action {
         exit;
     }
 
-    public function excelAction() {
+    public function excelAction() 
+    {
         $this->importExcel('516CauhoitracnghiemAT_2017.xls');
     }
-    public function indexAction() {
+    public function indexAction() 
+    {
 
         
         $limit = $this->_getParam('limit', 5);
@@ -129,7 +126,8 @@ class Admin_QuestionController extends Core_Controller_Action {
         $this->view->message= $this->getMessage();
     }
 
-    public function addAction() {
+    public function addAction() 
+    {
         $form = new Admin_Form_Question();
 
 
@@ -187,7 +185,8 @@ class Admin_QuestionController extends Core_Controller_Action {
         $this->view->form = $form;
     }
 
-    public function addanswerAction() {
+    public function addanswerAction() 
+    {
         $question_id = $this->_getParam("question_id", "");
 
         $form = new Admin_Form_Answer();
@@ -230,7 +229,8 @@ class Admin_QuestionController extends Core_Controller_Action {
         $this->render('add');
     }
 
-    public function editAction() {
+    public function editAction() 
+    {
 
         $id_mat_hang = $this->_getParam('id');
         $where = "id=$id_mat_hang";
@@ -305,7 +305,8 @@ class Admin_QuestionController extends Core_Controller_Action {
         $this->render('add');
     }
 
-    public function editanswerAction() {
+    public function editanswerAction() 
+    {
 
         $id_mat_hang = $this->_getParam('id');
         $where = "id=$id_mat_hang";
@@ -342,7 +343,8 @@ class Admin_QuestionController extends Core_Controller_Action {
         $this->render('add');
     }
 
-    public function deleteAction() {
+    public function deleteAction() 
+    {
         $answer_id = $this->_request->getParam('answer_id', null);
         $question_id = $this->_request->getParam('question_id', null);
 

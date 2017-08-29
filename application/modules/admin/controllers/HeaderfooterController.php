@@ -1,21 +1,15 @@
 <?php
 
-class Admin_HeaderfooterController extends Core_Controller_Action {
+class Admin_HeaderfooterController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
-        $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            $this->_helper->redirector('index', 'index', 'admin');
-        } else {
-            $identity = $auth->getIdentity();
-            if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                $this->_helper->redirector('index', 'index', 'admin');
-            }
-        }
     }
 
-    public function indexAction() {
+    public function indexAction() 
+    {
         $mapper_header = new Admin_Model_HeaderMapper(); 
         $mapper_footer = new Admin_Model_FooterMapper();
         if ($this->_request->isPost()) {

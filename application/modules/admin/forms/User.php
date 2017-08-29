@@ -24,7 +24,6 @@ class Admin_Form_User extends Core_Form {
        
         $this->getElement('full_name')->setLabel('Họ và tên:');
         $this->getElement('phone')->setLabel('Phone:');
-        $this->getElement('email')->addValidator('EmailAddress',  TRUE,array('message'=>'gdfg'));
     }
 
 }

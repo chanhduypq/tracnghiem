@@ -1,12 +1,15 @@
 <?php
 
-class Admin_IndexController extends Core_Controller_Action {
+class Admin_IndexController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
     }
 
-    public function indexAction() {
+    public function indexAction() 
+    {
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
             $identity = $auth->getIdentity();
@@ -21,7 +24,8 @@ class Admin_IndexController extends Core_Controller_Action {
         }
     }
 
-    public function loginAction() {
+    public function loginAction() 
+    {
         $username = $this->_request->getParam('username', null);
         $password = $this->_request->getParam('password', null);
         if ($username == null || $password == NULL) {
@@ -36,17 +40,20 @@ class Admin_IndexController extends Core_Controller_Action {
         }
     }
 
-    public function logoutAction() {
+    public function logoutAction() 
+    {
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->_helper->redirector('index', 'index', 'admin');
     }
 
-    public function changepasswordAction() {
+    public function changepasswordAction() 
+    {
         $this->_helper->layout()->disableLayout();
     }
 
-    public function ajaxchangepasswordAction() {
+    public function ajaxchangepasswordAction() 
+    {
         $this->_helper->layout()->disableLayout();
         $oldPassword = $this->_request->getParam('oldPassword');
         $auth = Zend_Auth::getInstance();

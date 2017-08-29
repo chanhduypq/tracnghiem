@@ -1,12 +1,4 @@
 <style>
-    .row0{
-        background-color: white;
-
-    }
-    .row1{
-        background-color: silver;
-
-    }
 
     img.answer.delete{
         width: 16px;
@@ -97,18 +89,14 @@ if ($message != "") {
     <div class="row-fluid">
 
         <?php
-        $row = 0;
+        
         foreach ($items as $item) {
 
 
-            if ($row == 0) {
-                $row = 1;
-            } else {
-                $row = 0;
-            }
+         
             ?>
 
-            <div class="row-fluid row<?php echo $row; ?>" id="<?php echo $item['id']; ?>">
+            <div class="row-fluid item" id="<?php echo $item['id']; ?>">
 
                 <div class="span10"><strong>
                         <?php echo $item['title']; ?></strong>

@@ -1,21 +1,15 @@
 <?php
 
-class Admin_UserController extends Core_Controller_Action {
+class Admin_UserController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
-        $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            $this->_helper->redirector('index', 'index', 'admin');
-        } else {
-            $identity = $auth->getIdentity();
-            if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                $this->_helper->redirector('index', 'index', 'admin');
-            }
-        }
     }
 
-    public function indexAction() {
+    public function indexAction() 
+    {
         $limit = $this->_getParam('limit', 5);
         $page = $this->_getParam('page', 1);
 
@@ -42,7 +36,8 @@ class Admin_UserController extends Core_Controller_Action {
         $this->view->message= $this->getMessage();
     }
 
-    private function processSpecialInput($form, &$formData) {
+    private function processSpecialInput($form, &$formData) 
+    {
         try {
             foreach ($form->getElements() as $element) {
                 if ($element instanceof Core_Form_Element_Date) {
@@ -85,7 +80,8 @@ class Admin_UserController extends Core_Controller_Action {
         }
     }
 
-    public function addAction() {
+    public function addAction() 
+    {
         $form = new Admin_Form_User();
 
 
@@ -112,7 +108,7 @@ class Admin_UserController extends Core_Controller_Action {
 
                 $formData['password'] = sha1($formData['email']);
 
-                if ($id = $mapper->insert($formData)) {
+                if ($mapper->insert($formData)) {
                     Core::message()->addSuccess('Thêm mới thành công');
                     $this->_helper->redirector('index', 'user', 'admin');
                 } else {
@@ -134,10 +130,11 @@ class Admin_UserController extends Core_Controller_Action {
         $this->view->form = $form;
     }
 
-    public function editAction() {
+    public function editAction() 
+    {
 
-        $id_mat_hang = $this->_getParam('id');
-        $where = "id=$id_mat_hang";
+        $id = $this->_getParam('id');
+        $where = "id=$id";
         $mapper = new Default_Model_User();
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
@@ -173,12 +170,13 @@ class Admin_UserController extends Core_Controller_Action {
         }
         $this->view->form = $form;
         $db = Core_Db_Table::getDefaultAdapter();
-        $history = $db->fetchAll("select user_exam.allow_re_exam,user_exam.user_id,user_exam.nganh_nghe_id,user_exam.level,user_exam.id,user_exam.exam_date,user_pass.user_exam_id,nganh_nghe.title from user_exam JOIN nganh_nghe ON nganh_nghe.id=user_exam.nganh_nghe_id LEFT JOIN user_pass ON user_pass.user_exam_id=user_exam.id WHERE user_exam.user_id=$id_mat_hang ORDER BY user_exam.exam_date ASC");
+        $history = $db->fetchAll("select user_exam.allow_re_exam,user_exam.user_id,user_exam.nganh_nghe_id,user_exam.level,user_exam.id,user_exam.exam_date,user_pass.user_exam_id,nganh_nghe.title from user_exam JOIN nganh_nghe ON nganh_nghe.id=user_exam.nganh_nghe_id LEFT JOIN user_pass ON user_pass.user_exam_id=user_exam.id WHERE user_exam.user_id=$id ORDER BY user_exam.exam_date ASC");
         $this->view->history = $history;
         $this->render('add');
     }
 
-    public function deleteAction() {
+    public function deleteAction() 
+    {
         $id = $this->_request->getParam('id', null);
 
         Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
@@ -194,14 +192,16 @@ class Admin_UserController extends Core_Controller_Action {
         $this->_helper->redirector('index', 'user', 'admin');
     }
 
-    public function allowreexamAction() {
+    public function allowreexamAction() 
+    {
         $user_id = $this->_request->getParam('user_id', null);
         $exam_id = $this->_request->getParam('exam_id', null);
         $db = Core_Db_Table::getDefaultAdapter();
         $db->query('UPDATE user_exam SET allow_re_exam=1 WHERE id=' . $exam_id)->execute();
         $this->_helper->redirector('edit', 'user', 'admin', array('id' => $user_id));
     }
-    public function cancelreexamAction() {
+    public function cancelreexamAction() 
+    {
         $user_id = $this->_request->getParam('user_id', null);
         $exam_id = $this->_request->getParam('exam_id', null);
         $db = Core_Db_Table::getDefaultAdapter();
@@ -209,7 +209,8 @@ class Admin_UserController extends Core_Controller_Action {
         $this->_helper->redirector('edit', 'user', 'admin', array('id' => $user_id));
     }
 
-    public function ketquathiAction() {
+    public function ketquathiAction() 
+    {
         $user_exam_id = $this->_getParam('user_exam_id');
         $html = Default_Model_Userexam::getHtmlForExamResult($user_exam_id, $title_header);
 

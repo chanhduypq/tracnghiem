@@ -67,6 +67,29 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
      */
     public function init() {
         parent::init();
+        if($this->_request->getModuleName()=='admin'){
+            if($this->_request->getControllerName()!='index'){
+                $auth = Zend_Auth::getInstance();
+                if (!$auth->hasIdentity()) {
+                    $this->_helper->redirector('index', 'index', 'admin');
+                } else {
+                    $identity = $auth->getIdentity();
+                    if (!isset($identity['user']) || $identity['user'] != 'admin') {
+                        $this->_helper->redirector('index', 'index', 'admin');
+                    }
+                }
+            }
+        }
+        else{
+            if($this->_request->getControllerName()!='index'){
+                $auth = Zend_Auth::getInstance();
+                if (!$auth->hasIdentity()) {
+                    $this->_helper->redirector('index', 'index', 'default');
+                }
+            }
+        }
+        
+        
 
         set_time_limit(2000);
 

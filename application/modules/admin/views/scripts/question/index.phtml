@@ -1,12 +1,4 @@
 <style>
-    .row0{
-        background-color: white;
-
-    }
-    .row1{
-        background-color: silver;
-
-    }
 
     img.answer.delete{
         width: 16px;
@@ -102,22 +94,19 @@ if ($message != "") {
 <div class="row-fluid">
 
     <?php
-    $row = 0;
+    $background='';
     foreach ($items as $item) {
-
-
-        if ($row == 0) {
-            $row = 1;
-        } else {
-            $row = 0;
+        if($background=='silver'){
+            $background='white';
         }
-
-
+        else{
+            $background='silver';
+        }
 
         $item_des = $item['content'];
         ?>
 
-        <div class="row-fluid row<?php echo $row; ?>" id="<?php echo $item['id']; ?>">
+        <div style="background-color: <?php echo $background;?>" class="row-fluid" id="<?php echo $item['id']; ?>">
             <div class="span1" title="Thêm mới câu trả lời">
                 <a href="<?php echo $this->baseUrl('/admin/question/addanswer/question_id/') . $item['id']; ?>">
                     <img style="width: 43px;height: 41px;" src="<?php echo $this->baseUrl("/images/icon/add.gif"); ?>"/>

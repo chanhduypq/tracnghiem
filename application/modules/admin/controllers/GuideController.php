@@ -1,21 +1,15 @@
 <?php
 
-class Admin_GuideController extends Core_Controller_Action {
+class Admin_GuideController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
-        $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            $this->_helper->redirector('index', 'index', 'admin');
-        } else {
-            $identity = $auth->getIdentity();
-            if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                $this->_helper->redirector('index', 'index', 'admin');
-            }
-        }
     }
 
-    public function indexAction() {
+    public function indexAction() 
+    {
         $file_name='';
         $files = scandir(UPLOAD . "/public/guide/", 0);
         foreach ($files as $file){
@@ -28,7 +22,8 @@ class Admin_GuideController extends Core_Controller_Action {
         $this->view->message= $this->getMessage();
     }
 
-    public function downloadAction() {
+    public function downloadAction() 
+    {
         $file_name='';
         $files = scandir(UPLOAD . "/public/guide/", 0);
         foreach ($files as $file){
@@ -48,7 +43,8 @@ class Admin_GuideController extends Core_Controller_Action {
         exit;
     }
 
-    public function saveAction() {
+    public function saveAction() 
+    {
         if (isset($_FILES['hinhnen']) && isset($_FILES['hinhnen']['name']) && $_FILES['hinhnen']['name'] != '') {
             $files = scandir(UPLOAD . "/public/guide/", 0);
             foreach ($files as $file){

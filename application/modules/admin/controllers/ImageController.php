@@ -1,21 +1,15 @@
 <?php
 
-class Admin_ImageController extends Core_Controller_Action {
+class Admin_ImageController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
-        $auth = Zend_Auth::getInstance();
-        if (!$auth->hasIdentity()) {
-            $this->_helper->redirector('index', 'index', 'admin');
-        } else {
-            $identity = $auth->getIdentity();
-            if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                $this->_helper->redirector('index', 'index', 'admin');
-            }
-        }
     }
 
-    public function indexAction(){
+    public function indexAction()
+    {
         $itemLogo = new Admin_Model_LogoMapper();
         $this->view->logo = $itemLogo->getInfo();
 
@@ -25,7 +19,8 @@ class Admin_ImageController extends Core_Controller_Action {
         $this->view->message= $this->getMessage();
     }
 
-    public function saveAction() {
+    public function saveAction() 
+    {
 
 
 

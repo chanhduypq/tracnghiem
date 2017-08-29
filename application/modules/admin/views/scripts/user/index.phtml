@@ -1,12 +1,4 @@
 <style>
-    .row0{
-        background-color: white;
-
-    }
-    .row1{
-        background-color: silver;
-
-    }
 
     img.answer.delete{
         width: 16px;
@@ -39,8 +31,6 @@ $auth = Zend_Auth::getInstance();
 if ($auth->hasIdentity()) {
     $identity = $auth->getIdentity();
 }
-Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-Zend_Loader::loadFile('StringCrop.php', "./../library/Core/Common/", true);
 ?>
 <script type="text/javascript">
 
@@ -87,21 +77,13 @@ if ($message != "") {
     </div>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid list">
 
     <?php
-    $row = 0;
-    foreach ($items as $item) {
-
-
-        if ($row == 0) {
-            $row = 1;
-        } else {
-            $row = 0;
-        }
+    foreach ($items as $item) { 
         ?>
 
-        <div class="row-fluid row<?php echo $row; ?>" id="<?php echo $item['id']; ?>">
+        <div class="row-fluid item" id="<?php echo $item['id']; ?>">
             <div class="span5">
         <?php echo $item['danh_xung'] . ' ' . $item['full_name'] ?>
             </div>
