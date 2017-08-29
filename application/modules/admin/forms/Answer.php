@@ -11,13 +11,16 @@ class Admin_Form_Answer extends Core_Form
 
     public function init() 
     {
-        parent::init();
-
-        $question_id = new Core_Form_Element_Hidden("question_id");
-
-
+        parent::init();        
         $this->buildElementsAutoForFormByTableName('answer');
 
+        $this->getElement('content')->setLabel('Nội dung câu trả lời:');
+        
+        $this->removeElement('question_id');
+        $question_id = new Core_Form_Element_Hidden("question_id");
+        $this->addElement($question_id);
+        
+        $this->removeElement('sign');
         $sign= new Core_Form_Element_Select('sign');
         $sign->setMultiOptions(array(
                                     'A'=>'A',
@@ -28,16 +31,9 @@ class Admin_Form_Answer extends Core_Form
                                     'F'=>'F',
                                     'G'=>'G',
                                     )
-                );
-        $sign->setLabel('Ký hiệu:');
-        
-        
-        $this->getElement('content')->setLabel('Nội dung câu trả lời:');
-//        $this->getElement('sign')->setMaxStringLength(1)->setLabel('Ký hiệu:');
-        
-        $this->removeElement('question_id');
-        $this->addElement($question_id);
-        $this->removeElement('sign');
+                )
+                ->setLabel('Ký hiệu:')
+                ;
         $this->addElement($sign);
     }
 
