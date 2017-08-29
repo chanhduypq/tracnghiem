@@ -118,7 +118,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     protected function _initCache() {
         $this->bootstrap('DbAdapter');
         //create default cache
-        $cache = Core_Model_Cache::getCache();
+//        $cache = Core_Model_Cache::getCache();
         //create database metacache
         //Zend_Db_Table_Abstract::setDefaultMetadataCache($cache);
         return Core::cache();

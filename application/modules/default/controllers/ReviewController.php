@@ -5,7 +5,8 @@ class ReviewController extends Core_Controller_Action
 
     public function init() 
     {
-        parent::init();        
+        parent::init();    
+        $this->view->headTitle('Ôn tập', true);
     }
 
     private function saveDB($data) 

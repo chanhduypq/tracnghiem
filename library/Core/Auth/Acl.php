@@ -46,37 +46,7 @@ class Core_Auth_Acl extends Zend_Acl {
 		return $flagAccess;
 	}
 	public function createPrivilegeArray($opstions = null) {
-		$db = Core::db();
-		$auth = Zend_Auth::getInstance();		
-		if (!$auth->hasIdentity()) {
-			return $db->fetchCol($db->select()
-											->from(array('ca'=>'core_actions'),array (new Zend_Db_Expr('"ca"."module_name"||\'_\'|| "ca"."controller_name"||\'_\'||"ca"."action_name" AS privileges')))
-											->where( 'ca.is_public = 1'));
-			
-		}else{
-		$user = $auth->getIdentity();
+            return array();
 		
-		$select1 = $db->select()
-						->from(array('ca'=>'core_actions'),array (new Zend_Db_Expr('"ca"."module_name"||\'_\'|| "ca"."controller_name"||\'_\'||"ca"."action_name" AS privileges')))
-						->join(array('cfga'=>'core_fk_group_action'), 'ca.id=cfga.id_action',array())
-						->join(array('cg'=>'core_groups'), 'cfga.id_group = cg.id',array())
-						->where( 'cg.code IN (?)', $user->roles);		
-		$select2 = $db->select()
-						->from(array('ca'=>'core_actions'),array (new Zend_Db_Expr('"ca"."module_name"||\'_\'|| "ca"."controller_name"||\'_\'||"ca"."action_name" AS privileges')))
-						->join(array('cfua'=>'core_fk_user_action'), 'ca.id=cfua.id_action',array())
-						->where( 'cfua.id_user = ?',$user->id,'INTEGER' );
-		
-		$select3 = $db->select()
-						->from(array('ca'=>'core_actions'),array (new Zend_Db_Expr('"ca"."module_name"||\'_\'|| "ca"."controller_name"||\'_\'||"ca"."action_name" AS privileges')))
-						->where( 'ca.is_public = 1');
-		
-		$select = $db->select ()->union ( array (
-				$select1,
-				$select2,
-				$select3 
-		) );
-		//echo $select->__toString();exit;
-		return  $db->fetchCol($select);		
-		}
 	}
 }

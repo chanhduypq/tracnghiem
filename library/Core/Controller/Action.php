@@ -93,23 +93,10 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
 
         set_time_limit(2000);
 
-        $row = Core::single('Core/Action')
-                ->select(array('page_title', 'page_subtitle'))
-                ->where('module_name = ?', $this->_request->getModuleName(), 'STRING')
-                ->where('controller_name = ?', $this->_request->getControllerName(), 'STRING')
-                ->where('action_name = ?', $this->_request->getActionName(), 'STRING')
-                ->fetchRow()
-
-        ;
-        if (null !== $row) {
-            $this->view->pageTitle = $row->page_title;
-            $this->view->pageSubTitle = $row->page_subtitle;
-            $this->view->headTitle($this->view->pageTitle . Core::config('site/info/name'), true);
-        }
         $this->view->headMeta()->appendName('author', 'Trần Công Tuệ email:chanhduypq@gmail.com');
         $this->view->headMeta()->appendName('copyright', 'Công ty TNHH VietAgar  website: http://vietagar.com.vn');
         $this->view->headMeta()->appendName('description', 'Chúng tôi không ngừng nổ lực phát triển website');
-        $this->view->headMeta()->appendName('keywords', Core::config('site/info/keywords') . ',Trần Công Tuệ, chanhduypq@gmail.com');
+        $this->view->headMeta()->appendName('keywords', 'Trần Công Tuệ, chanhduypq@gmail.com');
 
         $this->initPaginator();
     }
@@ -199,7 +186,7 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
 
     public function initPaginator() {
         $this->page = $this->_getParam('page', 1);
-        $this->limit = $this->_getParam('limit', Core::config('core/page/limit'));
+        $this->limit = $this->_getParam('limit', 10);
         $this->start = $this->_getParam('start', 0);
         $this->order = $this->_getParam('filter_order', 'id') . ' ' . $this->_getParam('filter_order_Dir', 'DESC');
     }

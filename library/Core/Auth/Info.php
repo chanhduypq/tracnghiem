@@ -13,7 +13,7 @@ class Core_Auth_Info{
 		$auth = Zend_Auth::getInstance();
 		$infoAuth = $auth->getIdentity();		
 		$this->setMemberInfo($infoAuth);
-		$this->setGroupInfo($infoAuth);
+		
 		$this->setAclInfo();
 	}
 	
@@ -34,16 +34,7 @@ class Core_Auth_Info{
 		$ns->member = $result;
 	}
 	
-	//Thiet lap thong tin cua nhom chua User khi ho login
-	public function setGroupInfo($infoAuth){
-		$db = Core::single('Core/Group');
-		$select  = $db->select(array('*'))->setIntegrityCheck(false)
-					  ->join(array('b'=>'core_fk_user_group'),'b.id_group = cg.id',array())
-					  ->where('b.id_user = ? ',$infoAuth->id,INTEGER);
-		$result  = $db->fetchAll($select);
-		$ns = new Zend_Session_Namespace('info');		
-		$ns->group = $result;
-	}
+	
 	
 	//Thiet lap thong phan quyen cua nhom
 	public function setAclInfo(){

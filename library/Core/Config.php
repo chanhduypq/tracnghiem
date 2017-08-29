@@ -62,9 +62,7 @@ class Core_Config extends Zend_Config
         }
 
         $section = array_shift($sections);
-        if (!array_key_exists($section, $this->_data)) {
-            $this->_load($section, $default);
-        }
+        
 
         $result = isset($this->_data[$section]) ? $this->_data[$section] : $default;
 
@@ -79,61 +77,6 @@ class Core_Config extends Zend_Config
         return $result;
     }
 
-    private function _load($key, $default)
-    {
-        $hasCache = (bool) Zend_Registry::isRegistered('cache') ?
-            Core::cache() instanceof Zend_Cache_Core : false;
-
-        if (!$hasCache
-            || !$dataset = Core::cache()->load("config_{$key}")) {
-
-            $dataset = Core::single('core/config_field')
-                ->select(array('path', 'model'))
-                ->joinInner(
-                    'core_config_value',
-                    'ccv.config_field_id = ccf.id',
-                    'value'
-                )
-                ->where('ccf.path LIKE ?', $key . '/%')                
-                ->fetchAssoc()
-                ;
-
-            if ($hasCache) {
-                Core::cache()->save(
-                    $dataset, "config_{$key}", array('config')
-                );
-            }
-        }
-
-        if (!sizeof($dataset)) {
-            $this->_data[$key] = $default;
-            return;
-        }
-        
-        $values = array();
-        foreach ($dataset as $path => $data) {
-            $parts = explode('/', $path);
-            
-            $value = $data['value'];
-            
-            if (!empty($data['model'])) {
-                $class = Core::getClass($data['model']);
-                if (class_exists($class) 
-                    && in_array('Core_Config_Option_Encodable_Interface', class_implements($class))) {
-
-                    $value = Core::single($data['model'])->decode($value);
-                }
-            }
-            $values[$parts[0]][$parts[1]][$parts[2]] = $value;
-        }
-        
-        foreach ($values as $key => $value) {
-            if (is_array($value)) {
-                $this->_data[$key] = new self($value, $this->_allowModifications);
-            } else {
-                $this->_data[$key] = $value;
-            }
-        }
-    }
+    
 
 }

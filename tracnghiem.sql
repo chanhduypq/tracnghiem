@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-28 23:09:48
+Date: 2017-08-29 22:03:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2112,7 +2112,7 @@ CREATE TABLE `config_exam` (
 -- ----------------------------
 -- Records of config_exam
 -- ----------------------------
-INSERT INTO `config_exam` VALUES ('0.1', '3', '50');
+INSERT INTO `config_exam` VALUES ('0.1', '1', '30');
 
 -- ----------------------------
 -- Table structure for core_actions
@@ -2152,10 +2152,6 @@ INSERT INTO `core_actions` VALUES ('15', '1', 'admin', 'question', 'addanswer', 
 INSERT INTO `core_actions` VALUES ('16', '1', 'admin', 'question', 'editanswer', '1', 'admin', 'Điện lực', 'ckeditor', null);
 INSERT INTO `core_actions` VALUES ('17', '1', 'admin', 'question', 'search', '0', 'index_en', 'Điện lực', 'Danh sách', null);
 INSERT INTO `core_actions` VALUES ('18', '1', 'admin', 'guide', 'download', '1', 'admin', 'VietAgar', 'Thêm mới', null);
-INSERT INTO `core_actions` VALUES ('19', '3', 'news', 'content', 'update', '0', 'backend', 'VietAgar', 'Hiệu chỉnh', null);
-INSERT INTO `core_actions` VALUES ('20', '3', 'news', 'content', 'delete', '0', 'backend', 'VietAgar', 'Xóa', null);
-INSERT INTO `core_actions` VALUES ('21', '3', 'news', 'content', 'state', '0', 'backend', 'VietAgar', 'Trạng thái', null);
-INSERT INTO `core_actions` VALUES ('22', '3', 'news', 'content', 'frontpage', '0', 'backend', 'VietAgar', 'Set trang chủ', null);
 INSERT INTO `core_actions` VALUES ('24', '2', 'default', 'index', 'login', '1', 'index', 'Sign in', '', null);
 INSERT INTO `core_actions` VALUES ('26', '2', 'default', 'index', 'index', '1', 'index', 'Trang chủ', null, null);
 INSERT INTO `core_actions` VALUES ('33', '2', 'default', 'index', 'guide', '1', 'index', 'VietAgar', null, null);
@@ -2447,7 +2443,6 @@ CREATE TABLE `core_modules` (
 -- ----------------------------
 INSERT INTO `core_modules` VALUES ('1', 'admin', 'admin', 'Hệ thống', '0.1', '1');
 INSERT INTO `core_modules` VALUES ('2', 'default', 'default', 'Default', '0.1', '1');
-INSERT INTO `core_modules` VALUES ('3', 'news', 'news', 'News', '0.1', '1');
 
 -- ----------------------------
 -- Table structure for core_users
@@ -3020,7 +3015,7 @@ CREATE TABLE `exam_time` (
 -- ----------------------------
 -- Records of exam_time
 -- ----------------------------
-INSERT INTO `exam_time` VALUES ('2017-08-26 00:00:00', '15', '20', '17', '50');
+INSERT INTO `exam_time` VALUES ('2017-08-30 00:00:00', '23', '0', '23', '30');
 
 -- ----------------------------
 -- Table structure for footer
@@ -3073,7 +3068,7 @@ CREATE TABLE `home_content` (
 -- ----------------------------
 -- Records of home_content
 -- ----------------------------
-INSERT INTO `home_content` VALUES ('<p>a123</p>\r\n');
+INSERT INTO `home_content` VALUES ('<p>hay h&egrave;</p>\r\n');
 
 -- ----------------------------
 -- Table structure for logo
@@ -7302,7 +7297,6 @@ INSERT INTO `nganhnghe_question` VALUES ('50', '2');
 INSERT INTO `nganhnghe_question` VALUES ('50', '3');
 INSERT INTO `nganhnghe_question` VALUES ('50', '4');
 INSERT INTO `nganhnghe_question` VALUES ('50', '5');
-INSERT INTO `nganhnghe_question` VALUES ('50', '6');
 INSERT INTO `nganhnghe_question` VALUES ('50', '15');
 INSERT INTO `nganhnghe_question` VALUES ('50', '19');
 INSERT INTO `nganhnghe_question` VALUES ('51', '2');
@@ -7920,18 +7914,19 @@ CREATE TABLE `user` (
   `password` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('24', 'Anh', 'sdfsds', 'chanhduypq@gmail.com1', '23423', 'da4b9237bacccdf19c0760cab7aec4a8359010b0', '1');
-INSERT INTO `user` VALUES ('30', 'Anh', 'dfsdfs', 'a@user.com', null, '356a192b7913b04c54574d18c28d46e6395428ab', null);
+INSERT INTO `user` VALUES ('30', 'Anh', 'tue', 'a@user.com', null, '356a192b7913b04c54574d18c28d46e6395428ab', null);
 INSERT INTO `user` VALUES ('31', 'Anh', 'DFHFDGHD', 'TUE@TUE.COM', null, 'b0b311ee112a76ba05395bc43e9d8a548f972ecc', null);
-INSERT INTO `user` VALUES ('32', 'Anh', 'a@user.com', 'a@user.com.vn', null, 'caa74eff11948cbeae03194b2ec8a15793f863a9', null);
+INSERT INTO `user` VALUES ('32', 'Anh', 'a@user.com', 'a@gmail.com', null, 'caa74eff11948cbeae03194b2ec8a15793f863a9', null);
 INSERT INTO `user` VALUES ('33', 'Anh', 'a@user.com', 'a@user.net', null, '3fdd854ac9a4b6250ff1bdebdca0ce5c6c60bacc', null);
 INSERT INTO `user` VALUES ('34', 'Anh', 'a@user.com', 'a@stu.vn', null, '6464a09b1e60ea321a89cdabba8db9254e30c116', null);
 INSERT INTO `user` VALUES ('36', 'Anh', 'sdfsd', 'abc@yahoo.com', null, '7046bd19e6decf5018e59e705d223ac2f23c2ede', null);
+INSERT INTO `user` VALUES ('37', 'Anh', 'luan', 'luuthiluanbg@gmail.com', null, '21a2b016a624495094f48c648a93723f1638f639', null);
 
 -- ----------------------------
 -- Table structure for user_exam
@@ -7955,8 +7950,8 @@ CREATE TABLE `user_exam` (
 -- ----------------------------
 -- Records of user_exam
 -- ----------------------------
-INSERT INTO `user_exam` VALUES ('1', '24', '1', '1', '2017-08-26 15:29:28', '15', '28', '15', '29', '39', '0');
-INSERT INTO `user_exam` VALUES ('2', '30', '1', '1', '2017-08-26 16:32:01', '16', '32', '16', '32', '35', '0');
+INSERT INTO `user_exam` VALUES ('1', '24', '1', '1', '2017-08-29 16:51:59', '15', '28', '15', '29', '39', '0');
+INSERT INTO `user_exam` VALUES ('2', '30', '1', '1', '2017-08-29 16:51:59', '16', '32', '16', '32', '35', '0');
 
 -- ----------------------------
 -- Table structure for user_exam_detail

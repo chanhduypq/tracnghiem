@@ -31,11 +31,14 @@ class Core_Controller_Plugin_Layout extends Zend_Controller_Plugin_Abstract {
 			
 	}	
 	private function getLayoutType($module, $controller, $action){
-		return Core::single('Core/Action')
-					->select(array('ca.layout_type'))
-					 ->where('ca.module_name = ?',$module)
-					 ->where('ca.controller_name = ?',$controller)
-					 ->where('ca.action_name = ?',$action)
-					->fetchOne();
+            if($module=='default'){
+                return 'index';
+            }
+            else if($module=='admin'){
+                return 'admin';
+            }
+            else{
+                return 'unknown';
+            }
 	}
 }

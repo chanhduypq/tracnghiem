@@ -22,53 +22,8 @@ class Core{
 	
 	public static function getUser()
 	{
-		if (!$user_id = self::getUserId()) {
-			return null;
-		}
-		if (!Zend_Registry::isRegistered('user/current_user')) {
-			$db = self::db();
-			$select = $db->select();
-			$select->from(array('cu'=>'core_users',
-							array('fullname',
-									'username',
-									'email',									
-									'sendemail',
-									'sendsms',									
-									'id_phongban'=>'id_coquan',
-									'createdate',
-									'lastvisitdate',
-									'status',
-									'id_chucdanh',
-									'is_leader',
-									'login_pass',
-									'is_banned',
-									'phone')))
-			->joinLeft(array('cui'=>'core_user_info'),'cu.id = cui.id_user', 
-						array('avatar','gioitinh','trinhdo','chucvu','params','ngaysinh'))
-			->join(array('bc'=>'base_coquan'),'cu.id_coquan = bc.id',array('ten_phongban'=>'name','code_phongban'=>'code','lft','rgt'))
-			->join(array('bcd'=>'base_chucdanh'),'cu.id_chucdanh = bcd.id',array('ten_chucdanh'=>'name'))
-			->where('cu.id = ?',$user_id,'INTEGER');
-			//echo $select->__toString();exit;
-			$user = $db->fetchRow($select,null,Zend_Db::FETCH_OBJ);			
-			if ($user == null) {
-				return null;
-			}
-			$row = $db->fetchRow($db->select()
-						->from(array('bc'=>'base_coquan'),array('id','name','code'))						
-						->where('bc.lft <= ?',$user->lft,'INTEGER')
-						->where('bc.rgt >= ?',$user->rgt,'INTEGER')
-						->where('bc.is_tochuc = 1'),null,Zend_Db::FETCH_OBJ);
-
-			$user->ten_tochuc = $row->name;
-			$user->id_tochuc = $row->id;
-			$user->code_tochuc = $row->code;			
-			$user->group = $db->fetchCol($db->select()->from(array('cg'=>'core_groups'),array('id'))
-					->join(array('cfug'=>'core_fk_user_group'), 'cg.id=cfug.id_group',array())
-					->where('cfug.id_user = ?',$user_id,'INTEGER'));
-			//var_dump($user);exit;
-			Zend_Registry::set('user/current_user', $user);
-		}
-		return Zend_Registry::get('user/current_user');
+            return null;
+		
 	}
 	/**
 	 * Retrieve config object or config value,
@@ -222,7 +177,7 @@ class Core{
      */
     public static function cache()
     {
-    	return Zend_Registry::get('cache');
+        return new Zend_Cache_Core();
     }
     /**
      * Retrieve session object

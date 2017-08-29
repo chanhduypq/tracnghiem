@@ -6,6 +6,7 @@ class ThiController extends Core_Controller_Action
     public function init() 
     {
         parent::init();
+        $this->view->headTitle('Thi trắc nghiệm', true);
     }
 
     public function viewresultAction() 
