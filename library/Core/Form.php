@@ -144,17 +144,18 @@ class Core_Form extends Zend_Form
     				->addFilter ( 'StringTrim' )
     				;
     			}   		
-    			$element
-    			->setMaxStringLength((int)$column_difinition['LENGTH'])
-    			;
+    			$element->setMaxStringLength((int)$column_difinition['LENGTH']);
     			if($column_difinition['DEFAULT']!=null){
     				$element->setValue($column_difinition['DEFAULT']);
     			}
-    		}
+                        if (strtolower($column_difinition['COLUMN_NAME']) == 'email') {
+                            $element->setIsEmail(TRUE);
+                        }
+            }
     		elseif ($column_difinition['DATA_TYPE']=='text'
     				||$column_difinition['DATA_TYPE']=='longtext'
     				||$column_difinition['DATA_TYPE']=='mediumtext'
-                        ||$column_difinition['DATA_TYPE']=='tinytext'
+                                ||$column_difinition['DATA_TYPE']=='tinytext'
     				
     		)
     		{

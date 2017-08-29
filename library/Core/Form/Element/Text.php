@@ -147,6 +147,17 @@ class Core_Form_Element_Text extends Core_Form_Element_Xhtml
     	$this->addValidator($validate_lessThan);
     	return $this;    	
     }   
+    public function setIsEmail($isEmail){
+        if(!is_bool($isEmail)){
+            return ;
+        }
+        if($isEmail===TRUE){
+            $this->addValidator('EmailAddress',  TRUE);
+        }
+        else{            
+            $this->removeValidator('EmailAddress');
+        }
+    }
      
 }
 
