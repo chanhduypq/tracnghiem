@@ -226,16 +226,50 @@ echo $this->doctype();
              */    
             
             a.is_login:link {
-                                text-decoration: none;
-                                color: black;
-                                
-                            }
+                text-decoration: none;
+                color: black;
 
-                            a.is_login:visited {
-                                text-decoration: none;
-                                color: black;
-                               
-                            }
+            }
+
+            a.is_login:visited {
+                text-decoration: none;
+                color: black;
+
+            }
+            
+            img.answer.delete{
+                width: 16px;
+                height: 16px;
+            }
+            img.question.delete{
+                width: 32px;
+                height: 32px;
+            }
+
+            img.answer.edit{
+                width: 24px;
+                height: 24px;
+            }
+            img.question.edit{
+                width: 48px;
+                height: 48px;
+            }
+            div.icon-down{
+                background-image: url('<?php echo $this->baseUrl(); ?>/images/down.png');
+            }
+            
+            a.remove:link {
+                text-decoration: none;
+            }
+
+            a.remove:visited {
+                text-decoration: none;
+            }
+            
+            fieldset{
+                border: 1px solid black;
+                margin-bottom: 50px;
+            }
         </style>
         
        

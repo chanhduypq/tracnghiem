@@ -1,27 +1,3 @@
-<style>
-
-    img.answer.delete{
-        width: 16px;
-        height: 16px;
-    }
-    img.question.delete{
-        width: 32px;
-        height: 32px;
-    }
-
-    img.answer.edit{
-        width: 24px;
-        height: 24px;
-    }
-    img.question.edit{
-        width: 48px;
-        height: 48px;
-    }
-    div.icon-down{
-        background-image: url('<?php echo $this->baseUrl(); ?>/images/down.png');
-    }
-
-</style>
 <?php
 $items = $this->items;
 
@@ -82,9 +58,7 @@ if ($message != "") {
     <div class="span12">
         <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">
             <tr>
-                <td width="80%" align="center" style="float: left;text-align: center;font-size: 20px;color: yellow;"><?php if (isset($ten_loai_mat_hang)) echo $ten_loai_mat_hang; ?></td>
-
-                <td onclick="addItem();" onmouseover="this.style.cursor = 'pointer';" style="text-decoration: underline;color: blue;" width="20%" align="right">Thêm câu hỏi</td>
+                <td onclick="addItem();" onmouseover="this.style.cursor = 'pointer';" style="text-decoration: underline;color: blue;text-align: right;width: 100%;">Thêm câu hỏi</td>
 
             </tr>
         </table>
