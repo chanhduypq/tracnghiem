@@ -1,14 +1,17 @@
 <?php
 
-class Default_Model_Index extends Core_Db_Table_Abstract {
+class Default_Model_Nganhnghe extends Core_Db_Table_Abstract 
+{
 
     public $_name = "nganh_nghe";
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
     }
 
-    public function getMatHangs() {
+    public function getNganhNghes() 
+    {
         $items = $this->select("*")->fetchAll();
         return $items;
     }

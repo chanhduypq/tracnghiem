@@ -1,7 +1,7 @@
 <?php
 /**
 * @file: CkeditorController.php
-* @author: huuthanh3108@gmaill.com
+* @author: chanhduypq@gmail.com
 * @date: Mar 13, 2012
 * @company : http://dnict.vn
 **/

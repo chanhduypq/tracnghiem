@@ -1,12 +1,15 @@
 <?php
 
-class SoapclientController extends Core_Controller_Action {
+class SoapclientController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
     }
 
-    public function demosoapAction() {
+    public function demosoapAction() 
+    {
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         $ws = new Zend_Soap_Client('http://tracnghiem.local/soapserver/wsdl', array(

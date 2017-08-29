@@ -1,21 +1,25 @@
 <?php
 
-class Default_Model_Userexam extends Core_Db_Table_Abstract {
+class Default_Model_Userexam extends Core_Db_Table_Abstract 
+{
 
     public $_name = "user_exam";
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
     }
     
-    public static function convert($number){
+    public static function convert($number)
+    {
         if($number<10){
             return '0'.$number;
         }
         return $number;
     }
 
-    public static function getHtmlForExamResult($user_exam_id, &$title_header) {
+    public static function getHtmlForExamResult($user_exam_id, &$title_header) 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $row = $db->fetchAll("select sh,sm,eh,em,es,user_exam_detail.question_id,user_pass.id AS user_pass_id,"
                 . "user_exam.nganh_nghe_id,"

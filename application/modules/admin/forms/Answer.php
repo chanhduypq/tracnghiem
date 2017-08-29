@@ -2,13 +2,15 @@
 
 /**
  * @file: Categories.php
- * @author: huuthanh3108@gmaill.com
+ * @author: chanhduypq@gmail.com
  * @date: 11-10-2012
  * @company : http://dnict.vn
  * */
-class Admin_Form_Answer extends Core_Form {
+class Admin_Form_Answer extends Core_Form 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
 
         $question_id = new Core_Form_Element_Hidden("question_id");

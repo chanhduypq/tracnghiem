@@ -1,14 +1,17 @@
 <?php
 
-class Default_Model_User extends Core_Db_Table_Abstract {
+class Default_Model_User extends Core_Db_Table_Abstract 
+{
 
     public $_name = "user";
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
     }
 
-    public function getUsers(&$total, $limit = null, $start = null) {
+    public function getUsers(&$total, $limit = null, $start = null) 
+    {
 
         Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
         if (Numeric::isInteger($limit) && Numeric::isInteger($start)) {
@@ -22,7 +25,8 @@ class Default_Model_User extends Core_Db_Table_Abstract {
         return $items;
     }
 
-    public function getUser($id) {
+    public function getUser($id) 
+    {
         $item = $this->select("*")->where("id=$id")->fetchRow();
         return $item;
     }

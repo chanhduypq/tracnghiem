@@ -1,7 +1,7 @@
 <?php
 /**
 * @file: ModuleController.php
-* @author: huuthanh3108@gmaill.com
+* @author: chanhduypq@gmail.com
 * @date: 03-12-2012
 * @company : http://dnict.vn
 **/

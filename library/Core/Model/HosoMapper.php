@@ -1,7 +1,7 @@
 <?php
 /**
 * @file: HosoMapper.php
-* @author: huuthanh3108@gmaill.com
+* @author: chanhduypq@gmail.com
 * @date: 25-10-2012
 * @company : http://dnict.vn
 **/

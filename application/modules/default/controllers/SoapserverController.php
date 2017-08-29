@@ -1,13 +1,16 @@
 <?php
 
-class SoapserverController extends Core_Controller_Action {
+class SoapserverController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
         Zend_Loader::loadClass('WsClass_General');
     }
 
-    public function soapAction() {
+    public function soapAction() 
+    {
         // disable layouts and renderers
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
@@ -24,7 +27,8 @@ class SoapserverController extends Core_Controller_Action {
         $server->handle();
     }
 
-    public function wsdlAction() {
+    public function wsdlAction() 
+    {
         // disable layouts and renderers
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);

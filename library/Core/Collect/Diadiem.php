@@ -1,7 +1,7 @@
 <?php
 /**
 * @file: Diadiem.php
-* @author: huuthanh3108@gmaill.com
+* @author: chanhduypq@gmail.com
 * @date: 10-07-2012
 * @company : http://dnict.vn
 **/

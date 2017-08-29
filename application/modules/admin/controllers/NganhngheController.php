@@ -10,8 +10,8 @@ class Admin_NganhngheController extends Core_Controller_Action
 
     public function indexAction() 
     {
-        $mapper = new Default_Model_Index();
-        $rows = $mapper->getMatHangs();
+        $mapper = new Default_Model_Nganhnghe();
+        $rows = $mapper->getNganhNghes();
         $this->view->items = $rows;
         
         $this->view->message= $this->getMessage();
@@ -31,7 +31,7 @@ class Admin_NganhngheController extends Core_Controller_Action
             }
             if ($form->isValid($formData)) {
                 unset($formData['for_confirm']);
-                $mapper = new Default_Model_Index();
+                $mapper = new Default_Model_Nganhnghe();
 
 
                 foreach ($formData as $key => $value) {
@@ -79,7 +79,7 @@ class Admin_NganhngheController extends Core_Controller_Action
         $id_mat_hang = $this->_getParam('id');
 
         $where = "id=$id_mat_hang";
-        $mapper = new Default_Model_Index();
+        $mapper = new Default_Model_Nganhnghe();
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
         $form = new Admin_Form_Nganhnghe();
@@ -141,7 +141,7 @@ class Admin_NganhngheController extends Core_Controller_Action
         }
 
         $where = "id=$item_id";
-        $mapper = new Default_Model_Index();
+        $mapper = new Default_Model_Nganhnghe();
 
         $mapper->delete($where);
 

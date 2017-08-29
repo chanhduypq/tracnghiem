@@ -1,8 +1,10 @@
 <?php
 
-class Admin_Model_LogoMapper {
+class Admin_Model_LogoMapper 
+{
 
-    public function save($item_image, $dynamic) {
+    public function save($item_image, $dynamic) 
+    {
         $data = array();
         $data['file_name'] = $item_image;
         $data['dynamic'] = $dynamic;
@@ -24,7 +26,8 @@ class Admin_Model_LogoMapper {
         return array('success' => TRUE, 'file_name' => $file_name);
     }
 
-    public function getInfo() {
+    public function getInfo() 
+    {
         $ret = array();
         try {
             $ret = $this->getDB()->fetchRow("select * from logo");
@@ -34,7 +37,8 @@ class Admin_Model_LogoMapper {
         return $ret;
     }
 
-    private function getDB() {
+    private function getDB() 
+    {
         $db = Zend_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_ASSOC);
         return $db;

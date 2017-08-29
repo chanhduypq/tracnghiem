@@ -105,7 +105,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
         $start = (($page - 1) * $limit);
         $mapper = new Default_Model_Question();
-        $rows = $mapper->getMatHangs($total, $limit, $start);
+        $rows = $mapper->getQuestions($total, $limit, $start);
         $this->view->items = $rows;
 
         $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Null($total));

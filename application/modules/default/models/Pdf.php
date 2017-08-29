@@ -1,19 +1,22 @@
 <?php
 
-class Default_Model_Pdf {
-    public function importPdf(){
+class Default_Model_Pdf 
+{
+
+    public function importPdf() 
+    {
         require_once('tcpdf/tcpdf_import.php');
-        $pdf=new TCPDF_IMPORT();
+        $pdf = new TCPDF_IMPORT();
         $pdf->importPDF('example_001.pdf');
-        
     }
 
-    public function demo() {
-        
-require_once('tcpdf/tcpdf.php');
+    public function demo() 
+    {
+
+        require_once('tcpdf/tcpdf.php');
 // create new PDF document
         $pdf = new TCPDF();
-        
+
 
 // set document information
         $pdf->SetCreator(PDF_CREATOR);
@@ -24,8 +27,8 @@ require_once('tcpdf/tcpdf.php');
 
 // set default header data
         //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE . ' 001', PDF_HEADER_STRING, array(0, 64, 255), array(0, 64, 128));
-        
-        
+
+
         $pdf->setFooterData(array(0, 64, 0), array(0, 64, 128));
 
 // set header and footer fonts
@@ -47,7 +50,7 @@ require_once('tcpdf/tcpdf.php');
         $pdf->setImageScale(1.25);
 
 // set some language-dependent strings (optional)
-        
+
 
         $pdf->setFontSubsetting(true);
 

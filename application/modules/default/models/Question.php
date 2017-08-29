@@ -1,6 +1,7 @@
 <?php
 
-class Default_Model_Question extends Core_Db_Table_Abstract {
+class Default_Model_Question extends Core_Db_Table_Abstract 
+{
 
     const SO_CAP = '1';
     const TRUNG_CAP = '2';
@@ -8,11 +9,13 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
 
     public $_name = "question";
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
     }
 
-    public function getMatHangs(&$total, $limit = null, $start = null) {
+    public function getQuestions(&$total, $limit = null, $start = null) 
+    {
 
         Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
         if (Numeric::isInteger($limit) && Numeric::isInteger($start)) {
@@ -30,7 +33,8 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
         return $items;
     }
 
-    public function getAnswers($parent_id) {
+    public function getAnswers($parent_id) 
+    {
         if (!is_numeric($parent_id)) {
             return array();
         }

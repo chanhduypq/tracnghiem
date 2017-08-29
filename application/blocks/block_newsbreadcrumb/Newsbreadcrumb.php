@@ -1,7 +1,7 @@
 <?php
 /**
 * @file: Newsbreadcrumb.php
-* @author: huuthanh3108@gmaill.com
+* @author: chanhduypq@gmail.com
 * @date: 06-12-2012
 * @company : http://dnict.vn
 **/

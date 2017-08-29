@@ -2,13 +2,15 @@
 
 /**
  * @file: Categories.php
- * @author: huuthanh3108@gmaill.com
+ * @author: chanhduypq@gmail.com
  * @date: 11-10-2012
  * @company : http://dnict.vn
  * */
-class Admin_Form_User extends Core_Form {
+class Admin_Form_User extends Core_Form 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
 
         $this->buildElementsAutoForFormByTableName('user');

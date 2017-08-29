@@ -1,8 +1,10 @@
 <?php
 
-class Admin_Model_IndexMapper {
+class Admin_Model_IndexMapper 
+{
 
-    public function login($username, $password) {
+    public function login($username, $password) 
+    {
 
         try {
             $db = $this->getDB();
@@ -29,7 +31,8 @@ class Admin_Model_IndexMapper {
         return true;
     }
 
-    public function loginAdmin($username, $password) {
+    public function loginAdmin($username, $password) 
+    {
 
         try {
             $db = $this->getDB();
@@ -58,7 +61,8 @@ class Admin_Model_IndexMapper {
         return true;
     }
 
-    public function changePassword($username, $newPassword, $table_name) {
+    public function changePassword($username, $newPassword, $table_name) 
+    {
         $db = $this->getDB();
         $data = array();
         $data['password'] = sha1($newPassword);
@@ -76,7 +80,8 @@ class Admin_Model_IndexMapper {
         return true;
     }
 
-    public function signup($username, $password, $firstName, $lastName, $middleName) {
+    public function signup($username, $password, $firstName, $lastName, $middleName) 
+    {
         $user = array();
         $user['username'] = $username;
         $user['password'] = $password;
@@ -96,7 +101,8 @@ class Admin_Model_IndexMapper {
         }
     }
 
-    public function sendEmailByIdhoso($email, $password, $firstName, $lastName, $middleName, $username) {
+    public function sendEmailByIdhoso($email, $password, $firstName, $lastName, $middleName, $username) 
+    {
         require_once 'Zend/Mail.php';
         require_once 'Zend/Mail/Transport/Smtp.php';
 
@@ -131,7 +137,8 @@ class Admin_Model_IndexMapper {
         return $sent;
     }
 
-    private function getDB() {
+    private function getDB() 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_ASSOC);
         return $db;

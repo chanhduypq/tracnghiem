@@ -1,18 +1,22 @@
 <?php
 
-class IndexController extends Core_Controller_Action {
+class IndexController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
     }
 
-    public function indexAction() {
+    public function indexAction() 
+    {
         $mapper = new Admin_Model_HomecontentMapper();
         $item = $mapper->getContent();
         $this->view->lienHe = $item["content"];
     }
     
-    public function guideAction() {
+    public function guideAction() 
+    {
         $file_name='';
         $files = scandir(UPLOAD . "/public/guide/", 0);
         foreach ($files as $file){
@@ -32,7 +36,8 @@ class IndexController extends Core_Controller_Action {
         exit;
     }
 
-    public function loginAction() {
+    public function loginAction() 
+    {
 
 
         $this->_helper->layout()->disableLayout();
@@ -52,7 +57,8 @@ class IndexController extends Core_Controller_Action {
         return;
     }
 
-    public function logoutAction() {
+    public function logoutAction() 
+    {
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->_helper->redirector('index', 'index', 'default');

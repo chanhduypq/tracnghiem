@@ -1,8 +1,10 @@
 <?php
 
-class Admin_Model_HinhnenMapper {
+class Admin_Model_HinhnenMapper 
+{
 
-    public function save($item_image) {
+    public function save($item_image) 
+    {
         $data = array();
         $data['file_name'] = $item_image;
 
@@ -22,7 +24,8 @@ class Admin_Model_HinhnenMapper {
         return array('success' => TRUE, 'file_name' => $file_name);
     }
 
-    public function getInfo() {
+    public function getInfo() 
+    {
         $ret = array();
         try {
             $ret = $this->getDB()->fetchRow("select * from hinh_nen");
@@ -32,7 +35,8 @@ class Admin_Model_HinhnenMapper {
         return $ret;
     }
 
-    private function getDB() {
+    private function getDB() 
+    {
         $db = Zend_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_ASSOC);
         return $db;

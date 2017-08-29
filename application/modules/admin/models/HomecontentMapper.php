@@ -1,8 +1,10 @@
 <?php
 
-class Admin_Model_HomecontentMapper {
+class Admin_Model_HomecontentMapper 
+{
 
-    public function save($data) {
+    public function save($data) 
+    {
         try {
             $this->getDB()->update('home_content', $data);
         } catch (Exception $e) {
@@ -11,7 +13,8 @@ class Admin_Model_HomecontentMapper {
         return true;
     }
 
-    public function getContent() {
+    public function getContent() 
+    {
 
         try {
             $ret = $this->getDB()->fetchRow("select * from home_content");
@@ -21,7 +24,8 @@ class Admin_Model_HomecontentMapper {
         return $ret;
     }
 
-    private function getDB() {
+    private function getDB() 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_ASSOC);
         return $db;

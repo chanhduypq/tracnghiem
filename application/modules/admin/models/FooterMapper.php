@@ -1,8 +1,10 @@
 <?php
 
-class Admin_Model_FooterMapper {
+class Admin_Model_FooterMapper 
+{
 
-    public function save($data) {
+    public function save($data) 
+    {
         try {
             $this->getDB()->update('footer', $data);
         } catch (Exception $e) {
@@ -11,7 +13,8 @@ class Admin_Model_FooterMapper {
         return true;
     }
 
-    public function getNoiDung() {
+    public function getNoiDung() 
+    {
 
         try {
             $ret = $this->getDB()->fetchRow("select * from footer");
@@ -21,7 +24,8 @@ class Admin_Model_FooterMapper {
         return $ret;
     }
 
-    private function getDB() {
+    private function getDB() 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->setFetchMode(Zend_Db::FETCH_ASSOC);
         return $db;

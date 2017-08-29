@@ -1,7 +1,7 @@
 <?php
 /**
 * @file: Position.php
-* @author: huuthanh3108@gmaill.com
+* @author: chanhduypq@gmail.com
 * @date: 08-11-2012
 * @company : http://dnict.vn
 **/

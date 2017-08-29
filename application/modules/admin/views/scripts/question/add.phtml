@@ -89,8 +89,8 @@ if ($message != "") {
 
         <?php
         if ($this->form->getElement('question_id') == null) {
-            $mapper = new Default_Model_Index();
-            $menus = $mapper->getMatHangs($only_parent = FALSE);
+            $mapper = new Default_Model_Nganhnghe();
+            $menus = $mapper->getNganhNghes();
             $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='" . $this->form->getElement('id')->getValue() . "'")->fetchAll();
             $nganhnghe_ids = array();
             if (is_array($rows) && count($rows) > 0) {

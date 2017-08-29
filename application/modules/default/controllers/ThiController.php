@@ -1,12 +1,15 @@
 <?php
 
-class ThiController extends Core_Controller_Action {
+class ThiController extends Core_Controller_Action 
+{
 
-    public function init() {
+    public function init() 
+    {
         parent::init();
     }
 
-    public function viewresultAction() {
+    public function viewresultAction() 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $row = $db->fetchRow("SELECT * FROM user_exam WHERE user_id=" . $this->getUserId() . " ORDER BY exam_date DESC LIMIT 1");
         if (!is_array($row) || count($row) == 0) {
@@ -20,7 +23,8 @@ class ThiController extends Core_Controller_Action {
         $this->createFilePdf($html, $date[0] . '_' . $date[1] . '_' . $date[2] . '.pdf', $title_header);
     }
 
-    public function indexAction() {
+    public function indexAction() 
+    {
 
         $this->view->i = intval(date('i'));
         $this->view->h = intval(date('H'));
@@ -41,7 +45,8 @@ class ThiController extends Core_Controller_Action {
         $this->view->showFormNganhNgheCapBac=$showFormNganhNgheCapBac;
     }
     
-    private function saveDB($data) {
+    private function saveDB($data) 
+    {
         $date = date('Y-m-d');
         $h = $data['h'];
         $m = $data['i'];
@@ -120,7 +125,8 @@ class ThiController extends Core_Controller_Action {
         }
     }
 
-    private function saveDBAgain($data) {
+    private function saveDBAgain($data) 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->beginTransaction();
 
@@ -180,7 +186,8 @@ class ThiController extends Core_Controller_Action {
         }
     }
 
-    private function unsetSessionExaming() {
+    private function unsetSessionExaming() 
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
         $auth->clearIdentity();
@@ -193,12 +200,14 @@ class ThiController extends Core_Controller_Action {
         $auth->getStorage()->write($identity);
     }
 
-    private function getQuestionsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) {
+    private function getQuestionsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) 
+    {
         $questionIds = $this->getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number);
         return $this->getQuestionsByQuestionIds($questionIds);
     }
 
-    private function getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) {
+    private function getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $sql = "SELECT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=$level ORDER BY RAND() LIMIT " . $config_exam_number;
         $rows = $db->fetchAll($sql);
@@ -209,7 +218,8 @@ class ThiController extends Core_Controller_Action {
         return $questionIds;
     }
 
-    private function getQuestionsByQuestionIds($questionIds) {
+    private function getQuestionsByQuestionIds($questionIds) 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $newQuestions = array();
         $questions = $db->fetchAll("SELECT question.id,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");
@@ -222,7 +232,8 @@ class ThiController extends Core_Controller_Action {
         return $newQuestions;
     }
 
-    private function submitReExam($data) {
+    private function submitReExam($data) 
+    {
         $this->saveDBAgain($data);
         $this->unsetSessionExaming();
         Core::message()->addSuccess('Chúc mừng bạn đã hoàn thành kỳ thi lần này.');
@@ -230,7 +241,8 @@ class ThiController extends Core_Controller_Action {
         exit;
     }
 
-    private function submitExam($data) {
+    private function submitExam($data) 
+    {
         $this->saveDB($data);
         $this->unsetSessionExaming();
         Core::message()->addSuccess('Chúc mừng bạn đã hoàn thành kỳ thi lần này.');
@@ -245,7 +257,8 @@ class ThiController extends Core_Controller_Action {
      * @param array $questionIds
      * @param array $identity
      */
-    private function turnOnExamingSession($nganhNgheId, $level, $questionIds, &$identity) {
+    private function turnOnExamingSession($nganhNgheId, $level, $questionIds, &$identity) 
+    {
         $identity['examing'] = true;
         $identity['nganh_nghe_id'] = $nganhNgheId;
         $identity['level'] = $level;
@@ -258,7 +271,8 @@ class ThiController extends Core_Controller_Action {
      * kiểm tra thử user hiện tại có phải là đang được phép thi lại hay không
      * @return boolean
      */
-    private function isReExam() {
+    private function isReExam() 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $user_exam = $db->fetchRow("select * from user_exam where user_id=" . $this->getUserId() . ' ORDER BY exam_date DESC LIMIT 1');
         if (is_array($user_exam) && count($user_exam) > 0 && $user_exam['allow_re_exam'] == '1') {
@@ -277,7 +291,8 @@ class ThiController extends Core_Controller_Action {
      * @param array $nganhNghes
      * @param bool $showFormNganhNgheCapBac
      */
-    private function setParams($data, &$nganhNgheId, &$level, &$questionIds, &$questions, &$nganhNghes, &$showFormNganhNgheCapBac) {
+    private function setParams($data, &$nganhNgheId, &$level, &$questionIds, &$questions, &$nganhNghes, &$showFormNganhNgheCapBac) 
+    {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
         $db = Core_Db_Table::getDefaultAdapter();
@@ -344,7 +359,8 @@ class ThiController extends Core_Controller_Action {
      * @param int|string $level
      * @param array $questionIds
      */
-    private function setupExamingSession($data, $nganhNgheId, $level, $questionIds) {
+    private function setupExamingSession($data, $nganhNgheId, $level, $questionIds) 
+    {
         if (count($data) > 0) {
             $auth = Zend_Auth::getInstance();
             $identity = $auth->getIdentity();
@@ -356,7 +372,8 @@ class ThiController extends Core_Controller_Action {
         }
     }
 
-    private function processReExam($data) {
+    private function processReExam($data) 
+    {
         if (count($data) > 0) {
             if (isset($data['question_id'])) {
                 $this->submitReExam($data);
@@ -366,7 +383,8 @@ class ThiController extends Core_Controller_Action {
         $this->view->miniutes = 0;
     }
 
-    private function processExam($data) {
+    private function processExam($data) 
+    {
         $db = Core_Db_Table::getDefaultAdapter();
         $date = date('Y-m-d');
         $h = $this->_getParam('h', date('H'));
