@@ -1,4 +1,4 @@
-<link href="<?php echo $this->baseUrl(); ?>/css/question.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $this->baseUrl(); ?>/css/question.css?<?php echo substr(md5(microtime()),rand(0,26),5);?>" rel="stylesheet" type="text/css"/>
 <?php
 $questions = $this->questions;
 $nganhNghes = $this->nganhNghes;
@@ -53,7 +53,10 @@ if (!is_array($questions) || count($questions) == 0) { ?>
                         <option value="<?php echo Default_Model_Question::CAO_CAP; ?>">Cao cấp</option>
                     </select>
                 </div>
-                <div class="span1" style="margin-top: 20px;"><input type="submit" value="Bắt đầu" id="start"/></div>
+                <!--<div class="span1" style="margin-top: 20px;"><input type="submit" value="Bắt đầu" id="start"/></div>-->
+                    <div class="span1" style="margin-top: 20px;" id="start">
+                        <a>Bắt đầu</a> 
+                    </div>
             </div>
         </div>
 
@@ -229,14 +232,14 @@ if (is_array($questions) && count($questions) > 0) {
                 return;
             }
             $("#form1").attr('onsubmit', 'return true');
-            $("form1").submit();
+            $("#form1").submit();
         });
         $("#nganh_nghe_id").val('<?php echo $this->nganhNgheId; ?>');
         $("#level").val('<?php echo $this->level; ?>');
 
         $("#finish").click(function () {
             $("#form2").attr('onsubmit', 'return true');
-            $("form2").submit();
+            $("#form2").submit();
         });
 
         $("input[type='radio']").click(function () {

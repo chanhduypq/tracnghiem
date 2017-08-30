@@ -1,4 +1,4 @@
-<link href="<?php echo $this->baseUrl(); ?>/css/question.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $this->baseUrl(); ?>/css/question.css?<?php echo substr(md5(microtime()),rand(0,26),5);?>" rel="stylesheet" type="text/css"/>
 <?php 
 if ($this->success != '') { ?>
     <div style="color: red;text-align: center;width: 100%;padding-top: 20px;">

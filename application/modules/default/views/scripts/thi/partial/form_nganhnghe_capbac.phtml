@@ -40,7 +40,10 @@ $nganhNghes = $this->nganhNghes;
                     <option value="<?php echo Default_Model_Question::CAO_CAP; ?>">Cao cấp</option>
                 </select>
             </div>
-            <div class="span2" style="margin-top: 20px;"><input type="submit" value="Bắt đầu thi" id="start"/></div>
+            <!--<div class="span2" style="margin-top: 20px;"><input type="submit" value="Bắt đầu thi" id="start"/></div>-->
+            <div class="span2" style="margin-top: 20px;" id="start">
+                <a>Bắt đầu thi</a> 
+            </div>
         </div>
     </div>
 
@@ -61,7 +64,7 @@ $nganhNghes = $this->nganhNghes;
                 return;
             }
             $("#form1").attr('onsubmit', 'return true');
-            $("form1").submit();
+            $("#form1").submit();
         });
         $("#nganh_nghe_id").val('<?php echo $this->nganhNgheId; ?>');
         $("#level").val('<?php echo $this->level; ?>');

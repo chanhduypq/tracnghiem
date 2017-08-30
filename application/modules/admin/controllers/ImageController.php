@@ -27,7 +27,7 @@ class Admin_ImageController extends Core_Controller_Action
         if (isset($_FILES['logo']) && isset($_FILES['logo']['name']) && $_FILES['logo']['name'] != '') {
             $item = new Admin_Model_LogoMapper();
             $item_image = $_FILES['logo']['name'];
-            Zend_Loader::loadFile('./../library/Core/Common/File.php', null, true);
+            
             $extension = @explode(".", $item_image);
             $extension = $extension[count($extension) - 1];
             $item_image = sprintf('_%s.' . $extension, uniqid(md5(time()), true));
@@ -50,7 +50,7 @@ class Admin_ImageController extends Core_Controller_Action
             $item_image = $_FILES['hinhnen']['name'];
 
             if (isset($item_image) && $item_image != "") {
-                Zend_Loader::loadFile('./../library/Core/Common/File.php', null, true);
+                
                 $extension = @explode(".", $item_image);
                 $extension = $extension[count($extension) - 1];
                 $item_image = sprintf('_%s.' . $extension, uniqid(md5(time()), true));
