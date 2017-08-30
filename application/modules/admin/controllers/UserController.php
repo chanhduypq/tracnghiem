@@ -126,7 +126,7 @@ class Admin_UserController extends Core_Controller_Action
         }
 
         $this->view->form = $form;
-        $this->view->page= $this->_getParam('page');
+        $this->view->page = $this->_getParam('page');
     }
 
     public function editAction() 
@@ -143,7 +143,7 @@ class Admin_UserController extends Core_Controller_Action
 
             $formData = $this->_request->getPost();
             $form->getElement('email')->getValidator('Db_NoRecordExists')->setExclude('id != ' . $formData['id']);
-                    
+
             unset($formData['for_confirm']);
             if ($form->isValid($formData)) {
                 $this->processSpecialInput($form, $formData);
@@ -155,7 +155,7 @@ class Admin_UserController extends Core_Controller_Action
                 }
                 $mapper->update($formData, 'id=' . $formData['id']);
                 Core::message()->addSuccess('Sửa thành công');
-                $this->_helper->redirector('index', 'user', 'admin',array('page'=> $this->_getParam('page')));                
+                $this->_helper->redirector('index', 'user', 'admin', array('page' => $this->_getParam('page')));
             } else {
                 $form->populate($formData);
             }
@@ -173,7 +173,7 @@ class Admin_UserController extends Core_Controller_Action
     {
         $id = $this->_request->getParam('id', null);
 
-        
+
         if (Core_Common_Numeric::isInteger($id) == FALSE) {
             $this->_helper->redirector('index', 'user', 'admin');
             return;
