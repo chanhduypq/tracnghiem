@@ -87,13 +87,6 @@ class Admin_UserController extends Core_Controller_Action
 
         if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
-            $form->getElement('email')
-                    ->addValidator('Db_NoRecordExists', false, array('table' => 'user',
-                        'field' => 'email',
-                        'messages' => array(
-                            'recordFound' => 'Email này đã tồn tại rồi'
-                        ),
-                        'exclude' => array('field' => 'id', 'value' => $formData['id'])));
 
             if ($form->isValid($formData)) {
                 unset($formData['for_confirm']);
@@ -143,13 +136,8 @@ class Admin_UserController extends Core_Controller_Action
         if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
 
             $formData = $this->_request->getPost();
-            $form->getElement('email')
-                    ->addValidator('Db_NoRecordExists', false, array('table' => 'user',
-                        'field' => 'email',
-                        'messages' => array(
-                            'recordFound' => 'Email này đã tồn tại rồi'
-                        ),
-                        'exclude' => array('field' => 'id', 'value' => $formData['id'])));
+            $form->getElement('email')->getValidator('Db_NoRecordExists')->setExclude('id != ' . $formData['id']);
+                    
             unset($formData['for_confirm']);
             if ($form->isValid($formData)) {
                 $this->processSpecialInput($form, $formData);
