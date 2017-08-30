@@ -13,8 +13,8 @@ class Default_Model_User extends Core_Db_Table_Abstract
     public function getUsers(&$total, $limit = null, $start = null) 
     {
 
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-        if (Numeric::isInteger($limit) && Numeric::isInteger($start)) {
+        
+        if (Core_Common_Numeric::isInteger($limit) && Core_Common_Numeric::isInteger($start)) {
             $items = $this->select("*")->where('is_admin is null OR is_admin=0')->order(array('id'))->limit($limit, $start)->fetchAll();
         } else {
             $items = $this->select("*")->where('is_admin is null OR is_admin=0')->order(array('id'))->fetchAll();

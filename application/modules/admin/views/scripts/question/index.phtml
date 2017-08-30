@@ -7,7 +7,7 @@ $auth = Zend_Auth::getInstance();
 if ($auth->hasIdentity()) {
     $identity = $auth->getIdentity();
 }
-Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
+
 Zend_Loader::loadFile('StringCrop.php', "./../library/Core/Common/", true);
 ?>
 <script type="text/javascript">

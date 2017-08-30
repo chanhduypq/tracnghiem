@@ -348,13 +348,13 @@ class Admin_QuestionController extends Core_Controller_Action
         $answer_id = $this->_request->getParam('answer_id', null);
         $question_id = $this->_request->getParam('question_id', null);
 
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-        if (Numeric::isInteger($answer_id) == FALSE && Numeric::isInteger($question_id) == FALSE) {
+        
+        if (Core_Common_Numeric::isInteger($answer_id) == FALSE && Core_Common_Numeric::isInteger($question_id) == FALSE) {
             $this->_helper->redirector('index', 'question', 'admin');
             return;
         }
 
-        if (Numeric::isInteger($question_id)) {
+        if (Core_Common_Numeric::isInteger($question_id)) {
             $where = "id=$question_id";
             $mapper = new Default_Model_Question();
 
@@ -366,7 +366,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
             $mapper = new Default_Model_NganhngheQuestion();
             $mapper->delete("question_id=$question_id");
-        } else if (Numeric::isInteger($answer_id)) {
+        } else if (Core_Common_Numeric::isInteger($answer_id)) {
             $mapper = new Default_Model_Answer();
 
             $where = "id=$answer_id";

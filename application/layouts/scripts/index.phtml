@@ -198,9 +198,9 @@ if ($header_text_dynamic == "1") {
 
                                 <div class="span12" id="logo_header">
                                     <?php
-                                    Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
-                                    Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img'));
-                                    Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img1'));
+                                    
+                                    Core_Common_Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img'));
+                                    Core_Common_Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img1'));
                                     ?>
                                 </div>
                                 <?php
@@ -208,8 +208,8 @@ if ($header_text_dynamic == "1") {
                                 ?>
                                 <div class="span12" id="logo_header">
                                     <?php
-                                    Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
-                                    Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img'));
+                                    
+                                    Core_Common_Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height', array('id' => 'logo-img'));
                                     ?>
                                 </div>
                                 <?php

@@ -135,8 +135,8 @@ class Admin_NganhngheController extends Core_Controller_Action
     {
         $item_id = $this->_request->getParam('id', null);
 
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-        if (Numeric::isInteger($item_id) == FALSE){
+        
+        if (Core_Common_Numeric::isInteger($item_id) == FALSE){
             return;
         }
 

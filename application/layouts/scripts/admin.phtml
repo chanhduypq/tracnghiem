@@ -302,8 +302,8 @@ echo $this->doctype();
                 <div class="row-fluid">
                     <div class="span3">
 <?php
-Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
-Image::echoImage($this->baseUrl('/images/dien_luc.jpg'), 70, 70, 'height', array('id' => 'logo-img'));
+
+Core_Common_Image::echoImage($this->baseUrl('/images/dien_luc.jpg'), 70, 70, 'height', array('id' => 'logo-img'));
 ?>
                         
 

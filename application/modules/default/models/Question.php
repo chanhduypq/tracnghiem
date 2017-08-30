@@ -17,8 +17,8 @@ class Default_Model_Question extends Core_Db_Table_Abstract
     public function getQuestions(&$total, $limit = null, $start = null) 
     {
 
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-        if (Numeric::isInteger($limit) && Numeric::isInteger($start)) {
+        
+        if (Core_Common_Numeric::isInteger($limit) && Core_Common_Numeric::isInteger($start)) {
             $items = $this->select("*")->order(array('id'))->limit($limit, $start)->fetchAll();
         } else {
             $items = $this->select("*")->order(array('id'))->fetchAll();

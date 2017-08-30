@@ -167,8 +167,8 @@ class Admin_UserController extends Core_Controller_Action
     {
         $id = $this->_request->getParam('id', null);
 
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-        if (Numeric::isInteger($id) == FALSE) {
+        
+        if (Core_Common_Numeric::isInteger($id) == FALSE) {
             $this->_helper->redirector('index', 'user', 'admin');
             return;
         }

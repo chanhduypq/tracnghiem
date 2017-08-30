@@ -11,8 +11,8 @@ $logo = $this->logo;
                 <div class="span12">
                     <?php
                     if ($logo['file_name'] != "") {
-                        Zend_Loader::loadFile('./../library/Core/Common/Image.php', null, true);
-                        Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height');
+                        
+                        Core_Common_Image::echoImage($this->baseUrl($logo['file_name']), 70, 70, 'height');
                     } else {
                         ?>
                         <img alt="" src="<?php echo $this->baseUrl('/images/img_photo01.jpg'); ?>">

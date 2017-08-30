@@ -37,8 +37,8 @@ class Common_Model_TableMapper {
      * @param 
      */
     public function deleteByPk($value, $delete_file = false) {
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
-        if (Numeric::isInteger($value) == FALSE) {
+        
+        if (Core_Common_Numeric::isInteger($value) == FALSE) {
             return 0;
         }
         $affect = 0;
@@ -100,9 +100,9 @@ class Common_Model_TableMapper {
 //        $select
 //                ->order("ngay_them_moi desc")
 //        ;
-        Zend_Loader::loadFile('Numeric.php', "./../library/Core/Common/", true);
+        
 
-        if (Numeric::isInteger($limit) && Numeric::isInteger($start)) {
+        if (Core_Common_Numeric::isInteger($limit) && Core_Common_Numeric::isInteger($start)) {
             $select->limit($limit, $start);
         }
         if (is_array($where) && count($where) > 0) {

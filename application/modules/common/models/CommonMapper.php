@@ -68,8 +68,7 @@ class Common_Model_CommonMapper {
                 foreach ($files as $fieldname => $fileinfo) {
                     if ($adapter->isUploaded($fileinfo['name']) && $adapter->isValid($fileinfo['name'])) {
                         $adapter->receive($fileinfo['name']);                        
-                        Zend_Loader::loadFile('./../library/Core/Common/File.php',null,true);
-                        $file_names[] = File::fixFileName($fileinfo['name']);
+                        $file_names[] = Core_Common_File::fixFileName($fileinfo['name']);
                     }
                 }
             }
