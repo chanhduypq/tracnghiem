@@ -79,6 +79,7 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
                     }
                 }
             }
+            $option = array ('layout' => 'admin');
         }
         else{
             if($this->_request->getControllerName()!='index'){
@@ -87,9 +88,11 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
                     $this->_helper->redirector('index', 'index', 'default');
                 }
             }
+            $option = array ('layout' => 'index');
         }
         
-        
+        $layout = Zend_Layout::getMvcInstance();
+        $layout->setOptions($option);       
 
         set_time_limit(2000);
 
