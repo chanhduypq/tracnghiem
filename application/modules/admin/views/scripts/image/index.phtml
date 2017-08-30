@@ -21,11 +21,12 @@
             if (ext == a.pop()) {
                 return;
             }
-        jAlert('','Vui lòng chọn file ảnh.');
+//        jAlert('','Vui lòng chọn file ảnh.');
+        alert('Vui lòng chọn file ảnh.');
+        name=jQuery(file).attr('name');
         jQuery(file).replaceWith("<input type='file' name='"+jQuery(file).attr('name')+"' onchange='allowUpload(this);' accept='image/*'/>");
-        file = document.form1.item_image;
-        jQuery(file).css("border-color", "red");
-        jQuery(file).focus();
+        jQuery('input[name="'+name+'"]').css("border-color", "red");
+        jQuery('input[name="'+name+'"]').focus();
     }
     
         
