@@ -11,7 +11,7 @@
         document.form.submit();
     }
     function backItemIndex() {
-        url = "<?php echo $this->baseUrl('/admin/user/'); ?>";
+        url = "<?php echo $this->baseUrl('/admin/user/index/page/'.$this->page); ?>";
         window.location = url;
     }
 

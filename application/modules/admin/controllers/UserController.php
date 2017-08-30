@@ -13,6 +13,10 @@ class Admin_UserController extends Core_Controller_Action
         $limit = $this->_getParam('limit', 5);
         $page = $this->_getParam('page', 1);
 
+        if(Core_Common_Numeric::isInteger($page)==FALSE){
+            $page=1;
+        }
+
         $start = (($page - 1) * $limit);
         $mapper = new Default_Model_User();
         $rows = $mapper->getUsers($total, $limit, $start);
@@ -32,8 +36,9 @@ class Admin_UserController extends Core_Controller_Action
 
         $this->view->limit = $limit;
         $this->view->total = $total;
+        $this->view->page=$page;
 
-        $this->view->message= $this->getMessage();
+        $this->view->message= $this->getMessage();        
     }
 
     private function processSpecialInput($form, &$formData) 
@@ -121,6 +126,7 @@ class Admin_UserController extends Core_Controller_Action
         }
 
         $this->view->form = $form;
+        $this->view->page= $this->_getParam('page');
     }
 
     public function editAction() 
@@ -149,7 +155,7 @@ class Admin_UserController extends Core_Controller_Action
                 }
                 $mapper->update($formData, 'id=' . $formData['id']);
                 Core::message()->addSuccess('Sửa thành công');
-                $this->_helper->redirector('index', 'user', 'admin');
+                $this->_helper->redirector('index', 'user', 'admin',array('page'=> $this->_getParam('page')));                
             } else {
                 $form->populate($formData);
             }

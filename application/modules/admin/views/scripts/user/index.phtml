@@ -12,7 +12,7 @@ if ($auth->hasIdentity()) {
 
 
     function addItem() {
-        window.location = "<?php echo $this->baseUrl('/admin/user/add/'); ?>";
+        window.location = "<?php echo $this->baseUrl('/admin/user/add/page/'.$this->page); ?>";
 
     }
     function editItem(img) {
@@ -69,7 +69,7 @@ if ($message != "") {
                     <img class="delete question" src="<?php echo $this->baseUrl("/images/icon/delete-icon.png"); ?>"/>                                                   
                 </a>
 
-                <a href="<?php echo $this->baseUrl('/admin/user/edit/id/') . $item['id']; ?>">
+                <a href="<?php echo $this->baseUrl('/admin/user/edit/id/') . $item['id'].'/page/'.$this->page; ?>">
                     <img class="edit question" title="Click vào đây để sửa" style="cursor: pointer;" src="<?php echo $this->baseUrl("/images/icon/ico_edit.png"); ?>" onclick="editItem(this);"/>                                                   
                 </a>
             </div>
@@ -81,10 +81,16 @@ if ($message != "") {
 
     <?php
 }
+
+$url = $this->url();
+$temp = explode('page', $url);
+if (is_array($temp) && count($temp) == 2) {
+    $url = $temp[0];
+}
 ?>
 
 </div>
-<form method="post" action="<?php echo $this->url(); ?>">
+<form method="post" action="<?php echo $url; ?>">
     <div class="row-fluid">
         <div class="span12">
 <?php if ($this->total > $this->limit) { ?>

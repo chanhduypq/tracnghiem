@@ -97,11 +97,12 @@ class Admin_QuestionController extends Core_Controller_Action
         $this->importExcel('516CauhoitracnghiemAT_2017.xls');
     }
     public function indexAction() 
-    {
-
-        
+    {       
         $limit = $this->_getParam('limit', 5);
         $page = $this->_getParam('page', 1);
+        if(Core_Common_Numeric::isInteger($page)==FALSE){
+            $page=1;
+        }
 
         $start = (($page - 1) * $limit);
         $mapper = new Default_Model_Question();
@@ -122,6 +123,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
         $this->view->limit = $limit;
         $this->view->total = $total;
+        $this->view->page=$page;
 
         $this->view->message= $this->getMessage();
     }
@@ -183,6 +185,7 @@ class Admin_QuestionController extends Core_Controller_Action
         }
 
         $this->view->form = $form;
+        $this->view->page= $this->_getParam('page');
     }
 
     public function addanswerAction() 
@@ -209,7 +212,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
                 if ($mapper->insert($formData)) {
                     Core::message()->addSuccess('Thêm mới thành công');
-                    $this->_helper->redirector('index', 'question', 'admin');
+                    $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
                 } else {
                     Core::message()->addSuccess('Lỗi. Xử lý thất bại.');
                     $message = Core::message()->getAll();
@@ -226,6 +229,7 @@ class Admin_QuestionController extends Core_Controller_Action
             }
         }
         $this->view->form = $form;
+        $this->view->page= $this->_getParam('page');
         $this->render('add');
     }
 
@@ -291,7 +295,7 @@ class Admin_QuestionController extends Core_Controller_Action
                 }
 
                 Core::message()->addSuccess('Sửa thành công');
-                $this->_helper->redirector('index', 'question', 'admin');
+                $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
             } else {
                 $form->populate($formData);
                 if ($dap_an != NULL) {
@@ -332,7 +336,7 @@ class Admin_QuestionController extends Core_Controller_Action
                 $formData['sign'] = strtoupper($formData['sign']);
                 $mapper->update($formData, 'id=' . $formData['id']);
                 Core::message()->addSuccess('Sửa thành công');
-                $this->_helper->redirector('index', 'question', 'admin');
+                $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
             } else {
                 $form->populate($formData);
             }

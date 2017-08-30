@@ -3,7 +3,7 @@
         document.form.submit();
     }
     function backItemIndex() {
-        url = "<?php echo $this->baseUrl('/admin/question/'); ?>";
+        url = "<?php echo $this->baseUrl('/admin/question/index/page/'.$this->page); ?>";
         window.location = url;
     }
 
