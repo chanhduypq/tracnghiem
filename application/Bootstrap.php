@@ -86,13 +86,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             chmod($cacheDir, 0777);
         }
 
-        Zend_Session::setOptions(array(
-            'cookie_lifetime' => 864000, // 10 days
-            'name' => 'onegateid',
-            'strict' => 'off',
-            'save_path' => $cacheDir,
-            'cookie_httponly' => true
-        ));
+//        dòng code này là để tạo file session
+//        Zend_Session::setOptions(array(
+//            'cookie_lifetime' => 864000, // 10 days
+//            'name' => 'onegateid',
+//            'strict' => 'off',
+//            'save_path' => $cacheDir,
+//            'cookie_httponly' => true
+//        ));
 
         try {
             Zend_Session::rememberMe(60*60*24); //timeout session là dòng code này
