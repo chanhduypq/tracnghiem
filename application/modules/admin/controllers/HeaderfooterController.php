@@ -21,6 +21,7 @@ class Admin_HeaderfooterController extends Core_Controller_Action
             
             $mapper_footer->save(array('text'=>$data['footer_text']));
             Core::message()->addSuccess('Lưu thành công');
+            $this->_helper->redirector('index', 'headerfooter', 'admin');
         }
         $this->view->message= $this->getMessage();
         $row= $mapper_header->getData();

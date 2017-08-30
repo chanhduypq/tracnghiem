@@ -12,31 +12,38 @@ class Admin_ExamController extends Core_Controller_Action
     {
         $db = Core_Db_Table::getDefaultAdapter();
         $data = $this->_request->getPost();
-        $error_exam_time = $error_config_exam = $message = '';
+        $error_exam_time = $error_config_exam = '';
+        $message= $this->getMessage();
         if (count($data) > 0) {
             $this->validate($data, $error_exam_time, $error_config_exam);
-        }
-
-        if (count($data) > 0 && $error_config_exam == '' && $error_exam_time == '') {
-            $this->saveDB($data);
-            $message = 'Lưu thành công.';
-        }
-        $row_config_exam = $db->fetchRow('select * from config_exam');
-        $row_exam_time = $db->fetchRow("select sh,sm,eh,em,DATE_FORMAT(date,'%d/%m/%Y') AS date from exam_time");
-        if (count($data) > 0) {
-            $temp = explode('-', $data['date']);
-            if (is_array($temp) && count($temp) == 3) {
-                $this->view->date = $temp[2] . '/' . $temp[1] . '/' . $temp[0];
-            } else {
-                $this->view->date = $data['date'];
+            if ($error_config_exam == '' && $error_exam_time == '') {
+                $this->saveDB($data);
+                Core::message()->addSuccess('Lưu thành công');
+                $this->_helper->redirector('index', 'exam', 'admin');                                
             }
-
-            $row_config_exam['phut'] = $data['phut'];
-            $row_config_exam['number'] = $data['number'];
-            $row_exam_time['sh'] = $data['sh'];
-            $row_exam_time['sm'] = $data['sm'];
+            else{
+                $row_config_exam = $db->fetchRow('select * from config_exam');
+                $row_exam_time = $db->fetchRow("select sh,sm,eh,em,DATE_FORMAT(date,'%d/%m/%Y') AS date from exam_time");
+                
+                $row_config_exam['phut'] = $data['phut'];
+                $row_config_exam['number'] = $data['number'];
+                $row_exam_time['sh'] = $data['sh'];
+                $row_exam_time['sm'] = $data['sm'];
+                
+                $temp = explode('-', $data['date']);
+                if (is_array($temp) && count($temp) == 3) {
+                    $dateForRender = $temp[2] . '/' . $temp[1] . '/' . $temp[0];
+                } else {
+                    $dateForRender = $data['date'];
+                }
+            }            
+            
+            
         } else {
-            $this->view->date = $row_exam_time['date'];
+            $row_config_exam = $db->fetchRow('select * from config_exam');
+            $row_exam_time = $db->fetchRow("select sh,sm,eh,em,DATE_FORMAT(date,'%d/%m/%Y') AS date from exam_time");
+            
+            $dateForRender = $row_exam_time['date'];
         }
 
         $this->view->row_exam_time = $row_exam_time;
@@ -44,6 +51,7 @@ class Admin_ExamController extends Core_Controller_Action
         $this->view->message = $message;
         $this->view->error_config_exam = $error_config_exam;
         $this->view->error_exam_time = $error_exam_time;
+        $this->view->date = $dateForRender;
     }
 
     private function saveDB($data) 

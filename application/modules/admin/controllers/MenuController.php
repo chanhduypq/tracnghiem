@@ -21,6 +21,7 @@ class Admin_MenuController extends Core_Controller_Action
                 $mapper->save($data, "id=" . $id_array[$i]);
             }
             Core::message()->addSuccess('Lưu thành công');
+            $this->_helper->redirector('index', 'menu', 'admin');
         }
         $this->view->message= $this->getMessage();
         $this->view->data = $mapper->getData();
