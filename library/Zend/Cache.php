@@ -206,7 +206,7 @@ abstract class Zend_Cache
     {
         // For perfs reasons, we use this dynamic inclusion
         require_once 'Zend/Cache/Exception.php';
-        throw new Zend_Cache_Exception($msg, 0, $e);
+//        throw new Zend_Cache_Exception($msg, 0, $e);
     }
 
     /**
