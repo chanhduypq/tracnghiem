@@ -1,6 +1,6 @@
 <?php
 
-class Image {
+class Core_Common_Image {
 
     /**
      * view image theo đúng tỉ lệ file gốc

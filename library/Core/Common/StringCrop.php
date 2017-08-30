@@ -1,6 +1,6 @@
 <?php
 
-class StringCrop {
+class Core_Common_String {
     /**
      * cắt chuỗi nếu chuỗi dài hơn một độ dài cho phép
      * @param string $text 
@@ -19,7 +19,7 @@ class StringCrop {
             return "";
         }
         require_once 'Numeric.php';
-        if(Numeric::isInteger($len)==FALSE){
+        if(Core_Common_Numeric::isInteger($len)==FALSE){
             return $text;
         }
         if ($len > strlen(utf8_decode($text))) {

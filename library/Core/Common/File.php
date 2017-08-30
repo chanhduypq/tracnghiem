@@ -1,6 +1,6 @@
 <?php
 
-class File {
+class Core_Common_File {
 
     /**
      * Đọc tất cả các file trong một folder, rồi trả về array chứa filename trong folder đó

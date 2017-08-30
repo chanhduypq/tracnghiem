@@ -1,6 +1,6 @@
 <?php
 
-class Numeric{
+class Core_Common_Numeric{
     /**
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $VNNumber
