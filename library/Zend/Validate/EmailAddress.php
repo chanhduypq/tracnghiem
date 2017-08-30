@@ -52,7 +52,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      */
     protected $_messageTemplates = array(
         self::INVALID            => "Invalid type given. String expected",
-        self::INVALID_FORMAT     => "'%value%' is no valid email address in the basic format local-part@hostname",
+        self::INVALID_FORMAT     => "'%value%' không đúng định dạng email",
         self::INVALID_HOSTNAME   => "'%hostname%' is no valid hostname for email address '%value%'",
         self::INVALID_MX_RECORD  => "'%hostname%' does not appear to have a valid MX record for the email address '%value%'",
         self::INVALID_SEGMENT    => "'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network",
