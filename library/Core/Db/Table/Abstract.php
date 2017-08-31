@@ -278,6 +278,14 @@ abstract class Core_Db_Table_Abstract extends Zend_Db_Table_Abstract
     {
         try {
             $data = $this->_prepareDataForTable($data);
+            foreach ($data as $key => $value) {
+                if ($value == "") {
+                    $data["$key"] = NULL;
+                }
+                if (!in_array($key, array_keys($this->info(self::METADATA)))) {
+                    unset($data["$key"]);
+                }
+            }
             return parent::insert($data);
         } catch (Exception $e) {          
             Core::message()->addError($e->getMessage());
