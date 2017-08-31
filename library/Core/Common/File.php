@@ -45,8 +45,8 @@ class Core_Common_File {
         }
         $fileName = str_replace("%", "", $fileName);
         $fileName = str_replace(" ", "_", $fileName);
-        require_once 'StringCrop.php';
-        $fileName = StringCrop::utf8convert($fileName);
+        require_once 'String.php';
+        $fileName = Core_Common_String::utf8convert($fileName);
         return $fileName;
     }
 

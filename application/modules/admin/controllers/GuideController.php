@@ -24,7 +24,7 @@ class Admin_GuideController extends Core_Controller_Action
 
     public function downloadAction() 
     {
-        $this->download(UPLOAD . "/public/guide/");
+        Core_Common_Download::download(UPLOAD . "/public/guide/");
     }
 
     public function saveAction() 
