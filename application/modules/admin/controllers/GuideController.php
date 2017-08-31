@@ -11,12 +11,15 @@ class Admin_GuideController extends Core_Controller_Action
     public function indexAction() 
     {
         $file_name='';
-        $files = scandir(UPLOAD . "/public/guide/", 0);
-        foreach ($files as $file){
-            if ($file != '.' || $file != '..') {
-                $file_name=$file;
-            }
-        }       
+        if(file_exists(UPLOAD . "/public/guide/")){
+            $files = scandir(UPLOAD . "/public/guide/", 0);
+            foreach ($files as $file){
+                if ($file != '.' || $file != '..') {
+                    $file_name=$file;
+                }
+            }   
+        }
+            
 
         $this->view->item = $file_name;
         $this->view->message= $this->getMessage();
