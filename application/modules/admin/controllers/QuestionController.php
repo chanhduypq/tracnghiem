@@ -113,13 +113,8 @@ class Admin_QuestionController extends Core_Controller_Action
         $paginator->setDefaultScrollingStyle();
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
-        $this->view->params = $this->_getAllParams();
 
-        $this->view->paginator = $paginator;
-        $this->view->start = $start;
-        $this->view->filter_order = $this->_getParam('filter_order');
-        $this->view->filter_order_Dir = $this->_getParam('filter_order_Dir');
-        $this->view->result = $this->_request->getParam('result', array());
+        $this->view->paginator = $paginator;        
 
         $this->view->limit = $limit;
         $this->view->total = $total;
