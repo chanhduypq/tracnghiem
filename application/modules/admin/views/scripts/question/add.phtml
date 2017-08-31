@@ -10,6 +10,7 @@
 </script>
 <?php
 $message = $this->message;
+$nganhnghe_ids = $this->nganhnghe_ids;
 if ($message != "") {
     ?>
     <div class="row-fluid" style="margin-top: 20px;">
@@ -91,13 +92,6 @@ if ($message != "") {
         if ($this->form->getElement('question_id') == null) {
             $mapper = new Default_Model_Nganhnghe();
             $menus = $mapper->getNganhNghes();
-            $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='" . $this->form->getElement('id')->getValue() . "'")->fetchAll();
-            $nganhnghe_ids = array();
-            if (is_array($rows) && count($rows) > 0) {
-                foreach ($rows as $row) {
-                    $nganhnghe_ids[] = $row['nganhnghe_id'];
-                }
-            }
             if (is_array($menus) && count($menus) > 0) {
                 ?>
                 <h3 style="text-align: center;">Chọn ngành nghề</h3>

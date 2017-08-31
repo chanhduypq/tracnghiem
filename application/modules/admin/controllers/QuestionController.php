@@ -127,14 +127,12 @@ class Admin_QuestionController extends Core_Controller_Action
     {
         $form = new Admin_Form_Question();
 
-
+        $nganhnghe_ids = array();
         if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
             if (isset($formData['nganhnghe_id'])) {
                 $nganhnghe_ids = $formData['nganhnghe_id'];
-            } else {
-                $nganhnghe_ids = array();
-            }
+            } 
             if ($form->isValid($formData)) {
                 $mapper = new Default_Model_Question();
 
@@ -173,6 +171,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
         $this->view->form = $form;
         $this->view->page= $this->_getParam('page');
+        $this->view->nganhnghe_ids=$nganhnghe_ids;
     }
 
     public function addanswerAction() 
@@ -221,6 +220,14 @@ class Admin_QuestionController extends Core_Controller_Action
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
         $form = new Admin_Form_Question();
+        
+        $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='$id_mat_hang'")->fetchAll();
+        $nganhnghe_ids = array();
+        if (is_array($rows) && count($rows) > 0) {
+            foreach ($rows as $row1) {
+                $nganhnghe_ids[] = $row1['nganhnghe_id'];
+            }
+        }
         if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
 
             $formData = $this->_request->getPost();
@@ -234,9 +241,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
             if (isset($formData['nganhnghe_id'])) {
                 $nganhnghe_ids = $formData['nganhnghe_id'];
-            } else {
-                $nganhnghe_ids = array();
-            }
+            } 
 
             if ($form->isValid($formData)) {
                 $row = $mapper->fetchRow('id=' . $formData['id']);
@@ -277,6 +282,7 @@ class Admin_QuestionController extends Core_Controller_Action
             $form->setDefaults($row);
         }
         $this->view->form = $form;
+        $this->view->nganhnghe_ids=$nganhnghe_ids;
         $this->render('add');
     }
 

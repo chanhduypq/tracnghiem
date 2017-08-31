@@ -21,14 +21,13 @@ class Admin_NganhngheController extends Core_Controller_Action
     {
         $form = new Admin_Form_Nganhnghe();
 
+        $question_ids = array();
         if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
             if (isset($formData['question_id'])) {
                 $question_ids = $formData['question_id'];
                 unset($formData['question_id']);
-            } else {
-                $question_ids = array();
-            }
+            } 
             if ($form->isValid($formData)) {
                 unset($formData['for_confirm']);
                 $mapper = new Default_Model_Nganhnghe();
@@ -71,6 +70,7 @@ class Admin_NganhngheController extends Core_Controller_Action
         }
 
         $this->view->form = $form;
+        $this->view->question_ids=$question_ids;
     }
 
     public function editAction() 
@@ -84,14 +84,19 @@ class Admin_NganhngheController extends Core_Controller_Action
         $row = $row->toArray();
         $form = new Admin_Form_Nganhnghe();
 
+        $question_ids = array();
+        $temps = Core_Db_Table::getDefaultAdapter()->query("select question_id from nganhnghe_question  where nganhnghe_id='$id_mat_hang'")->fetchAll();
+        if (is_array($temps) && count($temps) > 0) {
+            foreach ($temps as $row1) {
+                $question_ids[] = $row1['question_id'];
+            }
+        }
         if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
 
             $formData = $this->_request->getPost();
             if (isset($formData['question_id'])) {
                 $question_ids = $formData['question_id'];
                 unset($formData['question_id']);
-            } else {
-                $question_ids = array();
             }
             unset($formData['for_confirm']);
 
@@ -128,6 +133,7 @@ class Admin_NganhngheController extends Core_Controller_Action
             $form->setDefaults($row);
         }
         $this->view->form = $form;
+        $this->view->question_ids=$question_ids;
         $this->render('add');
     }
 

@@ -10,6 +10,7 @@
 </script>
 <?php
 $message = $this->message;
+$question_ids = $this->question_ids;
 if ($message != "") {
     ?>
     <div class="row-fluid" style="margin-top: 20px;">
@@ -54,13 +55,7 @@ if ($message != "") {
         if ($this->form->getElement('question_id') == null) {
 
             $rows = Core_Db_Table::getDefaultAdapter()->query("select * from question")->fetchAll();
-            $question_ids = array();
-            $temps = Core_Db_Table::getDefaultAdapter()->query("select question_id from nganhnghe_question  where nganhnghe_id='" . $this->form->getElement('id')->getValue() . "'")->fetchAll();
-            if (is_array($temps) && count($temps) > 0) {
-                foreach ($temps as $row) {
-                    $question_ids[] = $row['question_id'];
-                }
-            }
+            
             if (is_array($rows) && count($rows) > 0) {
                 ?>
                 <h3 style="text-align: center;">Chọn câu hỏi</h3>
