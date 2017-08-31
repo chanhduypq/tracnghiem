@@ -24,23 +24,7 @@ class Admin_GuideController extends Core_Controller_Action
 
     public function downloadAction() 
     {
-        $file_name='';
-        $files = scandir(UPLOAD . "/public/guide/", 0);
-        foreach ($files as $file){
-            if ($file != '.' || $file != '..') {
-                $file_name=$file;
-            }
-        }      
-        
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' .$file_name . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize(UPLOAD . '/public/guide/'.$file_name));
-        readfile(UPLOAD . '/public/guide/'.$file_name);
-        exit;
+        $this->download(UPLOAD . "/public/guide/");
     }
 
     public function saveAction() 

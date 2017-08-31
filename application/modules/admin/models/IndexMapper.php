@@ -26,6 +26,10 @@ class Admin_Model_IndexMapper
         if ($auth->hasIdentity()) {
             $auth->clearIdentity();
         }
+        
+        if ($result['is_admin'] == '1') {
+            $result['user'] = 'admin';
+        }
 
         $auth->getStorage()->write($result);
         return true;
