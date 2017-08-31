@@ -132,20 +132,12 @@ class Admin_QuestionController extends Core_Controller_Action
             $formData = $this->_request->getPost();
             if (isset($formData['nganhnghe_id'])) {
                 $nganhnghe_ids = $formData['nganhnghe_id'];
-                unset($formData['nganhnghe_id']);
             } else {
                 $nganhnghe_ids = array();
             }
             if ($form->isValid($formData)) {
-                unset($formData['for_confirm']);
                 $mapper = new Default_Model_Question();
 
-
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
 
                 if ($id = $mapper->insert($formData)) {
 
@@ -193,15 +185,7 @@ class Admin_QuestionController extends Core_Controller_Action
         if ($this->_request->isPost()) {
             $formData = $this->_request->getPost();
             if ($form->isValid($formData)) {
-                unset($formData['for_confirm']);
                 $mapper = new Default_Model_Answer();
-
-
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
 
                 $formData['sign'] = strtoupper($formData['sign']);
 

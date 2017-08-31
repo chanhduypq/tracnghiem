@@ -89,15 +89,8 @@ class Admin_UserController extends Core_Controller_Action
             $formData = $this->_request->getPost();
 
             if ($form->isValid($formData)) {
-                unset($formData['for_confirm']);
                 $mapper = new Default_Model_User();
                 $this->processSpecialInput($form, $formData);
-
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
 
                 $formData['password'] = sha1($formData['email']);
 
