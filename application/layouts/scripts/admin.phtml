@@ -100,7 +100,7 @@ echo $this->doctype();
                     jQuery.post(url,{'oldPassword':jQuery('input#password').val(),'newPassword':jQuery('input#newPassword').val()},function(resp){
                       
                             if(resp==''){
-                            jAlert('','Thành công');
+                            alert('Thành công');
                                 setTimeout(function (){
                                     window.location.reload();
                                 },2000);

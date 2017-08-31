@@ -21,7 +21,7 @@
             if (ext == a.pop()) {
                 return;
             }
-//        jAlert('','Vui lòng chọn file ảnh.');
+
         alert('Vui lòng chọn file ảnh.');
         name=jQuery(file).attr('name');
         jQuery(file).replaceWith("<input type='file' name='"+jQuery(file).attr('name')+"' onchange='allowUpload(this);' accept='image/*'/>");

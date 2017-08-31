@@ -54,12 +54,12 @@ $nganhNghes = $this->nganhNghes;
     jQuery(function ($) {
         $("#start").click(function () {
             if ($("#nganh_nghe_id").val() == '0') {
-                jAlert('', 'Vui lòng chọn ngành nghề');
+                alert('Vui lòng chọn ngành nghề');
                 $("#nganh_nghe_id").focus();
                 return;
             }
             if ($("#level").val() == '0') {
-                jAlert('', 'Vui lòng chọn cấp bậc');
+                alert('Vui lòng chọn cấp bậc');
                 $("#level").focus();
                 return;
             }

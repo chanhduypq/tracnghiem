@@ -35,7 +35,7 @@
             jQuery.post(url, {'oldPassword': jQuery('input#password').val(), 'newPassword': jQuery('input#newPassword').val()}, function (resp) {
 
                 if (resp == '') {
-                    jAlert('', 'Thành công');
+                    alert('Thành công');
                     setTimeout(function () {
                         window.location.reload();
                     }, 2000);
@@ -71,7 +71,7 @@
                 return false;
             }
             if (newPassword.value != confirmNewPassword.value) {
-                jAlert("", "Việc nhập password mới 2 lần không trùng nhau.");
+                alert("Việc nhập password mới 2 lần không trùng nhau.");
                 newPassword.setAttribute('style', "border-color: red;");
                 confirmNewPassword.setAttribute('style', "border-color: red;");
                 newPassword.focus();

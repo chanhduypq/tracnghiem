@@ -60,7 +60,7 @@ class ReviewController extends Core_Controller_Action
                     'question_id' => $questionIds[$i],
                     'answer_id' => ($answerIds[$i] == '' ? '-1' : $answerIds[$i]),
                     'is_correct' => $is_correct,
-                    'answer_sign' => $answerSigns[$i],
+                    'answer_sign' => $answerSigns[$i]=='Z'?' ':$answerSigns[$i],
                     'dapan_sign' => $dapanSigns[$i],
                 ));
             }

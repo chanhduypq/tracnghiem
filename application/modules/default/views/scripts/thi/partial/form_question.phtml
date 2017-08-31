@@ -147,6 +147,17 @@ $minute_per_question = $config_exam['phut'];
 
 
         $("#finish").click(function () {
+            clearTimeout(timeout);
+            $('input[name="answer_id[]"]').each(function( index ) {
+                if($(this).val()==''){
+                    $(this).val('-1');
+                }
+            });
+            $('input[name="answer_sign[]"]').each(function( index ) {
+                if($(this).val()==''){
+                    $(this).val('Z');
+                }
+            });
             $("#form2").attr('onsubmit', 'return true');
             $("#form2").submit();
         });
@@ -225,7 +236,6 @@ $minute_per_question = $config_exam['phut'];
 //        }
         if (m == -1) {
             clearTimeout(timeout);
-            jAlert('', 'Hết giờ.');
             setTimeout(function () {
                 $('#h').val('<?php if (isset($this->eh)) echo $this->eh;
             else echo date('H'); ?>');

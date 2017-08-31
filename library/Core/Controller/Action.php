@@ -121,6 +121,9 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
     public function getMessage() {
         $message = Core::message()->getAll();
         if (is_array($message) && count($message) > 0) {
+            if (!isset($message['message'])) {
+                return '';
+            }
             $message = $message['message'];
             return $message[0];
         } else {
