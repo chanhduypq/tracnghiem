@@ -132,7 +132,6 @@ class Admin_UserController extends Core_Controller_Action
             $formData = $this->_request->getPost();
             $form->getElement('email')->getValidator('Db_NoRecordExists')->setExclude('id != ' . $formData['id']);
 
-            unset($formData['for_confirm']);
             if ($form->isValid($formData)) {
                 $this->processSpecialInput($form, $formData);
                 $row = $mapper->fetchRow('id=' . $formData['id']);

@@ -224,19 +224,16 @@ class Admin_QuestionController extends Core_Controller_Action
         if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
 
             $formData = $this->_request->getPost();
-            unset($formData['for_confirm']);
             if (isset($formData['dap_an'])) {
                 $dap_ans = explode('_', $formData['dap_an']);
                 $dap_an = $dap_ans[0];
                 $dap_an_sign = $dap_ans[1];
-                unset($formData['dap_an']);
             } else {
                 $dap_an = NULL;
             }
 
             if (isset($formData['nganhnghe_id'])) {
                 $nganhnghe_ids = $formData['nganhnghe_id'];
-                unset($formData['nganhnghe_id']);
             } else {
                 $nganhnghe_ids = array();
             }
@@ -244,11 +241,6 @@ class Admin_QuestionController extends Core_Controller_Action
             if ($form->isValid($formData)) {
                 $row = $mapper->fetchRow('id=' . $formData['id']);
 
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
 
                 $mapper->update($formData, 'id=' . $formData['id']);
                 if ($dap_an != NULL) {
@@ -300,17 +292,10 @@ class Admin_QuestionController extends Core_Controller_Action
         if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
 
             $formData = $this->_request->getPost();
-            unset($formData['for_confirm']);
 
             if ($form->isValid($formData)) {
 
                 $row = $mapper->fetchRow('id=' . $formData['id']);
-
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
 
                 $formData['sign'] = strtoupper($formData['sign']);
                 $mapper->update($formData, 'id=' . $formData['id']);
