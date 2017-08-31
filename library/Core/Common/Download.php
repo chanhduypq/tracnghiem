@@ -2,6 +2,13 @@
 
 class Core_Common_Download 
 {
+    /**
+     * 
+     * function common
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
+     * @param string $path
+     * @param string $fileName
+     */
     public static function download($path,$fileName=null) 
     { 
         if(!is_string($fileName)||trim($fileName)==''){

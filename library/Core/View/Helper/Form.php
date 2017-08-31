@@ -1,10 +1,11 @@
 <?php
 /**
- * @author Trần Công Tuệ
+ * @author Trần Công Tuệ <chanhduypq@gmail.com>
  */
 class Core_View_Helper_Form extends Zend_View_Helper_Abstract{
 	/**
-	 * @author Trần Công Tuệ
+         * function common
+	 * @author Trần Công Tuệ <chanhduypq@gmail.com>
 	 * gernerate thành các tag html của các input trong một form
 	 * @param Core_Form $form
 	 * @param integer $numberOfElement_per_row
@@ -144,7 +145,8 @@ class Core_View_Helper_Form extends Zend_View_Helper_Abstract{
 				}	
 	}
 	/**
-	 * @author Trần Công Tuệ
+         * function common
+	 * @author Trần Công Tuệ <chanhduypq@gmail.com>
 	 * gernerate các thuộc tính, dòng lệnh jquery để các input xuất hiện theo chuẩn jquery
 	 * @param array $elements
 	 * @param Zend_View_Interface $view

@@ -2,6 +2,7 @@
 
 class Core_Common_Numeric{
     /**
+     * function common
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $VNNumber
      * @return string
@@ -15,6 +16,7 @@ class Core_Common_Numeric{
         return $VNNumber;
     }
     /**
+     * function common
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $dbNumber
      * @return string
@@ -56,6 +58,7 @@ class Core_Common_Numeric{
     }	
     
     /**
+     * function common
      * function này kiểm tra một chuỗi hay một số có phải là số nguyên hay không
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param mixed $value

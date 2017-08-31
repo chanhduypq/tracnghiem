@@ -3,6 +3,7 @@
 class Core_Common_File {
 
     /**
+     * function common
      * Đọc tất cả các file trong một folder, rồi trả về array chứa filename trong folder đó
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $path
@@ -35,7 +36,9 @@ class Core_Common_File {
     }
 
     /**
+     * function common
      * fix fileName với các vấn đề: có khoảng trắng, chứa ký tự có dấu...
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $fileName
      * @return string
      */

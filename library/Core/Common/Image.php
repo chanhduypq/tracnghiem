@@ -3,6 +3,7 @@
 class Core_Common_Image {
 
     /**
+     * function common
      * view image theo đúng tỉ lệ file gốc
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $path

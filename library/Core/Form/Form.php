@@ -4,7 +4,7 @@
  * 
  * @category    Core
  * @package     Core_Form
- * @author      Trần Công Tuệ
+ * @author Trần Công Tuệ <chanhduypq@gmail.com>
  */
 class Core_Form_Form extends Zend_Form {
 

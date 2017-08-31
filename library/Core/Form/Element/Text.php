@@ -146,7 +146,13 @@ class Core_Form_Element_Text extends Core_Form_Element_Xhtml
     	$this->addValidator($validate_greaterThan);
     	$this->addValidator($validate_lessThan);
     	return $this;    	
-    }   
+    }  
+    /**
+     * function common
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
+     * @param bool $isEmail
+     * @return void
+     */
     public function setIsEmail($isEmail){
         if(!is_bool($isEmail)){
             return ;

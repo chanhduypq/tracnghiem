@@ -2,11 +2,12 @@
 
 class Core_Common_String {
     /**
+     * function common
      * cắt chuỗi nếu chuỗi dài hơn một độ dài cho phép
      * @param string $text 
      * @param integer $len
      * @return string
-     * @author Trần Công Tuệ     
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
     public static function crop($text, $len) {        
         if($text==NULL){
@@ -31,9 +32,10 @@ class Core_Common_String {
         return $string;
     }
     /**
-     * 
+     * function common
      * @param string $str
      * @return string
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
     public static function utf8convert($str) {
 
