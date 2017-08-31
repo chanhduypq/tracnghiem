@@ -33,7 +33,10 @@ class Admin_IndexController extends Core_Controller_Action
         } else {
             $index = new Admin_Model_IndexMapper();
             if ($index->loginAdmin($username, $password)) {
-                $this->_helper->redirector('index', 'nganhnghe', 'admin');
+                $session = new Zend_Session_Namespace('url');
+                $controller = $session->controller;
+                $session->unsetAll();
+                $this->_helper->redirector('index', $controller, 'admin');
             } else {
                 $this->_helper->redirector('index', 'index', 'admin', array('loginResult' => '0'));
             }

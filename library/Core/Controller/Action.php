@@ -71,10 +71,14 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
             if($this->_request->getControllerName()!='index'){
                 $auth = Zend_Auth::getInstance();
                 if (!$auth->hasIdentity()) {
+                    $session=new Zend_Session_Namespace('url');
+                    $session->controller=$this->_request->getControllerName();
                     $this->_helper->redirector('index', 'index', 'admin');
                 } else {
                     $identity = $auth->getIdentity();
                     if (!isset($identity['user']) || $identity['user'] != 'admin') {
+                        $session=new Zend_Session_Namespace('url');
+                        $session->controller=$this->_request->getControllerName();
                         $this->_helper->redirector('index', 'index', 'admin');
                     }
                 }
