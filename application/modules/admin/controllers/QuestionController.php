@@ -222,13 +222,7 @@ class Admin_QuestionController extends Core_Controller_Action
         $row = $row->toArray();
         $form = new Admin_Form_Question();
         
-        $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='$id'")->fetchAll();
         $nganhnghe_ids = array();
-        if (is_array($rows) && count($rows) > 0) {
-            foreach ($rows as $row1) {
-                $nganhnghe_ids[] = $row1['nganhnghe_id'];
-            }
-        }
         if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
@@ -281,6 +275,13 @@ class Admin_QuestionController extends Core_Controller_Action
             }
         } else {
             $form->setDefaults($row);
+            $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='$id'")->fetchAll();
+            
+            if (is_array($rows) && count($rows) > 0) {
+                foreach ($rows as $row1) {
+                    $nganhnghe_ids[] = $row1['nganhnghe_id'];
+                }
+            }
         }
         $this->view->form = $form;
         $this->view->nganhnghe_ids=$nganhnghe_ids;

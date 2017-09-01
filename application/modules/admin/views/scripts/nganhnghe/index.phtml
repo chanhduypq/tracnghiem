@@ -16,17 +16,6 @@ if ($auth->hasIdentity()) {
         window.location = "<?php echo $this->baseUrl('/admin/nganhnghe/add/'); ?>";
 
     }
-    function editItem(img) {
-        jQuery("form#edit-form").find('input[type="hidden"]').eq(0).val(jQuery(img).parent().parent().attr("id")).attr("name", "id");
-        jQuery("form#edit-form").submit();
-
-    }
-
-    jQuery(function ($) {
-        buildForm("<?php echo $this->baseUrl('/admin/nganhnghe/edit/'); ?>");
-    });
-
-
 
 </script>
 <?php
@@ -82,8 +71,9 @@ if ($message != "") {
                     <a class="remove" title="Click vào đây để xóa" href="<?php echo $this->baseUrl('/admin/nganhnghe/delete/id/') . $item['id']; ?>">
                         <img class="delete question" src="<?php echo $this->baseUrl("/images/icon/delete-icon.png"); ?>"/>                                                   
                     </a>
-
-                    <img title="Click vào đây để sửa" style="width: 48px;height: 48px;cursor: pointer;" src="<?php echo $this->baseUrl("/images/icon/ico_edit.png"); ?>" onclick="editItem(this);"/>                                                   
+                    <a title="Click vào đây để sửa" href="<?php echo $this->baseUrl('/admin/nganhnghe/edit/id/') . $item['id']; ?>">
+                        <img style="width: 48px;height: 48px;cursor: pointer;" src="<?php echo $this->baseUrl("/images/icon/ico_edit.png"); ?>" onclick="editItem(this);"/>                                                   
+                    </a>
                 </div>
 
             </div>

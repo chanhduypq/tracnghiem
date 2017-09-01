@@ -68,21 +68,16 @@ class Admin_NganhngheController extends Core_Controller_Action
     public function editAction() 
     {
 
-        $id_mat_hang = $this->_getParam('id');
+        $id = $this->_getParam('id');
 
-        $where = "id=$id_mat_hang";
+        $where = "id=$id";
         $mapper = new Default_Model_Nganhnghe();
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
         $form = new Admin_Form_Nganhnghe();
 
         $question_ids = array();
-        $temps = Core_Db_Table::getDefaultAdapter()->query("select question_id from nganhnghe_question  where nganhnghe_id='$id_mat_hang'")->fetchAll();
-        if (is_array($temps) && count($temps) > 0) {
-            foreach ($temps as $row1) {
-                $question_ids[] = $row1['question_id'];
-            }
-        }
+        
         if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
@@ -115,6 +110,12 @@ class Admin_NganhngheController extends Core_Controller_Action
             }
         } else {
             $form->setDefaults($row);
+            $temps = Core_Db_Table::getDefaultAdapter()->query("select question_id from nganhnghe_question  where nganhnghe_id='$id'")->fetchAll();
+            if (is_array($temps) && count($temps) > 0) {
+                foreach ($temps as $row1) {
+                    $question_ids[] = $row1['question_id'];
+                }
+            }
         }
         $this->view->form = $form;
         $this->view->question_ids=$question_ids;
