@@ -172,6 +172,7 @@ class Admin_QuestionController extends Core_Controller_Action
         $this->view->form = $form;
         $this->view->page= $this->_getParam('page');
         $this->view->nganhnghe_ids=$nganhnghe_ids;
+        $this->render('add-question');
     }
 
     public function addanswerAction() 
@@ -208,20 +209,20 @@ class Admin_QuestionController extends Core_Controller_Action
         }
         $this->view->form = $form;
         $this->view->page= $this->_getParam('page');
-        $this->render('add');
+        $this->render('add-answer');
     }
 
     public function editAction() 
     {
 
-        $id_mat_hang = $this->_getParam('id');
-        $where = "id=$id_mat_hang";
+        $id = $this->_getParam('id');
+        $where = "id=$id";
         $mapper = new Default_Model_Question();
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
         $form = new Admin_Form_Question();
         
-        $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='$id_mat_hang'")->fetchAll();
+        $rows = Core_Db_Table::getDefaultAdapter()->query("select * from nganhnghe_question where question_id='$id'")->fetchAll();
         $nganhnghe_ids = array();
         if (is_array($rows) && count($rows) > 0) {
             foreach ($rows as $row1) {
@@ -283,14 +284,14 @@ class Admin_QuestionController extends Core_Controller_Action
         }
         $this->view->form = $form;
         $this->view->nganhnghe_ids=$nganhnghe_ids;
-        $this->render('add');
+        $this->render('add-question');
     }
 
     public function editanswerAction() 
     {
 
-        $id_mat_hang = $this->_getParam('id');
-        $where = "id=$id_mat_hang";
+        $id = $this->_getParam('id');
+        $where = "id=$id";
         $mapper = new Default_Model_Answer();
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
@@ -314,7 +315,7 @@ class Admin_QuestionController extends Core_Controller_Action
             $form->setDefaults($row);
         }
         $this->view->form = $form;
-        $this->render('add');
+        $this->render('add_answer');
     }
 
     public function deleteAction() 
