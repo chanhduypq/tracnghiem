@@ -218,8 +218,7 @@ class Admin_QuestionController extends Core_Controller_Action
         $id = $this->_getParam('id');
         $where = "id=$id";
         $mapper = new Default_Model_Question();
-        $row = $mapper->fetchRow($where);
-        $row = $row->toArray();
+        $row = $mapper->fetchRow($where)->toArray();
         $form = new Admin_Form_Question();
         
         $nganhnghe_ids = array();
@@ -294,8 +293,7 @@ class Admin_QuestionController extends Core_Controller_Action
         $id = $this->_getParam('id');
         $where = "id=$id";
         $mapper = new Default_Model_Answer();
-        $row = $mapper->fetchRow($where);
-        $row = $row->toArray();
+        $row = $mapper->fetchRow($where)->toArray();
         $form = new Admin_Form_Answer();
         if ($this->_request->isPost()) {
 

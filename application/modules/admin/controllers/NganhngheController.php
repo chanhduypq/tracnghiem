@@ -72,8 +72,7 @@ class Admin_NganhngheController extends Core_Controller_Action
 
         $where = "id=$id";
         $mapper = new Default_Model_Nganhnghe();
-        $row = $mapper->fetchRow($where);
-        $row = $row->toArray();
+        $row = $mapper->fetchRow($where)->toArray();
         $form = new Admin_Form_Nganhnghe();
 
         $question_ids = array();

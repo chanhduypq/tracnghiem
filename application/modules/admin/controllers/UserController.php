@@ -36,49 +36,7 @@ class Admin_UserController extends Core_Controller_Action
         $this->view->message= $this->getMessage();        
     }
 
-    private function processSpecialInput($form, &$formData) 
-    {
-        try {
-            foreach ($form->getElements() as $element) {
-                if ($element instanceof Core_Form_Element_Date) {
-                    $array = explode("/", $element->getValue());
-                    if (count($array) == 3) {
-                        $date = $array[2] . '-' . $array[1] . '-' . $array[0];
-                        $formData[$element->getName()] = $date;
-                    }
-                } elseif ($element instanceof Core_Form_Element_File) {
-                    if ($element->getForInsertDB() == false) {
-                        if ($_FILES[$element->getName()]['name'] != "") {
-                            $file_name = $element->getRandomFileName();
-                            if ($element->isUploaded($file_name) && $element->isValid($file_name)) {
-                                $element->receive();
-                            }
-                            if (isset($file_name) && $file_name != "") {
-                                $file_name = $element->getPathStoreFile() . $file_name;
-                            }
-                            $formData[$element->getName()] = $file_name;
-                        }
-                    } else if ($element->getForInsertDB() == true) {
-                        $file_key_array = array('type', 'size', 'name');
-                        foreach ($this->getElements() as $key => $value) {
-                            if (in_array($key, $file_key_array)) {
-                                $formData[$key] = $_FILES[$element->getName()][$key];
-                            }
-                        }
-                        $file = fopen($_FILES[$element->getName()]['tmp_name'], "r", 1);
-                        if ($file) {
-                            $fileContent = base64_encode(file_get_contents($_FILES[$element->getName()]['tmp_name']));
-                        } else {
-                            $fileContent = null;
-                        }
-                        $formData[$element->getName()] = $fileContent;
-                    }
-                }
-            }
-        } catch (Exception $e) {
-            
-        }
-    }
+    
 
     public function addAction() 
     {
@@ -123,8 +81,7 @@ class Admin_UserController extends Core_Controller_Action
         $id = $this->_getParam('id');
         $where = "id=$id";
         $mapper = new Default_Model_User();
-        $row = $mapper->fetchRow($where);
-        $row = $row->toArray();
+        $row = $mapper->fetchRow($where)->toArray();
         $form = new Admin_Form_User();
 
         if ($this->_request->isPost()) {
