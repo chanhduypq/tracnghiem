@@ -26,18 +26,10 @@ class Admin_NganhngheController extends Core_Controller_Action
             $formData = $this->_request->getPost();
             if (isset($formData['question_id'])) {
                 $question_ids = $formData['question_id'];
-                unset($formData['question_id']);
             } 
             if ($form->isValid($formData)) {
-                unset($formData['for_confirm']);
                 $mapper = new Default_Model_Nganhnghe();
 
-
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
                 if ($id = $mapper->insert($formData)) {
 
                     if (is_array($question_ids) && count($question_ids) > 0) {
@@ -91,24 +83,16 @@ class Admin_NganhngheController extends Core_Controller_Action
                 $question_ids[] = $row1['question_id'];
             }
         }
-        if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
+        if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
             if (isset($formData['question_id'])) {
                 $question_ids = $formData['question_id'];
-                unset($formData['question_id']);
             }
-            unset($formData['for_confirm']);
 
             if ($form->isValid($formData)) {
 
                 $row = $mapper->fetchRow('id=' . $formData['id']);
-
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
 
                 $mapper->update($formData, 'id=' . $formData['id']);
 

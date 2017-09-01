@@ -54,9 +54,6 @@ class Core_View_Helper_Form extends Zend_View_Helper_Abstract{
 							
 							if(($element instanceof Core_Form_Element_Hidden)){
 								$j--;
-                                                                if($element->getIsPrimary()==true&&is_int((int)($element->getValue()))){
-                                                                    echo '<input type="hidden" name="for_confirm" value="1"/>';
-                                                                }
 							}					
 							else if(($element instanceof Core_Form_Element_File)
 									||($element instanceof Core_Form_Element_Text)

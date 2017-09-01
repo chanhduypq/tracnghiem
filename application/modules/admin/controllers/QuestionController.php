@@ -228,7 +228,7 @@ class Admin_QuestionController extends Core_Controller_Action
                 $nganhnghe_ids[] = $row1['nganhnghe_id'];
             }
         }
-        if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
+        if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
             if (isset($formData['dap_an'])) {
@@ -295,7 +295,7 @@ class Admin_QuestionController extends Core_Controller_Action
         $row = $mapper->fetchRow($where);
         $row = $row->toArray();
         $form = new Admin_Form_Answer();
-        if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
+        if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
 

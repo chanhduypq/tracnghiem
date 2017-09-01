@@ -127,7 +127,7 @@ class Admin_UserController extends Core_Controller_Action
         $row = $row->toArray();
         $form = new Admin_Form_User();
 
-        if ($this->_request->isPost() && isset($_POST['for_confirm'])) {
+        if ($this->_request->isPost()) {
 
             $formData = $this->_request->getPost();
             $form->getElement('email')->getValidator('Db_NoRecordExists')->setExclude('id != ' . $formData['id']);
@@ -135,11 +135,7 @@ class Admin_UserController extends Core_Controller_Action
             if ($form->isValid($formData)) {
                 $this->processSpecialInput($form, $formData);
                 $row = $mapper->fetchRow('id=' . $formData['id']);
-                foreach ($formData as $key => $value) {
-                    if ($value == "") {
-                        $formData["$key"] = NULL;
-                    }
-                }
+
                 $mapper->update($formData, 'id=' . $formData['id']);
                 Core::message()->addSuccess('Sửa thành công');
                 $this->_helper->redirector('index', 'user', 'admin', array('page' => $this->_getParam('page')));
