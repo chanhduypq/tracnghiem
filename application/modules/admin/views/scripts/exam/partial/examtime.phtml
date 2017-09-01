@@ -3,14 +3,6 @@ $date = $this->date;
 $row_exam_time = $this->row_exam_time;
 ?>
 <div class="row-fluid" style="margin-top: 10px;">
-
-    <?php if (isset($this->error_exam_time) && $this->error_exam_time != '') { ?>
-        <div style="color: red;text-align: center;width: 100%;padding-top: 20px;">
-            <h3><?php echo $this->error_exam_time; ?></h3>
-        </div>
-        <?php
-    }
-    ?>
     <div class="span12">
 
         <table width="100%"> 
@@ -20,7 +12,7 @@ $row_exam_time = $this->row_exam_time;
                     </td>
                     <td>
 
-                        <input type="text" name="date" id="date" style="width: 80px;" value="<?php echo $date; ?>"></td>
+                        <input readonly="readonly" type="text" name="date" id="date" style="width: 80px;" value="<?php echo $date; ?>"></td>
 
                 </tr>
                 <tr>                 
@@ -81,3 +73,28 @@ $row_exam_time = $this->row_exam_time;
     </div>
 
 </div>
+<script src="<?php echo $this->baseUrl(); ?>/jquery-ui-1.10.3/ui/i18n/jquery.ui.datepicker-vi.js"></script>
+<script>
+    jQuery(function ($){
+        $( "#date" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          dateFormat: "dd/mm/yy",
+          showWeek: true,
+            showOn: "button",
+            buttonImage: "<?php echo $this->baseUrl('/images/calendar/calendar.gif');?>",
+            buttonImageOnly: true,
+            buttonText: 'Click để chọn ngày',
+            option:$.datepicker.regional['vi']
+          <?php 
+          if(isset($this->minDate)){?>
+          ,minDate:"<?php echo $this->minDate;?>"
+          <?php 
+          }
+          ?>         
+          
+        });
+        
+        $('img.ui-datepicker-trigger').css('margin-left','10px').css('margin-bottom','10px').css('cursor','pointer');
+    });
+</script>

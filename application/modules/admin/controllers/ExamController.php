@@ -12,11 +12,10 @@ class Admin_ExamController extends Core_Controller_Action
     {
         $db = Core_Db_Table::getDefaultAdapter();
         $data = $this->_request->getPost();
-        $error_exam_time = $error_config_exam = '';
+        $error_config_exam = '';
         $message= $this->getMessage();
         if (count($data) > 0) {
-            $this->validate($data, $error_exam_time, $error_config_exam);
-            if ($error_config_exam == '' && $error_exam_time == '') {
+            if (ctype_digit($data['phut']) && ctype_digit($data['number'])) {
                 $this->saveDB($data);
                 Core::message()->addSuccess('Lưu thành công');
                 $this->_helper->redirector('index', 'exam', 'admin');                                
@@ -36,6 +35,8 @@ class Admin_ExamController extends Core_Controller_Action
                 } else {
                     $dateForRender = $data['date'];
                 }
+                
+                $error_config_exam = 'Vui lòng nhập [Thời gian để hoàn thành một câu hỏi(phút)] và [Tổng số câu hỏi cho một lần thi] bằng số nguyên.';
             }            
             
             
@@ -45,18 +46,26 @@ class Admin_ExamController extends Core_Controller_Action
             
             $dateForRender = $row_exam_time['date'];
         }
+        
+        $row = $db->fetchRow("select DATE_FORMAT(exam_date,'%Y-%m-%d') AS exam_date from user_exam ORDER BY exam_date DESC LIMIT 1");
+        if (is_array($row) && count($row) > 0) {            
+            $exam_date = new DateTime($row['exam_date']);
+            $exam_date->add(new DateInterval('P1D'));
+            $this->view->minDate=$exam_date->format('d/m/Y');
+        }
 
         $this->view->row_exam_time = $row_exam_time;
         $this->view->row_config_exam = $row_config_exam;
         $this->view->message = $message;
         $this->view->error_config_exam = $error_config_exam;
-        $this->view->error_exam_time = $error_exam_time;
         $this->view->date = $dateForRender;
     }
 
     private function saveDB($data) 
     {
         if (count($data) > 0) {
+            $temp = explode('/', $data['date']);
+            $data['date'] = $temp[2] . '-' . $temp[1] . '-' . $temp[0];;  
             $newtimestamp = strtotime($data['date'] . ' ' . $data['sh'] . ':' . $data['sm'] . ':00 + ' . ($data['phut'] * $data['number']) . ' minute');
             $end_time = date('Y-m-d H:i:s', $newtimestamp);
             $temp = explode(' ', $end_time);
@@ -71,35 +80,6 @@ class Admin_ExamController extends Core_Controller_Action
             $db->query("update config_exam set phan_tram=" . $data['phan_tram'] . ",phut=" . $data['phut'] . ",number=" . $data['number'])->execute();
 
             $db->query("update user_exam set allow_re_exam=0")->execute();
-        }
-    }
-
-    private function validate(&$data, &$error_exam_time, &$error_config_exam) 
-    {
-        if (count($data) > 0) {
-            $db = Core_Db_Table::getDefaultAdapter();
-            if (trim($data['date']) != '') {
-                $temp = explode('/', $data['date']);
-
-                if (is_array($temp) && count($temp) == 3 && ctype_digit($temp[0]) && ctype_digit($temp[1]) && ctype_digit($temp[2]) && checkdate($temp[1], $temp[0], $temp[2])) {
-                    $date = $temp[2] . '-' . $temp[1] . '-' . $temp[0];
-                    $data['date'] = $date;
-                    $row = $db->fetchRow("select DATE_FORMAT(exam_date,'%d/%m/%Y') AS exam_date from user_exam where DATE(exam_date)>='$date' ORDER BY exam_date DESC LIMIT 1");
-                    if (is_array($row) && count($row) > 0) {
-                        $error_exam_time = 'Ngày thi gần đây nhất là ngày ' . $row['exam_date'] . '. Vui lòng nhập lại.';
-                    }
-                } else {
-                    $error_exam_time = 'Nhập ngày không đúng.';
-                }
-            } else {
-                $error_exam_time = 'Vui lòng nhập ngày thi.';
-            }
-
-            if (!ctype_digit($data['phut']) || !ctype_digit($data['number'])) {
-                $error_config_exam = 'Vui lòng nhập [Thời gian để hoàn thành một câu hỏi(phút)] và [Tổng số câu hỏi cho một lần thi] bằng số nguyên.';
-            }
-        } else {
-            $error_config_exam = $error_exam_time = '';
         }
     }
 
