@@ -1,25 +1,14 @@
 <?php
 
-class Default_Model_Userexam extends Core_Db_Table_Abstract 
-{
+class Default_Model_Userexam extends Core_Db_Table_Abstract {
 
     public $_name = "user_exam";
 
-    public function __construct() 
-    {
+    public function __construct() {
         parent::__construct();
     }
-    
-    public static function convert($number)
-    {
-        if($number<10){
-            return '0'.$number;
-        }
-        return $number;
-    }
 
-    public static function getHtmlForExamResult($user_exam_id, &$title_header) 
-    {
+    public static function getHtmlForExamResult($user_exam_id, &$title_header) {
         $db = Core_Db_Table::getDefaultAdapter();
         $row = $db->fetchAll("select sh,sm,eh,em,es,user_exam_detail.question_id,user_pass.id AS user_pass_id,"
                 . "user_exam.nganh_nghe_id,"
@@ -57,235 +46,36 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract
             $result = 'Chưa đạt';
         }
         $diem = round($count_correct * 10 / count($row), 1);
-        $questions = $db->fetchAll("select "
-                . "question.content AS question_content,"
-                . "answer.content AS answer_content,"
-                . "dap_an.sign AS dap_an_sign,"
-                . "answer.sign AS answer_sign,"
-                . "question.id "
-                . "from question "
-                . "JOIN answer ON question.id=answer.question_id "
-                . "JOIN dap_an ON dap_an.question_id=question.id "
-                . "WHERE question.id IN (" . implode(',', $questionIds) . ")");
-        $newQuestions = array();
-        foreach ($questions as $question) {
-            $newQuestions[$question['id']]['question_content'] = $question['question_content'];
-            $newQuestions[$question['id']]['answers'][] = array('answer_sign' => $question['answer_sign'], 'answer_content' => $question['answer_content'], 'is_dap_an' => ($question['answer_sign'] == $question['dap_an_sign']));
-        }
-        $div = '';
-        $i = 1;
-        foreach ($newQuestions as $key => $question) {
-            if ($i > 1) {
-                $div .= '<div>&nbsp;</div>';
-            }
-            $div .= '<div class="span12" style="color: blue;">
-                    ' . $i . '. ' . $question['question_content'] . '
-                </div>';
-            foreach ($question['answers'] as $temp) {
-                if ($temp['is_dap_an']) {
-                    $div .= '<div class="span12">
-                            <strong><i><u>' . $temp['answer_sign'] . '. ' . $temp['answer_content'] . ' (*)</u></i></strong>
-                        </div>';
-                } else {
-                    $div .= '<div class="span12">
-                            ' . $temp['answer_sign'] . '. ' . $temp['answer_content'] . '
-                        </div>';
-                }
-            }
-            $i++;
-        }
-        $motPhan = intval(ceil(count($row) / 3));
-        $div1 = $div2 = $div3 = '';
-        for ($i = 0; $i < $motPhan; $i++) {
-            $div1 .= '<tr>
-                        <td>Câu ' . ($i + 1) . '</td>
-                        <td>' . ($row[$i]['answer_id'] == '-1' ? '' : $row[$i]['answer_sign']) . '</td>
-                        <td>' . $row[$i]['dapan_sign'] . '</td>
-                        <td>' . ($row[$i]['is_correct'] == '1' ? 'Đúng' : 'Sai') . '</td>
-                    </tr>';
-        }
-        for (; $i < $motPhan * 2; $i++) {
-            if (isset($row[$i])) {
-                $div2 .= '<tr>
-                        <td>Câu ' . ($i + 1) . '</td>
-                        <td>' . ($row[$i]['answer_id'] == '-1' ? '' : $row[$i]['answer_sign']) . '</td>
-                        <td>' . $row[$i]['dapan_sign'] . '</td>
-                        <td>' . ($row[$i]['is_correct'] == '1' ? 'Đúng' : 'Sai') . '</td>
-                    </tr>';
-            }
-        }
-        for (; $i < count($row); $i++) {
-            $div3 .= '<tr>
-                        <td>Câu ' . ($i + 1) . '</td>
-                        <td>' . ($row[$i]['answer_id'] == '-1' ? '' : $row[$i]['answer_sign']) . '</td>
-                        <td>' . $row[$i]['dapan_sign'] . '</td>
-                        <td>' . ($row[$i]['is_correct'] == '1' ? 'Đúng' : 'Sai') . '</td>
-                    </tr>';
-        }
+        $questions = Default_Model_Question::getFullQuestions($db, $questionIds);
+        $questionsHtml = Default_Model_Pdfresult::getQuestionsHtml($questions);
+               
+        Default_Model_Pdfresult::setTime($startTime, $endTime, $during, $row[0]);
 
-        $startTime = new DateTime(date('Y-m-d ' . $row[0]['sh'] . ':' . $row[0]['sm'] . ':00'));
-        $endTime = new DateTime(date('Y-m-d ' . $row[0]['eh'] . ':' . $row[0]['em'] . ':'.$row[0]['es']));
-        $diff = $endTime->diff($startTime);
-        $diff = self::convert($diff->h) . ':' . (($diff->h == 0 && $diff->i == 0) ? '00' : self::convert($diff->i)) .':'. self::convert($diff->s); // . ':00';
-        if ($row[0]['sh'] > 12) {
-            $startTime = ($row[0]['sh'] - 12) . ':' . self::convert($row[0]['sm']) . ' PM';
-        } else {
-            $startTime = $row[0]['sh'] . ':' . self::convert($row[0]['sm']) . ' AM';
-        }
-        if ($row[0]['eh'] > 12) {
-            $endTime = ($row[0]['eh'] - 12) . ':' . self::convert($row[0]['em']) . ' PM';
-        } else {
-            $endTime = $row[0]['eh'] . ':' . self::convert($row[0]['em']) . ' AM';
-        }
-
-        if ($row[0]['level'] == '1') {
-            $level = 'SƠ CẤP';
-        } else if ($row[0]['level'] == '2') {
-            $level = 'TRUNG CẤP';
-        } else {
-            $level = 'CAO CẤP';
-        }
+        $level = Default_Model_Pdfresult::getLevelHtml($row[0]['level']);
         $title_header = $row[0]['date'];
-        $headers= json_decode(Admin_Model_HeaderpdfMapper::getHeader(),TRUE);
+        $headers = json_decode(Admin_Model_HeaderpdfMapper::getHeader(), TRUE);
         foreach ($headers as &$header) {
             $header = str_replace('{level}', $level, $header);
             $header = str_replace('{nam}', $row[0]['year'], $header);
-        }        
-        $header = '<table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 50%;text-align: center;">
-                                <h3>'.$headers[0].'</h3>
-                        <h3>'.$headers[2].'</h3>
-                            </td>
-                            <td style="width: 50%;text-align: center;">
-                                <h3>'.$headers[1].'</h3>
-                        <h3>'.$headers[3].'</h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="width: 100%;text-align: center;">
-                                <h3>'.$headers[4].'</h3>
-                            </td>                            
-                        </tr>
-                    </tbody>
-                </table>';
+        }
+        
+        $header = Default_Model_Pdfresult::getHeaderHtml($headers);
+        $css = Default_Model_Pdfresult::getCss();
+        Default_Model_Pdfresult::setHtmlForDetailResult($div1, $div2, $div3, $row);
+        $detailResultHtml = Default_Model_Pdfresult::getDetailResultHtml($div1, $div2, $div3);
+        $userInfoHtml = Default_Model_Pdfresult::getUserInfoHtml($row[0]['full_name'], $row[0]['title'], $row[0]['date'], $startTime, $endTime, $during);
         $html = '<style>
-                  html, body {
-                    width: 210mm;
-                    height: 297mm;
-                  } 
-                    
-                  .span12 {
-                    width: 100%;
-                    *width: 99.94680851063829%;
-                  }
-                  
-                  table.chitiet{
-                      width: 80%;
-                      border-collapse: collapse;
-                  }
-                  table.chitiet td{
-                      width: 20%;
-                      border: 2px solid #666666;
-                text-align: center;
-                vertical-align: middle;
-                  }
-                  tr.header td{
-                      color: #cccccc;
-                  }
-                  
-
+                  ' . $css . '
                 </style>
                 <body>
-                '.$header.'
+                ' . $header . '
                 <div>&nbsp;</div>
                 <table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 20%;text-align: left;">
-                                <strong>Họ và tên:</strong>
-                            </td>
-                            <td style="width: 20%;text-align: left;">
-                                ' . $row[0]['full_name'] . '
-                            </td>
-                            <td style="width: 60%;text-align: left;">
-                                <strong>Đơn vị:</strong> Công ty CP Thủy điện miền Trung
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 20%;text-align: left;">
-                                <strong>Nghề dự thi:</strong>
-                            </td>
-                            <td style="width: 20%;text-align: left;">
-                                ' . $row[0]['title'] . '
-                            </td>
-                            <td style="width: 60%;text-align: left;">
-                                <!--<strong>Năm sinh:</strong>-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 20%;text-align: left;">
-                                <strong>Ngày kiểm tra:</strong>
-                            </td>
-                            <td style="width: 20%;text-align: left;">
-                                ' . $row[0]['date'] . '
-                            </td>
-                            <td style="width: 60%;text-align: left;">
-                                <strong>Bắt đầu:</strong>&nbsp;&nbsp;' . $startTime . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <strong>Kết thúc:</strong>&nbsp;&nbsp;' . $endTime . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <strong>Thời gian:</strong>&nbsp;&nbsp;' . $diff . '   
-                            </td>
-                        </tr>
-                        
-                    </tbody>
+                    '.$userInfoHtml.'
                 </table>
                 <div>&nbsp;</div>
                 <table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 33%;text-align: center;">
-                                <table class="chitiet">
-                                    <tbody>
-                                        <tr class="header">
-                                            <td>Câu hỏi</td>
-                                            <td>Câu đã chọn</td>
-                                            <td>Đáp án đúng</td>
-                                            <td>Kết quả</td>
-                                        </tr>
-                                        ' . $div1 . '
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td style="width: 33%;text-align: center;">
-                                <table class="chitiet">
-                                    <tbody>
-                                        <tr class="header">
-                                            <td>Câu hỏi</td>
-                                            <td>Câu đã chọn</td>
-                                            <td>Đáp án đúng</td>
-                                            <td>Kết quả</td>
-                                        </tr>
-                                        ' . $div2 . '
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td style="width: 33%;text-align: center;">
-                                <table class="chitiet">
-                                    <tbody>
-                                        <tr class="header">
-                                            <td>Câu hỏi</td>
-                                            <td>Câu đã chọn</td>
-                                            <td>Đáp án đúng</td>
-                                            <td>Kết quả</td>
-                                        </tr>
-                                        ' . $div3 . '
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>                       
-                        
-                    </tbody>
+                    ' . $detailResultHtml . '
                 </table>
                 
                 <div>&nbsp;</div>
@@ -316,7 +106,7 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract
                         <tr>
                             <td style="width: 1%;">&nbsp;</td>
                             <td style="width: 98%;text-align: left;border: 2px solid #666666;">
-                                ' . $div . '
+                                ' . $questionsHtml . '
                             </td>
                             <td style="width: 1%;">&nbsp;</td>
                             

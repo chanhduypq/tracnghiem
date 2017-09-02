@@ -42,6 +42,32 @@ class Default_Model_Question extends Core_Db_Table_Abstract
         $items = $mapper->getAnswers($parent_id);
         return $items;
     }
+    /**
+     * lấy thông tin cả câu hỏi lẫn câu trả lời, đáp án cho mỗi câu hỏi đó
+     * @param Core_Db_Table $db
+     * @param array $questionIds
+     * @return array
+     */
+    public static function getFullQuestions($db, $questionIds) 
+    {        
+        $questions = $db->fetchAll("select "
+                . "question.content AS question_content,"
+                . "answer.content AS answer_content,"
+                . "dap_an.sign AS dap_an_sign,"
+                . "answer.sign AS answer_sign,"
+                . "question.id "
+                . "from question "
+                . "JOIN answer ON question.id=answer.question_id "
+                . "JOIN dap_an ON dap_an.question_id=question.id "
+                . "WHERE question.id IN (" . implode(',', $questionIds) . ")");
+        $returnQuestions = array();
+        foreach ($questions as $question) {
+            $returnQuestions[$question['id']]['question_content'] = $question['question_content'];
+            $returnQuestions[$question['id']]['answers'][] = array('answer_sign' => $question['answer_sign'], 'answer_content' => $question['answer_content'], 'is_dap_an' => ($question['answer_sign'] == $question['dap_an_sign']));
+        }
+        
+        return $returnQuestions;
+    }
 
 }
 
