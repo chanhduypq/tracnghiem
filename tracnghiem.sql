@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-08-29 22:03:07
+Date: 2017-09-02 09:01:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2112,359 +2112,7 @@ CREATE TABLE `config_exam` (
 -- ----------------------------
 -- Records of config_exam
 -- ----------------------------
-INSERT INTO `config_exam` VALUES ('0.1', '1', '30');
-
--- ----------------------------
--- Table structure for core_actions
--- ----------------------------
-DROP TABLE IF EXISTS `core_actions`;
-CREATE TABLE `core_actions` (
-  `id` int(11) NOT NULL,
-  `id_module` int(11) DEFAULT NULL,
-  `module_name` varchar(150) DEFAULT NULL,
-  `controller_name` varchar(150) DEFAULT NULL,
-  `action_name` varchar(150) DEFAULT NULL,
-  `is_public` tinyint(1) DEFAULT NULL,
-  `layout_type` varchar(50) DEFAULT NULL,
-  `page_title` varchar(150) DEFAULT NULL,
-  `page_subtitle` varchar(255) DEFAULT NULL,
-  `menu_item_title` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_module` (`id_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_actions
--- ----------------------------
-INSERT INTO `core_actions` VALUES ('2', '1', 'admin', 'index', 'index', '1', 'admin', 'Điện lực', 'Thêm mới', null);
-INSERT INTO `core_actions` VALUES ('3', '1', 'admin', 'homecontent', 'index', '1', 'admin', 'Điện lực', 'Hiệu chỉnh', null);
-INSERT INTO `core_actions` VALUES ('4', '1', 'admin', 'homecontent', 'save', '1', 'admin', 'Điện lực', null, null);
-INSERT INTO `core_actions` VALUES ('5', '1', 'admin', 'menu', 'index', '1', 'admin', 'Điện lực', 'Xóa Cache', null);
-INSERT INTO `core_actions` VALUES ('6', '1', 'admin', 'index', 'login', '1', 'admin', 'Điện lực', 'Danh sách', null);
-INSERT INTO `core_actions` VALUES ('7', '1', 'admin', 'index', 'logout', '1', 'admin', 'Điện lực', 'Thêm mới', null);
-INSERT INTO `core_actions` VALUES ('8', '1', 'admin', 'exam', 'index', '1', 'admin', 'Điện lực', 'Hiệu chỉnh', null);
-INSERT INTO `core_actions` VALUES ('9', '1', 'admin', 'guide', 'index', '1', 'admin', 'Điện lực', 'Move up', null);
-INSERT INTO `core_actions` VALUES ('10', '1', 'admin', 'headerfooter', 'index', '1', 'admin', 'Điện lực', 'Move down', null);
-INSERT INTO `core_actions` VALUES ('12', '1', 'admin', 'question', 'index', '1', 'admin', 'Điện lực', 'Danh sách', null);
-INSERT INTO `core_actions` VALUES ('13', '1', 'admin', 'question', 'add', '1', 'admin', 'Điện lực', 'Thêm mới', null);
-INSERT INTO `core_actions` VALUES ('14', '1', 'admin', 'question', 'edit', '1', 'admin', 'Điện lực', 'Hiệu chỉnh', null);
-INSERT INTO `core_actions` VALUES ('15', '1', 'admin', 'question', 'addanswer', '1', 'admin', 'Điện lực', 'Xóa', null);
-INSERT INTO `core_actions` VALUES ('16', '1', 'admin', 'question', 'editanswer', '1', 'admin', 'Điện lực', 'ckeditor', null);
-INSERT INTO `core_actions` VALUES ('17', '1', 'admin', 'question', 'search', '0', 'index_en', 'Điện lực', 'Danh sách', null);
-INSERT INTO `core_actions` VALUES ('18', '1', 'admin', 'guide', 'download', '1', 'admin', 'VietAgar', 'Thêm mới', null);
-INSERT INTO `core_actions` VALUES ('24', '2', 'default', 'index', 'login', '1', 'index', 'Sign in', '', null);
-INSERT INTO `core_actions` VALUES ('26', '2', 'default', 'index', 'index', '1', 'index', 'Trang chủ', null, null);
-INSERT INTO `core_actions` VALUES ('33', '2', 'default', 'index', 'guide', '1', 'index', 'VietAgar', null, null);
-INSERT INTO `core_actions` VALUES ('34', '2', 'default', 'thi', 'index', '1', 'index', 'Thi', null, 'Thi');
-INSERT INTO `core_actions` VALUES ('38', '2', 'default', 'review', 'index', '1', 'index', 'Ôn tập', null, 'Bán hàng');
-INSERT INTO `core_actions` VALUES ('41', '2', 'default', 'resource', 'index', '1', 'index', 'VietAgar', null, 'Bán hàng');
-INSERT INTO `core_actions` VALUES ('44', '1', 'admin', 'user', 'allowreexam', '1', 'admin', 'VietAgar', null, 'Đặt hàng');
-INSERT INTO `core_actions` VALUES ('45', '1', 'admin', 'user', 'cancelreexam', '1', 'admin', 'Điện lực', null, 'Đặt hàng');
-INSERT INTO `core_actions` VALUES ('46', '1', 'admin', 'guide', 'save', '1', 'admin', 'Điện lực', null, 'Lịch sử đặt hàng');
-INSERT INTO `core_actions` VALUES ('55', '1', 'admin', 'lienhe', 'save', '1', 'admin', 'Điện lực', null, 'Liên hệ');
-INSERT INTO `core_actions` VALUES ('56', '1', 'admin', 'lienhe', 'index', '1', 'admin', 'Điện lực', null, 'Liên hệ');
-INSERT INTO `core_actions` VALUES ('57', '1', 'admin', 'language', 'index', '1', 'admin', 'Điện lực', null, 'Loại mặt hàng');
-INSERT INTO `core_actions` VALUES ('58', '1', 'admin', 'user', 'edit', '1', 'admin', 'Điện lực', null, 'Loại mặt hàng');
-INSERT INTO `core_actions` VALUES ('59', '1', 'admin', 'user', 'add', '1', 'admin', 'Điện lực', null, 'Loại mặt hàng');
-INSERT INTO `core_actions` VALUES ('60', '1', 'admin', 'nganhnghe', 'addchild', '1', 'admin', 'Điện lực', null, 'Loại mặt hàng');
-INSERT INTO `core_actions` VALUES ('61', '1', 'admin', 'image', 'index', '1', 'admin', 'Điện lực', null, 'Logo');
-INSERT INTO `core_actions` VALUES ('62', '1', 'admin', 'image', 'save', '1', 'admin', 'Điện lực', null, 'Logo');
-INSERT INTO `core_actions` VALUES ('63', '1', 'admin', 'nganhnghe', 'index', '1', 'admin', 'Điện lực', null, 'Mặt hàng');
-INSERT INTO `core_actions` VALUES ('64', '1', 'admin', 'nganhnghe', 'edit', '1', 'admin', 'Điện lực', null, 'Mặt hàng');
-INSERT INTO `core_actions` VALUES ('65', '1', 'admin', 'nganhnghe', 'add', '1', 'admin', 'Điện lực', null, 'Mặt hàng');
-INSERT INTO `core_actions` VALUES ('66', '1', 'admin', 'nganhnghe', 'delete', '1', 'admin', 'Điện lực', null, 'Mặt hàng');
-INSERT INTO `core_actions` VALUES ('73', '1', 'admin', 'user', 'index', '1', 'admin', 'Điện lực', null, null);
-INSERT INTO `core_actions` VALUES ('75', '2', 'default', 'news', 'index', '1', 'index', 'VietAgar', null, null);
-INSERT INTO `core_actions` VALUES ('78', '2', 'default', 'guide', 'index', '1', 'index', 'VietAgar', null, null);
-INSERT INTO `core_actions` VALUES ('79', '2', 'default', 'index', 'detail', '1', 'index', 'VietAgar', null, null);
-INSERT INTO `core_actions` VALUES ('80', '2', 'default', 'guide', 'index', '1', 'index', 'VietAgar', null, null);
-
--- ----------------------------
--- Table structure for core_blocks
--- ----------------------------
-DROP TABLE IF EXISTS `core_blocks`;
-CREATE TABLE `core_blocks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `orders` int(11) DEFAULT '99',
-  `position` varchar(20) NOT NULL,
-  `access` tinyint(4) DEFAULT '0',
-  `show_title` tinyint(4) DEFAULT '0',
-  `params` tinytext,
-  `class_name` varchar(150) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT '1',
-  `is_core` tinyint(4) NOT NULL DEFAULT '0',
-  `content` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_blocks
--- ----------------------------
-INSERT INTO `core_blocks` VALUES ('1', 'test', '99', 'left', '0', '1', 'a:1:{s:10:\"notemplate\";s:1:\"1\";}', 'xhtml', '0', '0', '');
-INSERT INTO `core_blocks` VALUES ('2', 'slider', '5', 'slider', '0', '0', 'a:4:{s:10:\"notemplate\";s:1:\"1\";s:6:\"id_cat\";s:1:\"3\";s:5:\"width\";s:3:\"970\";s:6:\"height\";s:3:\"370\";}', 'slider', '1', '0', '');
-INSERT INTO `core_blocks` VALUES ('3', 'Middle - new', '99', 'user1', '0', '0', 'a:1:{s:10:\"notemplate\";s:1:\"1\";}', 'xhtml', '1', '0', '<!-- ITEM 1 : begin -->\r\n<div class=\"span2 image\">\r\n	<div>\r\n		<img alt=\"\" src=\"/assets/dummies/thumb_170x140_01.jpg\" title=\"BROWSE\" /></div>\r\n</div>\r\n<div class=\"span2 text\">\r\n	<h3>\r\n		EI NEMORE</h3>\r\n	<p>\r\n		<em>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio.</em></p>\r\n</div>\r\n<!-- ITEM 1 : end --><!-- ITEM 2 : begin -->\r\n<div class=\"span2 image\">\r\n	<div>\r\n		<img alt=\"\" src=\"/assets/dummies/thumb_170x140_02.jpg\" title=\"PURCHASE\" /></div>\r\n</div>\r\n<div class=\"span2 text\">\r\n	<h3>\r\n		MEL EQUIDEM</h3>\r\n	<p>\r\n		<em>Pri ut neglegentur ullamcorper. In sit nonumes graecis. Ei nemore nihil.</em></p>\r\n</div>\r\n<!-- ITEM 2 : end --><!-- ITEM 3 : begin -->\r\n<div class=\"span2 image\">\r\n	<div>\r\n		<img alt=\"\" src=\"/assets/dummies/thumb_170x140_03.jpg\" title=\"DOWNLOAD\" /></div>\r\n</div>\r\n<div class=\"span2 text\">\r\n	<h3>\r\n		EUM AD IMPEDIT</h3>\r\n	<p>\r\n		<em>Nec solum virtute cu, sed no aperiri offendit accusata. Sit ea error timeam, tota.</em></p>\r\n</div>\r\n<!-- ITEM 3 : end -->');
-INSERT INTO `core_blocks` VALUES ('4', 'news breadcrumb', '1', 'topbar', '0', '0', 'a:1:{s:10:\"notemplate\";s:1:\"1\";}', 'newsbreadcrumb', '1', '0', null);
-INSERT INTO `core_blocks` VALUES ('5', 'Footer Main', '99', 'footermain', '0', '0', 'a:1:{s:10:\"notemplate\";s:1:\"1\";}', 'footermain', '1', '0', '');
-INSERT INTO `core_blocks` VALUES ('6', 'News list', '99', 'user3', '0', '0', 'a:4:{s:10:\"notemplate\";s:1:\"1\";s:6:\"id_cat\";s:3:\"1,3\";s:5:\"width\";s:3:\"170\";s:6:\"height\";s:3:\"140\";}', 'newslist', '1', '0', '');
-
--- ----------------------------
--- Table structure for core_cache
--- ----------------------------
-DROP TABLE IF EXISTS `core_cache`;
-CREATE TABLE `core_cache` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) DEFAULT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '0',
-  `lifetime` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_cache
--- ----------------------------
-
--- ----------------------------
--- Table structure for core_config_field
--- ----------------------------
-DROP TABLE IF EXISTS `core_config_field`;
-CREATE TABLE `core_config_field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lvl` tinyint(2) NOT NULL,
-  `path` varchar(150) NOT NULL,
-  `title` varchar(150) NOT NULL,
-  `model` varchar(150) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `translation_module` varchar(150) DEFAULT NULL,
-  `type` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_config_field
--- ----------------------------
-INSERT INTO `core_config_field` VALUES ('1', '1', 'core', 'Core', null, null, 'Core', null);
-INSERT INTO `core_config_field` VALUES ('2', '2', 'core/cache', 'Cache', null, null, null, null);
-INSERT INTO `core_config_field` VALUES ('3', '3', 'core/cache/default_lifetime', 'Default life Time', null, null, null, 'text');
-
--- ----------------------------
--- Table structure for core_config_value
--- ----------------------------
-DROP TABLE IF EXISTS `core_config_value`;
-CREATE TABLE `core_config_value` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `config_field_id` int(11) NOT NULL,
-  `value` varchar(150) DEFAULT NULL,
-  `path` varchar(150) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_config_value
--- ----------------------------
-INSERT INTO `core_config_value` VALUES ('1', '3', '86400', 'core/cache');
-
--- ----------------------------
--- Table structure for core_fk_block_action
--- ----------------------------
-DROP TABLE IF EXISTS `core_fk_block_action`;
-CREATE TABLE `core_fk_block_action` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_block` int(11) NOT NULL,
-  `id_action` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_fk_block_action
--- ----------------------------
-INSERT INTO `core_fk_block_action` VALUES ('2', '3', '11');
-INSERT INTO `core_fk_block_action` VALUES ('3', '4', '24');
-INSERT INTO `core_fk_block_action` VALUES ('4', '5', null);
-INSERT INTO `core_fk_block_action` VALUES ('5', '1', '11');
-INSERT INTO `core_fk_block_action` VALUES ('8', '6', '11');
-INSERT INTO `core_fk_block_action` VALUES ('9', '2', '11');
-
--- ----------------------------
--- Table structure for core_fk_group_action
--- ----------------------------
-DROP TABLE IF EXISTS `core_fk_group_action`;
-CREATE TABLE `core_fk_group_action` (
-  `id_group` int(11) NOT NULL,
-  `id_action` int(11) NOT NULL,
-  PRIMARY KEY (`id_group`,`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_fk_group_action
--- ----------------------------
-INSERT INTO `core_fk_group_action` VALUES ('1', '1');
-INSERT INTO `core_fk_group_action` VALUES ('1', '2');
-INSERT INTO `core_fk_group_action` VALUES ('1', '3');
-INSERT INTO `core_fk_group_action` VALUES ('1', '4');
-INSERT INTO `core_fk_group_action` VALUES ('1', '5');
-INSERT INTO `core_fk_group_action` VALUES ('1', '6');
-INSERT INTO `core_fk_group_action` VALUES ('1', '7');
-INSERT INTO `core_fk_group_action` VALUES ('1', '8');
-INSERT INTO `core_fk_group_action` VALUES ('1', '9');
-INSERT INTO `core_fk_group_action` VALUES ('1', '10');
-
--- ----------------------------
--- Table structure for core_fk_user_action
--- ----------------------------
-DROP TABLE IF EXISTS `core_fk_user_action`;
-CREATE TABLE `core_fk_user_action` (
-  `id_user` int(11) NOT NULL,
-  `id_action` int(11) NOT NULL,
-  PRIMARY KEY (`id_user`,`id_action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_fk_user_action
--- ----------------------------
-
--- ----------------------------
--- Table structure for core_fk_user_group
--- ----------------------------
-DROP TABLE IF EXISTS `core_fk_user_group`;
-CREATE TABLE `core_fk_user_group` (
-  `id_user` int(11) NOT NULL,
-  `id_group` int(11) NOT NULL,
-  PRIMARY KEY (`id_user`,`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_fk_user_group
--- ----------------------------
-INSERT INTO `core_fk_user_group` VALUES ('1', '1');
-
--- ----------------------------
--- Table structure for core_groups
--- ----------------------------
-DROP TABLE IF EXISTS `core_groups`;
-CREATE TABLE `core_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) NOT NULL,
-  `code` varchar(150) NOT NULL,
-  `status` tinyint(4) DEFAULT '1',
-  `orders` tinyint(4) DEFAULT '99',
-  `permission` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_groups
--- ----------------------------
-INSERT INTO `core_groups` VALUES ('1', 'Quản trị hệ thống', 'ADMIN', '1', '1', '1');
-
--- ----------------------------
--- Table structure for core_menu
--- ----------------------------
-DROP TABLE IF EXISTS `core_menu`;
-CREATE TABLE `core_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_parent` int(11) DEFAULT NULL,
-  `name` varchar(150) NOT NULL,
-  `popup` tinyint(4) DEFAULT '0',
-  `link` varchar(250) NOT NULL,
-  `icon` varchar(250) DEFAULT NULL,
-  `params` text,
-  `level` int(11) NOT NULL,
-  `lft` int(11) NOT NULL,
-  `rgt` int(11) NOT NULL,
-  `menutype` varchar(20) NOT NULL,
-  `status` tinyint(4) DEFAULT '1',
-  `access` tinyint(4) DEFAULT '0',
-  `is_system` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_menu
--- ----------------------------
-INSERT INTO `core_menu` VALUES ('1', null, 'Root', '0', '', null, null, '1', '1', '46', 'mainmenu', '1', '0', '1');
-INSERT INTO `core_menu` VALUES ('4', '1', 'Hệ thống', '0', '/admin/index/index', null, null, '2', '2', '13', 'adminmenu', '1', '1', '1');
-INSERT INTO `core_menu` VALUES ('5', '1', 'Menu', '0', '/admin/menu/index', null, null, '2', '14', '15', 'adminmenu', '1', '1', '1');
-INSERT INTO `core_menu` VALUES ('6', '1', 'Tiện ích', '0', '#', null, null, '2', '16', '21', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('7', '6', 'Xóa Cache', '0', '/admin/tool/clearcache', null, null, '3', '17', '18', 'adminmenu', '1', '1', '1');
-INSERT INTO `core_menu` VALUES ('8', '4', 'Cấu hình chung', '0', '#', null, null, '3', '3', '10', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('9', '8', 'Tham số hệ thống', '0', '/admin/configfield/index', null, null, '4', '4', '5', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('10', '8', 'Module', '0', '/admin/module/index', null, null, '4', '6', '7', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('11', '8', 'Action', '0', '/admin/action/index', null, null, '4', '8', '9', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('12', '4', 'Block', '0', '/admin/block/index', null, null, '3', '11', '12', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('13', '1', 'Người dùng', '0', '#', null, null, '2', '22', '27', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('14', '13', 'User', '0', '/admin/user/index', null, null, '3', '23', '24', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('15', '13', 'Group', '0', '/admin/group/index', null, null, '3', '25', '26', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('16', '1', 'Tin tức', '0', '#', null, null, '2', '28', '33', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('17', '16', 'Chủ đề', '0', '/news/categories/index', null, null, '3', '29', '30', 'adminmenu', '1', '1', '0');
-INSERT INTO `core_menu` VALUES ('18', '16', 'Nội dung', '0', '/news/content/index', null, null, '3', '31', '32', 'adminmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('19', '1', 'TRANG CHỦ', '0', '/default/index/index', null, null, '2', '34', '35', 'mainmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('20', '1', 'DỊCH VỤ', '0', '#', null, null, '2', '38', '43', 'mainmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('21', '1', 'GIỚI THIỆU', '0', '#', null, null, '2', '36', '37', 'mainmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('22', '20', 'DỊCH VỤ', '0', '#', null, null, '3', '39', '40', 'mainmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('23', '20', 'Menu 1.1.1', '0', '#', null, null, '3', '41', '42', 'mainmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('24', '1', 'LIÊN HỆ', '0', '#', null, null, '2', '44', '45', 'mainmenu', '1', '0', '0');
-INSERT INTO `core_menu` VALUES ('25', '6', 'Thông tin hệ thống', '0', '/admin/tool/info', null, null, '3', '19', '20', 'adminmenu', '1', '1', '0');
-
--- ----------------------------
--- Table structure for core_menu_types
--- ----------------------------
-DROP TABLE IF EXISTS `core_menu_types`;
-CREATE TABLE `core_menu_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) NOT NULL,
-  `alias` varchar(20) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_menu_types
--- ----------------------------
-INSERT INTO `core_menu_types` VALUES ('1', 'Main menu', 'mainmenu', '1');
-INSERT INTO `core_menu_types` VALUES ('2', 'Admin menu', 'adminmenu', '1');
-
--- ----------------------------
--- Table structure for core_modules
--- ----------------------------
-DROP TABLE IF EXISTS `core_modules`;
-CREATE TABLE `core_modules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `package` varchar(50) NOT NULL,
-  `code` varchar(50) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `version` varchar(10) NOT NULL,
-  `is_active` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_modules
--- ----------------------------
-INSERT INTO `core_modules` VALUES ('1', 'admin', 'admin', 'Hệ thống', '0.1', '1');
-INSERT INTO `core_modules` VALUES ('2', 'default', 'default', 'Default', '0.1', '1');
-
--- ----------------------------
--- Table structure for core_users
--- ----------------------------
-DROP TABLE IF EXISTS `core_users`;
-CREATE TABLE `core_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fullname` varchar(150) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `password` varchar(150) NOT NULL,
-  `createdate` datetime NOT NULL,
-  `lastvisetdate` datetime DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of core_users
--- ----------------------------
-INSERT INTO `core_users` VALUES ('1', 'Nguyễn Hữu Thanh', 'administrator', 'huuthanh3108@yahoo.com', 'e99a18c428cb38d5f260853678922e03', '2012-12-04 11:11:06', null, '0914005969', '1');
+INSERT INTO `config_exam` VALUES ('0.4', '1', '50');
 
 -- ----------------------------
 -- Table structure for dap_an
@@ -3005,7 +2653,7 @@ INSERT INTO `dap_an` VALUES ('2073', '519', 'A');
 -- ----------------------------
 DROP TABLE IF EXISTS `exam_time`;
 CREATE TABLE `exam_time` (
-  `date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NULL DEFAULT NULL,
   `sh` int(11) DEFAULT NULL,
   `sm` int(11) DEFAULT NULL,
   `eh` int(11) DEFAULT NULL,
@@ -3015,7 +2663,7 @@ CREATE TABLE `exam_time` (
 -- ----------------------------
 -- Records of exam_time
 -- ----------------------------
-INSERT INTO `exam_time` VALUES ('2017-08-30 00:00:00', '23', '0', '23', '30');
+INSERT INTO `exam_time` VALUES ('2017-09-02 00:00:00', '8', '30', '9', '20');
 
 -- ----------------------------
 -- Table structure for footer
@@ -3029,6 +2677,20 @@ CREATE TABLE `footer` (
 -- Records of footer
 -- ----------------------------
 INSERT INTO `footer` VALUES ('<p style=\"text-align:center\">&copy;C&ocirc;ng ty Cổ phần Thủy điện miền Trung</p>\r\n\r\n<p style=\"text-align:center\">Li&ecirc;n hệ: 0905xxxxxx</p>\r\n');
+
+-- ----------------------------
+-- Table structure for header_pdf
+-- ----------------------------
+DROP TABLE IF EXISTS `header_pdf`;
+CREATE TABLE `header_pdf` (
+  `content` longtext,
+  `json` varchar(1000) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of header_pdf
+-- ----------------------------
+INSERT INTO `header_pdf` VALUES ('<table style=\"width:100%\">\r\n	<tbody>\r\n		<tr>\r\n			<td style=\"text-align:center; width:50%\">\r\n			<h3><strong>[1]</strong>TẬP ĐO&Agrave;N ĐIỆN LỰC VIỆT NAM</h3>\r\n\r\n			<h3><strong>[3]</strong>TỔNG C&Ocirc;NG TY ĐIỆN LỰC MIỀN TRUNG</h3>\r\n			</td>\r\n			<td style=\"text-align:center; width:50%\">\r\n			<h3><strong>[2]</strong>&Ocirc;N TẬP TRỰC TUYẾN</h3>\r\n\r\n			<h3><strong>[4]</strong>C&Ocirc;NG NH&Acirc;N KỸ THUẬT SƠ CẤP NĂM 2017</h3>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<td colspan=\"2\" style=\"text-align:center; width:100%\">\r\n			<h3><strong>[5]</strong>KẾT QUẢ LUYỆN THI KIẾN THỨC AN TO&Agrave;N ĐIỆN</h3>\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n', '[\"T\\u1eacP \\u0110O\\u00c0N \\u0110I\\u1ec6N L\\u1ef0C VI\\u1ec6T NAM\",\"\\u00d4N T\\u1eacP TR\\u1ef0C TUY\\u1ebeN\",\"T\\u1ed4NG C\\u00d4NG TY \\u0110I\\u1ec6N L\\u1ef0C MI\\u1ec0N TRUNG\",\"C\\u00d4NG NH\\u00c2N K\\u1ef8 THU\\u1eacT {level} N\\u0102M {nam}\",\"K\\u1ebeT QU\\u1ea2 LUY\\u1ec6N THI KI\\u1ebeN TH\\u1ee8C AN TO\\u00c0N \\u0110I\\u1ec6N\"]');
 
 -- ----------------------------
 -- Table structure for header_text
@@ -3068,7 +2730,7 @@ CREATE TABLE `home_content` (
 -- ----------------------------
 -- Records of home_content
 -- ----------------------------
-INSERT INTO `home_content` VALUES ('<p>hay h&egrave;</p>\r\n');
+INSERT INTO `home_content` VALUES ('<p>123</p>\r\n');
 
 -- ----------------------------
 -- Table structure for logo
@@ -3082,7 +2744,7 @@ CREATE TABLE `logo` (
 -- ----------------------------
 -- Records of logo
 -- ----------------------------
-INSERT INTO `logo` VALUES ('/images/database/logo/_aff600a0e65a88f9830cbfa63204dadf599c5b078b91f4.65539228.jpg', '1');
+INSERT INTO `logo` VALUES ('/images/database/logo/_696316f0c7be7f066c0aee8b6975b9e959a6f4137018e9.33721714.jpg', '1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -7291,8 +6953,6 @@ INSERT INTO `nganhnghe_question` VALUES ('11', '492');
 INSERT INTO `nganhnghe_question` VALUES ('11', '494');
 INSERT INTO `nganhnghe_question` VALUES ('11', '495');
 INSERT INTO `nganhnghe_question` VALUES ('11', '515');
-INSERT INTO `nganhnghe_question` VALUES ('49', '1');
-INSERT INTO `nganhnghe_question` VALUES ('50', '1');
 INSERT INTO `nganhnghe_question` VALUES ('50', '2');
 INSERT INTO `nganhnghe_question` VALUES ('50', '3');
 INSERT INTO `nganhnghe_question` VALUES ('50', '4');
@@ -7305,6 +6965,10 @@ INSERT INTO `nganhnghe_question` VALUES ('51', '4');
 INSERT INTO `nganhnghe_question` VALUES ('52', '2');
 INSERT INTO `nganhnghe_question` VALUES ('52', '3');
 INSERT INTO `nganhnghe_question` VALUES ('52', '4');
+INSERT INTO `nganhnghe_question` VALUES ('53', '3');
+INSERT INTO `nganhnghe_question` VALUES ('53', '4');
+INSERT INTO `nganhnghe_question` VALUES ('54', '3');
+INSERT INTO `nganhnghe_question` VALUES ('54', '4');
 
 -- ----------------------------
 -- Table structure for nganh_nghe
@@ -7314,7 +6978,7 @@ CREATE TABLE `nganh_nghe` (
   `id` bigint(15) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nganh_nghe
@@ -7340,7 +7004,7 @@ CREATE TABLE `question` (
   `content` tinytext NOT NULL,
   `level` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=520 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=518 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of question
@@ -7862,7 +7526,6 @@ INSERT INTO `question` VALUES ('514', 'Đội công tác làm việc trên đư�
 INSERT INTO `question` VALUES ('515', 'Người chỉ huy trực tiếp của đơn vị công tác thấy dây dẫn hạ áp tháo xuống vướng vào cần xe nâng đã trèo lên cần xe nâng để gỡ dây dẫn đã bị ngã cao. Qua tình huống trên, nguyên nhân trực tiế', '1');
 INSERT INTO `question` VALUES ('516', 'Đơn vị công tác đang vệ sinh bảo dưỡng ĐZ đoạn từ cột 10 đến cột 30. Người chỉ huy trực tiếp phát hiện dây lèo tại cột 34 bị đứt nên yêu cầu 01 công nhân của Đơn vị công tác trèo lên nối ', '1');
 INSERT INTO `question` VALUES ('517', 'Khi thực hiện công tác thay ATM nhánh 1 của TBA có 1 ATM tổng và 2 ATM nhánh, trường hợp nào sau đây đã vi phạm quy trình an toàn', '1');
-INSERT INTO `question` VALUES ('519', 'abc', '1');
 
 -- ----------------------------
 -- Table structure for resource
@@ -7878,28 +7541,6 @@ CREATE TABLE `resource` (
 -- Records of resource
 -- ----------------------------
 INSERT INTO `resource` VALUES ('<p>con guoi viet1</p>\r\n\r\n<p><img alt=\"\" src=\"/images/17814_1299465389_cobehotran.gif\" style=\"height:13px; width:15px\" /></p>\r\n', '<p>con nguoi anh1</p>\r\n', '<p>con nguoi trung1</p>\r\n');
-
--- ----------------------------
--- Table structure for slide_text
--- ----------------------------
-DROP TABLE IF EXISTS `slide_text`;
-CREATE TABLE `slide_text` (
-  `id` bigint(15) NOT NULL AUTO_INCREMENT,
-  `title_vi` varchar(255) DEFAULT NULL,
-  `title_en` varchar(255) DEFAULT NULL,
-  `title_cn` varchar(255) DEFAULT NULL,
-  `mo_ta_vi` text,
-  `mo_ta_en` text,
-  `mo_ta_cn` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of slide_text
--- ----------------------------
-INSERT INTO `slide_text` VALUES ('110', 'PHÁT TRIỂN LÂU DÀI', 'PHÁT TRIỂN LÂU DÀI', 'PHÁT TRIỂN LÂU DÀI', 'Hơn ai hết, chúng tôi hiểu rõ sự lý tưởng về điều kiện tự nhiên của đất nước và làm thế nào để cho nuôi trồng rừng cây Gió Bầu trong điều kiện hoàn hảo nhất, chúng tôi mong muốn cho cây Gió Bầu vươn xa khắp lãnh thổ rừng núi Việt Nam để nguồn tài nguyên quý giá này của đất nước được sống lại và ngày càng trù phú.', 'Hơn ai hết, chúng tôi hiểu rõ sự lý tưởng về điều kiện tự nhiên của đất nước và làm thế nào để cho nuôi trồng rừng cây Gió Bầu trong điều kiện hoàn hảo nhất, chúng tôi mong muốn cho cây Gió Bầu vươn xa khắp lãnh thổ rừng núi Việt Nam để nguồn tài nguyên quý giá này của đất nước được sống lại và ngày càng trù phú.', 'Hơn ai hết, chúng tôi hiểu rõ sự lý tưởng về điều kiện tự nhiên của đất nước và làm thế nào để cho nuôi trồng rừng cây Gió Bầu trong điều kiện hoàn hảo nhất, chúng tôi mong muốn cho cây Gió Bầu vươn xa khắp lãnh thổ rừng núi Việt Nam để nguồn tài nguyên quý giá này của đất nước được sống lại và ngày càng trù phú.');
-INSERT INTO `slide_text` VALUES ('114', 'Tầm nhìn và chiến lược', 'Tầm nhìn và chiến lược', 'Tầm nhìn và chiến lược', 'Mục tiêu của chúng tôi là trở thành công ty đi đầu về sản xuất & xuất khẩu các sản phẩm Trầm Hương cao cấp mang ra thị trường thế giới như Nhật Bản, Trung Quốc, Ấn Độ và Trung Đông.. Từng bước đi của Agarvina không chỉ là sự cẩn trọng trong đầu tư cho các chuyên gia, thợ lành nghề, xưởng sản xuất, hơn thế nữa còn là sự tỉ mỉ, tâm huyết trong từng kế hoạch hội chợ, quảng bá quốc tế mà chúng tôi tham dự. Mong muốn cháy bỏng là làm sao mang được thương hiệu Trầm Việt Nam ra thị trường thế giới thành công, để Trầm hương được đánh giá đúng tầm với chất lượng cao mà Agarvina tự tin cung cấp.', 'Mục tiêu của chúng tôi là trở thành công ty đi đầu về sản xuất & xuất khẩu các sản phẩm Trầm Hương cao cấp mang ra thị trường thế giới như Nhật Bản, Trung Quốc, Ấn Độ và Trung Đông.. Từng bước đi của Agarvina không chỉ là sự cẩn trọng trong đầu tư cho các chuyên gia, thợ lành nghề, xưởng sản xuất, hơn thế nữa còn là sự tỉ mỉ, tâm huyết trong từng kế hoạch hội chợ, quảng bá quốc tế mà chúng tôi tham dự. Mong muốn cháy bỏng là làm sao mang được thương hiệu Trầm Việt Nam ra thị trường thế giới thành công, để Trầm hương được đánh giá đúng tầm với chất lượng cao mà Agarvina tự tin cung cấp.', 'Mục tiêu của chúng tôi là trở thành công ty đi đầu về sản xuất & xuất khẩu các sản phẩm Trầm Hương cao cấp mang ra thị trường thế giới như Nhật Bản, Trung Quốc, Ấn Độ và Trung Đông.. Từng bước đi của Agarvina không chỉ là sự cẩn trọng trong đầu tư cho các chuyên gia, thợ lành nghề, xưởng sản xuất, hơn thế nữa còn là sự tỉ mỉ, tâm huyết trong từng kế hoạch hội chợ, quảng bá quốc tế mà chúng tôi tham dự. Mong muốn cháy bỏng là làm sao mang được thương hiệu Trầm Việt Nam ra thị trường thế giới thành công, để Trầm hương được đánh giá đúng tầm với chất lượng cao mà Agarvina tự tin cung cấp.');
-INSERT INTO `slide_text` VALUES ('118', '20 NĂM TRỒNG VÀ PHÁT TRIỂN RỪNG TRẦM HƯƠNG', '20 NĂM TRỒNG VÀ PHÁT TRIỂN RỪNG TRẦM HƯƠNG', '20 NĂM TRỒNG VÀ PHÁT TRIỂN RỪNG TRẦM HƯƠNG', 'Với tổng diện tích hiện tại là 300 hécta, trong số 300.000 rừng cây Gió của chúng tôi đã có hơn 50.000 cây tạo Trầm. Hơn thế nữa, Agarvina đã xây dựng được hàng loạt các xưởng chế biến và gia công rộng trên khắp các tỉnh miền Trung Nam Việt Nam như Bình Phước, Quảng Nam và mở nhiều showroom trong nước và quốc tế.', 'Với tổng diện tích hiện tại là 300 hécta, trong số 300.000 rừng cây Gió của chúng tôi đã có hơn 50.000 cây tạo Trầm. Hơn thế nữa, Agarvina đã xây dựng được hàng loạt các xưởng chế biến và gia công rộng trên khắp các tỉnh miền Trung Nam Việt Nam như Bình Phước, Quảng Nam và mở nhiều showroom trong nước và quốc tế.', 'Với tổng diện tích hiện tại là 300 hécta, trong số 300.000 rừng cây Gió của chúng tôi đã có hơn 50.000 cây tạo Trầm. Hơn thế nữa, Agarvina đã xây dựng được hàng loạt các xưởng chế biến và gia công rộng trên khắp các tỉnh miền Trung Nam Việt Nam như Bình Phước, Quảng Nam và mở nhiều showroom trong nước và quốc tế.');
 
 -- ----------------------------
 -- Table structure for user
@@ -7919,13 +7560,12 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('24', 'Anh', 'sdfsds', 'chanhduypq@gmail.com1', '23423', 'da4b9237bacccdf19c0760cab7aec4a8359010b0', '1');
+INSERT INTO `user` VALUES ('24', 'Anh', 'sdfsds', 'chanhduypq@gmail.com1', '0000-00-00 00:00:00', '356a192b7913b04c54574d18c28d46e6395428ab', '1');
 INSERT INTO `user` VALUES ('30', 'Anh', 'tue', 'a@user.com', null, '356a192b7913b04c54574d18c28d46e6395428ab', null);
 INSERT INTO `user` VALUES ('31', 'Anh', 'DFHFDGHD', 'TUE@TUE.COM', null, 'b0b311ee112a76ba05395bc43e9d8a548f972ecc', null);
 INSERT INTO `user` VALUES ('32', 'Anh', 'a@user.com', 'a@gmail.com', null, 'caa74eff11948cbeae03194b2ec8a15793f863a9', null);
 INSERT INTO `user` VALUES ('33', 'Anh', 'a@user.com', 'a@user.net', null, '3fdd854ac9a4b6250ff1bdebdca0ce5c6c60bacc', null);
-INSERT INTO `user` VALUES ('34', 'Anh', 'a@user.com', 'a@stu.vn', null, '6464a09b1e60ea321a89cdabba8db9254e30c116', null);
-INSERT INTO `user` VALUES ('36', 'Anh', 'sdfsd', 'abc@yahoo.com', null, '7046bd19e6decf5018e59e705d223ac2f23c2ede', null);
+INSERT INTO `user` VALUES ('34', 'Anh', 'a@user.com1122', 'a@stu.vn', null, '6464a09b1e60ea321a89cdabba8db9254e30c116', null);
 INSERT INTO `user` VALUES ('37', 'Anh', 'luan', 'luuthiluanbg@gmail.com', null, '21a2b016a624495094f48c648a93723f1638f639', null);
 
 -- ----------------------------
@@ -7937,7 +7577,7 @@ CREATE TABLE `user_exam` (
   `user_id` int(11) NOT NULL,
   `nganh_nghe_id` int(11) NOT NULL,
   `level` int(11) NOT NULL,
-  `exam_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `exam_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `sh` int(11) DEFAULT NULL,
   `sm` int(11) DEFAULT NULL,
   `eh` int(11) DEFAULT NULL,
@@ -7945,13 +7585,12 @@ CREATE TABLE `user_exam` (
   `es` int(11) DEFAULT NULL,
   `allow_re_exam` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_exam
 -- ----------------------------
-INSERT INTO `user_exam` VALUES ('1', '24', '1', '1', '2017-08-29 16:51:59', '15', '28', '15', '29', '39', '0');
-INSERT INTO `user_exam` VALUES ('2', '30', '1', '1', '2017-08-29 16:51:59', '16', '32', '16', '32', '35', '0');
+INSERT INTO `user_exam` VALUES ('1', '24', '1', '1', '2017-09-02 08:53:47', '8', '53', '8', '53', '42', '0');
 
 -- ----------------------------
 -- Table structure for user_exam_detail
@@ -7962,115 +7601,65 @@ CREATE TABLE `user_exam_detail` (
   `user_exam_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `answer_id` int(11) NOT NULL,
-  `is_correct` tinyint(1) NOT NULL,
+  `is_correct` tinyint(1) DEFAULT NULL,
   `answer_sign` varchar(10) NOT NULL,
   `dapan_sign` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_exam_detail
 -- ----------------------------
-INSERT INTO `user_exam_detail` VALUES ('1', '1', '2', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('2', '1', '11', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('3', '1', '47', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('4', '1', '53', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('5', '1', '67', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('6', '1', '73', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('7', '1', '80', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('8', '1', '84', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('9', '1', '91', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('10', '1', '99', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('11', '1', '105', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('12', '1', '129', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('13', '1', '157', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('14', '1', '197', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('15', '1', '204', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('16', '1', '205', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('17', '1', '212', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('18', '1', '213', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('19', '1', '216', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('20', '1', '217', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('21', '1', '222', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('22', '1', '226', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('23', '1', '234', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('24', '1', '240', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('25', '1', '242', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('26', '1', '253', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('27', '1', '256', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('28', '1', '265', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('29', '1', '284', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('30', '1', '315', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('31', '1', '326', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('32', '1', '336', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('33', '1', '361', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('34', '1', '382', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('35', '1', '387', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('36', '1', '414', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('37', '1', '419', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('38', '1', '423', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('39', '1', '430', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('40', '1', '435', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('41', '1', '436', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('42', '1', '446', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('43', '1', '455', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('44', '1', '479', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('45', '1', '482', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('46', '1', '483', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('47', '1', '509', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('48', '1', '511', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('49', '1', '515', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('50', '1', '516', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('51', '2', '12', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('52', '2', '29', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('53', '2', '40', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('54', '2', '43', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('55', '2', '44', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('56', '2', '51', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('57', '2', '52', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('58', '2', '57', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('59', '2', '61', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('60', '2', '81', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('61', '2', '83', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('62', '2', '142', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('63', '2', '147', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('64', '2', '153', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('65', '2', '159', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('66', '2', '188', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('67', '2', '204', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('68', '2', '206', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('69', '2', '213', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('70', '2', '219', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('71', '2', '222', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('72', '2', '224', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('73', '2', '232', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('74', '2', '242', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('75', '2', '251', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('76', '2', '285', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('77', '2', '289', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('78', '2', '298', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('79', '2', '300', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('80', '2', '302', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('81', '2', '316', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('82', '2', '332', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('83', '2', '335', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('84', '2', '385', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('85', '2', '404', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('86', '2', '406', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('87', '2', '410', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('88', '2', '413', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('89', '2', '421', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('90', '2', '431', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('91', '2', '435', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('92', '2', '437', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('93', '2', '446', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('94', '2', '453', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('95', '2', '461', '-1', '0', '', 'C');
-INSERT INTO `user_exam_detail` VALUES ('96', '2', '475', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('97', '2', '479', '-1', '0', '', 'D');
-INSERT INTO `user_exam_detail` VALUES ('98', '2', '506', '-1', '0', '', 'B');
-INSERT INTO `user_exam_detail` VALUES ('99', '2', '509', '-1', '0', '', 'A');
-INSERT INTO `user_exam_detail` VALUES ('100', '2', '512', '-1', '0', '', 'D');
+INSERT INTO `user_exam_detail` VALUES ('1', '1', '1', '1', '1', 'A', 'A');
+INSERT INTO `user_exam_detail` VALUES ('2', '1', '3', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('3', '1', '11', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('4', '1', '30', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('5', '1', '32', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('6', '1', '53', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('7', '1', '54', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('8', '1', '72', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('9', '1', '75', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('10', '1', '83', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('11', '1', '85', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('12', '1', '94', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('13', '1', '98', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('14', '1', '105', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('15', '1', '139', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('16', '1', '143', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('17', '1', '171', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('18', '1', '190', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('19', '1', '191', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('20', '1', '204', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('21', '1', '211', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('22', '1', '220', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('23', '1', '233', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('24', '1', '234', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('25', '1', '237', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('26', '1', '245', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('27', '1', '248', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('28', '1', '259', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('29', '1', '293', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('30', '1', '303', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('31', '1', '323', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('32', '1', '332', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('33', '1', '336', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('34', '1', '339', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('35', '1', '362', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('36', '1', '370', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('37', '1', '379', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('38', '1', '382', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('39', '1', '386', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('40', '1', '395', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('41', '1', '400', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('42', '1', '407', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('43', '1', '437', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('44', '1', '480', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('45', '1', '481', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('46', '1', '482', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('47', '1', '489', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('48', '1', '504', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('49', '1', '505', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('50', '1', '513', '-1', null, ' ', 'C');
 
 -- ----------------------------
 -- Table structure for user_pass
@@ -8105,16 +7694,11 @@ CREATE TABLE `user_review` (
   `em` int(11) DEFAULT NULL,
   `es` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_review
 -- ----------------------------
-INSERT INTO `user_review` VALUES ('1', '24', '1', '1', '2017-08-26 15:30:34', '15', '30', '15', '30', '16');
-INSERT INTO `user_review` VALUES ('2', '24', '1', '1', '2017-08-26 15:38:49', '15', '32', '15', '38', '24');
-INSERT INTO `user_review` VALUES ('3', '24', '1', '2', '2017-08-26 17:00:19', '17', '1', '17', '0', '44');
-INSERT INTO `user_review` VALUES ('4', '24', '1', '1', '2017-08-26 17:03:19', '17', '3', '17', '3', '13');
-INSERT INTO `user_review` VALUES ('5', '24', '1', '2', '2017-08-26 17:05:11', '17', '3', '17', '5', '56');
 
 -- ----------------------------
 -- Table structure for user_review_detail
@@ -8125,265 +7709,15 @@ CREATE TABLE `user_review_detail` (
   `user_review_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `answer_id` int(11) NOT NULL,
-  `is_correct` tinyint(1) NOT NULL,
+  `is_correct` tinyint(1) DEFAULT NULL,
   `answer_sign` varchar(10) NOT NULL,
   `dapan_sign` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_review_detail
 -- ----------------------------
-INSERT INTO `user_review_detail` VALUES ('1', '1', '6', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('2', '1', '9', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('3', '1', '10', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('4', '1', '21', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('5', '1', '26', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('6', '1', '65', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('7', '1', '69', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('8', '1', '83', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('9', '1', '91', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('10', '1', '129', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('11', '1', '151', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('12', '1', '197', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('13', '1', '202', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('14', '1', '205', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('15', '1', '219', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('16', '1', '220', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('17', '1', '226', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('18', '1', '230', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('19', '1', '234', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('20', '1', '243', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('21', '1', '246', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('22', '1', '272', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('23', '1', '289', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('24', '1', '303', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('25', '1', '319', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('26', '1', '324', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('27', '1', '328', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('28', '1', '336', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('29', '1', '338', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('30', '1', '351', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('31', '1', '369', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('32', '1', '371', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('33', '1', '373', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('34', '1', '385', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('35', '1', '387', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('36', '1', '390', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('37', '1', '395', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('38', '1', '398', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('39', '1', '404', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('40', '1', '409', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('41', '1', '418', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('42', '1', '425', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('43', '1', '438', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('44', '1', '447', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('45', '1', '461', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('46', '1', '475', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('47', '1', '491', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('48', '1', '502', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('49', '1', '512', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('50', '1', '517', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('51', '2', '10', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('52', '2', '21', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('53', '2', '22', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('54', '2', '23', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('55', '2', '29', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('56', '2', '38', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('57', '2', '45', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('58', '2', '46', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('59', '2', '48', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('60', '2', '72', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('61', '2', '91', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('62', '2', '111', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('63', '2', '119', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('64', '2', '171', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('65', '2', '200', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('66', '2', '203', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('67', '2', '212', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('68', '2', '218', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('69', '2', '230', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('70', '2', '231', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('71', '2', '246', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('72', '2', '247', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('73', '2', '248', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('74', '2', '279', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('75', '2', '286', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('76', '2', '290', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('77', '2', '291', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('78', '2', '293', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('79', '2', '299', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('80', '2', '301', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('81', '2', '303', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('82', '2', '306', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('83', '2', '323', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('84', '2', '324', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('85', '2', '358', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('86', '2', '370', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('87', '2', '398', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('88', '2', '407', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('89', '2', '410', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('90', '2', '411', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('91', '2', '423', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('92', '2', '425', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('93', '2', '434', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('94', '2', '441', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('95', '2', '460', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('96', '2', '461', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('97', '2', '478', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('98', '2', '508', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('99', '2', '514', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('100', '2', '515', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('101', '3', '11', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('102', '3', '12', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('103', '3', '13', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('104', '3', '16', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('105', '3', '21', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('106', '3', '22', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('107', '3', '30', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('108', '3', '40', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('109', '3', '46', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('110', '3', '55', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('111', '3', '60', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('112', '3', '70', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('113', '3', '88', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('114', '3', '89', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('115', '3', '94', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('116', '3', '114', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('117', '3', '128', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('118', '3', '137', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('119', '3', '151', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('120', '3', '153', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('121', '3', '161', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('122', '3', '176', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('123', '3', '193', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('124', '3', '195', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('125', '3', '211', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('126', '3', '214', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('127', '3', '218', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('128', '3', '231', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('129', '3', '260', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('130', '3', '263', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('131', '3', '287', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('132', '3', '289', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('133', '3', '297', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('134', '3', '298', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('135', '3', '322', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('136', '3', '338', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('137', '3', '347', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('138', '3', '361', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('139', '3', '369', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('140', '3', '409', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('141', '3', '427', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('142', '3', '445', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('143', '3', '459', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('144', '3', '462', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('145', '3', '467', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('146', '3', '480', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('147', '3', '503', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('148', '3', '510', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('149', '3', '511', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('150', '3', '514', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('151', '4', '6', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('152', '4', '11', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('153', '4', '13', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('154', '4', '19', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('155', '4', '21', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('156', '4', '25', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('157', '4', '32', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('158', '4', '40', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('159', '4', '46', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('160', '4', '57', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('161', '4', '61', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('162', '4', '71', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('163', '4', '89', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('164', '4', '91', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('165', '4', '103', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('166', '4', '118', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('167', '4', '138', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('168', '4', '142', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('169', '4', '148', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('170', '4', '170', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('171', '4', '173', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('172', '4', '198', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('173', '4', '199', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('174', '4', '200', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('175', '4', '201', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('176', '4', '203', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('177', '4', '220', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('178', '4', '224', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('179', '4', '231', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('180', '4', '244', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('181', '4', '252', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('182', '4', '285', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('183', '4', '297', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('184', '4', '299', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('185', '4', '336', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('186', '4', '339', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('187', '4', '358', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('188', '4', '380', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('189', '4', '397', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('190', '4', '409', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('191', '4', '419', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('192', '4', '459', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('193', '4', '471', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('194', '4', '478', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('195', '4', '480', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('196', '4', '483', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('197', '4', '488', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('198', '4', '490', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('199', '4', '509', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('200', '4', '512', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('201', '5', '23', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('202', '5', '26', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('203', '5', '29', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('204', '5', '34', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('205', '5', '35', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('206', '5', '43', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('207', '5', '45', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('208', '5', '48', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('209', '5', '58', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('210', '5', '76', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('211', '5', '80', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('212', '5', '87', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('213', '5', '99', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('214', '5', '102', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('215', '5', '110', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('216', '5', '118', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('217', '5', '139', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('218', '5', '144', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('219', '5', '152', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('220', '5', '160', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('221', '5', '164', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('222', '5', '195', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('223', '5', '196', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('224', '5', '197', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('225', '5', '209', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('226', '5', '235', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('227', '5', '260', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('228', '5', '262', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('229', '5', '264', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('230', '5', '268', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('231', '5', '293', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('232', '5', '303', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('233', '5', '331', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('234', '5', '334', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('235', '5', '339', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('236', '5', '345', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('237', '5', '347', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('238', '5', '358', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('239', '5', '361', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('240', '5', '366', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('241', '5', '368', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('242', '5', '370', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('243', '5', '374', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('244', '5', '387', '-1', '0', '', 'A');
-INSERT INTO `user_review_detail` VALUES ('245', '5', '435', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('246', '5', '436', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('247', '5', '447', '-1', '0', '', 'B');
-INSERT INTO `user_review_detail` VALUES ('248', '5', '461', '-1', '0', '', 'C');
-INSERT INTO `user_review_detail` VALUES ('249', '5', '478', '-1', '0', '', 'D');
-INSERT INTO `user_review_detail` VALUES ('250', '5', '506', '-1', '0', '', 'B');
 
 -- ----------------------------
 -- View structure for layout_content

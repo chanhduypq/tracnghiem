@@ -146,6 +146,30 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract
             $level = 'CAO CẤP';
         }
         $title_header = $row[0]['date'];
+        $headers= json_decode(Admin_Model_HeaderpdfMapper::getHeader(),TRUE);
+        foreach ($headers as &$header) {
+            $header = str_replace('{level}', $level, $header);
+            $header = str_replace('{nam}', $row[0]['year'], $header);
+        }        
+        $header = '<table style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td style="width: 50%;text-align: center;">
+                                <h3>'.$headers[0].'</h3>
+                        <h3>'.$headers[2].'</h3>
+                            </td>
+                            <td style="width: 50%;text-align: center;">
+                                <h3>'.$headers[1].'</h3>
+                        <h3>'.$headers[3].'</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="width: 100%;text-align: center;">
+                                <h3>'.$headers[4].'</h3>
+                            </td>                            
+                        </tr>
+                    </tbody>
+                </table>';
         $html = '<style>
                   html, body {
                     width: 210mm;
@@ -174,25 +198,7 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract
 
                 </style>
                 <body>
-                <table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 50%;text-align: center;">
-                                <h3>TẬP ĐOÀN ĐIỆN LỰC VIỆT NAM</h3>
-                        <h3>TỔNG CÔNG TY ĐIỆN LỰC MIỀN TRUNG</h3>
-                            </td>
-                            <td style="width: 50%;text-align: center;">
-                                <h3>KỲ THI NÂNG BẬC TRỰC TUYẾN</h3>
-                        <h3>CÔNG NHÂN KỸ THUẬT ' . $level . ' NĂM ' . $row[0]['year'] . '</h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="width: 100%;text-align: center;">
-                                <h3>KẾT QUẢ LUYỆN THI KIẾN THỨC AN TOÀN ĐIỆN</h3>
-                            </td>                            
-                        </tr>
-                    </tbody>
-                </table>
+                '.$header.'
                 <div>&nbsp;</div>
                 <table style="width: 100%;">
                     <tbody>

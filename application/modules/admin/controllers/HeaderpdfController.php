@@ -12,12 +12,14 @@ class Admin_HeaderpdfController extends Core_Controller_Action
     {
         $mapper = new Admin_Model_HeaderpdfMapper();
         $item = $mapper->getContent();
-        $noi_dung = '';
+        $noi_dung = $json = '';
         if (is_array($item) && count($item) > 0) {
             $noi_dung = $item['content'];
+            $json = $item['json'];
         }
         $this->view->content = $noi_dung;
-        $this->view->message= $this->getMessage();
+        $this->view->json = $json;
+        $this->view->message = $this->getMessage();
     }
 
     public function saveAction() 
