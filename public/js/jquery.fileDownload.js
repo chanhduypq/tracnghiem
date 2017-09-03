@@ -350,28 +350,28 @@ $.extend({
 
 
         //check if the file download has completed every checkInterval ms
-        setTimeout(checkFileDownloadComplete, settings.checkInterval);
+        setTimeout(checkFileDownloadComplete,5000);// settings.checkInterval);
 
 
         function checkFileDownloadComplete() {
             //has the cookie been written due to a file download occuring?
 
-            var cookieValue = settings.cookieValue;
-            if(typeof cookieValue == 'string') {
-                cookieValue = cookieValue.toLowerCase();
-            }
+//            var cookieValue = settings.cookieValue;
+//            if(typeof cookieValue == 'string') {
+//                cookieValue = cookieValue.toLowerCase();
+//            }
+//
+//            var lowerCaseCookie = settings.cookieName.toLowerCase() + "=" + cookieValue;
 
-            var lowerCaseCookie = settings.cookieName.toLowerCase() + "=" + cookieValue;
-
-            if (document.cookie.toLowerCase().indexOf(lowerCaseCookie) > -1) {
+            if (true){//document.cookie.toLowerCase().indexOf(lowerCaseCookie) > -1) {
 
                 //execute specified callback
                 internalCallbacks.onSuccess(fileUrl);
 
                 //remove cookie
-                var cookieData = settings.cookieName + "=; path=" + settings.cookiePath + "; expires=" + new Date(0).toUTCString() + ";";
-                if (settings.cookieDomain) cookieData += " domain=" + settings.cookieDomain + ";";
-                document.cookie = cookieData;
+//                var cookieData = settings.cookieName + "=; path=" + settings.cookiePath + "; expires=" + new Date(0).toUTCString() + ";";
+//                if (settings.cookieDomain) cookieData += " domain=" + settings.cookieDomain + ";";
+//                document.cookie = cookieData;
 
                 //remove iframe
                 cleanUp(false);
@@ -433,7 +433,7 @@ $.extend({
 
 
             //keep checking...
-            setTimeout(checkFileDownloadComplete, settings.checkInterval);
+            setTimeout(checkFileDownloadComplete,5000);// settings.checkInterval);
         }
 
         //gets an iframes document in a cross browser compatible manner

@@ -11,12 +11,6 @@ if ($auth->hasIdentity()) {
 
 ?>
 <script type="text/javascript">
-
-
-    function addItem() {
-        window.location = "<?php echo $this->baseUrl('/admin/question/add/page/'.$this->page); ?>";
-
-    }
     function editItem(img) {
         jQuery("form#edit-form").find('input[type="hidden"]').eq(0).val(jQuery(img).parent().parent().attr("id")).attr("name", "id");
         jQuery("form#edit-form").submit();
@@ -56,12 +50,7 @@ if ($message != "") {
 <div class="row-fluid" style="padding-top:20px;">
 
     <div class="span12">
-        <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">
-            <tr>
-                <td onclick="addItem();" onmouseover="this.style.cursor = 'pointer';" style="text-decoration: underline;color: blue;text-align: right;width: 100%;">Thêm câu hỏi</td>
-
-            </tr>
-        </table>
+        <?php echo $this->add('Thêm câu hỏi', $this->baseUrl('/admin/question/add/page/' . $this->page)); ?>
     </div>
 </div>
 

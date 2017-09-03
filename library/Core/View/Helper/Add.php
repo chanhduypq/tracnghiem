@@ -10,10 +10,9 @@ class Core_View_Helper_Add extends Zend_View_Helper_Abstract {
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param string $label
      * @param string $url
-     * @param Zend_View_Interface $view
      * @return string $html
      */
-    public function add($view, $label, $url) 
+    public function add($label, $url) 
     {
         ?>
         <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">

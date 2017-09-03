@@ -9,12 +9,6 @@ if ($auth->hasIdentity()) {
 }
 ?>
 <script type="text/javascript">
-
-
-    function addItem() {
-        window.location = "<?php echo $this->baseUrl('/admin/user/add/page/'.$this->page); ?>";
-
-    }
     function editItem(img) {
         jQuery("form#edit-form").find('input[type="hidden"]').eq(0).val(jQuery(img).parent().parent().attr("id")).attr("name", "id");
         jQuery("form#edit-form").submit();
@@ -42,24 +36,19 @@ if ($message != "") {
 <div class="row-fluid" style="padding-top:20px;">
 
     <div class="span12">
-        <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">
-            <tr>
-                <td onclick="addItem();" onmouseover="this.style.cursor = 'pointer';" style="text-decoration: underline;color: blue;text-align: right;width: 100%;">Thêm user</td>
-
-            </tr>
-        </table>
+        <?php echo $this->add('Thêm user', $this->baseUrl('/admin/user/add/page/' . $this->page)); ?>
     </div>
 </div>
 
 <div class="row-fluid list">
 
     <?php
-    foreach ($items as $item) { 
+    foreach ($items as $item) {
         ?>
 
         <div class="row-fluid item" id="<?php echo $item['id']; ?>">
             <div class="span5">
-        <?php echo $item['danh_xung'] . ' ' . $item['full_name'] ?>
+                <?php echo $item['danh_xung'] . ' ' . $item['full_name'] ?>
             </div>
             <div class="span5">
                 <?php echo $item['email']; ?>
@@ -69,7 +58,7 @@ if ($message != "") {
                     <img class="delete question" src="<?php echo $this->baseUrl("/images/icon/delete-icon.png"); ?>"/>                                                   
                 </a>
 
-                <a href="<?php echo $this->baseUrl('/admin/user/edit/id/') . $item['id'].'/page/'.$this->page; ?>">
+                <a href="<?php echo $this->baseUrl('/admin/user/edit/id/') . $item['id'] . '/page/' . $this->page; ?>">
                     <img class="edit question" title="Click vào đây để sửa" style="cursor: pointer;" src="<?php echo $this->baseUrl("/images/icon/ico_edit.png"); ?>" onclick="editItem(this);"/>                                                   
                 </a>
             </div>
@@ -79,21 +68,21 @@ if ($message != "") {
 
 
 
-    <?php
-}
+        <?php
+    }
 
-$url = $this->url();
-$temp = explode('page', $url);
-if (is_array($temp) && count($temp) == 2) {
-    $url = $temp[0];
-}
-?>
+    $url = $this->url();
+    $temp = explode('page', $url);
+    if (is_array($temp) && count($temp) == 2) {
+        $url = $temp[0];
+    }
+    ?>
 
 </div>
 <form method="post" action="<?php echo $url; ?>">
     <div class="row-fluid">
         <div class="span12">
-<?php if ($this->total > $this->limit) { ?>
+            <?php if ($this->total > $this->limit) { ?>
                 <table style="width: 100%;">
                     <tfoot>
                         <tr>
@@ -101,9 +90,9 @@ if (is_array($temp) && count($temp) == 2) {
                         </tr>
                     </tfoot>
                 </table>
-    <?php
-}
-?>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </form>

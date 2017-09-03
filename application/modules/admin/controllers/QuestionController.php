@@ -284,6 +284,7 @@ class Admin_QuestionController extends Core_Controller_Action
         }
         $this->view->form = $form;
         $this->view->nganhnghe_ids=$nganhnghe_ids;
+        $this->view->page = $this->_getParam('page');
         $this->render('add-question');
     }
 
@@ -314,7 +315,8 @@ class Admin_QuestionController extends Core_Controller_Action
             $form->setDefaults($row);
         }
         $this->view->form = $form;
-        $this->render('add_answer');
+        $this->view->page = $this->_getParam('page');
+        $this->render('add-answer');
     }
 
     public function deleteAction() 

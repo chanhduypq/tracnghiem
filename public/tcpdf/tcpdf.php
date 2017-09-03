@@ -7593,6 +7593,8 @@ class TCPDF {
 				break;
 			}
 			case 'D': {
+                                //tuetc thêm dòng code này cho việc tự đóng dialog sau khi download thành công. đang sử dụng jquery.fileDownload.js
+//                                header("Set-Cookie: fileDownload=true; path=/");
 				// download PDF as file
 				if (ob_get_contents()) {
 					$this->Error('Some data has already been output, can\'t send PDF file');

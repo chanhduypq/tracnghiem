@@ -106,6 +106,7 @@ class Admin_UserController extends Core_Controller_Action
         $db = Core_Db_Table::getDefaultAdapter();
         $history = $db->fetchAll("select user_exam.allow_re_exam,user_exam.user_id,user_exam.nganh_nghe_id,user_exam.level,user_exam.id,user_exam.exam_date,user_pass.user_exam_id,nganh_nghe.title from user_exam JOIN nganh_nghe ON nganh_nghe.id=user_exam.nganh_nghe_id LEFT JOIN user_pass ON user_pass.user_exam_id=user_exam.id WHERE user_exam.user_id=$id ORDER BY user_exam.exam_date ASC");
         $this->view->history = $history;
+        $this->view->page = $this->_getParam('page');
         $this->render('add');
     }
 
