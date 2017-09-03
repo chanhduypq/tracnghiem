@@ -62,7 +62,7 @@ if (!is_array($questions) || count($questions) == 0) { ?>
     <?php
 }
 ?>
-<script src="<?php echo $this->baseUrl();?>/js/jquery.fileDownload.js" type="text/javascript"></script>
+<script src="<?php echo $this->baseUrl();?>/js/jquery.fileDownload.js?<?php echo substr(md5(microtime()),rand(0,26),5);?>" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(function ($) {
         
