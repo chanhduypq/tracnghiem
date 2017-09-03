@@ -188,8 +188,13 @@ if (is_array($questions) && count($questions) > 0) {
     var s = null; // Giây
 
     var timeout = null; // Timeout
-
+<?php 
+if (is_array($questions) && count($questions) > 0) { 
+?>
     start();
+<?php 
+}
+?>
     function start()
     {
         /*BƯỚC 1: LẤY GIÁ TRỊ BAN ĐẦU*/
