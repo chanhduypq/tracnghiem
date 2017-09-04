@@ -5,6 +5,15 @@ class Core_Common_Pdf {
     const DOWNLOAD = 'D';
     const VIEW = 'I';
 
+    /**
+     * function common
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
+     * @param string $type
+     * @param string $html
+     * @param string $filename
+     * @param string $title_header
+     * @return void
+     */
     public static function createFilePdf($type, $html, $filename, $title_header = '') {
 
         require_once 'tcpdf/tcpdf_autoconfig.php';
