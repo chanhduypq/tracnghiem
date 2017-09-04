@@ -2,8 +2,6 @@
 /**
 * @file: Core.php
 * @author: chanhduypq@gmail.com
-* @date: Feb 15, 2012
-* @company : http://dnict.vn
 **/
 class Core{
 	/**

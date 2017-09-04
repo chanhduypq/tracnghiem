@@ -1,11 +1,5 @@
-<?php
+<?php 
 
-/**
- * @file: Categories.php
- * @author: chanhduypq@gmail.com
- * @date: 11-10-2012
- * @company : http://dnict.vn
- * */
 class Admin_Form_Question extends Core_Form {
 
     public function init() {
@@ -13,7 +7,6 @@ class Admin_Form_Question extends Core_Form {
         $this->buildElementsAutoForFormByTableName('question', $primaryName);
 
         $this->getElement('content')->setLabel('Nội dung câu hỏi:')->setUnique(true, 'question', $primaryName);
-//        $this->getElement('content')->setUnique(true,'question',$primaryName);
 
         $this->removeElement("level");
         $level = new Core_Form_Element_Select('level');

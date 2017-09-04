@@ -1,11 +1,5 @@
-<?php
+<?php 
 
-/**
- * @file: Categories.php
- * @author: chanhduypq@gmail.com
- * @date: 11-10-2012
- * @company : http://dnict.vn
- * */
 class Admin_Form_User extends Core_Form 
 {
 
