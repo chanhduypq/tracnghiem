@@ -119,8 +119,9 @@ class Core_Form extends Zend_Form
      * @param string $table_name
      * @return Core_Form
      */
-    public function buildElementsAutoForFormByTableName($table_name){
-    	$db=Zend_Db_Table::getDefaultAdapter();    	
+    public function buildElementsAutoForFormByTableName($table_name, &$primaryName = '') 
+    {
+        $db=Zend_Db_Table::getDefaultAdapter();    	
     	$metadata = $db->describeTable($table_name);    	   	    	
     	if(!is_array($metadata)||count($metadata)==0){
     		return $this;
@@ -162,7 +163,7 @@ class Core_Form extends Zend_Form
     			}
                         if (strtolower($column_difinition['COLUMN_NAME']) == 'email') {
                             $element->setIsEmail(TRUE);
-                            $element->setUnique(TRUE, $excludeField = $primaryName);
+                            $element->setUnique(TRUE, $table_name, $excludeField = $primaryName);
                         }
             }
     		elseif ($column_difinition['DATA_TYPE']=='text'
