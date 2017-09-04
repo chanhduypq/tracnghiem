@@ -129,6 +129,18 @@ class Core_Form extends Zend_Form
     	if(!is_array($keys)||count($keys)==0){
     		return $this;
     	}
+        /**
+         * get primary
+         */
+        $primaryName='';
+        foreach ($keys as $key){
+    		$column_difinition=$metadata[$key];
+                if ($column_difinition['PRIMARY']==true){    				
+                        $primaryName=$column_difinition['COLUMN_NAME'];
+                        break;
+                }   
+        }
+        
     	foreach ($keys as $key){
     		$column_difinition=$metadata[$key];    		
     		if($column_difinition['DATA_TYPE']=='varchar'
@@ -150,6 +162,7 @@ class Core_Form extends Zend_Form
     			}
                         if (strtolower($column_difinition['COLUMN_NAME']) == 'email') {
                             $element->setIsEmail(TRUE);
+                            $element->setUnique(TRUE, $excludeField = $primaryName);
                         }
             }
     		elseif ($column_difinition['DATA_TYPE']=='text'
