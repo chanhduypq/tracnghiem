@@ -27,16 +27,6 @@ class Admin_Form_User extends Core_Form
         $this->getElement('full_name')->setLabel('Họ và tên:');
         
         $this->getElement('phone')->setLabel('Phone:');
-        
-        $this->getElement('email')
-                    ->addValidator('Db_NoRecordExists', false, array('table' => 'user',
-                                                                    'field' => 'email',
-                                                                    'messages' => array(
-                                                                        'recordFound' => 'Email này đã tồn tại rồi'
-                                                                    ),
-                                            //                        'exclude' => array('field' => 'id', 'value' => $this->getValue('id'))
-                                                                )
-                        );
     }
     
 
