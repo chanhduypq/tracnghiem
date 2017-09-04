@@ -233,20 +233,24 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
         $layout = Zend_Layout::getMvcInstance();
         $layout->setOptions($option); 
     }
+    
+    private function turnSessionPrevController()
+    {
+        $session=new Zend_Session_Namespace('url');
+        $session->controller=$this->_request->getControllerName();
+    }
 
     private function redirectIfNotLogin(){
         if($this->_request->getModuleName()=='admin'){
             if($this->_request->getControllerName()!='index'){
                 $auth = Zend_Auth::getInstance();
                 if (!$auth->hasIdentity()) {
-                    $session=new Zend_Session_Namespace('url');
-                    $session->controller=$this->_request->getControllerName();
+                    $this->turnSessionPrevController();
                     $this->_helper->redirector('index', 'index', 'admin');
                 } else {
                     $identity = $auth->getIdentity();
                     if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                        $session=new Zend_Session_Namespace('url');
-                        $session->controller=$this->_request->getControllerName();
+                        $this->turnSessionPrevController();
                         $this->_helper->redirector('index', 'index', 'admin');
                     }
                 }
