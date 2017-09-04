@@ -21,7 +21,7 @@ class ThiController extends Core_Controller_Action
 
         $date = explode(' ', $row['exam_date']);
         $date = explode('-', $date[0]);
-        $this->createFilePdf($html, $date[0] . '_' . $date[1] . '_' . $date[2] . '.pdf', $title_header);
+        Core_Common_Pdf::createFilePdf(Core_Common_Pdf::DOWNLOAD, $html, $date[0] . '_' . $date[1] . '_' . $date[2] . '.pdf', $title_header);
     }
 
     public function indexAction() 

@@ -1,16 +1,13 @@
 <?php
 
-class ReviewController extends Core_Controller_Action 
-{
+class ReviewController extends Core_Controller_Action {
 
-    public function init() 
-    {
-        parent::init();    
+    public function init() {
+        parent::init();
         $this->view->headTitle('Ôn tập', true);
     }
 
-    private function saveDB($data) 
-    {
+    private function saveDB($data) {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->beginTransaction();
         try {
@@ -38,7 +35,7 @@ class ReviewController extends Core_Controller_Action
                         'sm' => $sm,
                         'eh' => $h,
                         'em' => $m,
-                        'es'=> rand(1, 59),
+                        'es' => rand(1, 59),
                     )
             );
             $i = 0;
@@ -60,7 +57,7 @@ class ReviewController extends Core_Controller_Action
                     'question_id' => $questionIds[$i],
                     'answer_id' => ($answerIds[$i] == '' ? '-1' : $answerIds[$i]),
                     'is_correct' => $is_correct,
-                    'answer_sign' => $answerSigns[$i]=='Z'?' ':$answerSigns[$i],
+                    'answer_sign' => $answerSigns[$i] == 'Z' ? ' ' : $answerSigns[$i],
                     'dapan_sign' => $dapanSigns[$i],
                 ));
             }
@@ -70,11 +67,7 @@ class ReviewController extends Core_Controller_Action
         }
     }
 
-    
-
-    
-    public function viewresultAction() 
-    {
+    public function viewresultAction() {
         $db = Core_Db_Table::getDefaultAdapter();
         $row = $db->fetchRow("SELECT * FROM user_review WHERE user_id=" . $this->getUserId() . " ORDER BY review_date DESC LIMIT 1");
         if (!is_array($row) || count($row) == 0) {
@@ -85,11 +78,10 @@ class ReviewController extends Core_Controller_Action
 
         $date = explode(' ', $row['review_date']);
         $date = explode('-', $date[0]);
-        $this->createFilePdf($html, $date[0] . '_' . $date[1] . '_' . $date[2] . '.pdf', $title_header);
+        Core_Common_Pdf::createFilePdf(Core_Common_Pdf::DOWNLOAD, $html, $date[0] . '_' . $date[1] . '_' . $date[2] . '.pdf', $title_header);
     }
 
-    public function indexAction() 
-    {
+    public function indexAction() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
 
@@ -154,14 +146,12 @@ class ReviewController extends Core_Controller_Action
         $this->view->miniutes = $miniutes;
     }
 
-    private function getQuestionsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) 
-    {
+    private function getQuestionsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) {
         $questionIds = $this->getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number);
         return $this->getQuestionsByQuestionIds($questionIds);
     }
 
-    private function getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) 
-    {
+    private function getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) {
         $db = Core_Db_Table::getDefaultAdapter();
         $sql = "SELECT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=$level ORDER BY RAND() LIMIT " . $config_exam_number;
         $rows = $db->fetchAll($sql);
@@ -172,8 +162,7 @@ class ReviewController extends Core_Controller_Action
         return $questionIds;
     }
 
-    private function getQuestionsByQuestionIds($questionIds) 
-    {
+    private function getQuestionsByQuestionIds($questionIds) {
         $db = Core_Db_Table::getDefaultAdapter();
         $newQuestions = array();
         $questions = $db->fetchAll("SELECT question.id,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");
@@ -185,9 +174,8 @@ class ReviewController extends Core_Controller_Action
         }
         return $newQuestions;
     }
-    
-    private function unsetSessionExaming() 
-    {
+
+    private function unsetSessionExaming() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
         $auth->clearIdentity();

@@ -61,42 +61,14 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
      * @var integer
      */
     public $order;
-
+    
     /**
      *  Main init
      */
     public function init() {
         parent::init();
-        if($this->_request->getModuleName()=='admin'){
-            if($this->_request->getControllerName()!='index'){
-                $auth = Zend_Auth::getInstance();
-                if (!$auth->hasIdentity()) {
-                    $session=new Zend_Session_Namespace('url');
-                    $session->controller=$this->_request->getControllerName();
-                    $this->_helper->redirector('index', 'index', 'admin');
-                } else {
-                    $identity = $auth->getIdentity();
-                    if (!isset($identity['user']) || $identity['user'] != 'admin') {
-                        $session=new Zend_Session_Namespace('url');
-                        $session->controller=$this->_request->getControllerName();
-                        $this->_helper->redirector('index', 'index', 'admin');
-                    }
-                }
-            }
-            $option = array ('layout' => 'admin');
-        }
-        else{
-            if($this->_request->getControllerName()!='index'){
-                $auth = Zend_Auth::getInstance();
-                if (!$auth->hasIdentity()) {
-                    $this->_helper->redirector('index', 'index', 'default');
-                }
-            }
-            $option = array ('layout' => 'index');
-        }
-        
-        $layout = Zend_Layout::getMvcInstance();
-        $layout->setOptions($option);       
+        $this->setLayout();
+        $this->redirectIfNotLogin();    
 
         set_time_limit(2000);
 
@@ -136,67 +108,9 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
         Core_Common_Download::download($path, $fileName);
     }
 
-    public function createFilePdf($html, $filename, $title_header = '') {
-
-        require_once 'tcpdf/tcpdf_autoconfig.php';
-        require_once 'tcpdf/tcpdf.php';
-        // create new PDF document
-        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-// set document information
-        $pdf->SetCreator(PDF_CREATOR);
-
-
-
-
-        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-// set margins
-//        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-        $pdf->SetMargins(PDF_MARGIN_LEFT, 10, PDF_MARGIN_RIGHT);
-        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-// set auto page breaks
-        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-// set image scale factor
-        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-        $pdf->SetPrintHeader(true);
-
-        $pdf->SetHeaderData('', 0, $title_header, '');
-
-// set some language-dependent strings (optional)
-        if (@file_exists(dirname(__FILE__) . '/lang/eng.php')) {
-            require_once(dirname(__FILE__) . '/lang/eng.php');
-            $pdf->setLanguageArray($l);
-        }
-
-// ---------------------------------------------------------
-// set font
-        $pdf->SetFont('dejavusans', '', 10);
-
-// add a page
-        $pdf->AddPage();
-
-        $pdf->writeHTML($html, true, false, true, false, '');
-
-
-
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// reset pointer to the last page
-        $pdf->lastPage();
-
-// ---------------------------------------------------------
-//Close and output PDF document
-        ob_end_clean();
-        $pdf->Output($filename, 'D');
-        exit;
+    public function createFilePdf($html, $filename, $title_header = '') 
+    {
+        Core_Common_Pdf::createFilePdf($html, $filename, $title_header);
     }
 
     public function initPaginator() {
@@ -307,5 +221,44 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
     protected function _hasSnapshot() {
         return isset(Core::session()->snapshot) && !empty(Core::session()->snapshot);
     }
+    
+    private function setLayout(){
+        if($this->_request->getModuleName()=='admin'){            
+            $option = array ('layout' => 'admin');
+        }
+        else{            
+            $option = array ('layout' => 'index');
+        }
+        
+        $layout = Zend_Layout::getMvcInstance();
+        $layout->setOptions($option); 
+    }
 
+    private function redirectIfNotLogin(){
+        if($this->_request->getModuleName()=='admin'){
+            if($this->_request->getControllerName()!='index'){
+                $auth = Zend_Auth::getInstance();
+                if (!$auth->hasIdentity()) {
+                    $session=new Zend_Session_Namespace('url');
+                    $session->controller=$this->_request->getControllerName();
+                    $this->_helper->redirector('index', 'index', 'admin');
+                } else {
+                    $identity = $auth->getIdentity();
+                    if (!isset($identity['user']) || $identity['user'] != 'admin') {
+                        $session=new Zend_Session_Namespace('url');
+                        $session->controller=$this->_request->getControllerName();
+                        $this->_helper->redirector('index', 'index', 'admin');
+                    }
+                }
+            }
+        }
+        else{
+            if($this->_request->getControllerName()!='index'){
+                $auth = Zend_Auth::getInstance();
+                if (!$auth->hasIdentity()) {
+                    $this->_helper->redirector('index', 'index', 'default');
+                }
+            }
+        }   
+    }
 }
