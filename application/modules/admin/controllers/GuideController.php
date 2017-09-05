@@ -43,7 +43,6 @@ class Admin_GuideController extends Core_Controller_Action
             
             $item_image = $_FILES['hinhnen']['name'];
             if (isset($item_image) && $item_image != "") {
-                Zend_Loader::loadFile('./../library/Core/Common/File.php', null, true);
                 $extension = @explode(".", $item_image);
                 $extension = $extension[count($extension) - 1];
 //                $item_image = sprintf('_%s.' . $extension, uniqid(md5(time()), true));

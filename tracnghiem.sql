@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-02 09:01:28
+Date: 2017-09-05 08:04:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `answer`;
 CREATE TABLE `answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `question_id` int(11) NOT NULL,
-  `content` tinytext NOT NULL,
+  `content` varchar(255) NOT NULL,
   `sign` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2069 DEFAULT CHARSET=utf8;
@@ -2112,7 +2112,7 @@ CREATE TABLE `config_exam` (
 -- ----------------------------
 -- Records of config_exam
 -- ----------------------------
-INSERT INTO `config_exam` VALUES ('0.4', '1', '50');
+INSERT INTO `config_exam` VALUES ('0.4', '2', '50');
 
 -- ----------------------------
 -- Table structure for dap_an
@@ -2663,7 +2663,7 @@ CREATE TABLE `exam_time` (
 -- ----------------------------
 -- Records of exam_time
 -- ----------------------------
-INSERT INTO `exam_time` VALUES ('2017-09-02 00:00:00', '8', '30', '9', '20');
+INSERT INTO `exam_time` VALUES ('2017-09-03 00:00:00', '9', '30', '11', '10');
 
 -- ----------------------------
 -- Table structure for footer
@@ -6978,7 +6978,7 @@ CREATE TABLE `nganh_nghe` (
   `id` bigint(15) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nganh_nghe
@@ -7019,7 +7019,7 @@ INSERT INTO `question` VALUES ('7', 'Để đảm bảo an toàn điện thì m�
 INSERT INTO `question` VALUES ('8', 'Để đảm bảo an toàn điện, cấm ra mệnh lệnh hoặc giao công việc cho những người:', '1');
 INSERT INTO `question` VALUES ('9', 'Những mệnh lệnh không đúng Quy trình an toàn điện và các quy trình có liên quan khác, có nguy cơ mất an toàn cho người hoặc thiết bị thì người nhận lệnh có quyền:', '1');
 INSERT INTO `question` VALUES ('10', 'Để được giao nhiệm vụ, nhân viên mới phải được đào tạo, sát hạch như thế nào:', '1');
-INSERT INTO `question` VALUES ('11', 'Khi phát hiện cán bộ, công nhân vi phạm Quy trình an toàn điện và các quy trình có liên quan khác, có nguy cơ đe dọa đến tính mạng con người hoặc mất an toàn đối với thiết bị, người  phát hiện phải ', '1');
+INSERT INTO `question` VALUES ('11', 'Khi phát hiện cán bộ, công nhân vi phạm Quy trình an toàn điện và các quy trình có liên quan khác, có nguy cơ đe dọa đến tính mạng con người hoặc mất an toàn đối với thiết bị, người  phát hiện phải', '1');
 INSERT INTO `question` VALUES ('12', 'Người trực tiếp làm công tác quản lý vận hành, kinh doanh, thí nghiệm, sửa chữa, xây lắp điện phải đảm bảo các yêu cầu chung nào sau đây :', '1');
 INSERT INTO `question` VALUES ('13', 'Hình thức kiểm tra nhân viên mới sau  khi kết thúc công tác đào tạo - thực tập :', '1');
 INSERT INTO `question` VALUES ('14', 'Đối tượng phải được huấn luyện, kiểm tra quy trình an toàn điện mỗi năm 1 lần là:', '2');
@@ -7555,7 +7555,7 @@ CREATE TABLE `user` (
   `password` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
@@ -7566,7 +7566,10 @@ INSERT INTO `user` VALUES ('31', 'Anh', 'DFHFDGHD', 'TUE@TUE.COM', null, 'b0b311
 INSERT INTO `user` VALUES ('32', 'Anh', 'a@user.com', 'a@gmail.com', null, 'caa74eff11948cbeae03194b2ec8a15793f863a9', null);
 INSERT INTO `user` VALUES ('33', 'Anh', 'a@user.com', 'a@user.net', null, '3fdd854ac9a4b6250ff1bdebdca0ce5c6c60bacc', null);
 INSERT INTO `user` VALUES ('34', 'Anh', 'a@user.com1122', 'a@stu.vn', null, '6464a09b1e60ea321a89cdabba8db9254e30c116', null);
-INSERT INTO `user` VALUES ('37', 'Anh', 'luan', 'luuthiluanbg@gmail.com', null, '21a2b016a624495094f48c648a93723f1638f639', null);
+INSERT INTO `user` VALUES ('41', 'Anh', 'tuetc1', 'a@user.com.vn', null, 'caa74eff11948cbeae03194b2ec8a15793f863a9', null);
+INSERT INTO `user` VALUES ('42', 'Anh', 'cccccccccccccc', 'b@user.com', null, 'def96a177d40a0ac37c01994a02a22add564dd59', null);
+INSERT INTO `user` VALUES ('43', 'Anh', 'tuetctuetc', 'c@user.com.vn', null, '32e29522cb49baa578fa00961783de97616e8a15', null);
+INSERT INTO `user` VALUES ('44', 'Anh', 'ok man', 'a1@user.com', null, 'cb9cca496e4c01dd77f2f83ac05e25532da070e5', null);
 
 -- ----------------------------
 -- Table structure for user_exam
@@ -7585,12 +7588,11 @@ CREATE TABLE `user_exam` (
   `es` int(11) DEFAULT NULL,
   `allow_re_exam` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_exam
 -- ----------------------------
-INSERT INTO `user_exam` VALUES ('1', '24', '1', '1', '2017-09-02 08:53:47', '8', '53', '8', '53', '42', '0');
 
 -- ----------------------------
 -- Table structure for user_exam_detail
@@ -7605,61 +7607,11 @@ CREATE TABLE `user_exam_detail` (
   `answer_sign` varchar(10) NOT NULL,
   `dapan_sign` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_exam_detail
 -- ----------------------------
-INSERT INTO `user_exam_detail` VALUES ('1', '1', '1', '1', '1', 'A', 'A');
-INSERT INTO `user_exam_detail` VALUES ('2', '1', '3', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('3', '1', '11', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('4', '1', '30', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('5', '1', '32', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('6', '1', '53', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('7', '1', '54', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('8', '1', '72', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('9', '1', '75', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('10', '1', '83', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('11', '1', '85', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('12', '1', '94', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('13', '1', '98', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('14', '1', '105', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('15', '1', '139', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('16', '1', '143', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('17', '1', '171', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('18', '1', '190', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('19', '1', '191', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('20', '1', '204', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('21', '1', '211', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('22', '1', '220', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('23', '1', '233', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('24', '1', '234', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('25', '1', '237', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('26', '1', '245', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('27', '1', '248', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('28', '1', '259', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('29', '1', '293', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('30', '1', '303', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('31', '1', '323', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('32', '1', '332', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('33', '1', '336', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('34', '1', '339', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('35', '1', '362', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('36', '1', '370', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('37', '1', '379', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('38', '1', '382', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('39', '1', '386', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('40', '1', '395', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('41', '1', '400', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('42', '1', '407', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('43', '1', '437', '-1', null, ' ', 'C');
-INSERT INTO `user_exam_detail` VALUES ('44', '1', '480', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('45', '1', '481', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('46', '1', '482', '-1', null, ' ', 'D');
-INSERT INTO `user_exam_detail` VALUES ('47', '1', '489', '-1', null, ' ', 'A');
-INSERT INTO `user_exam_detail` VALUES ('48', '1', '504', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('49', '1', '505', '-1', null, ' ', 'B');
-INSERT INTO `user_exam_detail` VALUES ('50', '1', '513', '-1', null, ' ', 'C');
 
 -- ----------------------------
 -- Table structure for user_pass
