@@ -8,6 +8,7 @@ input.button {
     -moz-border-radius: 10px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
+    margin-right: 20px;
 }
 input.button:hover{
     background: black;
