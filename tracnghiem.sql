@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-06 11:04:02
+Date: 2017-09-06 23:07:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -7357,7 +7357,7 @@ INSERT INTO `question` VALUES ('366', 'Khi lắp đặt dây dẫn, dây chống
 INSERT INTO `question` VALUES ('367', 'Khi lắp đặt dây dẫn, dây chống sét ở đường dây (ĐZ) hoặc đoạn ĐZ trong vùng ảnh hưởng ĐZ điện áp 35kV đến 500kV, quy định nào dưới đây là đúng:', '2');
 INSERT INTO `question` VALUES ('368', 'Khi lắp đặt dây dẫn, dây chống sét ở đường dây cao áp 2 mạch đi chung cột, một mạch đang có điện, người chỉ huy trực tiếp được quy định về bậc an toàn và năng lực thi công là:', '2');
 INSERT INTO `question` VALUES ('369', 'Khi thi công đường dây chống sét trên đường dây cao áp hai mạch đi chung cột, một mạch đang mang điện, các công việc nào dưới đây tuân thủ quy định an toàn:', '1');
-INSERT INTO `question` VALUES ('370', 'iệc trên đường dây cao áp đang mang điện, bên \"phải\", bên \"trái\" của đường dây được quy ước theo:', '1');
+INSERT INTO `question` VALUES ('370', 'Khi làm việc trên đường dây cao áp đang mang điện, bên \"phải\", bên \"trái\" của đường dây được quy ước theo:', '1');
 INSERT INTO `question` VALUES ('371', 'Làm việc ở trên cột đường dây cao áp đang có điện, việc thực hiện nội dung nào sau đây đã vi phạm quy định an toàn:', '1');
 INSERT INTO `question` VALUES ('372', 'Khi làm việc trên cột đường dây cao áp đang mang điện, các vật tư, dụng cụ nhỏ được kéo lên cột hoặc thả xuống đất bằng phương pháp nào?', '2');
 INSERT INTO `question` VALUES ('373', 'Khi làm việc ở trên cột của đường dây cao áp có điện; cấm người, dụng cụ đến gần dây dẫn có điện. Khoảng cách nhỏ nhất từ người (kể cả dụng cụ khi cầm, mang) đến dây dẫn có điện cấ', '1');
