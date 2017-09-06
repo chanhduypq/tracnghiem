@@ -30,8 +30,8 @@
     }
 </script>
 <?php
-$message = $this->message;
-if ($message != "") {
+
+if (isset($this->message)&&trim($this->message)!='') {
     ?>
     <div style="color: red;text-align: center;width: 100%;">
         <h3><?php echo $this->message; ?></h3>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-05 08:04:56
+Date: 2017-09-06 11:04:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,7 +66,7 @@ INSERT INTO `answer` VALUES ('33', '9', 'Chấp hành nhưng yêu cầu trang b�
 INSERT INTO `answer` VALUES ('34', '9', 'Không chấp hành, nếu người ra lệnh không chấp thuận thì người nhận lệnh tiếp tục làm thực hiện công tác', 'B');
 INSERT INTO `answer` VALUES ('35', '9', 'Chấp hành và báo cáo với cấp trên sau khi đã hoàn thành công việc', 'C');
 INSERT INTO `answer` VALUES ('36', '9', 'Không chấp hành, nếu người ra lệnh không chấp thuận thì người nhận lệnh được quyền báo cáo với cấp trên.', 'D');
-INSERT INTO `answer` VALUES ('37', '10', 'Phải qua thời gian kèm cặp của nhân viên có kinh nghiệm để có trình độ kỹ thuật và an toàn theo yêu cầu của công việc, sau đó phải được kiểm tra bằng bài viết và vấn đáp trực tiếp, đạt yêu c', 'A');
+INSERT INTO `answer` VALUES ('37', '10', 'Phải qua thời gian kèm cặp của nhân viên có kinh nghiệm để có trình độ kỹ thuật và an toàn theo yêu cầu của công việc, sau đó phải được kiểm tra bằng bài viết và vấn đáp trực tiếp, đạt yêu cầu mới được giao nhiệm vụ.', 'A');
 INSERT INTO `answer` VALUES ('38', '10', 'Phải tự học các quy trình kỹ thuật và an toàn có liên quan đến công việc.', 'B');
 INSERT INTO `answer` VALUES ('39', '10', 'Chỉ cần chứng chỉ nghề, chứng chỉ an toàn của các trường đào tạo chuyên ngành.', 'C');
 INSERT INTO `answer` VALUES ('40', '10', 'Câu a, b và c.', 'D');
@@ -283,15 +283,15 @@ INSERT INTO `answer` VALUES ('250', '63', 'Tiếp đất đầu và cuối nhán
 INSERT INTO `answer` VALUES ('251', '63', 'Cắt Dao cách ly hoặc FCO nối vào máy biến áp trạm', 'C');
 INSERT INTO `answer` VALUES ('252', '63', 'Tiếp đất tại Dao cách ly hoặc FCO nối vào máy biến áp trạm', 'D');
 INSERT INTO `answer` VALUES ('253', '64', 'Phải làm tiếp đất hai đầu của đoạn cáp tiến hành công việc', 'A');
-INSERT INTO `answer` VALUES ('254', '64', 'Trong trường hợp làm việc tại một đầu cáp mà theo yêu cầu công việc không thể tiếp đất được tại đầu cáp này thì trong thời gian thực hiện công việc đó phải có tiếp đất ở đầu cáp còn lạ', 'B');
+INSERT INTO `answer` VALUES ('254', '64', 'Trong trường hợp làm việc tại một đầu cáp mà theo yêu cầu công việc không thể tiếp đất được tại đầu cáp này thì trong thời gian thực hiện công việc đó phải có tiếp đất ở đầu cáp còn lại.', 'B');
 INSERT INTO `answer` VALUES ('255', '64', 'Chỉ cần tiếp đất tại một đầu cáp', 'C');
 INSERT INTO `answer` VALUES ('256', '64', 'Cả a và b.', 'D');
 INSERT INTO `answer` VALUES ('257', '65', 'Chập 3 dây pha lại với nhau.', 'A');
 INSERT INTO `answer` VALUES ('258', '65', 'Chập 3 pha và nối với dây trung tính.', 'B');
 INSERT INTO `answer` VALUES ('259', '65', 'Chập 3 pha với dây trung tính và nối với đất.', 'C');
 INSERT INTO `answer` VALUES ('260', '65', 'Chỉ cần chập 2 pha hai bên lại với nhau và nối với đất', 'D');
-INSERT INTO `answer` VALUES ('261', '66', 'Dùng sào cách điện (hoặc đeo găng tay cách điện đối với thiết bị điện hạ áp) để đấu các đầu tiếp đất với dây dẫn trước, sau đó lắp đầu còn lại vào đất. Tháo tiếp đất làm ngược l', 'A');
-INSERT INTO `answer` VALUES ('262', '66', 'Phải đấu đầu dây tiếp đất với đất trước, sau đó dùng sào cách điện (hoặc đeo găng tay cách điện đối với thiết bị điện hạ áp) để lắp đầu còn lại vào dây dẫn. Tháo tiếp đất làm ngư', 'B');
+INSERT INTO `answer` VALUES ('261', '66', 'Dùng sào cách điện (hoặc đeo găng tay cách điện đối với thiết bị điện hạ áp) để đấu các đầu tiếp đất với dây dẫn trước, sau đó lắp đầu còn lại vào đất. Tháo tiếp đất làm ngược lại.', 'A');
+INSERT INTO `answer` VALUES ('262', '66', 'Phải đấu đầu dây tiếp đất với đất trước, sau đó dùng sào cách điện (hoặc đeo găng tay cách điện đối với thiết bị điện hạ áp) để lắp đầu còn lại vào dây dẫn. Tháo tiếp đất làm ngược lại', 'B');
 INSERT INTO `answer` VALUES ('263', '66', 'Phải đấu đầu dây tiếp đất với đất trước, sau đó lắp đầu còn lại vào dây dẫn. Tháo tiếp đất làm ngược lại', 'C');
 INSERT INTO `answer` VALUES ('264', '66', 'Phải đấu đồng thời dây tiếp đất với đất và lắp đầu còn lại vào dây dẫn. ', 'D');
 INSERT INTO `answer` VALUES ('265', '67', '0,7m', 'A');
@@ -398,9 +398,9 @@ INSERT INTO `answer` VALUES ('365', '92', '1 tháng.', 'A');
 INSERT INTO `answer` VALUES ('366', '92', '3 tháng.', 'B');
 INSERT INTO `answer` VALUES ('367', '92', '6 tháng.', 'C');
 INSERT INTO `answer` VALUES ('368', '92', '12 tháng.', 'D');
-INSERT INTO `answer` VALUES ('369', '93', 'Một đơn vị công tác khi làm việc theo 01 Phiếu công tác (hoặc Lệnh công tác), người chỉ huy trực tiếp và người giám sát an toàn điện phải giám sát được nhóm nhân viên của đơn vị công tác có nguy ', 'A');
-INSERT INTO `answer` VALUES ('370', '93', 'Một đơn vị công tác khi làm việc theo 01 Phiếu công tác (hoặc Lệnh công tác), người chỉ huy trực tiếp và người giám sát an toàn điện phải giám sát được nhóm nhân viên của đơn vị công tác đang là', 'B');
-INSERT INTO `answer` VALUES ('371', '93', 'Một đơn vị công tác khi làm việc theo 01 Phiếu công tác (hoặc Lệnh công tác), người chỉ huy trực tiếp và người giám sát an toàn điện phải giám sát được tất cả nhân viên của đơn vị công tác tron', 'C');
+INSERT INTO `answer` VALUES ('369', '93', 'Một đơn vị công tác khi làm việc theo 01 Phiếu công tác (hoặc Lệnh công tác), người chỉ huy trực tiếp và người giám sát an toàn điện phải giám sát được nhóm nhân viên của đơn vị công tác có nguy cơ mất an toàn điện.', 'A');
+INSERT INTO `answer` VALUES ('370', '93', 'Một đơn vị công tác khi làm việc theo 01 Phiếu công tác (hoặc Lệnh công tác), người chỉ huy trực tiếp và người giám sát an toàn điện phải giám sát được nhóm nhân viên của đơn vị công tác đang làm việc trên cột điện cao áp.', 'B');
+INSERT INTO `answer` VALUES ('371', '93', 'Một đơn vị công tác khi làm việc theo 01 Phiếu công tác (hoặc Lệnh công tác), người chỉ huy trực tiếp và người giám sát an toàn điện phải giám sát được tất cả nhân viên của đơn vị công tác trong cùng một thời gian, không gian.', 'C');
 INSERT INTO `answer` VALUES ('372', '93', 'Cả a và b.', 'D');
 INSERT INTO `answer` VALUES ('373', '94', 'Người cấp phiếu công tác; Người cho phép;', 'A');
 INSERT INTO `answer` VALUES ('374', '94', 'Người giám sát an toàn điện; Người lãnh đạo công việc;', 'B');
@@ -546,7 +546,7 @@ INSERT INTO `answer` VALUES ('513', '129', 'Người ra lệnh công tác', 'A')
 INSERT INTO `answer` VALUES ('514', '129', 'Người chỉ huy trực tiếp', 'B');
 INSERT INTO `answer` VALUES ('515', '129', 'Người sử dụng lao động của đơn vị làm công việc', 'C');
 INSERT INTO `answer` VALUES ('516', '129', 'Tổ trưởng sản xuất.', 'D');
-INSERT INTO `answer` VALUES ('517', '130', 'Phải chỉ dẫn những điều có liên quan đến công việc và các yếu tố nguy hiểm tại hiện trường cho người chỉ huy trực tiếp (hoặc người thi hành lệnh), người giám sát an toàn điện (nếu có) để đ', 'A');
+INSERT INTO `answer` VALUES ('517', '130', 'Phải chỉ dẫn những điều có liên quan đến công việc và các yếu tố nguy hiểm tại hiện trường cho người chỉ huy trực tiếp (hoặc người thi hành lệnh), người giám sát an toàn điện (nếu có) để đảm bảo an toàn khi thực hiện công việc.', 'A');
 INSERT INTO `answer` VALUES ('518', '130', 'Ghi vào sổ lệnh công tác theo quy định khi Người chỉ huy trực tiếp (hoặc Người thi hành lệnh) trả lệnh và báo cáo kết quả thực hiện công việc.', 'B');
 INSERT INTO `answer` VALUES ('519', '130', 'Phải ra hiện trường để bàn giao nơi làm việc cho người chỉ huy trực tiếp.', 'C');
 INSERT INTO `answer` VALUES ('520', '130', 'Cả a và b đúng.', 'D');
@@ -607,7 +607,7 @@ INSERT INTO `answer` VALUES ('574', '144', 'Người cấp phiếu phải kiểm
 INSERT INTO `answer` VALUES ('575', '144', 'Người cho phép phải cùng với người chỉ huy trực tiếp và người giám sát an toàn điện (nếu có) kiểm tra các biện pháp an toàn đã thực hiện đủ và đúng.', 'C');
 INSERT INTO `answer` VALUES ('576', '144', 'Cả a và c.', 'D');
 INSERT INTO `answer` VALUES ('577', '145', 'Chỉ dẫn cho người chỉ huy trực tiếp, người giám sát an toàn điện (nếu có), nhân viên đơn vị công tác biết phạm vi được phép làm việc và những phần có điện ở xung quanh.', 'A');
-INSERT INTO `answer` VALUES ('578', '145', 'Sau khi người chỉ huy trực tiếp thực hiện tiếp đất di động và các biện pháp an toàn khác (nếu có), yêu cầu người chỉ huy trực tiếp ghi, ký vào phiếu công tác theo quy định và giao 01 bản PCT cho ngư', 'B');
+INSERT INTO `answer` VALUES ('578', '145', 'Sau khi người chỉ huy trực tiếp thực hiện tiếp đất di động và các biện pháp an toàn khác (nếu có), yêu cầu người chỉ huy trực tiếp ghi, ký vào phiếu công tác theo quy định và giao 01 bản PCT cho người chỉ huy trực tiếp.', 'B');
 INSERT INTO `answer` VALUES ('579', '145', 'Kiểm tra đầy đủ dụng cụ thi công của đơn vị công tác.', 'C');
 INSERT INTO `answer` VALUES ('580', '145', 'Cả a và b.', 'D');
 INSERT INTO `answer` VALUES ('581', '146', 'Kiểm tra trang bị bảo hộ, phương tiện cá nhân của đơn vị công tác.', 'A');
@@ -744,7 +744,7 @@ INSERT INTO `answer` VALUES ('711', '178', 'Người cấp phiếu.', 'C');
 INSERT INTO `answer` VALUES ('712', '178', 'Người chỉ huy trực tiếp và người cho phép.', 'D');
 INSERT INTO `answer` VALUES ('713', '179', 'Đã khóa phiếu công tác, nếu thiết bị đóng điện có liên quan đến nhiều đơn vị công tác thì phải khóa tất cả các phiếu công tác, đảm bảo thiết bị sẽ đóng điện tuyệt đối an toàn.', 'A');
 INSERT INTO `answer` VALUES ('714', '179', 'Nơi (thiết bị) làm việc đã cất biển báo và rào chắn tạm thời khi làm việc (nếu có), đặt lại rào chắn cố định.', 'B');
-INSERT INTO `answer` VALUES ('715', '179', 'Tại nơi trực vận hành của đơn vị quản lý vận hành đã tháo hết các dấu hiệu báo có đơn vị công tác làm việc trên sơ đồ. Được phép đóng điện của cấp có quyền điều khiển thiết bị theo qu', 'C');
+INSERT INTO `answer` VALUES ('715', '179', 'Tại nơi trực vận hành của đơn vị quản lý vận hành đã tháo hết các dấu hiệu báo có đơn vị công tác làm việc trên sơ đồ. Được phép đóng điện của cấp có quyền điều khiển thiết bị theo quy định.', 'C');
 INSERT INTO `answer` VALUES ('716', '179', 'Cả a, b và c.', 'D');
 INSERT INTO `answer` VALUES ('717', '180', 'Đã thu dọn dụng cụ, người đã tập kết vị trí an toàn.', 'A');
 INSERT INTO `answer` VALUES ('718', '180', 'Tiếp đất và biện pháp an toàn do đơn vị công tác tự làm (nếu có) đã rút hết, đảm bảo an toàn.', 'B');
@@ -768,7 +768,7 @@ INSERT INTO `answer` VALUES ('735', '184', 'Trường hợp thiết bị hoặc 
 INSERT INTO `answer` VALUES ('736', '184', 'Cả a và b đều đúng.', 'D');
 INSERT INTO `answer` VALUES ('737', '185', 'Cấp “Giấy phối hợp cho phép làm việc” (hay còn gọi là “Giấy phối hợp cho phép”).', 'A');
 INSERT INTO `answer` VALUES ('738', '185', 'Cử nhân viên vận hành kiểm tra các biện pháp an toàn do đơn vị cấp Phiếu công tác thực hiện.', 'B');
-INSERT INTO `answer` VALUES ('739', '185', 'Cử nhân viên vận hành làm các biện pháp an toàn đối với phần thiết bị do đơn vị mình quản lý và chịu trách nhiệm về việc đã làm các biện pháp an toàn đối với phần thiết bị do đơn vị mình qu', 'C');
+INSERT INTO `answer` VALUES ('739', '185', 'Cử nhân viên vận hành làm các biện pháp an toàn đối với phần thiết bị do đơn vị mình quản lý và chịu trách nhiệm về việc đã làm các biện pháp an toàn đối với phần thiết bị do đơn vị mình quản lý.', 'C');
 INSERT INTO `answer` VALUES ('740', '185', 'Cả a và c.', 'D');
 INSERT INTO `answer` VALUES ('741', '186', '01 bản.', 'A');
 INSERT INTO `answer` VALUES ('742', '186', '02 bản', 'B');
@@ -777,7 +777,7 @@ INSERT INTO `answer` VALUES ('744', '186', '04 bản.', 'D');
 INSERT INTO `answer` VALUES ('745', '187', 'Đơn vị xây lắp cam kết đã rút hết người ra khỏi nơi làm việc.', 'A');
 INSERT INTO `answer` VALUES ('746', '187', 'Đơn vị quản lý vận hành đã khoá hết Phiếu công tác, giao trả nơi làm việc cho đơn vị Điều độ.', 'B');
 INSERT INTO `answer` VALUES ('747', '187', 'Đơn vị xây lắp và đơn vị quản lý vận hành đã khoá hết Phiếu công tác, cùng giao trả nơi làm việc cho đơn vị Điều độ.', 'C');
-INSERT INTO `answer` VALUES ('748', '187', 'Đơn vị quản lý vận hành đã khoá hết phiếu công tác, giao trả nơi làm việc cho đơn vị Điều độ; đồng thời đơn vị Điều độ yêu cầu đơn vị quản lý vận hành khẳng định đảm bảo tuyệt đ', 'D');
+INSERT INTO `answer` VALUES ('748', '187', 'Đơn vị quản lý vận hành đã khoá hết phiếu công tác, giao trả nơi làm việc cho đơn vị Điều độ; đồng thời đơn vị Điều độ yêu cầu đơn vị quản lý vận hành khẳng định đảm bảo tuyệt đối an toàn, đủ điều kiện đóng điện.', 'D');
 INSERT INTO `answer` VALUES ('749', '188', 'Làm việc có tải trọng; vận chuyển vật nặng; ngăn ngừa mất khả năng làm việc do công cụ gây rung; kiểm tra trước khi trèo lên giá đỡ.', 'A');
 INSERT INTO `answer` VALUES ('750', '188', 'Kiểm tra cắt điện và rò điện; sử dụng các thiết bị leo trèo; ngăn ngừa bị ngã; ngăn ngừa vật liệu, dụng cụ rơi từ trên cao.', 'B');
 INSERT INTO `answer` VALUES ('751', '188', 'Làm việc tại cột; làm việc với dây dẫn; làm việc với thiết bị điện; công việc đào móng cột và hào cáp.', 'C');
@@ -883,7 +883,7 @@ INSERT INTO `answer` VALUES ('850', '213', 'Bắt đầu quàng dây đeo an to�
 INSERT INTO `answer` VALUES ('851', '213', 'Phải kiểm tra dây đeo an toàn ngay trước khi bắt đầu leo (trèo) đối với tất cả các loại cột.', 'C');
 INSERT INTO `answer` VALUES ('852', '213', 'b và c đúng.', 'D');
 INSERT INTO `answer` VALUES ('853', '214', 'Luôn móc dây đeo an toàn vào vị trí chắc chắn, dù ngay khi đang vượt qua chướng ngại vật trên trụ vẫn phải móc 1 đầu móc của dây quàng vào chỗ chắc chắn.', 'A');
-INSERT INTO `answer` VALUES ('854', '214', 'Trước khi dồn trọng lượng cơ thể (bước, đứng, hoặc ngồi, hoặc tựa, hoặc đu người...) vào vị trí bất kỳ nào đó đều phải tự kiểm tra sự chắc chắn, ổn định... của kết cấu, hoặc vật... ', 'B');
+INSERT INTO `answer` VALUES ('854', '214', 'Trước khi dồn trọng lượng cơ thể (bước, đứng, hoặc ngồi, hoặc tựa, hoặc đu người...) vào vị trí bất kỳ nào đó đều phải tự kiểm tra sự chắc chắn, ổn định... của kết cấu, hoặc vật... mà mình sẽ tác động vào đó.', 'B');
 INSERT INTO `answer` VALUES ('855', '214', 'Không khi nào được thả 2 tay (không bám vào chỗ chắc chắn) khi chưa quàng và cài chắc dây đeo an toàn.', 'C');
 INSERT INTO `answer` VALUES ('856', '214', 'Cả a, b và c.', 'D');
 INSERT INTO `answer` VALUES ('857', '215', 'Sử dụng thang một dóng, hai dóng, guốc trèo, ty leo chuyên dùng và có quy trình sử dụng riêng cho các loại phương tiện này.', 'A');
@@ -922,13 +922,13 @@ INSERT INTO `answer` VALUES ('889', '223', '1,0m', 'A');
 INSERT INTO `answer` VALUES ('890', '223', '0,8m', 'B');
 INSERT INTO `answer` VALUES ('891', '223', '0,6m', 'C');
 INSERT INTO `answer` VALUES ('892', '223', '0,4m', 'D');
-INSERT INTO `answer` VALUES ('893', '224', 'Trước khi làm việc trên cao phải tự kiểm tra dây đeo an toàn của mình bằng cách đeo vào người rồi buộc dây vào vật chắc chắn ở dưới đất và chụm chân lại ngã người ra phía sau xem dây có hiện t', 'A');
+INSERT INTO `answer` VALUES ('893', '224', 'Trước khi làm việc trên cao phải tự kiểm tra dây đeo an toàn của mình bằng cách đeo vào người rồi buộc dây vào vật chắc chắn ở dưới đất và chụm chân lại ngã người ra phía sau xem dây có hiện tượng bất thường gì không.', 'A');
 INSERT INTO `answer` VALUES ('894', '224', 'Phải bảo quản tốt dây đeo an toàn, làm xong phải cuộn lại gọn gàng, không để chỗ ẩm thấp mà phải treo lên hoặc để chỗ cao, khô ráo, sạch sẽ.', 'B');
 INSERT INTO `answer` VALUES ('895', '224', 'Dây đeo an toàn phải được thử 6 tháng 01 lần, bằng cách treo trọng lượng hoặc thiết bị thử dây đeo an toàn chuyên dùng.', 'C');
 INSERT INTO `answer` VALUES ('896', '224', 'Thực hiện cả a, b và c.', 'D');
 INSERT INTO `answer` VALUES ('897', '225', 'Dây đeo an toàn phải được thử 06 tháng 01 lần, bằng cách treo trọng lượng hoặc thiết bị thử dây đeo an toàn chuyên dùng.', 'A');
 INSERT INTO `answer` VALUES ('898', '225', 'Trọng lượng thử đối với dây đeo an toàn cũ là 300kg, đối với dây đeo an toàn mới là 225kg', 'B');
-INSERT INTO `answer` VALUES ('899', '225', 'Sau khi thử dây đeo an toàn phải ghi ngày thử, trọng lượng thử và nhận xét tốt, xấu vào sổ theo dõi thử dây đeo an toàn. Đồng thời đánh dấu (dán tem) vào dây đã thử còn đạt tiêu chuẩn, chỉ dây n', 'C');
+INSERT INTO `answer` VALUES ('899', '225', 'Sau khi thử dây đeo an toàn phải ghi ngày thử, trọng lượng thử và nhận xét tốt, xấu vào sổ theo dõi thử dây đeo an toàn. Đồng thời đánh dấu (dán tem) vào dây đã thử còn đạt tiêu chuẩn, chỉ dây nào đánh dấu mới được sử dụng.', 'C');
 INSERT INTO `answer` VALUES ('900', '225', 'Dây đeo an toàn không đạt tiêu chuẩn phải được lập biên bản và huỷ bỏ.', 'D');
 INSERT INTO `answer` VALUES ('901', '226', '01 tháng một lần.', 'A');
 INSERT INTO `answer` VALUES ('902', '226', '03 tháng một lần.', 'B');
@@ -1023,8 +1023,8 @@ INSERT INTO `answer` VALUES ('990', '248', 'Chỉ tháo chuyển móc phụ sau 
 INSERT INTO `answer` VALUES ('991', '248', 'Chỉ sử dụng móc chính, không cần sử dụng móc phụ.', 'C');
 INSERT INTO `answer` VALUES ('992', '248', 'Thực hiện a và b.', 'D');
 INSERT INTO `answer` VALUES ('993', '249', 'Luôn có ít nhất 01 tay bám chắc vào cột.', 'A');
-INSERT INTO `answer` VALUES ('994', '249', 'Bàn chân phải đứng vào vị trí các thanh giằng ngang của cột (hoặc mặt bích nối). Chỉ đứng vào thanh giằng chéo khi không có thanh giằng ngang và phải đặt chân vào vị trí thấp nhất của thanh giằng ch', 'B');
-INSERT INTO `answer` VALUES ('995', '249', 'Trường hợp phải đứng vào vị trí khoảng giữa (lưng chừng) của thanh giằng chéo thì phải hết sức tập trung tư tưởng, phải có chỗ bám tay chắc chắn để treo (đu) hoặc tỳ thân và giữ thăng bằng- ', 'C');
+INSERT INTO `answer` VALUES ('994', '249', 'Bàn chân phải đứng vào vị trí các thanh giằng ngang của cột (hoặc mặt bích nối). Chỉ đứng vào thanh giằng chéo khi không có thanh giằng ngang và phải đặt chân vào vị trí thấp nhất của thanh giằng chéo (chỗ nối với thanh đứng).', 'B');
+INSERT INTO `answer` VALUES ('995', '249', 'Trường hợp phải đứng vào vị trí khoảng giữa (lưng chừng) của thanh giằng chéo thì phải hết sức tập trung tư tưởng, phải có chỗ bám tay chắc chắn để treo (đu) hoặc tỳ thân và giữ thăng bằng- ổn định cho toàn bộ cơ thể.', 'C');
 INSERT INTO `answer` VALUES ('996', '249', 'Cả a, b, và c.', 'D');
 INSERT INTO `answer` VALUES ('997', '250', 'Áp dụng biện pháp phù hợp để tránh lở đất.', 'A');
 INSERT INTO `answer` VALUES ('998', '250', 'Thực hiện các biện pháp phù hợp để ngăn ngừa người rơi xuống hố ', 'B');
@@ -1134,7 +1134,7 @@ INSERT INTO `answer` VALUES ('1101', '276', 'Phải tách điểm trung tính ra
 INSERT INTO `answer` VALUES ('1102', '276', 'Phải tách điểm trung tính ra khỏi hệ thống, làm việc này phải đeo găng tay cách điện hạ áp.', 'B');
 INSERT INTO `answer` VALUES ('1103', '276', 'Không cần tách điểm trung tính ra khỏi hệ thống.', 'C');
 INSERT INTO `answer` VALUES ('1104', '276', 'Cả a và b đều đúng.', 'D');
-INSERT INTO `answer` VALUES ('1105', '277', 'Cắt điện và có biện pháp để tránh đóng nhầm điện trở lại (như: khoá bộ phận truyền động của máy cắt và dao cách ly (DCL); treo biển “Cấm đóng điện! Có người đang làm việc” tại máy cắt v', 'A');
+INSERT INTO `answer` VALUES ('1105', '277', 'Cắt điện và có biện pháp để tránh đóng nhầm điện trở lại (như: khoá bộ phận truyền động của máy cắt và dao cách ly (DCL); treo biển “Cấm đóng điện! Có người đang làm việc” tại máy cắt và DCL cấp điện cho động cơ).', 'A');
 INSERT INTO `answer` VALUES ('1106', '277', 'Nếu động cơ có đặt chung điểm trung tính thì phải tách điểm trung tính ra khỏi hệ thống.', 'B');
 INSERT INTO `answer` VALUES ('1107', '277', 'Nếu đầu cáp của động cơ điện đã tháo rời thì các công việc tiến hành trên động cơ phải theo phương án đã được phòng kỹ thuật của đơn vị phê duyệt, không phải có Phiếu công tác.', 'C');
 INSERT INTO `answer` VALUES ('1108', '277', 'Cả a, b và c.', 'D');
@@ -1175,7 +1175,7 @@ INSERT INTO `answer` VALUES ('1142', '286', 'Không cần sử dụng dây đeo 
 INSERT INTO `answer` VALUES ('1143', '286', 'Trèo và làm việc ở phía đặt tay xà có sứ đỡ dây dẫn trên cột đơn.', 'C');
 INSERT INTO `answer` VALUES ('1144', '286', 'Cả b và c đều đúng.', 'D');
 INSERT INTO `answer` VALUES ('1145', '287', 'Trời không có mưa, giông, sét.', 'A');
-INSERT INTO `answer` VALUES ('1146', '287', 'Nếu đường dây có bảo vệ bằng dây chống sét thì khi tháo dây nối đất phải đeo găng tay cách điện, hoặc trước khi tháo, đấu dây nối đất ở cột phải nối tắt tạm thời đầu dây nối đất đó ', 'B');
+INSERT INTO `answer` VALUES ('1146', '287', 'Nếu đường dây có bảo vệ bằng dây chống sét thì khi tháo dây nối đất phải đeo găng tay cách điện, hoặc trước khi tháo, đấu dây nối đất ở cột phải nối tắt tạm thời đầu dây nối đất đó vào một cọc nối đất bằng một đoạn dây dẫn có tiết diện tối thiểu 10 mm2.', 'B');
 INSERT INTO `answer` VALUES ('1147', '287', 'Cả a và b.', 'C');
 INSERT INTO `answer` VALUES ('1148', '287', 'Cả a và b đều sai.', 'D');
 INSERT INTO `answer` VALUES ('1149', '288', 'Phải có tiếp đất tại nơi làm việc theo quy định.', 'A');
@@ -1376,7 +1376,7 @@ INSERT INTO `answer` VALUES ('1343', '336', 'Bắt buộc phải cắt điện �
 INSERT INTO `answer` VALUES ('1344', '336', 'Thực hiện theo a và b', 'D');
 INSERT INTO `answer` VALUES ('1345', '337', 'Phải có Phiếu công tác hoặc Lệnh công tác.', 'A');
 INSERT INTO `answer` VALUES ('1346', '337', 'Việc thay chì trên cột được tiến hành lúc trời khô ráo, không có giông, sấm sét và do hai người thực hiện.', 'B');
-INSERT INTO `answer` VALUES ('1347', '337', 'Nếu mưa nhỏ hạt, cho phép thay chì ở trên cột nhưng khi làm việc phải có găng tay cách điện và tấm ni lông để che phần thiết bị mang điện, vị trí làm việc có chỗ đứng chắc chắn. Quần, áo ngườ', 'C');
+INSERT INTO `answer` VALUES ('1347', '337', 'Nếu mưa nhỏ hạt, cho phép thay chì ở trên cột nhưng khi làm việc phải có găng tay cách điện và tấm ni lông để che phần thiết bị mang điện, vị trí làm việc có chỗ đứng chắc chắn. Quần, áo người làm việc phải khô.', 'C');
 INSERT INTO `answer` VALUES ('1348', '337', 'Cả a, b và c đều đúng.', 'D');
 INSERT INTO `answer` VALUES ('1349', '338', 'Tháo đầu dây đấu vào đường dây chính, không cần cắt các cầu dao nhánh rẽ vào các hộ', 'A');
 INSERT INTO `answer` VALUES ('1350', '338', 'Phải cắt điện cả đường dây hạ áp trong trường hợp không tháo được đầu đấu vào trục chính, và cắt các cầu dao ở cuối nhánh rẽ đi vào các hộ. ', 'B');
@@ -1470,7 +1470,7 @@ INSERT INTO `answer` VALUES ('1437', '360', ' Bậc 2', 'A');
 INSERT INTO `answer` VALUES ('1438', '360', 'Bậc 3', 'B');
 INSERT INTO `answer` VALUES ('1439', '360', 'Bậc 4', 'C');
 INSERT INTO `answer` VALUES ('1440', '360', 'Không quy định', 'D');
-INSERT INTO `answer` VALUES ('1441', '361', 'Căng dây thừng ở hai vị trí của dây dẫn định căng về hai phía của dây đang vận hành, dây thừng phải được buộc hoặc néo chắc chắn dưới mặt đất và có chiều dài đủ để dây dẫn được căng ', 'A');
+INSERT INTO `answer` VALUES ('1441', '361', 'Căng dây thừng ở hai vị trí của dây dẫn định căng về hai phía của dây đang vận hành, dây thừng phải được buộc hoặc néo chắc chắn dưới mặt đất và có chiều dài đủ để dây dẫn được căng đúng độ võng.', 'A');
 INSERT INTO `answer` VALUES ('1442', '361', 'Dùng dây cáp thép buộc, néo dây dẫn được căng kéo.', 'B');
 INSERT INTO `answer` VALUES ('1443', '361', 'Có biện pháp làm giàn giáo để đỡ dây đang thi công.', 'C');
 INSERT INTO `answer` VALUES ('1444', '361', 'Cả a, b và c đều đúng.', 'D');
@@ -1495,7 +1495,7 @@ INSERT INTO `answer` VALUES ('1462', '366', 'Được phép làm việc trên c�
 INSERT INTO `answer` VALUES ('1463', '366', 'Được phép làm việc trên cột nhưng dưới sự giám sát của nhân viên có bậc AT cao hơn', 'C');
 INSERT INTO `answer` VALUES ('1464', '366', 'Chỉ được phép làm việc dưới đất, được phép tiếp xúc với dây dẫn', 'D');
 INSERT INTO `answer` VALUES ('1465', '367', 'Dây dẫn, dây chống sét được lắp đặt cùng lúc trên nhiều khoảng néo, chỉ cần tiếp đất tại 1 vị trí trên khoảng néo bất kỳ của đường dây đang thi công', 'A');
-INSERT INTO `answer` VALUES ('1466', '367', 'Dây dẫn, dây chống sét chỉ được lắp trong một khoảng néo. Trong quá trình thi công, lèo của dây dẫn và dây néo phải được tháo ra và chỉ được đấu lại khi kết thúc công việc ở các đoạn lân cậ', 'B');
+INSERT INTO `answer` VALUES ('1466', '367', 'Dây dẫn, dây chống sét chỉ được lắp trong một khoảng néo. Trong quá trình thi công, lèo của dây dẫn và dây néo phải được tháo ra và chỉ được đấu lại khi kết thúc công việc ở các đoạn lân cận theo lệnh của NLĐ công việc', 'B');
 INSERT INTO `answer` VALUES ('1467', '367', 'Nhân viên tổ công tác thực hiện đấu lại lèo nối hai khoảng néo khi chưa được sự đồng ý của người lão đạo công việc', 'C');
 INSERT INTO `answer` VALUES ('1468', '367', 'a,b và c đều đúng', 'D');
 INSERT INTO `answer` VALUES ('1469', '368', 'Có bậc 5 an toàn điện, có thâm niên 1 năm trong công tác xây lắp đường dây cao áp', 'A');
@@ -1516,7 +1516,7 @@ INSERT INTO `answer` VALUES ('1483', '371', 'Tung, ném các vật tư dụng c�
 INSERT INTO `answer` VALUES ('1484', '371', 'Cả a, b và c', 'D');
 INSERT INTO `answer` VALUES ('1485', '372', 'Các vật tư, dụng cụ nhỏ được kéo lên hoặc thả xuống bằng dây có khả năng chịu lực, có biện pháp đảm bảo dây không bị bung, văng lên đường dây đang mang điện.', 'A');
 INSERT INTO `answer` VALUES ('1486', '372', 'Cho phép tung ném các vật tư, dụng cụ nhỏ lên cao nhưng phải đảm bảo không va trúng đường dây', 'B');
-INSERT INTO `answer` VALUES ('1487', '372', 'Các vật tư, dụng cụ nhỏ được kéo lên hoặc thả xuống bằng dây thừng vô tận, chỉ được phép tháo dây thừng khi vật tư thiết bị đã được bắt chặt vào vị trí. Dụng cụ đồ nghề phải có túi', 'C');
+INSERT INTO `answer` VALUES ('1487', '372', 'Các vật tư, dụng cụ nhỏ được kéo lên hoặc thả xuống bằng dây thừng vô tận, chỉ được phép tháo dây thừng khi vật tư thiết bị đã được bắt chặt vào vị trí. Dụng cụ đồ nghề phải có túi đựng chuyên dụng', 'C');
 INSERT INTO `answer` VALUES ('1488', '372', 'Cả a, b và c đều đúng.', 'D');
 INSERT INTO `answer` VALUES ('1489', '373', 'Gấp hai lần chiều dài cánh tay người làm việc kèm dụng cụ', 'A');
 INSERT INTO `answer` VALUES ('1490', '373', '0,6 mét', 'B');
@@ -1618,7 +1618,7 @@ INSERT INTO `answer` VALUES ('1585', '397', 'Kết lưới hiện trạng của 
 INSERT INTO `answer` VALUES ('1586', '397', 'Các công tác và số nhóm công tác đang triển khai trên lưới, số lượng tiếp địa di động đang triển khai. Tình hình tiến độ thực hiện công tác của các đơn vị.', 'B');
 INSERT INTO `answer` VALUES ('1587', '397', 'Các yêu cầu ưu tiên cấp điện và mệnh lệnh chỉ đạo của cấp trên', 'C');
 INSERT INTO `answer` VALUES ('1588', '397', 'Thực hiện cả a, b và c', 'D');
-INSERT INTO `answer` VALUES ('1589', '398', 'Báo cáo với lãnh đạo về việc chưa được huấn luyện về quy trình treo tháo công tơ, đề nghị không thực hiện công việc này. Nếu lãnh đạo Điện lực không đồng ý, nhân viên A có quyền kiến nghị l', 'A');
+INSERT INTO `answer` VALUES ('1589', '398', 'Báo cáo với lãnh đạo về việc chưa được huấn luyện về quy trình treo tháo công tơ, đề nghị không thực hiện công việc này. Nếu lãnh đạo Điện lực không đồng ý, nhân viên A có quyền kiến nghị lên cấp trên.', 'A');
 INSERT INTO `answer` VALUES ('1590', '398', 'Chấp hành sự điều động và phân công của lãnh đạo đơn vị, xem đây là cơ hội để học tập nắm bắt nghiệp vụ mới', 'B');
 INSERT INTO `answer` VALUES ('1591', '398', 'Chấp hành sự điều động của lãnh đạo đơn vị nhưng yêu cầu phải trang bị đầy đủ phương tiện bảo hộ cá nhân', 'C');
 INSERT INTO `answer` VALUES ('1592', '398', 'Các câu a, c đều đúng', 'D');
@@ -1636,14 +1636,14 @@ INSERT INTO `answer` VALUES ('1603', '401', 'Cho phép công nhân ra hiện tr�
 INSERT INTO `answer` VALUES ('1604', '401', 'Cả a, b và c đều đúng', 'D');
 INSERT INTO `answer` VALUES ('1605', '402', 'Cử nhân viên khác giám sát và hổ trợ nhân viên đang có tình trạng bất thường về tâm lý và sức khoẻ', 'A');
 INSERT INTO `answer` VALUES ('1606', '402', 'Động viên tinh thần để nhân viên đó tiếp tục làm việc', 'B');
-INSERT INTO `answer` VALUES ('1607', '402', 'Xem xét tình trạng tâm lý, sức khoẻ của nhân viên để bố trí công việc phù hợp, nếu nhân viên không có khả năng tiếp tục công việc, thực hiện rút nhân viên trên ra khỏi danh sách đội công tác, yêu ', 'C');
+INSERT INTO `answer` VALUES ('1607', '402', 'Xem xét tình trạng tâm lý, sức khoẻ của nhân viên để bố trí công việc phù hợp, nếu nhân viên không có khả năng tiếp tục công việc, thực hiện rút nhân viên trên ra khỏi danh sách đội công tác, yêu cầu bộ phận y tế hỗ trợ.', 'C');
 INSERT INTO `answer` VALUES ('1608', '402', 'Cả b và c đều đúng', 'D');
 INSERT INTO `answer` VALUES ('1609', '403', 'a.  Người CHTT không ký nhận PCT và yêu cầu người cho phép báo lại đơn vị QLVH phải thực hiện đầy đủ các biện pháp an toàn theo PCT mới thực hiện việc bàn giao, cho phép làm việc.', 'A');
 INSERT INTO `answer` VALUES ('1610', '403', 'Nhận PCT sau khi người cho phép của đơn vị QLVH đã sửa lại PCT đúng với thực tế hiện trường công tác.', 'B');
 INSERT INTO `answer` VALUES ('1611', '403', 'Nhận PCT và yêu cầu nhân viên đội công tác tự thực hiện các biện pháp AT bổ sung', 'C');
 INSERT INTO `answer` VALUES ('1612', '403', 'Cả b hoặc c đều đúng', 'D');
 INSERT INTO `answer` VALUES ('1613', '404', ' Báo cáo với lãnh đạo Điện lực xin lệnh khôi phục lưới điện', 'A');
-INSERT INTO `answer` VALUES ('1614', '404', 'Kiểm tra PCT của tất cả các nhóm công tác trong khu vực chuẩn bị đóng điện đã khoá, đã tháo toàn bộ tiếp địa di động trên đường dây, thực hiện phiếu bàn giao thiết bị với Trực ban điều độ,', 'B');
+INSERT INTO `answer` VALUES ('1614', '404', 'Kiểm tra PCT của tất cả các nhóm công tác trong khu vực chuẩn bị đóng điện đã khoá, đã tháo toàn bộ tiếp địa di động trên đường dây, thực hiện phiếu bàn giao thiết bị với Trực ban điều độ, kiểm tra PTT khôi phục để bàn giao cho các nhóm thao tác thực hiện', 'B');
 INSERT INTO `answer` VALUES ('1615', '404', 'Kiểm tra đã khoá phiếu của tất cả các nhóm công tác, lệnh cho nhóm thao tác thực hiện khôi phục lưới điện, báo cho Điều Độ Viên đã khôi phục lưới điện sau công tác', 'C');
 INSERT INTO `answer` VALUES ('1616', '404', 'Câu a và b đúng', 'D');
 INSERT INTO `answer` VALUES ('1617', '405', 'Cho phép 2 công nhân đơn vị ngoài tiếp tục làm việc nếu thấy công việc đảm bảo các yêu cầu an toàn.', 'A');
@@ -1656,12 +1656,12 @@ INSERT INTO `answer` VALUES ('1623', '406', 'Lập tức cắt TBA đang cấp �
 INSERT INTO `answer` VALUES ('1624', '406', 'Thực hiện theo b hoặc c', 'D');
 INSERT INTO `answer` VALUES ('1625', '407', 'Nhắc đơn vị công tác làm nhanh để trả lưới vì có thể gặp nguy hiểm.', 'A');
 INSERT INTO `answer` VALUES ('1626', '407', 'Thông báo với người chỉ huy trực tiếp hoặc lãnh đạo công việc có biện pháp bổ sung tiếp địa để đảm bảo an toàn cho nhóm công tác.', 'B');
-INSERT INTO `answer` VALUES ('1627', '407', 'Yêu cầu người chỉ huy trực tiếp phải dừng ngay công tác, rút hết công nhân khỏi đường dây, thực hiện việc tiếp địa đầy đủ đảm bảo yêu cầu an toàn mới cho nhóm công tác lên lại lưới. Đồn', 'C');
+INSERT INTO `answer` VALUES ('1627', '407', 'Yêu cầu người chỉ huy trực tiếp phải dừng ngay công tác, rút hết công nhân khỏi đường dây, thực hiện việc tiếp địa đầy đủ đảm bảo yêu cầu an toàn mới cho nhóm công tác lên lại lưới. Đồng thời gọi điện thoại báo cán bộ AT hoặc tổ trưởng đường dây.', 'C');
 INSERT INTO `answer` VALUES ('1628', '407', 'Cả a, b và c đều đúng', 'D');
 INSERT INTO `answer` VALUES ('1629', '408', 'Báo cáo với Trực ban điện lực xin lệnh tiếp tục khôi phục, lưu ý vấn đề tồn tại trên lưới để có phương án xử lý trong thời gian phù hợp.', 'A');
 INSERT INTO `answer` VALUES ('1630', '408', 'Chủ động thực hiện xử lý vị trí mất an toàn vận hành, sau khi hoàn thành báo cáo với trực ban Điện lực để xin lệnh khôi phục', 'B');
-INSERT INTO `answer` VALUES ('1631', '408', 'Báo cáo với Trực ban Điện lực, đề nghị hoãn thao tác khôi phục, yêu cầu cấp PCT mới, để xử lý vị trí khiếm khuyết trên. Lập biên bản đơn vị thi công đã không đảm bảo hoàn trả lưới điện s', 'C');
-INSERT INTO `answer` VALUES ('1632', '408', 'Báo cáo với Trực ban Điện lực, đề nghị hoãn thao tác khôi phục để xử lý vị trí khiếm khuyết trên. Lập biên bản đơn vị thi công đã không đảm bảo hoàn trả lưới điện sau công tác đúng nguyên ', 'D');
+INSERT INTO `answer` VALUES ('1631', '408', 'Báo cáo với Trực ban Điện lực, đề nghị hoãn thao tác khôi phục, yêu cầu cấp PCT mới, để xử lý vị trí khiếm khuyết trên. Lập biên bản đơn vị thi công đã không đảm bảo hoàn trả lưới điện sau công tác đúng nguyên trạng và thời gian đăng ký.', 'C');
+INSERT INTO `answer` VALUES ('1632', '408', 'Báo cáo với Trực ban Điện lực, đề nghị hoãn thao tác khôi phục để xử lý vị trí khiếm khuyết trên. Lập biên bản đơn vị thi công đã không đảm bảo hoàn trả lưới điện sau công tác đúng nguyên trạng và thời gian đăng ký.', 'D');
 INSERT INTO `answer` VALUES ('1633', '409', 'Dây dẫn lắp đặt ở trong nhà phải dùng những loại dây có bọc cách điện, không dùng dây trần để mắc ở trong nhà.', 'A');
 INSERT INTO `answer` VALUES ('1634', '409', 'Dây đi xuyên qua tường hoặc đi ngầm trong tường phải đi trong ống cách điện (hoặc ống có cách điện), không nối dây trong lòng ống.', 'B');
 INSERT INTO `answer` VALUES ('1635', '409', 'Dây xuyên qua mái nhà bằng ngói, lá, nứa, gianh phải dùng dây có lớp vỏ chống va đập cơ học, nhựa PVC.', 'C');
@@ -2064,7 +2064,7 @@ INSERT INTO `answer` VALUES ('2031', '508', '3 năm', 'C');
 INSERT INTO `answer` VALUES ('2032', '508', '4 năm', 'D');
 INSERT INTO `answer` VALUES ('2033', '509', 'Cắt áp tô mát tổng và 2 áp tô mát nhánh, tiếp địa sau áp tô mát tổng và cột đầu xuất tuyến 1 để xử lý.', 'A');
 INSERT INTO `answer` VALUES ('2034', '509', 'Nếu tủ điện đảm bảo khoảng cách an toàn giữa các áp tô mát, cho phép cắt áp tô mát xuất tuyến 1, mang găng tay cách điện hạ áp xử lý.', 'B');
-INSERT INTO `answer` VALUES ('2035', '509', 'Cắt áp tô mát xuất tuyến 1, tiếp địa cột đầu xuất tuyến ra, bổ sung biện pháp che chắn (bằng vật liệu cách điện) để tránh va chạm với các đầu có điện của áptômát xuất tuyến 2 và áptômát ', 'C');
+INSERT INTO `answer` VALUES ('2035', '509', 'Cắt áp tô mát xuất tuyến 1, tiếp địa cột đầu xuất tuyến ra, bổ sung biện pháp che chắn (bằng vật liệu cách điện) để tránh va chạm với các đầu có điện của áptômát xuất tuyến 2 và áptômát tổng; mang găng tay cách điện hạ áp xử lý.', 'C');
 INSERT INTO `answer` VALUES ('2036', '509', 'a, c đều đúng.', 'D');
 INSERT INTO `answer` VALUES ('2037', '510', 'Cách ly đường dây trung thế thuộc phạm vi công tác và đặt tiếp địa 2 đầu vị trí công tác, tiếp địa bổ sung nếu khoảng cách giữa 2 bộ tiếp đất quá 2 km.', 'A');
 INSERT INTO `answer` VALUES ('2038', '510', 'Tại các cột tiếp đất trung thế phải cắt điện tiếp đất đường dây hạ thế trước khi tiếp đất trung thế.', 'B');
@@ -2112,7 +2112,7 @@ CREATE TABLE `config_exam` (
 -- ----------------------------
 -- Records of config_exam
 -- ----------------------------
-INSERT INTO `config_exam` VALUES ('0.4', '2', '50');
+INSERT INTO `config_exam` VALUES ('0.8', '5', '50');
 
 -- ----------------------------
 -- Table structure for dap_an
@@ -2645,8 +2645,6 @@ INSERT INTO `dap_an` VALUES ('2053', '514', 'A');
 INSERT INTO `dap_an` VALUES ('2060', '515', 'D');
 INSERT INTO `dap_an` VALUES ('2063', '516', 'C');
 INSERT INTO `dap_an` VALUES ('2066', '517', 'B');
-INSERT INTO `dap_an` VALUES ('2070', '518', 'B');
-INSERT INTO `dap_an` VALUES ('2073', '519', 'A');
 
 -- ----------------------------
 -- Table structure for exam_time
@@ -2663,7 +2661,7 @@ CREATE TABLE `exam_time` (
 -- ----------------------------
 -- Records of exam_time
 -- ----------------------------
-INSERT INTO `exam_time` VALUES ('2017-09-03 00:00:00', '9', '30', '11', '10');
+INSERT INTO `exam_time` VALUES ('2017-09-06 00:00:00', '10', '0', '14', '10');
 
 -- ----------------------------
 -- Table structure for footer
@@ -2730,7 +2728,7 @@ CREATE TABLE `home_content` (
 -- ----------------------------
 -- Records of home_content
 -- ----------------------------
-INSERT INTO `home_content` VALUES ('<p>123</p>\r\n');
+INSERT INTO `home_content` VALUES ('<p>1234</p>\r\n');
 
 -- ----------------------------
 -- Table structure for logo
@@ -2777,9 +2775,6 @@ CREATE TABLE `nganhnghe_question` (
 -- ----------------------------
 -- Records of nganhnghe_question
 -- ----------------------------
-INSERT INTO `nganhnghe_question` VALUES ('0', '2');
-INSERT INTO `nganhnghe_question` VALUES ('0', '3');
-INSERT INTO `nganhnghe_question` VALUES ('0', '4');
 INSERT INTO `nganhnghe_question` VALUES ('1', '1');
 INSERT INTO `nganhnghe_question` VALUES ('1', '2');
 INSERT INTO `nganhnghe_question` VALUES ('1', '3');
@@ -6953,22 +6948,6 @@ INSERT INTO `nganhnghe_question` VALUES ('11', '492');
 INSERT INTO `nganhnghe_question` VALUES ('11', '494');
 INSERT INTO `nganhnghe_question` VALUES ('11', '495');
 INSERT INTO `nganhnghe_question` VALUES ('11', '515');
-INSERT INTO `nganhnghe_question` VALUES ('50', '2');
-INSERT INTO `nganhnghe_question` VALUES ('50', '3');
-INSERT INTO `nganhnghe_question` VALUES ('50', '4');
-INSERT INTO `nganhnghe_question` VALUES ('50', '5');
-INSERT INTO `nganhnghe_question` VALUES ('50', '15');
-INSERT INTO `nganhnghe_question` VALUES ('50', '19');
-INSERT INTO `nganhnghe_question` VALUES ('51', '2');
-INSERT INTO `nganhnghe_question` VALUES ('51', '3');
-INSERT INTO `nganhnghe_question` VALUES ('51', '4');
-INSERT INTO `nganhnghe_question` VALUES ('52', '2');
-INSERT INTO `nganhnghe_question` VALUES ('52', '3');
-INSERT INTO `nganhnghe_question` VALUES ('52', '4');
-INSERT INTO `nganhnghe_question` VALUES ('53', '3');
-INSERT INTO `nganhnghe_question` VALUES ('53', '4');
-INSERT INTO `nganhnghe_question` VALUES ('54', '3');
-INSERT INTO `nganhnghe_question` VALUES ('54', '4');
 
 -- ----------------------------
 -- Table structure for nganh_nghe
@@ -6978,7 +6957,7 @@ CREATE TABLE `nganh_nghe` (
   `id` bigint(15) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nganh_nghe
@@ -7019,7 +6998,7 @@ INSERT INTO `question` VALUES ('7', 'Để đảm bảo an toàn điện thì m�
 INSERT INTO `question` VALUES ('8', 'Để đảm bảo an toàn điện, cấm ra mệnh lệnh hoặc giao công việc cho những người:', '1');
 INSERT INTO `question` VALUES ('9', 'Những mệnh lệnh không đúng Quy trình an toàn điện và các quy trình có liên quan khác, có nguy cơ mất an toàn cho người hoặc thiết bị thì người nhận lệnh có quyền:', '1');
 INSERT INTO `question` VALUES ('10', 'Để được giao nhiệm vụ, nhân viên mới phải được đào tạo, sát hạch như thế nào:', '1');
-INSERT INTO `question` VALUES ('11', 'Khi phát hiện cán bộ, công nhân vi phạm Quy trình an toàn điện và các quy trình có liên quan khác, có nguy cơ đe dọa đến tính mạng con người hoặc mất an toàn đối với thiết bị, người  phát hiện phải', '1');
+INSERT INTO `question` VALUES ('11', 'Khi phát hiện cán bộ, công nhân vi phạm Quy trình an toàn điện và các quy trình có liên quan khác, có nguy cơ đe dọa đến tính mạng con người hoặc mất an toàn đối với thiết bị, người  phát hiện phải ', '1');
 INSERT INTO `question` VALUES ('12', 'Người trực tiếp làm công tác quản lý vận hành, kinh doanh, thí nghiệm, sửa chữa, xây lắp điện phải đảm bảo các yêu cầu chung nào sau đây :', '1');
 INSERT INTO `question` VALUES ('13', 'Hình thức kiểm tra nhân viên mới sau  khi kết thúc công tác đào tạo - thực tập :', '1');
 INSERT INTO `question` VALUES ('14', 'Đối tượng phải được huấn luyện, kiểm tra quy trình an toàn điện mỗi năm 1 lần là:', '2');
@@ -7359,7 +7338,7 @@ INSERT INTO `question` VALUES ('347', 'Đơn vị xây lắp phải thoả thu�
 INSERT INTO `question` VALUES ('348', 'Khi thực hiện đóng cọc bằng máy gần đường dây cao áp đang vận hành, nội dung nào sau đây vi phạm quy định an toàn:', '2');
 INSERT INTO `question` VALUES ('349', 'Khi thực hiện đóng cọc bằng máy gần đường dây cao áp đang vận hành, nội dung nào sau đây vi phạm quy định an toàn:', '2');
 INSERT INTO `question` VALUES ('350', 'Biện pháp an toàn khi thi công cột điện dưới đường dây (ĐZ) cao áp đang vận hành, đối với công việc đào hố móng bằng phương pháp cơ giới thì phải thực hiện như thế nào là đúng?', '2');
-INSERT INTO `question` VALUES ('351', 'Đào hố móng bằng phương pháp cơ giới ở dưới đường dây cao áp đang vận hành hoặc có khả năng vi phạm khoảng cách phóng điện thì người chỉ huy trực tiếp phải có bậc an toàn điện tối thiểu là', '1');
+INSERT INTO `question` VALUES ('351', 'Đào hố móng bằng phương pháp cơ giới ở dưới đường dây cao áp đang vận hành hoặc có khả năng vi phạm khoảng cách phóng điện thì  người chỉ huy trực tiếp phải có bậc an toàn điện tối thiểu l?', '1');
 INSERT INTO `question` VALUES ('352', 'Khi thi công lắp ráp cột điện bằng cần trục gần đường dây cao áp 22 kV đang vận hành, theo anh/chị mục nào sau đây đơn vị thi công đã vi phạm quy trình an toàn?', '1');
 INSERT INTO `question` VALUES ('353', 'Khi thi công dựng cột điện gần đường dây cao áp đang mang điện, phương pháp đặt dây cáp kéo, cáp hãm như thế nào để đảm bảo an toàn:', '1');
 INSERT INTO `question` VALUES ('354', 'Khi dựng cột điện ở gần đường dây cao áp có cấp điện áp đến 220 kV đang vận hành, khoảng cách cho phép nhỏ nhất từ các dây cáp kéo và cáp hãm đến dây dẫn có điện là bao nhiêu?', '2');
@@ -7588,11 +7567,12 @@ CREATE TABLE `user_exam` (
   `es` int(11) DEFAULT NULL,
   `allow_re_exam` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_exam
 -- ----------------------------
+INSERT INTO `user_exam` VALUES ('1', '30', '1', '1', '2017-09-06 10:05:24', '10', '5', '10', '5', '35', '0');
 
 -- ----------------------------
 -- Table structure for user_exam_detail
@@ -7607,11 +7587,61 @@ CREATE TABLE `user_exam_detail` (
   `answer_sign` varchar(10) NOT NULL,
   `dapan_sign` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_exam_detail
 -- ----------------------------
+INSERT INTO `user_exam_detail` VALUES ('1', '1', '1', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('2', '1', '36', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('3', '1', '42', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('4', '1', '44', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('5', '1', '45', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('6', '1', '52', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('7', '1', '65', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('8', '1', '67', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('9', '1', '81', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('10', '1', '99', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('11', '1', '104', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('12', '1', '118', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('13', '1', '132', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('14', '1', '135', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('15', '1', '148', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('16', '1', '150', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('17', '1', '171', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('18', '1', '193', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('19', '1', '194', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('20', '1', '197', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('21', '1', '214', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('22', '1', '217', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('23', '1', '222', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('24', '1', '229', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('25', '1', '243', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('26', '1', '247', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('27', '1', '252', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('28', '1', '265', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('29', '1', '293', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('30', '1', '310', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('31', '1', '332', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('32', '1', '351', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('33', '1', '369', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('34', '1', '400', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('35', '1', '417', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('36', '1', '423', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('37', '1', '430', '-1', null, ' ', 'A');
+INSERT INTO `user_exam_detail` VALUES ('38', '1', '436', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('39', '1', '438', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('40', '1', '439', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('41', '1', '440', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('42', '1', '453', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('43', '1', '480', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('44', '1', '481', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('45', '1', '487', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('46', '1', '503', '-1', null, ' ', 'B');
+INSERT INTO `user_exam_detail` VALUES ('47', '1', '507', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('48', '1', '510', '-1', null, ' ', 'D');
+INSERT INTO `user_exam_detail` VALUES ('49', '1', '511', '-1', null, ' ', 'C');
+INSERT INTO `user_exam_detail` VALUES ('50', '1', '512', '-1', null, ' ', 'D');
 
 -- ----------------------------
 -- Table structure for user_pass
@@ -7646,11 +7676,14 @@ CREATE TABLE `user_review` (
   `em` int(11) DEFAULT NULL,
   `es` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_review
 -- ----------------------------
+INSERT INTO `user_review` VALUES ('1', '24', '1', '1', '2017-09-06 08:01:30', '7', '52', '8', '1', '22');
+INSERT INTO `user_review` VALUES ('2', '24', '1', '1', '2017-09-06 08:02:11', '7', '52', '8', '2', '43');
+INSERT INTO `user_review` VALUES ('3', '24', '1', '1', '2017-09-06 08:06:20', '8', '3', '8', '6', '59');
 
 -- ----------------------------
 -- Table structure for user_review_detail
@@ -7665,11 +7698,161 @@ CREATE TABLE `user_review_detail` (
   `answer_sign` varchar(10) NOT NULL,
   `dapan_sign` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_review_detail
 -- ----------------------------
+INSERT INTO `user_review_detail` VALUES ('1', '1', '10', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('2', '1', '12', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('3', '1', '19', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('4', '1', '21', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('5', '1', '36', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('6', '1', '43', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('7', '1', '46', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('8', '1', '47', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('9', '1', '52', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('10', '1', '53', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('11', '1', '67', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('12', '1', '79', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('13', '1', '103', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('14', '1', '105', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('15', '1', '119', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('16', '1', '136', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('17', '1', '138', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('18', '1', '156', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('19', '1', '158', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('20', '1', '159', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('21', '1', '170', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('22', '1', '191', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('23', '1', '212', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('24', '1', '230', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('25', '1', '242', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('26', '1', '250', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('27', '1', '259', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('28', '1', '265', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('29', '1', '273', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('30', '1', '287', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('31', '1', '298', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('32', '1', '301', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('33', '1', '306', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('34', '1', '326', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('35', '1', '330', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('36', '1', '335', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('37', '1', '352', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('38', '1', '392', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('39', '1', '410', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('40', '1', '415', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('41', '1', '416', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('42', '1', '418', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('43', '1', '419', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('44', '1', '425', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('45', '1', '427', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('46', '1', '466', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('47', '1', '476', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('48', '1', '477', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('49', '1', '504', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('50', '1', '505', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('51', '2', '12', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('52', '2', '23', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('53', '2', '37', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('54', '2', '39', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('55', '2', '40', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('56', '2', '44', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('57', '2', '45', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('58', '2', '47', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('59', '2', '61', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('60', '2', '68', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('61', '2', '83', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('62', '2', '105', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('63', '2', '120', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('64', '2', '132', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('65', '2', '158', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('66', '2', '174', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('67', '2', '178', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('68', '2', '191', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('69', '2', '197', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('70', '2', '202', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('71', '2', '253', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('72', '2', '263', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('73', '2', '290', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('74', '2', '310', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('75', '2', '324', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('76', '2', '335', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('77', '2', '351', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('78', '2', '352', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('79', '2', '353', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('80', '2', '359', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('81', '2', '365', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('82', '2', '369', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('83', '2', '386', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('84', '2', '391', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('85', '2', '400', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('86', '2', '404', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('87', '2', '406', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('88', '2', '414', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('89', '2', '423', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('90', '2', '431', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('91', '2', '438', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('92', '2', '455', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('93', '2', '458', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('94', '2', '462', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('95', '2', '469', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('96', '2', '476', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('97', '2', '485', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('98', '2', '487', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('99', '2', '507', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('100', '2', '516', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('101', '3', '1', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('102', '3', '11', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('103', '3', '13', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('104', '3', '23', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('105', '3', '24', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('106', '3', '25', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('107', '3', '29', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('108', '3', '62', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('109', '3', '65', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('110', '3', '75', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('111', '3', '79', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('112', '3', '81', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('113', '3', '82', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('114', '3', '113', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('115', '3', '118', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('116', '3', '153', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('117', '3', '157', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('118', '3', '173', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('119', '3', '191', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('120', '3', '193', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('121', '3', '202', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('122', '3', '203', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('123', '3', '227', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('124', '3', '237', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('125', '3', '250', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('126', '3', '263', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('127', '3', '282', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('128', '3', '290', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('129', '3', '293', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('130', '3', '299', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('131', '3', '303', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('132', '3', '315', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('133', '3', '332', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('134', '3', '361', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('135', '3', '371', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('136', '3', '380', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('137', '3', '385', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('138', '3', '387', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('139', '3', '390', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('140', '3', '391', '-1', null, ' ', 'C');
+INSERT INTO `user_review_detail` VALUES ('141', '3', '395', '-1', null, ' ', 'A');
+INSERT INTO `user_review_detail` VALUES ('142', '3', '404', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('143', '3', '416', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('144', '3', '427', '-1', null, ' ', 'B');
+INSERT INTO `user_review_detail` VALUES ('145', '3', '431', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('146', '3', '435', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('147', '3', '436', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('148', '3', '475', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('149', '3', '485', '-1', null, ' ', 'D');
+INSERT INTO `user_review_detail` VALUES ('150', '3', '505', '-1', null, ' ', 'B');
 
 -- ----------------------------
 -- View structure for layout_content

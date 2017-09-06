@@ -8,14 +8,14 @@ if ($auth->hasIdentity()) {
     $identity = $auth->getIdentity();
 }
 
-$message = $this->message;
-if ($message != "") {
+
+if (isset($this->message)&&trim($this->message)!='') {
     ?>
     <div class="row-fluid" style="margin-top: 20px;">
         <div class="span3"></div>
         <div class="span6" align='center' style='color: red;'>
             <?php
-            echo $message;
+            echo $this->message;
             ?>
         </div>
         <div class="span3"></div>
