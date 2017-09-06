@@ -18,7 +18,7 @@ class Core_View_Helper_Toolbar extends Zend_View_Helper_Abstract
         <div class="span12" style='margin-bottom: 20px;text-align: right;'>
             <?php 
             foreach ($buttons as $button){?>
-            <input onclick="<?php echo str_replace('"', '\"', $button['onclick']);?>" type="button" value="<?php echo $button['label'];?>" class="button" />
+            <input onclick="<?php echo str_replace('"', "'", $button['onclick']);?>" type="button" value="<?php echo $button['label'];?>" class="button" />
             <?php 
             }
             ?>
