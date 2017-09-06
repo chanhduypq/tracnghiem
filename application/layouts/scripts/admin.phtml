@@ -27,6 +27,7 @@ echo $this->doctype();
 
         <link rel="stylesheet" href="<?php echo $this->baseUrl('/jquery-ui-1.10.3/themes/smoothness/jquery-ui.css'); ?>" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/css/jquery.cluetip.css" media="all" />
+        <link href="<?php echo $this->baseUrl(); ?>/css/toolbar.css" rel="stylesheet" type="text/css"/>
         
         <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.textarea-expander.js"></script>
         <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/js/jquery.cluetip.js"></script>
@@ -351,13 +352,13 @@ Core_Common_Image::echoImage($this->baseUrl('/images/dien_luc.jpg'), 70, 70, 'he
             <!--below-->    
             <div class="row-fluid" style="margin-top: 10px;background: white;">
 
-                <div class="span1">&nbsp;</div>
+                <div class="span1"></div>
                 <div class="span10" style="min-height: 600px;">
                     
 <?php echo $this->layout()->content; ?>           
                     
                 </div>
-                <div class="span1">&nbsp;</div>
+                <div class="span1"></div>
             </div>
 
             <!--end below--> 

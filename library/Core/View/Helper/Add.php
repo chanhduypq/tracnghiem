@@ -15,12 +15,14 @@ class Core_View_Helper_Add extends Zend_View_Helper_Abstract {
     public function add($label, $url) 
     {
         ?>
-        <table width="100%" style="-moz-border-radius: 10px 10px 10px 10px;background: #D0E3F5;">
+        <table width="100%" style="margin-bottom: 30px;">
             <tr>           
-                <td style="width: 80%;">&nbsp;</td>
-                <td onclick="window.location = '<?php echo $url; ?>';" onmouseover="this.style.cursor = 'pointer';" style="color: blue;text-align: right;width: 20%;"><?php echo $label; ?></td>
+                <td style="width: 80%;"></td>
+                <td style="text-align: right;width: 20%;">                    
+                    <input onclick="window.location = '<?php echo $url; ?>';" type="button" value="<?php echo $label; ?>" class="button" />
+                </td>
             </tr>
-        </table>
+        </table>        
         <?php
     }
 

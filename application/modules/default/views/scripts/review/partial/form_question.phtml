@@ -25,14 +25,14 @@ if (is_array($questions) && count($questions) > 0) {
 <form method="POST" onsubmit="return false;" id="form2">
     <?php if (is_array($questions) && count($questions) > 0) { ?>
         <div class="row-fluid" style="float: left;width: 85%;">
-            <div class="span12">&nbsp;</div>
+            <div class="span12"></div>
             <?php
             $i = 1;
             foreach ($questions as $question) {
                 ?>
                 <div>
                     <div class="span12 question" id="question_<?php echo $i; ?>">
-                        <?php echo $i . '/&nbsp;&nbsp;&nbsp;' . $question['content']; ?>
+                        <?php echo $i . '/ ' . $question['content']; ?>
                     </div>
                     <?php
                     $answers = $question['answers'];

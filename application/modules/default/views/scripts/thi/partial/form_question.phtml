@@ -24,14 +24,14 @@ $minute_per_question = $config_exam['phut'];
     <input type="hidden" name="i" id="i" value="<?php echo $this->i;?>"/>
 
     <div class="row-fluid" style="float: left;width: 85%;">
-        <div class="span12">&nbsp;</div>
+        <div class="span12"></div>
         <?php
         $i = 1;
         foreach ($questions as $question) {
             ?>
             <div>
                 <div class="span12 question" id="question_<?php echo $i; ?>">
-                    <?php echo $i . '/&nbsp;&nbsp;&nbsp;' . $question['content']; ?>
+                    <?php echo $i . '/ ' . $question['content']; ?>
                 </div>
                 <?php
                 $answers = $question['answers'];

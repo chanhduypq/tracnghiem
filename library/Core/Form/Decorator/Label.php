@@ -63,11 +63,11 @@ class Core_Form_Decorator_Label extends Zend_Form_Decorator_Label
             $options['class'] = $class;
             if ($element->isRequired()) {
                 $options['escape'] = false;
-                $label .= '<span style="color:red;" class="required">&nbsp;*</span>';
+                $label .= '<span style="color:red;" class="required"> *</span>';
             }
             $label = $view->formLabel($element->getFullyQualifiedName(), trim($label), $options);
         } else {
-            $label = '&nbsp;';
+            $label = ' ';
         }
 
         switch ($placement) {

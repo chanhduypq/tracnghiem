@@ -4,13 +4,13 @@ $nganhnghe_ids = $this->nganhnghe_ids;
 if ($message != "") {
     ?>
     <div class="row-fluid" style="margin-top: 20px;">
-        <div class="span3">&nbsp;</div>
+        <div class="span3"></div>
         <div class="span6" align='center' style='color: red;'>
             <?php
             echo $message;
             ?>
         </div>
-        <div class="span3">&nbsp;</div>
+        <div class="span3"></div>
     </div>
     <?php
 }
@@ -20,7 +20,7 @@ if ($message != "") {
 </div>
 <form name="form" enctype="multipart/form-data" id="form" action="<?php echo $this->url(); ?>" method="post">
     <div class="row-fluid" style="margin-top: 10px;">
-        <div class="span4">&nbsp;</div>
+        <div class="span4"></div>
 
         <div class="span12">
             <?php echo $this->form($this, $this->form, 1, $echo_form_tag = FALSE); ?>
