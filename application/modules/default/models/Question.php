@@ -3,9 +3,11 @@
 class Default_Model_Question extends Core_Db_Table_Abstract 
 {
 
-    const SO_CAP = '1';
-    const TRUNG_CAP = '2';
-    const CAO_CAP = '3';
+    const BAC1 = '1';
+    const BAC2 = '2';
+    const BAC3 = '3';
+    const BAC4 = '4';
+    const BAC5 = '5';
 
     public $_name = "question";
 

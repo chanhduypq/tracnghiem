@@ -83,12 +83,18 @@ class Admin_ExcelController extends Core_Controller_Action {
         while ($x <= $sheet['numRows']) {
 
             $mapper_question = new Default_Model_Question();
-            if (strtoupper(trim($sheet['cells'][$x][2])) == 'SC') {
-                $level = Default_Model_Question::SO_CAP;
-            } else if (strtoupper(trim($sheet['cells'][$x][2])) == 'TC') {
-                $level = Default_Model_Question::TRUNG_CAP;
-            } else if (strtoupper(trim($sheet['cells'][$x][2])) == 'CC') {
-                $level = Default_Model_Question::CAO_CAP;
+            if (strtoupper(trim($sheet['cells'][$x][2])) == 'B1') {
+                $level = Default_Model_Question::BAC1;
+            } else if (strtoupper(trim($sheet['cells'][$x][2])) == 'B2') {
+                $level = Default_Model_Question::BAC2;
+            } else if (strtoupper(trim($sheet['cells'][$x][2])) == 'B3') {
+                $level = Default_Model_Question::BAC3;
+            } else if (strtoupper(trim($sheet['cells'][$x][2])) == 'B4') {
+                $level = Default_Model_Question::BAC4;
+            } else if (strtoupper(trim($sheet['cells'][$x][2])) == 'B5') {
+                $level = Default_Model_Question::BAC5;
+            } else {
+                $level = Default_Model_Question::BAC1;
             }
             $data_question = array(
                 'content' => iconv(mb_detect_encoding($sheet['cells'][$x][6], mb_detect_order(), true), "UTF-8", $sheet['cells'][$x][6]),

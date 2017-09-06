@@ -221,6 +221,9 @@ class ThiController extends Core_Controller_Action
 
     private function getQuestionsByQuestionIds($questionIds) 
     {
+        if (!is_array($questionIds) || count($questionIds) == 0) {
+            return array();
+        }
         $db = Core_Db_Table::getDefaultAdapter();
         $newQuestions = array();
         $questions = $db->fetchAll("SELECT question.id,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");

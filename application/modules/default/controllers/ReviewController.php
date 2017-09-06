@@ -85,9 +85,9 @@ class ReviewController extends Core_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
 
-        $db = Core_Db_Table::getDefaultAdapter();
-
+        $db = Core_Db_Table::getDefaultAdapter();       
         $data = $this->_request->getPost();
+         
         if (count($data) > 0) {
             if (isset($data['question_id'])) {
                 $this->saveDB($data);
@@ -106,6 +106,7 @@ class ReviewController extends Core_Controller_Action {
                     $config_exam = $db->fetchRow("SELECT * FROM config_exam");
                     $questionIds = $this->getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam['number']);
                 }
+
                 $newQuestions = $this->getQuestionsByQuestionIds($questionIds);
                 $auth->clearIdentity();
                 if (!isset($identity['examing_review']) || $identity['examing_review'] == FALSE) {
@@ -154,15 +155,20 @@ class ReviewController extends Core_Controller_Action {
     private function getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) {
         $db = Core_Db_Table::getDefaultAdapter();
         $sql = "SELECT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=$level ORDER BY RAND() LIMIT " . $config_exam_number;
+        
         $rows = $db->fetchAll($sql);
         $questionIds = array();
         foreach ($rows as $row) {
             $questionIds[] = $row['id'];
         }
+
         return $questionIds;
     }
 
     private function getQuestionsByQuestionIds($questionIds) {
+        if (!is_array($questionIds) || count($questionIds) == 0) {
+            return array();
+        }
         $db = Core_Db_Table::getDefaultAdapter();
         $newQuestions = array();
         $questions = $db->fetchAll("SELECT question.id,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");

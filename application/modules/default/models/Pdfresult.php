@@ -111,8 +111,7 @@ class Default_Model_Pdfresult {
                         <td style="width: 20%;text-align: left;">
                             ' . $fullName . '
                         </td>
-                        <td style="width: 60%;text-align: left;">
-                            <strong>Đơn vị:</strong> Công ty CP Thủy điện miền Trung
+                        <td style="width: 60%;text-align: left;">                            
                         </td>
                     </tr>
                     <tr>
@@ -219,11 +218,15 @@ class Default_Model_Pdfresult {
     public static function getLevelHtml($level) 
     {
         if ($level == '1') {
-            return 'SƠ CẤP';
+            return strtoupper('BẬC 1');
         } else if ($level == '2') {
-            return 'TRUNG CẤP';
-        } else {
-            return 'CAO CẤP';
+            return strtoupper('BẬC 2');
+        } else if ($level == '3') {
+            return strtoupper('BẬC 3');
+        } else if ($level == '4') {
+            return strtoupper('BẬC 4');
+        } else if ($level == '5') {
+            return strtoupper('BẬC 5');
         }
     }
 

@@ -63,48 +63,6 @@ $minute_per_question = $config_exam['phut'];
     </div>
 
     <div class="row-fluid" style="width: 15%;float: left;" id="goto">
-        <div class="span12" style="background-color: blanchedalmond;max-height: 200px;overflow-y: auto;">
-            <?php
-            $i = 1;
-            if (count($questions) > 100) {
-                $num = 3;
-            } else if (count($questions) > 9) {
-                $num = 2;
-            } else {
-                $num = 1;
-            }
-            foreach ($questions as $question) {
-                ?>
-
-                <a class="goto" href="#question_<?php echo $i; ?>">
-                    <button style="margin: 5px;">
-                        <?php
-                        if ($num == 3) {
-                            if (strlen($i) == 1) {
-                                echo '00' . $i;
-                            } else if (strlen($i) == 2) {
-                                echo '0' . $i;
-                            } else {
-                                echo $i;
-                            }
-                        } else if ($num == 2) {
-                            if (strlen($i) == 1) {
-                                echo '0' . $i;
-                            } else {
-                                echo $i;
-                            }
-                        } else {
-                            echo $i;
-                        }
-                        ?>
-                    </button>
-                </a>                            
-                <?php
-                $i++;
-            }
-            ?>
-        </div>
-
     </div>
 
     <div class="span12" style="text-align: center;margin: 0 auto;">
@@ -118,9 +76,6 @@ $minute_per_question = $config_exam['phut'];
 <script type="text/javascript">
 
     jQuery(function ($) {
-        $(window).scroll(function () {
-            $("#goto").stop().animate({"marginTop": ($(window).scrollTop()) - 120 + "px", "marginLeft": ($(window).scrollLeft()) + "px"}, "slow");
-        });
 
         $('a.goto').click(function (event) {
 

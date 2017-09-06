@@ -10,8 +10,15 @@ class Admin_Form_Question extends Core_Form {
 
         $this->removeElement("level");
         $level = new Core_Form_Element_Select('level');
-        $level->setValue(Default_Model_Question::SO_CAP);
-        $level->addMultiOptions(array(Default_Model_Question::SO_CAP => 'Sơ cấp', Default_Model_Question::TRUNG_CAP => 'Trung cấp', Default_Model_Question::CAO_CAP => 'Cao cấp'))->setLabel('level:')->setValue(Default_Model_Question::SO_CAP)->setSeparator('')->setRequired();
+        $level->addMultiOptions(array(
+                                    Default_Model_Question::BAC1 => 'Bậc 1', 
+                                    Default_Model_Question::BAC2 => 'Bậc 2', 
+                                    Default_Model_Question::BAC3 => 'Bậc 3', 
+                                    Default_Model_Question::BAC4 => 'Bậc 4', 
+                                    Default_Model_Question::BAC5 => 'Bậc 5'
+                                    )
+                                )
+                ->setLabel('level:')->setValue(Default_Model_Question::BAC1)->setSeparator('')->setRequired();
         $this->addElement($level);
     }
 
