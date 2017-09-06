@@ -155,7 +155,7 @@ class Admin_UserController extends Core_Controller_Action
                 . "JOIN user ON user.id=user_exam.user_id "
                 . "WHERE user_exam.id=$user_exam_id");
 
-        $this->createFilePdf($html, $row['id'] . '___' . $row['date'] . '.pdf', $title_header);
+        Core_Common_Pdf::createFilePdf(Core_Common_Pdf::DOWNLOAD,$html, $row['id'] . '___' . $row['date'] . '.pdf', $title_header);
     }
 
 }

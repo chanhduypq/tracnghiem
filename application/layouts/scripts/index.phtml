@@ -170,12 +170,11 @@ if ($header_text_dynamic == "1") {
                 /**
                  * end index.phtml
                  **/
-
-
-
-
-
-
+                <?php if (isset($this->questions)) { ?>
+                    $("#fixed").css('top',$("#add-new").offset().top+$("#add-new").height());
+                <?php 
+                }
+                ?>
             });
 
         </script>
@@ -242,9 +241,9 @@ if ($header_text_dynamic == "1") {
                 <!--<div class="span1">&nbsp;</div>-->
                 <div class="span12" style="min-height: 600px;padding-left: 20px;">
 
-                    <?php echo $this->layout()->content; ?>           
-                    <div style="float: right;position: fixed;right: 0;top:0;width: 13%;">
-                        <div style="background-color: blanchedalmond;max-height: 610px;overflow-y: auto;width: 100%;float: right;margin-top: 50px;">
+                    <?php echo $this->layout()->content; ?>     
+                    <?php if (isset($this->questions)) { ?>
+                    <div style="float: right;position: fixed;right: 0;width: 13%;background-color: blanchedalmond;max-height: 550px;overflow-y: auto;" id="fixed">
                             <?php
                             if (isset($this->questions)) {
                                 $questions = $this->questions;
@@ -290,8 +289,10 @@ if ($header_text_dynamic == "1") {
                                 $i++;
                             }
                             ?>
-                        </div>
                     </div>
+                    <?php 
+                    }
+                    ?>
                 </div>
                 <!--<div class="span1">&nbsp;</div>-->
             </div>
