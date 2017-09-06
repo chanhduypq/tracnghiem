@@ -6,9 +6,10 @@
 }
 ?>
 <div class="row-fluid" style="margin-top: 20px;margin-bottom: 20px;">
-    <div class="span12" style="text-align: right;">
-        <input onclick="save();" type="button" value="Lưu" class="button" />
-    </div>
+    <?php     
+    $buttons[]=array('onclick'=>'document.form.submit();','label'=>'Lưu');
+    echo $this->toolbar($buttons);
+    ?>
 </div>
 
 <form name="form" enctype="multipart/form-data" id="form" method="post"> 
@@ -21,8 +22,3 @@
     </fieldset>
     
 </form>
-<script type="text/javascript">
-    function save() {
-        document.form.submit();
-    }
-</script>

@@ -16,7 +16,11 @@ if ($message != "") {
 }
 ?>
 <div class="row-fluid" style="margin-top: 10px;">
-    <?php echo $this->update($this->baseUrl('/admin/question/index/page/'.$this->page));?>
+    <?php     
+    $buttons[]=array('onclick'=>"window.location = '".$this->baseUrl('/admin/question/index/page/'.$this->page)."'",'label'=>'Quay lại');
+    $buttons[]=array('onclick'=>'document.form.submit();','label'=>'Lưu');
+    echo $this->toolbar($buttons);
+    ?>
 </div>
 <form name="form" enctype="multipart/form-data" id="form" action="<?php echo $this->url(); ?>" method="post">
     <div class="row-fluid" style="margin-top: 10px;">

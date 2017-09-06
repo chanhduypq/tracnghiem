@@ -7,10 +7,6 @@
         });
     });
 
-    function save() {
-        document.form1.submit();
-    }
-
 </script>
 <?php
 $message = $this->message;
@@ -23,13 +19,14 @@ if ($message != "") {
 }
 ?>
 <div class="row-fluid" style="margin-top: 20px;margin-bottom: 20px;">
-    <div class="span12" style="text-align: right;">
-        <input onclick="save();" type="button" value="Lưu" class="button" />
-    </div>
+    <?php     
+    $buttons[]=array('onclick'=>'document.form.submit();','label'=>'Lưu');
+    echo $this->toolbar($buttons);
+    ?>
 </div>
 <div class="row-fluid">
     <div class="span12">
-        <form name="form1" enctype="multipart/form-data" id="form1" action="<?php echo $this->baseUrl('/admin/homecontent/save'); ?>" method="post">
+        <form name="form" enctype="multipart/form-data" id="form" action="<?php echo $this->baseUrl('/admin/homecontent/save'); ?>" method="post">
             <div class="row-fluid" style="margin-top: 10px;">
 
                 <div class="span12">

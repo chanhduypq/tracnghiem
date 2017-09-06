@@ -25,7 +25,10 @@ if ($message != "") {
 ?>
 <div class="row-fluid" style="padding-top:20px;">
     <div class="span12">
-        <?php echo $this->add('Thêm ngành nghề', $this->baseUrl('/admin/nganhnghe/add/')); ?>
+        <?php     
+        $buttons[]=array('onclick'=>"window.location = '".$this->baseUrl('/admin/nganhnghe/add/')."'",'label'=>'Thêm ngành nghề');
+        echo $this->toolbar($buttons);
+        ?>
     </div>
 </div>
 <?php if (count($items) > 0) { ?>

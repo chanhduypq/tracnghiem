@@ -28,11 +28,6 @@
         jQuery('input[name="'+name+'"]').css("border-color", "red");
         jQuery('input[name="'+name+'"]').focus();
     }
-    
-        
-    function save() {
-        document.form1.submit();
-    }
 </script>
 <?php
 $message = $this->message;
@@ -45,11 +40,12 @@ if ($message != "") {
 }
 ?>
 <div class="row-fluid" style="margin-top: 20px;margin-bottom: 20px;">
-    <div class="span12" style="text-align: right;">
-        <input onclick="save();" type="button" value="Lưu" class="button" />
-    </div>
+    <?php     
+    $buttons[]=array('onclick'=>'document.form.submit();','label'=>'Lưu');
+    echo $this->toolbar($buttons);
+    ?>
 </div>
-<form name="form1" enctype="multipart/form-data" id="form1" action="<?php echo $this->baseUrl('/admin/image/save'); ?>" method="post">
+<form name="form" enctype="multipart/form-data" id="form" action="<?php echo $this->baseUrl('/admin/image/save'); ?>" method="post">
     <fieldset style="padding: 20px;">
         <?php echo $this->render('image/partial/logo.phtml');?>
     </fieldset>

@@ -36,7 +36,10 @@ if ($message != "") {
 <div class="row-fluid" style="padding-top:20px;">
 
     <div class="span12">
-        <?php echo $this->add('Thêm user', $this->baseUrl('/admin/user/add/page/' . $this->page)); ?>
+        <?php     
+        $buttons[]=array('onclick'=>"window.location = '".$this->baseUrl('/admin/user/add/page/'.$this->page)."'",'label'=>'Thêm user');
+        echo $this->toolbar($buttons);
+        ?>
     </div>
 </div>
 

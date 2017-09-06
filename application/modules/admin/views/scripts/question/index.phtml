@@ -50,7 +50,10 @@ if ($message != "") {
 <div class="row-fluid" style="padding-top:20px;">
 
     <div class="span12">
-        <?php echo $this->add('Thêm câu hỏi', $this->baseUrl('/admin/question/add/page/' . $this->page)); ?>
+        <?php     
+        $buttons[]=array('onclick'=>"window.location = '".$this->baseUrl('/admin/question/add/page/'.$this->page)."'",'label'=>'Thêm câu hỏi');
+        echo $this->toolbar($buttons);
+        ?>
     </div>
 </div>
 
