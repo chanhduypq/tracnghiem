@@ -87,7 +87,7 @@ if (is_array($history) && count($history) > 0) {
 
                         </td>
                         <td style="text-align: center;">
-                            <a href="/admin/user/ketquathi/user_exam_id/<?php echo $row['id']; ?>">
+                            <a class="download-result" href="/admin/user/ketquathi/user_exam_id/<?php echo $row['id']; ?>">
                                 Chi tiết
                             </a>
                         </td>
@@ -118,7 +118,7 @@ if (is_array($history) && count($history) > 0) {
     <?php
 }
 ?>
-
+<script src="<?php echo $this->baseUrl();?>/js/jquery.fileDownload.js?<?php echo substr(md5(microtime()),rand(0,26),5);?>" type="text/javascript"></script>
 <script type="text/javascript">
     function allowReExam(user_id, exam_id) {
         window.location = '<?php echo $this->baseUrl(); ?>/admin/user/allowreexam/user_id/' + user_id + '/exam_id/' + exam_id;
@@ -128,6 +128,14 @@ if (is_array($history) && count($history) > 0) {
     }
     
     jQuery(function ($) {
+        
+        $(document).on("click", "a.download-result", function () {
+            $.fileDownload($(this).prop('href'), {
+                preparingMessageHtml: "Hệ thống đang download, vui lòng chờ cho đến khi hoàn thành.",
+                failMessageHtml: "Đường truyền internet bị lỗi. Vui lòng thử lại sau."
+            });
+            return false; 
+        });
 
 
         $("form").find("input").eq(0).focus();
