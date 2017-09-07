@@ -118,10 +118,10 @@ class Default_Model_Pdfresult {
                         <td style="width: 20%;text-align: left;">
                             <strong>Nghề dự thi:</strong>
                         </td>
-                        <td style="width: 20%;text-align: left;">
+                        <td style="width: 70%;text-align: left;">
                             ' . $title . '
                         </td>
-                        <td style="width: 60%;text-align: left;">
+                        <td style="width: 10%;text-align: left;">
                             <!--<strong>Năm sinh:</strong>-->
                         </td>
                     </tr>
