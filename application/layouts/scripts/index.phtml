@@ -170,68 +170,70 @@ if ($header_text_dynamic == "1") {
                 /**
                  * end index.phtml
                  **/
-                <?php if (isset($this->questions)) { ?>
-                    $("#fixed").css('top',$("#add-new").offset().top+$("#add-new").height());
-                <?php 
-                }
-                ?>
+            <?php if (isset($this->questions) && count($this->questions) > 0) { ?>
+                    $("#fixed").css('top', $("#add-new").offset().top + $("#add-new").height() + 20);
+                    h = $(window).height() - ($("#add-new").offset().top + $("#add-new").height()) - 40;
+                    $("#fixed").css('height', h + 'px');
+            <?php 
+            }
+            ?>
             });
 
-        function logout(){
-            $.ajax({
-                url: '<?php echo $this->baseUrl('/index/logoutajax');?>'
-            });
-        }
-        
-        var validNavigation = false;
- 
- 
-        function wireUpWindowUnloadEvents() {
-             /*
-             * List of events which are triggered onbeforeunload on IE
-             * check http://msdn.microsoft.com/en-us/library/ms536907(VS.85).aspx
-             */
+            function logout() {
+                $.ajax({
+                    url: '<?php echo $this->baseUrl('/index/logoutajax'); ?>'
+                });
+            }
 
-             // Attach the event keypress to exclude the F5 refresh
-             $(document).on('keypress', function(e) {
-               if (e.keyCode == 116){
-                 validNavigation = true;
-               }
-             });
-
-             // Attach the event click for all links in the page
-             $(document).on("click", "a" , function() {
-               validNavigation = true;
-             });
-
-             // Attach the event submit for all forms in the page
-             $(document).on("submit", "form" , function() {
-               validNavigation = true;
-             });
-
-             // Attach the event click for all inputs in the page
-             $(document).bind("click", "input[type=submit]" , function() {
-               validNavigation = true;
-             });
-
-             $(document).bind("click", "button[type=submit]" , function() {
-               validNavigation = true;
-             });
-
-        }
+            var validNavigation = false;
 
 
+            function wireUpWindowUnloadEvents() {
+                /*
+                 * List of events which are triggered onbeforeunload on IE
+                 * check http://msdn.microsoft.com/en-us/library/ms536907(VS.85).aspx
+                 */
 
-        function windowCloseEvent(){
-            window.onbeforeunload = function() {
-                if (!validNavigation){
-                  logout();
+                // Attach the event keypress to exclude the F5 refresh
+                $(document).on('keypress', function (e) {
+                    if (e.keyCode == 116) {
+                        validNavigation = true;
+                    }
+                });
+
+                // Attach the event click for all links in the page
+                $(document).on("click", "a", function () {
+                    validNavigation = true;
+                });
+
+                // Attach the event submit for all forms in the page
+                $(document).on("submit", "form", function () {
+                    validNavigation = true;
+                });
+
+                // Attach the event click for all inputs in the page
+                $(document).bind("click", "input[type=submit]", function () {
+                    validNavigation = true;
+                });
+
+                $(document).bind("click", "button[type=submit]", function () {
+                    validNavigation = true;
+                });
+
+            }
+
+
+
+            function windowCloseEvent() {
+                window.onbeforeunload = function () {
+                    if (!validNavigation) {
+                        logout();
+                    }
                 }
             }
-        }
 
-        wireUpWindowUnloadEvents();
-        windowCloseEvent();
+//            wireUpWindowUnloadEvents();
+//            windowCloseEvent();
         </script>
 
     </head>
@@ -297,8 +299,8 @@ if ($header_text_dynamic == "1") {
                 <div class="span12" style="min-height: 600px;padding-left: 20px;">
 
                     <?php echo $this->layout()->content; ?>     
-                    <?php if (isset($this->questions)) { ?>
-                    <div style="float: right;position: fixed;right: 0;width: 13%;background-color: blanchedalmond;max-height: 550px;overflow-y: auto;" id="fixed">
+                    <?php if (isset($this->questions) && count($this->questions) > 0) { ?>
+                        <div style="float: right;position: fixed;right: 0;width: 13%;background-color: blanchedalmond;max-height: 550px;overflow-y: auto;" id="fixed">
                             <?php
                             if (isset($this->questions)) {
                                 $questions = $this->questions;
@@ -344,8 +346,8 @@ if ($header_text_dynamic == "1") {
                                 $i++;
                             }
                             ?>
-                    </div>
-                    <?php 
+                        </div>
+                        <?php
                     }
                     ?>
                 </div>
