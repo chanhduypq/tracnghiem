@@ -108,6 +108,14 @@ class Core_Common_Numeric
         if ($count == NULL || !self::isInteger($count)) {
             return $number;
         }
+        
+        if ($number == 0) {
+            $zeroSring = '';
+            for ($i = 0; $i < $count; $i++) {
+                $zeroSring .= '0';
+            }
+            return $zeroSring;
+        }
 
         $zeroSring = '';
         for ($i = $count; $i > 0; $i--) {
