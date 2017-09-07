@@ -1,6 +1,7 @@
 <?php
 
-class Core_Common_String {
+class Core_Common_String 
+{
     /**
      * function common
      * cắt chuỗi nếu chuỗi dài hơn một độ dài cho phép
@@ -9,24 +10,25 @@ class Core_Common_String {
      * @return string
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
-    public static function crop($text, $len) {        
-        if($text==NULL){
+    public static function crop($text, $len) 
+    {        
+        if ($text == NULL) {
             return "";
         }
-        if(!is_string($text)){
+        if (!is_string($text)) {
             return "";
         }
-        if(trim($text)==""){
+        if (trim($text) == "") {
             return "";
         }
-        require_once 'Numeric.php';
-        if(Core_Common_Numeric::isInteger($len)==FALSE){
+        
+        if (Core_Common_Numeric::isInteger($len) == FALSE) {
             return $text;
         }
         if ($len > strlen(utf8_decode($text))) {
             $string = $text;
         } else {
-            $string_cop = mb_substr($text, 0,$len,'UTF-8'); 
+            $string_cop = mb_substr($text, 0, $len, 'UTF-8');
             $string = $string_cop . "...";
         }
         return $string;
@@ -37,7 +39,8 @@ class Core_Common_String {
      * @return string
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
-    public static function utf8convert($str) {
+    public static function utf8convert($str) 
+    {
 
             if(!$str) return false;
 
