@@ -25,6 +25,12 @@
 .span11.answer{
     padding-left: 20px;
 }
+.span11.answer .span1:hover{
+    background-color: #cccccc;
+}
+.span11.answer .span11:hover{
+    background-color: #cccccc;
+}
 
 .goto{
     color: red;
