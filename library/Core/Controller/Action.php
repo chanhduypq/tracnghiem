@@ -265,4 +265,36 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
             }
         }   
     }
+    
+    /**
+     * khởi tạo lại session ban đầu
+     * có nghĩa là 
+     *     ban đầu khi login, lưu thông tin session nào thi bây giờ chỉ lấy lại những thông tin đó, 
+     *     những thông tin session mới thêm vào sau này thi hủy đi
+     */
+    public function resetSession() 
+    {
+        $auth = Zend_Auth::getInstance();
+        $identity = $auth->getIdentity();
+        $auth->clearIdentity();
+
+        foreach ($identity as $key=>$value){
+            if(!in_array($key, array(
+                                    'id',
+                                    'danh_xung',
+                                    'full_name',
+                                    'email',
+                                    'phone',
+                                    'password',
+                                    'is_admin',
+                                    'user'                
+                                    )
+                        )
+            ){
+                unset($identity["$key"]);
+            }
+        }
+
+        $auth->getStorage()->write($identity);
+    }
 }

@@ -187,59 +187,11 @@ class ThiController extends Core_Controller_Action
         }
     }
 
-    private function unsetSessionExaming() 
-    {
-        $auth = Zend_Auth::getInstance();
-        $identity = $auth->getIdentity();
-        $auth->clearIdentity();
-
-        unset($identity['examing']);
-        unset($identity['level']);
-        unset($identity['nganh_nghe_id']);
-        unset($identity['questionIds']);
-
-        $auth->getStorage()->write($identity);
-    }
-
-    private function getQuestionsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) 
-    {
-        $questionIds = $this->getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number);
-        return $this->getQuestionsByQuestionIds($questionIds);
-    }
-
-    private function getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam_number) 
-    {
-        $db = Core_Db_Table::getDefaultAdapter();
-        $sql = "SELECT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=$level ORDER BY RAND() LIMIT " . $config_exam_number;
-        $rows = $db->fetchAll($sql);
-        $questionIds = array();
-        foreach ($rows as $row) {
-            $questionIds[] = $row['id'];
-        }
-        return $questionIds;
-    }
-
-    private function getQuestionsByQuestionIds($questionIds) 
-    {
-        if (!is_array($questionIds) || count($questionIds) == 0) {
-            return array();
-        }
-        $db = Core_Db_Table::getDefaultAdapter();
-        $newQuestions = array();
-        $questions = $db->fetchAll("SELECT question.id,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");
-        foreach ($questions as $question) {
-            $newQuestions[$question['id']]['id'] = $question['id'];
-            $newQuestions[$question['id']]['content'] = $question['content'];
-            $newQuestions[$question['id']]['answers'][$question['answer_id']] = array('content' => $question['answer_content'], 'sign' => $question['sign'], 'id' => $question['answer_id']);
-            $newQuestions[$question['id']]['dapan_sign'] = $question['dapan_sign'];
-        }
-        return $newQuestions;
-    }
-
+    
     private function submitReExam($data) 
     {
         $this->saveDBAgain($data);
-        $this->unsetSessionExaming();
+        $this->resetSession();
         Core::message()->addSuccess('Chúc mừng bạn đã hoàn thành kỳ thi lần này.');
         $this->_helper->redirector('index', 'thi', 'default');
         exit;
@@ -248,7 +200,7 @@ class ThiController extends Core_Controller_Action
     private function submitExam($data) 
     {
         $this->saveDB($data);
-        $this->unsetSessionExaming();
+        $this->resetSession();
         Core::message()->addSuccess('Chúc mừng bạn đã hoàn thành kỳ thi lần này.');
         $this->_helper->redirector('index', 'thi', 'default');
         exit;
@@ -308,7 +260,7 @@ class ThiController extends Core_Controller_Action
             $nganhNgheId = (count($data) > 0 && isset($data['nganh_nghe_id'])) ? $data['nganh_nghe_id'] : 0;
             $level = (count($data) > 0 && isset($data['level'])) ? $data['level'] : 0;            
             $config_exam = $db->fetchRow("SELECT * FROM config_exam");
-            $questionIds = $this->getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam['number']);
+            $questionIds = Default_Model_Question::getQuestionIdsByLevelAndNganhNgheId($nganhNgheId, $level, $config_exam['number']);
         }
         
         $date = date('Y-m-d');
@@ -328,7 +280,7 @@ class ThiController extends Core_Controller_Action
         ) {
             $questions = array();
         } else {
-            $questions = $this->getQuestionsByQuestionIds($questionIds);
+            $questions = Default_Model_Question::getQuestionsByQuestionIds($questionIds);
         }
 
         if (
