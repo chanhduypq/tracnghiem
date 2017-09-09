@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl('/js/jquery.number.js'); ?>"></script>
 <?php if (isset($this->message) && $this->message != '') { ?>
     <div style="color: red;text-align: center;width: 100%;">
         <h3><?php echo $this->message; ?></h3>
@@ -19,6 +20,10 @@
 
     <fieldset>
         <?php echo $this->render('exam/partial/config.phtml');?> 
+    </fieldset>
+    
+    <fieldset>
+        <?php echo $this->render('exam/partial/level.phtml');?> 
     </fieldset>
     
 </form>

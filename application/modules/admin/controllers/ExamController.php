@@ -59,6 +59,8 @@ class Admin_ExamController extends Core_Controller_Action
         $this->view->message = $message;
         $this->view->error_config_exam = $error_config_exam;
         $this->view->date = $dateForRender;
+        $levelModel = new Default_Model_Configexamlevel();
+        $this->view->levels = $levelModel->getConfigExamLevels();
     }
 
     private function saveDB($data) 
@@ -80,6 +82,25 @@ class Admin_ExamController extends Core_Controller_Action
             $db->query("update config_exam set phan_tram=" . $data['phan_tram'] . ",phut=" . $data['phut'] . ",number=" . $data['number'])->execute();
 
             $db->query("update user_exam set allow_re_exam=0")->execute();
+            
+            $levelIds = $data['level_id'];
+            $b1 = $data['b1'];
+            $b2 = $data['b2'];
+            $b3 = $data['b3'];
+            $model = new Default_Model_Configexamlevel();
+            for ($i = 0; $i < count($levelIds); $i++) {
+                $temp=100-$b3[$i];
+                if($b2[$i]>$temp){
+                    $b2[$i]=$temp;
+                }
+                $b1[$i]=$temp-$b2[$i];
+                $dataJson = json_encode(array(
+                    'b1' => $b1[$i],
+                    'b2' => $b2[$i],
+                    'b3' => $b3[$i],
+                ));
+                $model->update(array('data' => $dataJson), 'id=' . $levelIds[$i]);
+            }
         }
     }
 

@@ -1,0 +1,34 @@
+<?php 
+$questionArray = $this->questionArray;
+if(count($questionArray)>0){
+    $questionsHtml = '';
+    $i = 1;
+    foreach ($questionArray as $key => $question) {
+        $questionsHtml .= '<div class="span11" style="color: blue;margin-top: 20px;">
+                ' . $i . '. ' . $question['content'] . '
+            </div>';
+        foreach ($question['answers'] as $temp) {
+            $questionsHtml .= '<div class="span2"></div>';
+            if ($temp['sign'] == $question['dapan_sign']) {
+                $questionsHtml .= '<div class="span8">
+                        <strong><i><u>' . $temp['sign'] . '. ' . $temp['content'] . ' (*)</u></i></strong>
+                    </div>';
+            } else {
+                $questionsHtml .= '<div class="span8">
+                        ' . $temp['sign'] . '. ' . $temp['content'] . '
+                    </div>';
+            }
+        }
+        $i++;
+    }
+?>
+<div class="row-fluid">
+    <div class="span12"></div>
+    <?php echo $questionsHtml;?>    
+</div>
+<?php 
+}
+?>
+
+
+
