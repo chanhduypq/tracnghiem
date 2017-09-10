@@ -82,10 +82,10 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
         if ($level == '1') {//nếu là bậc 1
             $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=1 ORDER BY RAND() LIMIT " . $config_exam_number;
             $rows = $db->fetchAll($sql);
-        } else if ($level == '2') {//nếu là bậc 2
+        } else if ($level == '2' || $level == '3') {//nếu là bậc 2/3
             $levelJsonString = $db->fetchOne("SELECT data from config_exam_level WHERE level=$level");
             $levelJsonArray = json_decode($levelJsonString, true);
-            if ($levelJsonArray['b2'] == '100') {//nếu hệ thống muốn lấy 100% câu b2 cho bậc 2
+            if ($levelJsonArray['b2'] == '100') {//nếu hệ thống muốn lấy 100% câu b2 cho bậc 2/3
                 $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=2 ORDER BY RAND() LIMIT " . $config_exam_number;
                 $rows = $db->fetchAll($sql);
                 if (count($rows) < $config_exam_number) {//nếu lấy chưa đủ thi phải lấy thêm b1 bù vào cho đủ $config_exam_number
@@ -106,11 +106,11 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
                 $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=1 ORDER BY RAND() LIMIT " . $b1Number;
                 $rows = array_merge($rows, $db->fetchAll($sql));
             }
-        } else {//nếu là bậc 3/4/5
+        } else {//nếu là bậc 4/5
             $levelJsonString = $db->fetchOne("SELECT data from config_exam_level WHERE level=$level");
             $levelJsonArray = json_decode($levelJsonString, true);
 
-            if ($levelJsonArray['b3'] == '100') {//nếu hệ thống muốn lấy 100% câu b3 cho bậc 3/4/5
+            if ($levelJsonArray['b3'] == '100') {//nếu hệ thống muốn lấy 100% câu b3 cho bậc 4/5
                 $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=3 ORDER BY RAND() LIMIT " . $config_exam_number;
                 $rows = $db->fetchAll($sql);
                 if (count($rows) < $config_exam_number) {//nếu lấy chưa đủ thi phải lấy thêm b1,b2 bù vào cho đủ $config_exam_number
@@ -135,14 +135,14 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
 
                 $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=1 ORDER BY RAND() LIMIT " . $b1Number;
                 $rows = array_merge($rows, $db->fetchAll($sql));
-                
-                if(count($rows)<$config_exam_number){
+
+                if (count($rows) < $config_exam_number) {
                     $tempIds = array();
                     foreach ($rows as $row) {
                         $tempIds[] = $row['id'];
                     }
-                    if(count($tempIds)>0){
-                        $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=3 AND question.id NOT IN (". implode(",", $tempIds).") ORDER BY RAND() LIMIT " . ($config_exam_number-count($rows));
+                    if (count($tempIds) > 0) {
+                        $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=3 AND question.id NOT IN (" . implode(",", $tempIds) . ") ORDER BY RAND() LIMIT " . ($config_exam_number - count($rows));
                         $rows = array_merge($rows, $db->fetchAll($sql));
                     }
                 }
@@ -158,6 +158,13 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
     }
 
     public static function getQuestionIdsByLevelAndNganhNgheIdForPageQuestion($nganhNgheId, $level) {
+        if ($level == '1') {
+            $level = '1';
+        } else if ($level == '2' || $level == '3') {
+            $level = '2';
+        } else if ($level == '4' || $level == '5') {
+            $level = '3';
+        }
         $db = Core_Db_Table::getDefaultAdapter();
         $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level<=$level ORDER BY question.id ASC";
 

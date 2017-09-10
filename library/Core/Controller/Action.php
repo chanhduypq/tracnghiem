@@ -61,14 +61,14 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
      * @var integer
      */
     public $order;
-    
+
     /**
      *  Main init
      */
     public function init() {
         parent::init();
         $this->setLayout();
-        $this->redirectIfNotLogin();    
+        $this->redirectIfNotLogin();
 
         set_time_limit(2000);
 
@@ -102,14 +102,12 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
             return '';
         }
     }
-    
-    public function download($path,$fileName=null) 
-    { 
+
+    public function download($path, $fileName = null) {
         Core_Common_Download::download($path, $fileName);
     }
 
-    public function createFilePdf($html, $filename, $title_header = '') 
-    {
+    public function createFilePdf($html, $filename, $title_header = '') {
         Core_Common_Pdf::createFilePdf($html, $filename, $title_header);
     }
 
@@ -132,14 +130,14 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
 
         <?php
     }
+
     /**
      * function common
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      * @param Core_Form $form
      * @param array $formData
      */
-    public function processSpecialInput($form, &$formData) 
-    {
+    public function processSpecialInput($form, &$formData) {
         try {
             foreach ($form->getElements() as $element) {
                 if ($element instanceof Core_Form_Element_Date) {
@@ -221,28 +219,26 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
     protected function _hasSnapshot() {
         return isset(Core::session()->snapshot) && !empty(Core::session()->snapshot);
     }
-    
-    private function setLayout(){
-        if($this->_request->getModuleName()=='admin'){            
-            $option = array ('layout' => 'admin');
+
+    private function setLayout() {
+        if ($this->_request->getModuleName() == 'admin') {
+            $option = array('layout' => 'admin');
+        } else {
+            $option = array('layout' => 'index');
         }
-        else{            
-            $option = array ('layout' => 'index');
-        }
-        
+
         $layout = Zend_Layout::getMvcInstance();
-        $layout->setOptions($option); 
-    }
-    
-    private function turnSessionPrevController()
-    {
-        $session=new Zend_Session_Namespace('url');
-        $session->controller=$this->_request->getControllerName();
+        $layout->setOptions($option);
     }
 
-    private function redirectIfNotLogin(){
-        if($this->_request->getModuleName()=='admin'){
-            if($this->_request->getControllerName()!='index'){
+    private function turnSessionPrevController() {
+        $session = new Zend_Session_Namespace('url');
+        $session->controller = $this->_request->getControllerName();
+    }
+
+    private function redirectIfNotLogin() {
+        if ($this->_request->getModuleName() == 'admin') {
+            if ($this->_request->getControllerName() != 'index') {
                 $auth = Zend_Auth::getInstance();
                 if (!$auth->hasIdentity()) {
                     $this->turnSessionPrevController();
@@ -255,46 +251,45 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
                     }
                 }
             }
-        }
-        else{
-            if($this->_request->getControllerName()!='index'){
+        } else {
+            if ($this->_request->getControllerName() != 'index' && $this->_request->getControllerName() != 'question') {
                 $auth = Zend_Auth::getInstance();
                 if (!$auth->hasIdentity()) {
                     $this->_helper->redirector('index', 'index', 'default');
                 }
             }
-        }   
+        }
     }
-    
+
     /**
      * khởi tạo lại session ban đầu
      * có nghĩa là 
      *     ban đầu khi login, lưu thông tin session nào thi bây giờ chỉ lấy lại những thông tin đó, 
      *     những thông tin session mới thêm vào sau này thi hủy đi
      */
-    public function resetSession() 
-    {
+    public function resetSession() {
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
         $auth->clearIdentity();
 
-        foreach ($identity as $key=>$value){
-            if(!in_array($key, array(
-                                    'id',
-                                    'danh_xung',
-                                    'full_name',
-                                    'email',
-                                    'phone',
-                                    'password',
-                                    'is_admin',
-                                    'user'                
-                                    )
-                        )
-            ){
+        foreach ($identity as $key => $value) {
+            if (!in_array($key, array(
+                        'id',
+                        'danh_xung',
+                        'full_name',
+                        'email',
+                        'phone',
+                        'password',
+                        'is_admin',
+                        'user'
+                            )
+                    )
+            ) {
                 unset($identity["$key"]);
             }
         }
 
         $auth->getStorage()->write($identity);
     }
+
 }
