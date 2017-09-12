@@ -12,8 +12,7 @@ class IndexController extends Core_Controller_Action
     public function indexAction() 
     {
         $mapper = new Admin_Model_HomecontentMapper();
-        $item = $mapper->getContent();
-        $this->view->lienHe = $item["content"];
+        $this->view->content = $mapper->getContent();
     }
     
     public function guideAction() 

@@ -17,11 +17,10 @@ class Admin_Model_HomecontentMapper
     {
 
         try {
-            $ret = $this->getDB()->fetchRow("select * from home_content");
+            return $this->getDB()->fetchOne("select content from home_content");
         } catch (Exception $e) {
-            return array();
+            return '';
         }
-        return $ret;
     }
 
     private function getDB() 
