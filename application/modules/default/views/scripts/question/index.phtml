@@ -4,8 +4,8 @@ if(count($questionArray)>0){
     $questionsHtml = '';
     $i = 1;
     foreach ($questionArray as $key => $question) {
-        $questionsHtml .= '<div class="span11" style="color: blue;margin-top: 20px;">
-                ' . $i . '. ' . $question['content'] . '
+        $questionsHtml .= '<div class="span11" style="color: blue;margin-top: 20px;font-size: 17px;">
+                <strong>' . $i . '. ' . $question['content'] . '</strong>
             </div>';
         foreach ($question['answers'] as $temp) {
             $questionsHtml .= '<div class="span2"></div>';
