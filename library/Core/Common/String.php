@@ -4,6 +4,21 @@ class Core_Common_String {
 
     /**
      * function common
+     * cắt những khoảng trắng bị dư, mã hóa chuỗi thành utf8
+     * ví dụ: " tôi tên   là  nguyễn vĂn  Hùng"->"tôi tên là nguyễn vĂn Hùng"
+     * @param string $string
+     * @return string
+     */
+    public static function removeUnnecessarySpaces($string) 
+    {
+        $string = trim($string);
+        $words = preg_split('/\s+/', $string);
+        $string = implode(" ", $words);
+        return $string;
+    }
+
+    /**
+     * function common
      * cắt chuỗi nếu chuỗi dài hơn một độ dài cho phép
      * @param string $text 
      * @param integer $len
@@ -11,8 +26,7 @@ class Core_Common_String {
      * @return string
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
-    public static function crop($text, $len, $after = true) 
-    {
+    public static function crop($text, $len, $after = true) {
         if ($text == NULL) {
             return "";
         }
@@ -26,7 +40,7 @@ class Core_Common_String {
         if (Core_Common_Numeric::isInteger($len) == FALSE) {
             return $text;
         }
-        
+
         if ($len > strlen(utf8_decode($text))) {
             $string = $text;
         } else {
