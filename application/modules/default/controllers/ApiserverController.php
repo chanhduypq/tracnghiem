@@ -25,12 +25,12 @@ class ApiserverController extends Zend_Rest_Controller {
     }
 
     public function putAction() {
-        $this->getResponse()->setBody('resource updated');
+        $this->getResponse()->setBody('resource updated'.$this->_getParam('id'));
         $this->getResponse()->setHttpResponseCode(200);
     }
 
     public function deleteAction() {
-        $this->getResponse()->setBody('resource deleted');
+        $this->getResponse()->setBody('resource deleted'.$this->_getParam('id'));
         $this->getResponse()->setHttpResponseCode(200);
     }
 
