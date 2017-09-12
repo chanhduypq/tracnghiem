@@ -8,6 +8,7 @@ class Core_Common_String {
      * ví dụ: " tôi tên   là  nguyễn vĂn  Hùng"->"tôi tên là nguyễn vĂn Hùng"
      * @param string $string
      * @return string
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
     public static function removeUnnecessarySpaces($string) 
     {
