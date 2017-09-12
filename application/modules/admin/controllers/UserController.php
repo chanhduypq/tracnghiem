@@ -48,7 +48,7 @@ class Admin_UserController extends Core_Controller_Action
 
             if ($form->isValid($formData)) {
                 $mapper = new Default_Model_User();
-                $this->processSpecialInput($form, $formData);
+                Core_Common_Form::processSpecialInput($form, $formData);
 
                 $formData['password'] = sha1($formData['email']);
 
@@ -88,7 +88,7 @@ class Admin_UserController extends Core_Controller_Action
 
             $formData = $this->_request->getPost();
             if ($form->isValid($formData)) {
-                $this->processSpecialInput($form, $formData);
+                Core_Common_Form::processSpecialInput($form, $formData);
                 $row = $mapper->fetchRow('id=' . $formData['id']);
 
                 $mapper->update($formData, 'id=' . $formData['id']);
