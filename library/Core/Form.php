@@ -531,41 +531,39 @@ class Core_Form extends Zend_Form
      */
     public function setDefaults(array $defaults)
     {    	
-    	$eBelongTo = null;
-    
-    	if ($this->isArray()) {
-    		$eBelongTo = $this->getElementsBelongTo();
-    		$defaults = $this->_dissolveArrayValue($defaults, $eBelongTo);
-    	}
-    	foreach ($this->getElements() as $name => $element) {
-    		$check = $defaults;
-    		if (($belongsTo = $element->getBelongsTo()) !== $eBelongTo) {
-    			$check = $this->_dissolveArrayValue($defaults, $belongsTo);
-    		}
-    		if (array_key_exists($name, $check)) {
-    			$this->setDefault($name, $check[$name]);
-    			$defaults = $this->_dissolveArrayUnsetKey($defaults, $belongsTo, $name);
-    		}
-    		if($element instanceof Core_Form_Element_Date){
-    			$array=explode(" ",$element->getValue());
-    			$date=$array[0];
-    			$array=explode("-",$date);
-                        if(count($array)==3){
-                            $value=$array[2]."/".$array[1]."/".$array[0];
-                            $element->setValue($value);
-                        }
-    			
-    		}
-    		
-    	}
-    	foreach ($this->getSubForms() as $name => $form) {
-    		if (!$form->isArray() && array_key_exists($name, $defaults)) {
-    			$form->setDefaults($defaults[$name]);
-    		} else {
-    			$form->setDefaults($defaults);
-    		}
-    	}
-    	return $this;
+        $eBelongTo = null;
+
+        if ($this->isArray()) {
+            $eBelongTo = $this->getElementsBelongTo();
+            $defaults = $this->_dissolveArrayValue($defaults, $eBelongTo);
+        }
+        foreach ($this->getElements() as $name => $element) {
+            $check = $defaults;
+            if (($belongsTo = $element->getBelongsTo()) !== $eBelongTo) {
+                $check = $this->_dissolveArrayValue($defaults, $belongsTo);
+            }
+            if (array_key_exists($name, $check)) {
+                $this->setDefault($name, $check[$name]);
+                $defaults = $this->_dissolveArrayUnsetKey($defaults, $belongsTo, $name);
+            }
+            if ($element instanceof Core_Form_Element_Date) {
+                $array = explode(" ", $element->getValue());
+                $date = $array[0];
+                $array = explode("-", $date);
+                if (count($array) == 3) {
+                    $value = $array[2] . "/" . $array[1] . "/" . $array[0];
+                    $element->setValue($value);
+                }
+            }
+        }
+        foreach ($this->getSubForms() as $name => $form) {
+            if (!$form->isArray() && array_key_exists($name, $defaults)) {
+                $form->setDefaults($defaults[$name]);
+            } else {
+                $form->setDefaults($defaults);
+            }
+        }
+        return $this;
     }
     
 }
