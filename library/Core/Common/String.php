@@ -4,7 +4,7 @@ class Core_Common_String {
 
     /**
      * function common
-     * cắt những khoảng trắng bị dư, mã hóa chuỗi thành utf8
+     * cắt những khoảng trắng bị dư
      * ví dụ: " tôi tên   là  nguyễn vĂn  Hùng"->"tôi tên là nguyễn vĂn Hùng"
      * @param string $string
      * @return string
