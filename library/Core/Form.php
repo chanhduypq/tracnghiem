@@ -229,7 +229,8 @@ class Core_Form extends Zend_Form
     		
     		)
     		{
-    			$element=new Core_Form_Element_Date($column_difinition['COLUMN_NAME']);    			    			
+    			$element=new Core_Form_Element_Date($column_difinition['COLUMN_NAME']);
+                        $element->setAttrib('readonly', 'readonly');                        
     			if($column_difinition['NULLABLE']==false){
     				$element
     				->setRequired(true);
@@ -549,8 +550,11 @@ class Core_Form extends Zend_Form
     			$array=explode(" ",$element->getValue());
     			$date=$array[0];
     			$array=explode("-",$date);
-    			$value=$array[2]."/".$array[1]."/".$array[0];
-    			$element->setValue($value);
+                        if(count($array)==3){
+                            $value=$array[2]."/".$array[1]."/".$array[0];
+                            $element->setValue($value);
+                        }
+    			
     		}
     		
     	}
