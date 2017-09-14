@@ -36,36 +36,13 @@ if (is_array($questions) && count($questions) > 0) {
                     </div>
                     <?php
                     $answers = $question['answers'];
-                    foreach ($answers as &$answer){
-                        if($question['dapan_sign']==$answer['sign']){
-                            $answer['is_dapan']=TRUE;
-                        }
-                        else{
-                            $answer['is_dapan']=FALSE;
-                        }
-                    }
-                    
-                    shuffle($answers);
-                    $newAnswers['A']= array_pop($answers);
-                    shuffle($answers);
-                    $newAnswers['B']= array_pop($answers);
-                    shuffle($answers);
-                    $newAnswers['C']= array_pop($answers);
-                    //
-                    $newAnswers['D']= array_pop($answers);                    
-                    foreach ($newAnswers as $key=>$newAnswer){
-                        if($newAnswer['is_dapan']==TRUE){
-                            $question['dapan_sign']=$key;
-                        }
-                    }
-                                        
-                    foreach ($newAnswers as $key=>$answer) {
+                    foreach ($answers as $answer) {
                         ?>
                         <div class="span11 answer">
                             <label>
                                 <div class='span1'>
-                                    <input type="radio" name="<?php echo $question['id']; ?>" value="<?php echo $answer['id'] . '_' . $key; ?>"/>
-                                    <?php echo $key; ?>
+                                    <input type="radio" name="<?php echo $question['id']; ?>" value="<?php echo $answer['id'] . '_' . $answer['sign']; ?>"/>
+                                    <?php echo $answer['sign']; ?>
                                 </div>
                                 <div class='span11'>
                                     <?php echo $answer['content']; ?>
@@ -79,7 +56,6 @@ if (is_array($questions) && count($questions) > 0) {
                     <input type="hidden" name="answer_id[]"/>
                     <input type="hidden" name="answer_sign[]"/>
                     <input type="hidden" name="dapan_sign[]" value="<?php echo $question['dapan_sign']; ?>"/>
-                    <input type="hidden" name="answers_json[]" value='<?php echo json_encode($newAnswers);?>'/>
                 </div>
                 <?php
                 $i++;

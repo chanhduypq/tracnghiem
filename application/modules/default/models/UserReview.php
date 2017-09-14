@@ -21,11 +21,14 @@ class Default_Model_Userreview extends Core_Db_Table_Abstract {
                 . "user_review_detail.dapan_sign,"
                 . "user_review_detail.answer_sign,"
                 . "user_review_detail.answer_id,"
+                . "user_review_detail.answers_json,"
+                . "question.content AS question_content,"
                 . "nganh_nghe.title "
                 . "from user_review "
                 . "JOIN user_review_detail ON user_review.id=user_review_detail.user_review_id "
                 . "JOIN user ON user.id=user_review.user_id "
                 . "JOIN nganh_nghe ON nganh_nghe.id=user_review.nganh_nghe_id "
+                . "JOIN question ON question.id=user_review_detail.question_id "
                 . "WHERE user_review.id=$user_review_id ORDER BY user_review_detail.id ASC");
         $count_correct = 0;
         $count_incorrect = 0;
@@ -37,12 +40,20 @@ class Default_Model_Userreview extends Core_Db_Table_Abstract {
                 $count_incorrect++;
             }
             $questionIds[] = $r['question_id'];
+            $questions[$r['question_id']]['question_content'] = $r['question_content'];
+            $answers_json= json_decode($r['answers_json'],TRUE);
+            foreach ($answers_json as $key=>$value){
+                $questions[$r['question_id']]['answers'][] = array('answer_sign' => $key, 'answer_content' => $value['content'], 'is_dap_an' => $value['is_dapan']);
+            }
+            
         }
 
 
         $diem = round($count_correct * 10 / count($row), 1);
-        $questions = Default_Model_Question::getFullQuestions($db, $questionIds);
+        
+        
         $questionsHtml = Default_Model_Pdfresult::getQuestionsHtml($questions);
+        
         
         Default_Model_Pdfresult::setTime($startTime, $endTime, $during, $row[0]);
 

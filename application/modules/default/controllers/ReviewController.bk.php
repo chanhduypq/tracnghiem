@@ -1,6 +1,6 @@
 <?php
 
-class ReviewController extends Core_Controller_Action {
+class Review_bkController extends Core_Controller_Action {
 
     public function init() {
         parent::init();
@@ -43,7 +43,6 @@ class ReviewController extends Core_Controller_Action {
             $answerIds = $data['answer_id'];
             $answerSigns = $data['answer_sign'];
             $dapanSigns = $data['dapan_sign'];
-            $answersJsons = $data['answers_json'];
             $count_correct = 0;
             $user_exam_detail = new Default_Model_Userreviewdetail();
             for ($i = 0, $n = count($questionIds); $i < $n; $i++) {
@@ -60,7 +59,6 @@ class ReviewController extends Core_Controller_Action {
                     'is_correct' => $is_correct,
                     'answer_sign' => $answerSigns[$i] == 'Z' ? ' ' : $answerSigns[$i],
                     'dapan_sign' => $dapanSigns[$i],
-                    'answers_json' => $answersJsons[$i],
                 ));
             }
             $db->commit();

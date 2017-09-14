@@ -89,6 +89,7 @@ class ThiController extends Core_Controller_Action
             $answerIds = $data['answer_id'];
             $answerSigns = $data['answer_sign'];
             $dapanSigns = $data['dapan_sign'];
+            $answersJsons = $data['answers_json'];
             $count_correct = 0;
             $user_exam_detail = new Default_Model_Userexamdetail();
             for ($i = 0, $n = count($questionIds); $i < $n; $i++) {
@@ -106,6 +107,7 @@ class ThiController extends Core_Controller_Action
                     'is_correct' => $is_correct,
                     'answer_sign' => $answerSigns[$i]=='Z'?' ':$answerSigns[$i],
                     'dapan_sign' => $dapanSigns[$i],
+                    'answers_json' => $answersJsons[$i],
                 ));
             }
 
@@ -143,6 +145,7 @@ class ThiController extends Core_Controller_Action
             $answerIds = $data['answer_id'];
             $answerSigns = $data['answer_sign'];
             $dapanSigns = $data['dapan_sign'];
+            $answersJsons = $data['answers_json'];
             $count_correct = 0;
             $user_exam_detail = new Default_Model_Userexamdetail();
             $user_exam_detail->delete('user_exam_id=' . $userExamId);
@@ -161,6 +164,7 @@ class ThiController extends Core_Controller_Action
                     'is_correct' => $is_correct,
                     'answer_sign' => $answerSigns[$i]=='Z'?' ':$answerSigns[$i],
                     'dapan_sign' => $dapanSigns[$i],
+                    'answers_json' => $answersJsons[$i],
                 ));
             }
 

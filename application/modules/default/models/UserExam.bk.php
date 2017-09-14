@@ -1,6 +1,6 @@
 <?php
 
-class Default_Model_Userexam extends Core_Db_Table_Abstract {
+class Default_Model_Userexam_bk extends Core_Db_Table_Abstract {
 
     public $_name = "user_exam";
 
@@ -21,14 +21,11 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract {
                 . "user_exam_detail.dapan_sign,"
                 . "user_exam_detail.answer_sign,"
                 . "user_exam_detail.answer_id,"
-                . "user_exam_detail.answers_json,"
-                . "question.content AS question_content,"
                 . "nganh_nghe.title "
                 . "from user_exam "
                 . "JOIN user_exam_detail ON user_exam.id=user_exam_detail.user_exam_id "
                 . "JOIN user ON user.id=user_exam.user_id "
                 . "JOIN nganh_nghe ON nganh_nghe.id=user_exam.nganh_nghe_id "
-                . "JOIN question ON question.id=user_exam_detail.question_id "
                 . "LEFT JOIN user_pass ON user_pass.user_exam_id=user_exam.id "
                 . "WHERE user_exam.id=$user_exam_id ORDER BY user_exam_detail.id ASC");
         $count_correct = 0;
@@ -41,11 +38,6 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract {
                 $count_incorrect++;
             }
             $questionIds[] = $r['question_id'];
-            $questions[$r['question_id']]['question_content'] = $r['question_content'];
-            $answers_json= json_decode($r['answers_json'],TRUE);
-            foreach ($answers_json as $key=>$value){
-                $questions[$r['question_id']]['answers'][] = array('answer_sign' => $key, 'answer_content' => $value['content'], 'is_dap_an' => $value['is_dapan']);
-            }
         }
 
         if (is_numeric($row[0]['user_pass_id'])) {
@@ -54,6 +46,7 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract {
             $result = 'Chưa đạt';
         }
         $diem = round($count_correct * 10 / count($row), 1);
+        $questions = Default_Model_Question::getFullQuestions($db, $questionIds);
         $questionsHtml = Default_Model_Pdfresult::getQuestionsHtml($questions);
                
         Default_Model_Pdfresult::setTime($startTime, $endTime, $during, $row[0]);
