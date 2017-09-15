@@ -142,8 +142,7 @@ class Default_Model_Pdfresult {
                 </tbody>';
     }
 
-    public static function getHeaderHtml($headers) 
-    {
+    public static function getHeaderHtml($headers) {
         return '<table style="width: 100%;">
                     <tbody>
                         <tr>
@@ -164,9 +163,8 @@ class Default_Model_Pdfresult {
                     </tbody>
                 </table>';
     }
-    
-    public static function setHtmlForDetailResult(&$div1, &$div2, &$div3, $result)
-    {
+
+    public static function setHtmlForDetailResult(&$div1, &$div2, &$div3, $result) {
         $motPhan = intval(ceil(count($result) / 3));
         $div1 = $div2 = $div3 = '';
         for ($i = 0; $i < $motPhan; $i++) {
@@ -196,27 +194,33 @@ class Default_Model_Pdfresult {
                     </tr>';
         }
     }
-    
-    public static function setTime(&$startTime, &$endTime, &$during, $data) 
-    {
+
+    public static function setTime(&$startTime, &$endTime, &$during, $data) {
+        /**
+         * chưa tìm được nguyên nhân tại sao save vào db user_review.em=null
+         * khi xảy ra lỗi như vay thi $data['em']=''=>dòng code $endTime = new DateTime(date('Y-m-d ' . $data['eh'] . ':' . $data['em'] . ':' . $data['es'])); sẽ bị lỗi
+         * do đó phải code thêm đoạn sau
+         */
+        if ($data['em'] == NULL || trim($data['em']) == '') {
+            $data['em'] = $data['sm'];
+        }
         $startTime = new DateTime(date('Y-m-d ' . $data['sh'] . ':' . $data['sm'] . ':00'));
         $endTime = new DateTime(date('Y-m-d ' . $data['eh'] . ':' . $data['em'] . ':' . $data['es']));
         $diff = $endTime->diff($startTime);
-        $during = Core_Common_Numeric::convert($diff->h,2) . ':' . (($diff->h == 0 && $diff->i == 0) ? '00' : Core_Common_Numeric::convert($diff->i,2)) . ':' . Core_Common_Numeric::convert($diff->s,2); // . ':00';
+        $during = Core_Common_Numeric::convert($diff->h, 2) . ':' . (($diff->h == 0 && $diff->i == 0) ? '00' : Core_Common_Numeric::convert($diff->i, 2)) . ':' . Core_Common_Numeric::convert($diff->s, 2); // . ':00';
         if ($data['sh'] > 12) {
-            $startTime = ($data['sh'] - 12) . ':' . Core_Common_Numeric::convert($data['sm'],2) . ' PM';
+            $startTime = ($data['sh'] - 12) . ':' . Core_Common_Numeric::convert($data['sm'], 2) . ' PM';
         } else {
-            $startTime = $data['sh'] . ':' . Core_Common_Numeric::convert($data['sm'],2) . ' AM';
+            $startTime = $data['sh'] . ':' . Core_Common_Numeric::convert($data['sm'], 2) . ' AM';
         }
         if ($data['eh'] > 12) {
-            $endTime = ($data['eh'] - 12) . ':' . Core_Common_Numeric::convert($data['em'],2) . ' PM';
+            $endTime = ($data['eh'] - 12) . ':' . Core_Common_Numeric::convert($data['em'], 2) . ' PM';
         } else {
-            $endTime = $data['eh'] . ':' . Core_Common_Numeric::convert($data['em'],2) . ' AM';
+            $endTime = $data['eh'] . ':' . Core_Common_Numeric::convert($data['em'], 2) . ' AM';
         }
     }
-    
-    public static function getLevelHtml($level) 
-    {
+
+    public static function getLevelHtml($level) {
         if ($level == '1') {
             return strtoupper('BẬC 1');
         } else if ($level == '2') {

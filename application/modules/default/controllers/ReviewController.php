@@ -11,6 +11,8 @@ class ReviewController extends Core_Controller_Action {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->beginTransaction();
         try {
+            $db->query('DELETE FROM user_review_detail WHERE user_review_id IN (SELECT id FROM user_review WHERE user_id='.$this->getUserId().')')->execute();
+            $db->delete('user_review', 'user_id='.$this->getUserId());
             $auth = Zend_Auth::getInstance();
             $identity = $auth->getIdentity();
             $sh = $identity['sh_review'];
