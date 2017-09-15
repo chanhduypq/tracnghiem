@@ -16,6 +16,9 @@ class Admin_ImageController extends Core_Controller_Action
         $itemHinhnen = new Admin_Model_HinhnenMapper();
         $this->view->hinhnen = $itemHinhnen->getInfo();
         
+        $item=new Admin_Model_HinhnentrangchuMapper();
+        $this->view->bg = $item->getInfo();
+        
         $this->view->message= $this->getMessage();
     }
 
@@ -64,6 +67,29 @@ class Admin_ImageController extends Core_Controller_Action
             if ($result['file_name'] != $item_image && trim($_FILES['hinhnen']['name']) != "") {
                 $path = UPLOAD . "/public" . $result['file_name'];
                 unlink($path);
+            }
+        }
+        
+        if (isset($_FILES['bg']) && isset($_FILES['bg']['name']) && $_FILES['bg']['name'] != '') {
+            $item = new Admin_Model_HinhnentrangchuMapper();
+            $item_image = $_FILES['bg']['name'];
+            
+
+            if (isset($item_image) && $item_image != "") {
+                
+                $extension = @explode(".", $item_image);
+                $extension = $extension[count($extension) - 1];
+                $item_image = sprintf('_%s.' . $extension, uniqid(md5(time()), true));
+                $path = UPLOAD . "/public/images/database/bg/" . $item_image;
+                $item_image = "/images/database/bg/" . $item_image;
+                move_uploaded_file($_FILES['bg']['tmp_name'], $path);
+            }
+
+
+            $result = $item->save($item_image);
+            if ($result['file_name'] != $item_image && trim($_FILES['bg']['name']) != "") {
+                $path = UPLOAD . "/public" . $result['file_name'];
+                @unlink($path);
             }
         }
 

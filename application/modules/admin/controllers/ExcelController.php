@@ -99,6 +99,7 @@ class Admin_ExcelController extends Core_Controller_Action {
             $data_question = array(
                 'content' => iconv(mb_detect_encoding($sheet['cells'][$x][6], mb_detect_order(), true), "UTF-8", $sheet['cells'][$x][6]),
                 'level' => $level,
+                'is_dao' => $sheet['cells'][$x][8]
             );
             $id_question = $mapper_question->insert($data_question);
 

@@ -183,12 +183,13 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
         }
         $db = Core_Db_Table::getDefaultAdapter();
         $newQuestions = array();
-        $questions = $db->fetchAll("SELECT question.id,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");
+        $questions = $db->fetchAll("SELECT question.id,question.is_dao,question.content,answer.sign,answer.content AS answer_content,answer.id AS answer_id,dap_an.sign AS dapan_sign FROM question JOIN nganhnghe_question ON question.id = nganhnghe_question.question_id JOIN answer ON answer.question_id=question.id JOIN dap_an ON dap_an.question_id=question.id WHERE question.id IN (" . implode(',', $questionIds) . ") ORDER BY question.id ASC,answer.sign ASC");
         foreach ($questions as $question) {
             $newQuestions[$question['id']]['id'] = $question['id'];
             $newQuestions[$question['id']]['content'] = $question['content'];
             $newQuestions[$question['id']]['answers'][$question['answer_id']] = array('content' => $question['answer_content'], 'sign' => $question['sign'], 'id' => $question['answer_id']);
             $newQuestions[$question['id']]['dapan_sign'] = $question['dapan_sign'];
+            $newQuestions[$question['id']]['is_dao'] = $question['is_dao'];
         }
         return $newQuestions;
     }

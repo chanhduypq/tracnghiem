@@ -17,9 +17,9 @@ class Admin_Model_HomecontentMapper
     {
 
         try {
-            return $this->getDB()->fetchOne("select content from home_content");
+            return $this->getDB()->fetchRow("select * from home_content");
         } catch (Exception $e) {
-            return '';
+            return array();
         }
     }
 

@@ -36,26 +36,54 @@ $minute_per_question = $config_exam['phut'];
                 </div>
                 <?php
                 $answers = $question['answers'];
-                foreach ($answers as &$answer){
-                    if($question['dapan_sign']==$answer['sign']){
-                        $answer['is_dapan']=TRUE;
+                
+                
+                if($question['is_dao']=='1'){
+                    foreach ($answers as &$answer){
+                        if($question['dapan_sign']==$answer['sign']){
+                            $answer['is_dapan']=TRUE;
+                        }
+                        else{
+                            $answer['is_dapan']=FALSE;
+                        }
                     }
-                    else{
-                        $answer['is_dapan']=FALSE;
+                    shuffle($answers);
+                    $newAnswers['A']= array_pop($answers);
+                    shuffle($answers);
+                    $newAnswers['B']= array_pop($answers);
+                    shuffle($answers);
+                    $newAnswers['C']= array_pop($answers);
+                    //
+                    $newAnswers['D']= array_pop($answers);                    
+                    foreach ($newAnswers as $key=>$newAnswer){
+                        if($newAnswer['is_dapan']==TRUE){
+                            $question['dapan_sign']=$key;
+                        }
                     }
                 }
-                
-                shuffle($answers);
-                $newAnswers['A']= array_pop($answers);
-                shuffle($answers);
-                $newAnswers['B']= array_pop($answers);
-                shuffle($answers);
-                $newAnswers['C']= array_pop($answers);
-                //
-                $newAnswers['D']= array_pop($answers);                    
-                foreach ($newAnswers as $key=>$newAnswer){
-                    if($newAnswer['is_dapan']==TRUE){
-                        $question['dapan_sign']=$key;
+                else{
+                    $k=0;
+                    foreach ($answers as $answer){
+                        if($question['dapan_sign']==$answer['sign']){
+                            $answer['is_dapan']=TRUE;
+                        }
+                        else{
+                            $answer['is_dapan']=FALSE;
+                        }
+
+                        if($k==0){
+                            $newAnswers['A']=$answer;
+                        }
+                        else if($k==1){
+                            $newAnswers['B']=$answer;
+                        }
+                        else if($k==2){
+                            $newAnswers['C']=$answer;
+                        }
+                        else{
+                            $newAnswers['D']=$answer;
+                        }
+                        $k++;                            
                     }
                 }
 

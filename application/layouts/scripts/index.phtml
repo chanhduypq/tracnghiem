@@ -238,7 +238,16 @@ if ($header_text_dynamic == "1") {
             </div>
             <!--end above-->
             <!--below-->    
-            <div class="row-fluid" style="margin-top: 10px;background: white;">
+            <?php 
+            $bg=$this->bg;
+            if($bg!=''){
+                $bg='background-image: url('.$this->baseUrl($bg).');background-size: cover;-webkit-background-size: cover;background-repeat: no-repeat;';
+            }
+            else{
+                $bg='background: white;';
+            }
+            ?>
+            <div class="row-fluid" style="margin-top: 10px;<?php echo $bg;?>">
 
                 <!--<div class="span1">&nbsp;</div>-->
                 <div class="span12" style="min-height: 600px;padding-left: 20px;">

@@ -12,7 +12,9 @@ class IndexController extends Core_Controller_Action
     public function indexAction() 
     {
         $mapper = new Admin_Model_HomecontentMapper();
-        $this->view->content = $mapper->getContent();
+        $item=$mapper->getContent();
+        $this->view->content = $item['content'];
+        $this->view->bg = $item['bg'];
     }
     
     public function guideAction() 

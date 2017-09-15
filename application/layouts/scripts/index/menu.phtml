@@ -19,15 +19,15 @@ if ($auth->hasIdentity()) {
         <li<?php echo $idReview; if (Zend_Controller_Front::getInstance()->getRequest()->getControllerName() == 'review') echo ' class="active"'; ?>><a href="<?php echo $hrefReview; ?>"><?php echo $menu_items[2]; ?></a></li>                        
         <li<?php if (Zend_Controller_Front::getInstance()->getRequest()->getControllerName() == 'question') echo ' class="active"'; ?>>
             <a href="#"><?php echo $menu_items[3]; ?></a>
-            <ul>
+            <ul style="background-color: white;" id="par">
                 <?php 
                 $mapper = new Default_Model_Nganhnghe();
                 $rows = $mapper->getNganhNghes();
                 foreach ($rows as $row){
                 ?>
                     <li>
-                        <a href="#"><?php echo $row['title'];?></a>
-                        <ul style="margin-left: 60px;background-color: #ccffcc;">
+                        <a href="#" style="color: black;"><?php echo $row['title'];?></a>
+                        <ul style="margin-left: 60px;background-color: white;">
                             <?php 
                             for($i=1;$i<=5;$i++){?>
                                 <li><a href="<?php echo $this->baseUrl(); ?>/question/index/nganhNgheId/<?php echo $row['id'];?>/level/<?php echo $i;?>">Bậc <?php echo $i;?></a></li>
