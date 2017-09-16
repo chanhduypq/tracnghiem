@@ -4,15 +4,19 @@ class ReviewController extends Core_Controller_Action {
 
     public function init() {
         parent::init();
-        $this->view->headTitle('Ôn tập', true);
+        $this->view->headTitle('Thi thử - Ôn tập', true);
     }
 
     private function saveDB($data) {
         $db = Core_Db_Table::getDefaultAdapter();
         $db->beginTransaction();
         try {
+            /**
+             *  xóa thông tin lần ôn tập trước
+             */
             $db->query('DELETE FROM user_review_detail WHERE user_review_id IN (SELECT id FROM user_review WHERE user_id='.$this->getUserId().')')->execute();
             $db->delete('user_review', 'user_id='.$this->getUserId());
+            
             $auth = Zend_Auth::getInstance();
             $identity = $auth->getIdentity();
             $sh = $identity['sh_review'];
@@ -20,12 +24,10 @@ class ReviewController extends Core_Controller_Action {
 
             $h = intval(date('H'));
             $m = intval(date('i'));
-//            if ($m == 0) {
-//                $m = 59;
-//                $h--;
-//            } else {
-//                $m--;
-//            }
+
+            /**
+             * insert table user_review
+             */
             $modelUserExam = new Default_Model_Userreview();
             $userExamId = $modelUserExam->insert(
                     array(
@@ -40,6 +42,10 @@ class ReviewController extends Core_Controller_Action {
                         'es' => rand(1, 59),
                     )
             );
+            
+            /**
+             * insert table user_review_detail
+             */
             $i = 0;
             $questionIds = $data['question_id'];
             $answerIds = $data['answer_id'];
@@ -92,19 +98,19 @@ class ReviewController extends Core_Controller_Action {
         $db = Core_Db_Table::getDefaultAdapter();       
         $data = $this->_request->getPost();
          
-        if (count($data) > 0) {
-            if (isset($data['question_id'])) {
+        if (count($data) > 0) {//submit
+            if (isset($data['question_id'])) {//trả lời câu hỏi xong và nhấn nút hoàn tất
                 $this->saveDB($data);
                 $this->resetSession();
                 $this->_helper->redirector('index', 'review', 'default');
                 return;
-            } else {
+            } else {//hệ thống đang ở trạng thái submit của việc [chọn ngành nghề, cấp bậc; sau đó nhấn nút bắt đầu]. Có thể vừa nhấn nút bắt đầu hoặc reload page
 
-                if (isset($identity['examing_review']) && $identity['examing_review'] == true) {
+                if (isset($identity['examing_review']) && $identity['examing_review'] == true) {//reload page
                     $nganhNgheId = $identity['nganh_nghe_id_review'];
                     $level = $identity['level_review'];
                     $questionIds = $identity['questionIds_review'];
-                } else {
+                } else {//mới vừa làm việc [chọn ngành nghề, cấp bậc; sau đó nhấn nút bắt đầu]
                     $nganhNgheId = $data['nganh_nghe_id'];
                     $level = $data['level'];
                     $config_exam = $db->fetchRow("SELECT * FROM config_exam");
@@ -124,14 +130,14 @@ class ReviewController extends Core_Controller_Action {
                 }
                 $auth->getStorage()->write($identity);
             }
-        } else {
+        } else {//user vào page này bằng việc click trên menu
 
-            if (isset($identity['examing_review']) && $identity['examing_review'] == true) {
+            if (isset($identity['examing_review']) && $identity['examing_review'] == true) {//[chọn ngành nghề, cấp bậc; sau đó nhấn nút bắt đầu], việc này đã được làm
                 $level = $identity['level_review'];
                 $nganhNgheId = $identity['nganh_nghe_id_review'];
                 $questionIds = $identity['questionIds_review'];
                 $newQuestions = Default_Model_Question::getQuestionsByQuestionIds($questionIds);
-            } else {
+            } else {//
                 $nganhNgheId = $level = 0;
                 $newQuestions = array();
             }
