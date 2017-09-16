@@ -1,6 +1,6 @@
 <?php
 
-class SoapserverController extends Core_Controller_Action 
+class Demo_SoapserverController extends Core_Controller_Action 
 {
 
     public function init() 
@@ -16,7 +16,7 @@ class SoapserverController extends Core_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
 
         // initialize server and set URI
-        $server = new Zend_Soap_Server('http://tracnghiem.local/soapserver/wsdl');
+        $server = new Zend_Soap_Server('http://tracnghiem.local/demo/soapserver/wsdl');
         // set SOAP service class      
         $server->setClass('WsClass_General');
 
@@ -40,7 +40,7 @@ class SoapserverController extends Core_Controller_Action
         $wsdl->setClass('WsClass_General');
 
         // set SOAP action URI
-        $wsdl->setUri('http://tracnghiem.local/soapserver/soap');
+        $wsdl->setUri('http://tracnghiem.local/demo/soapserver/soap');
 
         // handle request 
         $wsdl->handle();

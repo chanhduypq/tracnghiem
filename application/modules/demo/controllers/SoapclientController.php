@@ -1,6 +1,6 @@
 <?php
 
-class SoapclientController extends Core_Controller_Action 
+class Demo_SoapclientController extends Core_Controller_Action 
 {
 
     public function init() 
@@ -12,7 +12,7 @@ class SoapclientController extends Core_Controller_Action
     {
         $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
-        $ws = new Zend_Soap_Client('http://tracnghiem.local/soapserver/wsdl', array(
+        $ws = new Zend_Soap_Client('http://tracnghiem.local/demo/soapserver/wsdl', array(
             "soap_version" => SOAP_1_2,
         ));
         //        //một cách khác để gọi function

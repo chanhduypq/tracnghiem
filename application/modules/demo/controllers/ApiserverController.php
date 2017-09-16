@@ -1,6 +1,6 @@
 <?php
 
-class ApiserverController extends Zend_Rest_Controller {
+class Demo_ApiserverController extends Zend_Rest_Controller {
 
     public function init() {
         $this->_helper->viewRenderer->setNoRender(true);
