@@ -140,6 +140,27 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
     public function processSpecialInput($form, &$formData) {
         Core_Common_Form::fixSpecialElements($form, $formData);        
     }
+    
+    /**
+     * function common
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
+     */
+    public function disableLayout() {
+        $this->_helper->layout()->disableLayout(); 
+    }
+    
+    /**
+     * function common
+     * @author Trần Công Tuệ <chanhduypq@gmail.com>
+     */
+    public function disableRender() {
+        $this->_helper->viewRenderer->setNoRender(true);
+    }
+    
+    public function isAjax(){
+        $this->_helper->layout()->disableLayout(); 
+        $this->_helper->viewRenderer->setNoRender(true);
+    }
 
     /**
      * HTTP_REFERER is not always present in _SERVER[]
