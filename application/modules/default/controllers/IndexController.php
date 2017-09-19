@@ -26,7 +26,7 @@ class IndexController extends Core_Controller_Action
     {
 
 
-        $this->_helper->layout()->disableLayout();
+        $this->isAjax();
         $data = $this->_request->getPost();
         if (count($data) > 0) {
             $username = $this->_request->getParam('username', null);

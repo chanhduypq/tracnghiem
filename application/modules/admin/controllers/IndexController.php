@@ -62,12 +62,12 @@ class Admin_IndexController extends Core_Controller_Action
 
     public function changepasswordAction() 
     {
-        $this->_helper->layout()->disableLayout();
+        $this->disableLayout();
     }
 
     public function ajaxchangepasswordAction() 
     {
-        $this->_helper->layout()->disableLayout();
+        $this->disableLayout();
         $oldPassword = $this->_request->getParam('oldPassword');
         $auth = Zend_Auth::getInstance();
         $identity = $auth->getIdentity();
