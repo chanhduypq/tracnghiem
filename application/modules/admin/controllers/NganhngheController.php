@@ -14,7 +14,7 @@ class Admin_NganhngheController extends Core_Controller_Action
         $rows = $mapper->getNganhNghes();
         $this->view->items = $rows;
         
-        $this->view->message= $this->getMessage();
+        
     }
 
     public function addAction() 

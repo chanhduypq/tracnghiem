@@ -22,7 +22,7 @@ class Admin_GuideController extends Core_Controller_Action
             
 
         $this->view->item = $file_name;
-        $this->view->message= $this->getMessage();
+        
     }
 
     public function downloadAction() 

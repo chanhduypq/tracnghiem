@@ -8,32 +8,13 @@ class Admin_QuestionController extends Core_Controller_Action
         parent::init();
     }
 
-    
+
+
     public function indexAction() 
     {       
-        $limit = $this->_getParam('limit', 5);
-        $page = $this->_getParam('page', 1);
-        if(Core_Common_Numeric::isInteger($page)==FALSE){
-            $page=1;
-        }
-
-        $start = (($page - 1) * $limit);
         $mapper = new Default_Model_Question();
-        $rows = $mapper->getQuestions($total, $limit, $start);
-        $this->view->items = $rows;
-
-        $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Null($total));
-        $paginator->setDefaultScrollingStyle();
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-
-        $this->view->paginator = $paginator;        
-
-        $this->view->limit = $limit;
-        $this->view->total = $total;
-        $this->view->page=$page;
-
-        $this->view->message= $this->getMessage();
+        $rows = $mapper->getQuestions($this->total, $this->limit, $this->start);
+        $this->view->items = $rows;       
     }
 
     public function addAction() 

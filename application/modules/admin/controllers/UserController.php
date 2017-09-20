@@ -10,30 +10,9 @@ class Admin_UserController extends Core_Controller_Action
 
     public function indexAction() 
     {
-        $limit = $this->_getParam('limit', 5);
-        $page = $this->_getParam('page', 1);
-
-        if(Core_Common_Numeric::isInteger($page)==FALSE){
-            $page=1;
-        }
-
-        $start = (($page - 1) * $limit);
         $mapper = new Default_Model_User();
-        $rows = $mapper->getUsers($total, $limit, $start);
-        $this->view->items = $rows;
-
-        $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Null($total));
-        $paginator->setDefaultScrollingStyle();
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-
-        $this->view->paginator = $paginator;        
-
-        $this->view->limit = $limit;
-        $this->view->total = $total;
-        $this->view->page=$page;
-
-        $this->view->message= $this->getMessage();        
+        $rows = $mapper->getUsers($this->total, $this->limit, $this->start);
+        $this->view->items = $rows;        
     }
 
     

@@ -17,7 +17,7 @@ class Admin_HomecontentController extends Core_Controller_Action
             $noi_dung = $item['content'];
         }
         $this->view->content = $noi_dung;
-        $this->view->message= $this->getMessage();
+        
     }
 
     public function saveAction() 
