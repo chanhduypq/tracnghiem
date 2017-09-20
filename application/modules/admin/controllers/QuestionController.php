@@ -46,7 +46,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
 
                     Core::message()->addSuccess('Thêm mới thành công');
-                    $this->_helper->redirector('index', 'question', 'admin');
+                    $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
                 } else {
                     Core::message()->addSuccess('Lỗi. Xử lý thất bại.');
                     $message = Core::message()->getAll();
