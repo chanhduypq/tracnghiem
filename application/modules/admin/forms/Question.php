@@ -20,6 +20,11 @@ class Admin_Form_Question extends Core_Form {
                                 )
                 ->setLabel('level:')->setValue(Default_Model_Question::BAC1)->setSeparator('')->setRequired();
         $this->addElement($level);
+        
+        $this->removeElement("is_dao");
+        $is_dao = new Core_Form_Element_Checkbox('is_dao');
+        $is_dao->setChecked(TRUE)->setValue('1')->setLabel('Có thể đảo đáp án'); 
+        $this->addElement($is_dao);
     }
 
 }
