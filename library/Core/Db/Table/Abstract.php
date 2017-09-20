@@ -281,6 +281,8 @@ abstract class Core_Db_Table_Abstract extends Zend_Db_Table_Abstract
             foreach ($data as $key => $value) {
                 if ($value == "") {
                     $data["$key"] = NULL;
+                } else {
+                    $data["$key"] = htmlentities($value);
                 }
                 if (!in_array($key, array_keys($this->info(self::METADATA)))) {
                     unset($data["$key"]);
@@ -308,6 +310,8 @@ abstract class Core_Db_Table_Abstract extends Zend_Db_Table_Abstract
             foreach ($data as $key => $value) {
                 if ($value == "") {
                     $data["$key"] = NULL;
+                } else {
+                    $data["$key"] = htmlentities($value);
                 }
                 if (!in_array($key, array_keys($this->info(self::METADATA)))) {
                     unset($data["$key"]);
