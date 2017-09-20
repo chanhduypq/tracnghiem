@@ -48,14 +48,7 @@ class Admin_QuestionController extends Core_Controller_Action
                     Core::message()->addSuccess('Thêm mới thành công');
                     $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
                 } else {
-                    Core::message()->addSuccess('Lỗi. Xử lý thất bại.');
-                    $message = Core::message()->getAll();
-                    if (is_array($message) && count($message) > 0) {
-                        $message = $message['message'];
-                        $this->view->message = $message[0];
-                    } else {
-                        $this->view->message = '';
-                    }
+                    $this->view->message = 'Lỗi. Xử lý thất bại.';
                     $form->populate($formData);
                 }
             } else {
@@ -87,14 +80,7 @@ class Admin_QuestionController extends Core_Controller_Action
                     Core::message()->addSuccess('Thêm mới thành công');
                     $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
                 } else {
-                    Core::message()->addSuccess('Lỗi. Xử lý thất bại.');
-                    $message = Core::message()->getAll();
-                    if (is_array($message) && count($message) > 0) {
-                        $message = $message['message'];
-                        $this->view->message = $message[0];
-                    } else {
-                        $this->view->message = '';
-                    }
+                    $this->view->message = 'Lỗi. Xử lý thất bại.';
                     $form->populate($formData);
                 }
             } else {
