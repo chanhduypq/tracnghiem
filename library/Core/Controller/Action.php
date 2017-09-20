@@ -61,11 +61,18 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
      * @var integer
      */
     public $order;
+    
+    /**
+     *
+     * @var integer
+     */
+    public $total;
 
     /**
      *  Main init
      */
-    public function init() {
+    public function init() 
+    {
         parent::init();
         $this->setLayout();
         $this->redirectIfNotLogin();
@@ -78,7 +85,38 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
         $this->view->headMeta()->appendName('keywords', 'Trần Công Tuệ, chanhduypq@gmail.com');
 
         $this->initPaginator();
+        
+        if ($this->_request->getActionName() == 'index') {
+            $this->limit = $this->_getParam('limit', 5);
+            $this->page = $this->_getParam('page', 1);
+            if (Core_Common_Numeric::isInteger($this->page) == FALSE) {
+                $this->page = 1;
+            }
+
+            $this->start = (($this->page - 1) * $this->limit);
+        }
     }
+    
+    public function postDispatch() 
+    {
+        parent::postDispatch();
+        if ($this->_request->getActionName() == 'index') {
+            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Null($this->total));
+
+            $paginator->setDefaultScrollingStyle();
+            $paginator->setItemCountPerPage($this->limit);
+            $paginator->setCurrentPageNumber($this->page);
+
+            $this->view->paginator = $paginator;
+            $this->view->limit = $this->limit;
+            $this->view->total = $this->total;
+            $this->view->page = $this->page;
+            if (!isset($this->view->message)) {
+                $this->view->message = $this->getMessage();
+            }
+        }
+    }
+
 
     public function getUserId() {
         $auth = Zend_Auth::getInstance();
