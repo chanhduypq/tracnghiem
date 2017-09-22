@@ -31,7 +31,7 @@ class Admin_QuestionController extends Core_Controller_Action
                 $mapper = new Default_Model_Question();
 
 
-                if ($id = $mapper->insert($formData)) {
+                if ($id = $mapper->createRow($formData)->save()) {
 
                     if (is_array($nganhnghe_ids) && count($nganhnghe_ids) > 0) {
                         foreach ($nganhnghe_ids as $nganhnghe_id) {
@@ -76,7 +76,7 @@ class Admin_QuestionController extends Core_Controller_Action
 
                 $formData['sign'] = strtoupper($formData['sign']);
 
-                if ($mapper->insert($formData)) {
+                if ($mapper->createRow($formData)->save()) {
                     Core::message()->addSuccess('Thêm mới thành công');
                     $this->_helper->redirector('index', 'question', 'admin',array('page'=> $this->_getParam('page')));
                 } else {

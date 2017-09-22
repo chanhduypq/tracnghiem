@@ -30,7 +30,7 @@ class Admin_NganhngheController extends Core_Controller_Action
             if ($form->isValid($formData)) {
                 $mapper = new Default_Model_Nganhnghe();
 
-                if ($id = $mapper->insert($formData)) {
+                if ($id = $mapper->createRow($formData)->save()) {
 
                     if (is_array($question_ids) && count($question_ids) > 0) {
                         foreach ($question_ids as $question_id) {
