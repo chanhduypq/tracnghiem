@@ -538,6 +538,7 @@ class Core_Form extends Zend_Form
             $defaults = $this->_dissolveArrayValue($defaults, $eBelongTo);
         }
         foreach ($this->getElements() as $name => $element) {
+            
             $check = $defaults;
             if (($belongsTo = $element->getBelongsTo()) !== $eBelongTo) {
                 $check = $this->_dissolveArrayValue($defaults, $belongsTo);
@@ -554,6 +555,15 @@ class Core_Form extends Zend_Form
                     $value = $array[2] . "/" . $array[1] . "/" . $array[0];
                     $element->setValue($value);
                 }
+            }
+            /**
+             * trường hợp edit, nếu là textbox thi giải mã ngược trở lại cho đúng với nội dung mà user đã nhập
+             * ví dụ user đã nhập <b>abc</b> thi phải hiển thị trở lại như vay chứ không được là &lt;b&gt;abc&lt;/b&gt;
+             */
+            if ($element instanceof Core_Form_Element_Text) {
+                $value=$element->getValue();
+                $value= html_entity_decode($value);
+                $element->setValue($value);
             }
         }
         foreach ($this->getSubForms() as $name => $form) {
