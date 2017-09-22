@@ -557,10 +557,10 @@ class Core_Form extends Zend_Form
                 }
             }
             /**
-             * trường hợp edit, nếu là textbox thi giải mã ngược trở lại cho đúng với nội dung mà user đã nhập
+             * trường hợp edit, nếu là textbox hoặc textarea thi giải mã ngược trở lại cho đúng với nội dung mà user đã nhập
              * ví dụ user đã nhập <b>abc</b> thi phải hiển thị trở lại như vay chứ không được là &lt;b&gt;abc&lt;/b&gt;
              */
-            if ($element instanceof Core_Form_Element_Text) {
+            if ($element instanceof Core_Form_Element_Text || $element instanceof Core_Form_Element_Textarea) {
                 $element->setValue(html_entity_decode($element->getValue()));
             }
         }
