@@ -561,9 +561,7 @@ class Core_Form extends Zend_Form
              * ví dụ user đã nhập <b>abc</b> thi phải hiển thị trở lại như vay chứ không được là &lt;b&gt;abc&lt;/b&gt;
              */
             if ($element instanceof Core_Form_Element_Text) {
-                $value=$element->getValue();
-                $value= html_entity_decode($value);
-                $element->setValue($value);
+                $element->setValue(html_entity_decode($element->getValue()));
             }
         }
         foreach ($this->getSubForms() as $name => $form) {
