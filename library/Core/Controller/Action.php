@@ -61,7 +61,7 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
      * @var integer
      */
     public $order;
-    
+
     /**
      *
      * @var integer
@@ -69,10 +69,33 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
     public $total;
 
     /**
+     *
+     * @var Core_Form
+     */
+    public $form = null;
+
+    /**
+     *
+     * @var Core_Db_Table_Abstract
+     */
+    public $model = null;
+
+    /**
+     *
+     * @var array
+     */
+    public $formData = null;
+
+    /**
+     *
+     * @var string
+     */
+    public $renderScript = NULL;
+
+    /**
      *  Main init
      */
-    public function init() 
-    {
+    public function init() {
         parent::init();
         $this->setLayout();
         $this->redirectIfNotLogin();
@@ -85,7 +108,7 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
         $this->view->headMeta()->appendName('keywords', 'Trần Công Tuệ, chanhduypq@gmail.com');
 
         $this->initPaginator();
-        
+
         if ($this->_request->getActionName() == 'index') {
             $this->limit = $this->_getParam('limit', 5);
             $this->page = $this->_getParam('page', 1);
@@ -94,29 +117,25 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
             }
 
             $this->start = (($this->page - 1) * $this->limit);
+        } else if ($this->_request->getActionName() == 'add' || $this->_request->getActionName() == 'edit') {
+            $this->formData = $this->_request->getPost();
         }
     }
+
     
-    public function postDispatch() 
-    {
+
+    public function postDispatch() {
         parent::postDispatch();
         if ($this->_request->getActionName() == 'index') {
-            $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Null($this->total));
-
-            $paginator->setDefaultScrollingStyle();
-            $paginator->setItemCountPerPage($this->limit);
-            $paginator->setCurrentPageNumber($this->page);
-
-            $this->view->paginator = $paginator;
-            $this->view->limit = $this->limit;
-            $this->view->total = $this->total;
-            $this->view->page = $this->page;
-            if (!isset($this->view->message)) {
-                $this->view->message = $this->getMessage();
-            }
+            $this->processForIndexAction();
+        } else if ($this->_request->getActionName() == 'add') {
+            $this->processForAddAction();
+        } else if ($this->_request->getActionName() == 'edit') {
+            $this->processForEditAction();
+        } else if ($this->_request->getActionName() == 'delete') {
+            $this->processForDeleteAction();
         }
     }
-
 
     public function getUserId() {
         $auth = Zend_Auth::getInstance();
@@ -176,17 +195,17 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
      * @param array $formData
      */
     public function processSpecialInput($form, &$formData) {
-        Core_Common_Form::fixSpecialElements($form, $formData);        
+        Core_Common_Form::fixSpecialElements($form, $formData);
     }
-    
+
     /**
      * function common
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
      */
     public function disableLayout() {
-        $this->_helper->layout()->disableLayout(); 
+        $this->_helper->layout()->disableLayout();
     }
-    
+
     /**
      * function common
      * @author Trần Công Tuệ <chanhduypq@gmail.com>
@@ -194,9 +213,9 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
     public function disableRender() {
         $this->_helper->viewRenderer->setNoRender(true);
     }
-    
-    public function isAjax(){
-        $this->_helper->layout()->disableLayout(); 
+
+    public function isAjax() {
+        $this->_helper->layout()->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
@@ -310,6 +329,103 @@ abstract class Core_Controller_Action extends Zend_Controller_Action {
         }
 
         $auth->getStorage()->write($identity);
+    }
+    
+    private function processForIndexAction() {
+        $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_Null($this->total));
+
+        $paginator->setDefaultScrollingStyle();
+        $paginator->setItemCountPerPage($this->limit);
+        $paginator->setCurrentPageNumber($this->page);
+
+        $this->view->paginator = $paginator;
+        $this->view->limit = $this->limit;
+        $this->view->total = $this->total;
+        $this->view->page = $this->page;
+        if (!isset($this->view->message)) {
+            $this->view->message = $this->getMessage();
+        }
+    }
+
+    private function processForAddAction() {
+        if ($this->model == NULL || $this->form == NULL) {
+            return;
+        }
+        if ($this->_request->isPost()) {
+            if ($this->form->isValid($this->formData)) {
+                Core_Common_Form::processSpecialInput($this->form, $this->formData);
+                if ($this->model->createRow($this->formData)->save()) {
+                    Core::message()->addSuccess('Thêm mới thành công');
+                    $this->_helper->redirector('index', $this->_request->getControllerName(), $this->_request->getModuleName(), array('page' => $this->_getParam('page')));
+                } else {
+                    $this->view->message = 'Lỗi. Xử lý thất bại.';
+                    $this->form->populate($this->formData);
+                }
+            } else {
+                $this->form->populate($this->formData);
+            }
+        }
+        if (!isset($this->view->form)) {//nếu trong addAction, chưa có dòng code này: $this->view->form = $this->form;
+            $this->view->form = $this->form;
+        }
+        if ($this->renderScript == NULL) {//nếu trong addAction, k chỉ định renderScript đến .phtml nào
+            try {
+                $this->render('add');
+            } catch (Exception $e) {
+                if ($e->getCode() == 0) {
+                    $this->renderScript('common/add.phtml');
+                }
+            }
+        } else {
+            $this->renderScript($this->renderScript);
+        }
+    }
+
+    private function processForEditAction() {
+        if ($this->model == NULL || $this->form == NULL) {
+            return;
+        }
+        if ($this->_request->isPost()) {
+            if ($this->form->isValid($this->formData)) {
+                Core_Common_Form::processSpecialInput($this->form, $this->formData);
+                $this->model->update($this->formData, 'id=' . $this->formData['id']);
+                Core::message()->addSuccess('Sửa thành công');
+                $this->_helper->redirector('index', $this->_request->getControllerName(), $this->_request->getModuleName(), array('page' => $this->_getParam('page')));
+            } else {
+                $this->form->populate($this->formData);
+            }
+        } else {
+            $row = $this->model->fetchRow("id=" . $this->_getParam('id'))->toArray();
+            $this->form->setDefaults($row);
+        }
+        if (!isset($this->view->form)) {//nếu trong editAction, chưa có dòng code này: $this->view->form = $this->form;
+            $this->view->form = $this->form;
+        }
+        if ($this->renderScript == NULL) {//nếu trong editAction, k chỉ định renderScript đến .phtml nào
+            try {
+                $this->render('add');
+            } catch (Exception $e) {
+                if ($e->getCode() == 0) {
+                    $this->renderScript('common/add.phtml');
+                }
+            }
+        } else {
+            $this->renderScript($this->renderScript);
+        }
+    }
+
+    private function processForDeleteAction() {
+        if ($this->model == NULL) {
+            return;
+        }
+        $id = $this->_getParam('id');
+        if (Core_Common_Numeric::isInteger($id) == FALSE) {
+            $this->_helper->redirector('index', $this->_request->getControllerName(), $this->_request->getModuleName());
+            return;
+        }
+        $this->model->delete("id=$id");
+        Core::message()->addSuccess('Xóa thành công');
+        $this->_helper->redirector('index', $this->_request->getControllerName(), $this->_request->getModuleName());
     }
 
 }
