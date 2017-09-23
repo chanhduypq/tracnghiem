@@ -116,20 +116,7 @@ class Admin_NganhngheController extends Core_Controller_Action
 
     public function deleteAction() 
     {
-        $item_id = $this->_request->getParam('id', null);
-
-        
-        if (Core_Common_Numeric::isInteger($item_id) == FALSE){
-            return;
-        }
-
-        $where = "id=$item_id";
-        $mapper = new Default_Model_Nganhnghe();
-
-        $mapper->delete($where);
-
-        Core::message()->addSuccess('Xóa thành công');
-        $this->_helper->redirector('index', 'nganhnghe', 'admin');
+        $this->model = new Default_Model_Nganhnghe();
     }
 
 }
