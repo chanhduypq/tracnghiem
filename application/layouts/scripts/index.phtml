@@ -71,7 +71,7 @@ $GLOBALS['menu_items'] = $menu_items;
         <!--end hiệu ứng chuyển động ảnh-->
         <!--chạy chữ-->
         <?php
-        if ($header_text_dynamic == "1") {
+        if ($header_text_dynamic == "1" && trim($header_text) != '') {
             ?>
             <script type="text/javascript" src="<?php echo $this->baseUrl('/js/animation_text/textTyper.js'); ?>"></script>
             <?php
@@ -136,7 +136,7 @@ if ($logo['dynamic'] == "1") {
 }
 ?>
 <?php
-if ($header_text_dynamic == "1") {
+if ($header_text_dynamic == "1" && trim($header_text) != '') {
     ?>
                     $('div#simpleDiv').textTyper({repeatAnimation: true, repeatTimes: 100, speed: 50});
     <?php
@@ -218,7 +218,7 @@ if ($header_text_dynamic == "1") {
                     </div>
                     <div class="span5">
                         <div class="row-fluid" <?php
-                        if ($header_text_dynamic == "1") {
+                        if ($header_text_dynamic == "1" && trim($header_text) != '') {
                             echo ' id="simpleDiv"';
                         }
                         ?> style="font-size: 30px;line-height: 1.3;text-align: center;color: #c1976c;font-family: serif;padding-top: 0;">
