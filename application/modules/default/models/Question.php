@@ -84,7 +84,7 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
             $rows = $db->fetchAll($sql);
         } else if ($level == '2' || $level == '3') {//nếu là bậc 2/3
             $levelJsonString = $db->fetchOne("SELECT data from config_exam_level WHERE level=$level");
-            $levelJsonArray = json_decode($levelJsonString, true);
+            $levelJsonArray = json_decode(html_entity_decode($levelJsonString), true);
             if ($levelJsonArray['b2'] == '100') {//nếu hệ thống muốn lấy 100% câu b2 cho bậc 2/3
                 $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=2 ORDER BY RAND() LIMIT " . $config_exam_number;
                 $rows = $db->fetchAll($sql);
@@ -108,7 +108,7 @@ class Default_Model_Question extends Core_Db_Table_Abstract {
             }
         } else {//nếu là bậc 4/5
             $levelJsonString = $db->fetchOne("SELECT data from config_exam_level WHERE level=$level");
-            $levelJsonArray = json_decode($levelJsonString, true);
+            $levelJsonArray = json_decode(html_entity_decode($levelJsonString), true);
 
             if ($levelJsonArray['b3'] == '100') {//nếu hệ thống muốn lấy 100% câu b3 cho bậc 4/5
                 $sql = "SELECT DISTINCT question.id from nganhnghe_question JOIN question ON question.id=nganhnghe_question.question_id WHERE nganhnghe_question.nganhnghe_id=$nganhNgheId AND question.level=3 ORDER BY RAND() LIMIT " . $config_exam_number;

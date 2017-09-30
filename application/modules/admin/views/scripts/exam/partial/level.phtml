@@ -19,7 +19,7 @@
                     } else {
                         $readonlyParent='';
                     }
-                    $jsonArray = json_decode($level['data']);
+                    $jsonArray = json_decode(html_entity_decode($level['data']));
                     ?>
 
                     <tr>                 
