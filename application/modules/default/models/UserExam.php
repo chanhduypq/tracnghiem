@@ -42,7 +42,7 @@ class Default_Model_Userexam extends Core_Db_Table_Abstract {
             }
             $questionIds[] = $r['question_id'];
             $questions[$r['question_id']]['question_content'] = $r['question_content'];
-            $answers_json= json_decode($r['answers_json'],TRUE);
+            $answers_json= json_decode(html_entity_decode($r['answers_json']),TRUE);
             foreach ($answers_json as $key=>$value){
                 $questions[$r['question_id']]['answers'][] = array('answer_sign' => $key, 'answer_content' => $value['content'], 'is_dap_an' => $value['is_dapan']);
             }
