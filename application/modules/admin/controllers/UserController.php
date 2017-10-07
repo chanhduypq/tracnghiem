@@ -4,17 +4,16 @@ class Admin_UserController extends Core_Controller_Action {
 
     public function init() {
         parent::init();
+        $this->model = new Default_Model_User();
+        $this->form = new Admin_Form_User();
     }
 
     public function indexAction() {
-        $mapper = new Default_Model_User();
-        $rows = $mapper->getUsers($this->total, $this->limit, $this->start);
+        $rows = $this->model->getUsers($this->total, $this->limit, $this->start);
         $this->view->items = $rows;
     }
 
     public function addAction() {
-        $this->form = new Admin_Form_User();
-        $this->model = new Default_Model_User();
         if (is_array($this->formData) && count($this->formData) > 0) {
             $this->formData['password'] = sha1($this->formData['email']);
         }
@@ -24,8 +23,6 @@ class Admin_UserController extends Core_Controller_Action {
     }
 
     public function editAction() {
-        $this->form = new Admin_Form_User();
-        $this->model = new Default_Model_User();
         $this->view->page = $this->_getParam('page');
 
         $db = Core_Db_Table::getDefaultAdapter();
@@ -37,7 +34,6 @@ class Admin_UserController extends Core_Controller_Action {
     }
 
     public function deleteAction() {
-        $this->model = new Default_Model_User();
     }
 
     public function allowreexamAction() {
