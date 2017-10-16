@@ -9,11 +9,6 @@ class Default_Model_Answer extends Core_Db_Table_Abstract
         parent::__construct();
              
     }
-    public function autoComplete($string,$language, $limit = 10) 
-    {
-        $items=  $this->select("ten_mat_hang_$language")->where("ten_mat_hang_$language like '%$string%'")->limit($limit)->fetchAll();         
-        return $items;
-    }
     public function getAnswers($question_id) 
     {                 
         $items=  $this->select("*")->where('question_id='.$question_id)->order('sign')->fetchAll();          
