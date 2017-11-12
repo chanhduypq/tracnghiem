@@ -730,11 +730,17 @@ abstract class Zend_Db_Adapter_Abstract
      */
     public function fetchAll($sql, $bind = array(), $fetchMode = null)
     {
+        
         if ($fetchMode === null) {
             $fetchMode = $this->_fetchMode;
         }
         $stmt = $this->query($sql, $bind);
         $result = $stmt->fetchAll($fetchMode);
+        foreach ($result as &$row) {
+            foreach ($row as $key => $value) {
+                $row["$key"]= htmlentities($value);
+            }
+        }
         return $result;
     }
 

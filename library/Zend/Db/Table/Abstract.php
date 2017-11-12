@@ -1530,6 +1530,11 @@ abstract class Zend_Db_Table_Abstract
     {
         $stmt = $this->_db->query($select);
         $data = $stmt->fetchAll(Zend_Db::FETCH_ASSOC);
+        foreach ($data as &$row) {
+            foreach ($row as $key => $value) {
+                $row["$key"]= htmlentities($value);
+            }
+        }
         return $data;
     }
 
