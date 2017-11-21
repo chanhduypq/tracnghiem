@@ -317,7 +317,7 @@ if ($header_text_dynamic == "1" && trim($header_text) != '') {
                 <div class="span12">
                     <?php
                     // echo $this->footer(array('&COPY;Duong Viet Cuong', 'Địa chỉ: xxx Số điện thoại: yyy ............')); 
-                    echo $footer_text;
+                    echo html_entity_decode($footer_text);
                     ?>
                 </div>
             </div>
